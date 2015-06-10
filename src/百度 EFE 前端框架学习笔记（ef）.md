@@ -28,3 +28,19 @@ UIModel 添加了 formatter 属性，用于对日期进行格式化。同时增�
 ### ActionPanel.js
 
 用于加载子Action的面板控件。继承自 esui 的 Panel 类，不过没有 setContent() 方法。
+
+### 小技巧
+
+```js
+function getControl(node) {
+    var controls = require('er/controller').currentAction.view.viewContext.getControls();
+    for (var k in controls) {
+        var control = controls[k];
+        if (control.main === node) {
+            return control;
+        }
+    }
+}
+```
+
+该函数可以根据节点找到这个节点对应的控件对象，对debug有一定帮助。

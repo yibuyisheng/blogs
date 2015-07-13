@@ -235,4 +235,35 @@ new gen2();
 
 # 一个简单的类似于 tj co 库的东西
 
-TODO
+```js
+// 此段代码使用 node --harmony 执行
+executeGeneratorFn(function* () {
+    var result = yield request;
+    console.log(result);
+});
+
+function request(callback) {
+    setTimeout(() => callback('request result'), 3000);
+}
+
+function executeGeneratorFn(genFn, callback) {
+    var iterator = genFn();
+    next();
+
+    function next() {
+        try {
+            execute(iterator.next(arguments));
+        } catch (e) {
+            callback instanceof Function && callback(e);
+        }
+    }
+
+    function execute(nextValue) {
+        if (!nextValue.done) {
+            nextValue.value(next);
+        } else {
+            callback instanceof Function && callback(null, nextValue.value);
+        }
+    }
+}
+```

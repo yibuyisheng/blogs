@@ -238,11 +238,11 @@ new gen2();
 ```js
 // 此段代码使用 node --harmony 执行
 executeGeneratorFn(function* () {
-    var result = yield request;
+    var result = yield request.bind(null, 'http://www.baidu.com', {userId: 1});
     console.log(result);
 });
 
-function request(callback) {
+function request(url, params, callback) {
     setTimeout(() => callback('request result'), 3000);
 }
 

@@ -175,6 +175,64 @@ print(JSON.stringify(newArr)); // [1, 1.5, 2]
 
 # generator 类图
 
+规范里面有一张[很大的图](http://www.ecma-international.org/ecma-262/6.0/#sec-generatorfunction-objects)，有点复杂。所以，看一张小图：
+
+![](https://github.com/yibuyisheng/blogs/blob/master/imgs/5.jpg)
+
+说明：
+
+* 空心箭头表示两个对象的继承关系。换句话说，从 x 指向 y 的箭头意味着 `Object.getPrototypeOf(x) === y` 。
+* 圆括号表示当前被包起来的对象是存在的，但是不能通过全局变量来访问。
+* 带有 `instanceof` 字眼的箭头如果从 x 指向 y ，就表明 `x instanceof y` 。
+    * `o instanceof C` 实际上就相当于 `C.prototype.isPrototypeOf(o)`
+* 带有 `prototype` 字眼的箭头如果从 x 指向 y ，就表明 `x.prototype === y` 。
+
+此图看完可能没有直观的感受，看两个例子先。
+
+第一个， generator 函数表现得很像一个构造函数，因为通过 `new` 调用和直接调用，两者的效果是一样的，都返回 generator 对象，如下所示：
+
+```
+> function* g() {}
+> g.prototype.hello = function () { return 'hi!'};
+> let obj = g();
+> obj instanceof g
+true
+> obj.hello()
+'hi!'
+```
+
+第二个，如果想给所有的 generator 对象添加一个方法，就可以放在 `(Generator).prototype` 上面，如下所示：
+
+```
+> let Generator_prototype = Object.getPrototypeOf(function* () {}).prototype;
+> Generator_prototype.hello = function () { return 'hi!'};
+> let generatorObject = (function* () {})();
+> generatorObject.hello()
+'hi!'
+```
+
+generator 内部的 `this` 是有一些猫腻的：
+
+```js
+function* gen1() {
+    'use strict'; // just in case
+    yield this;
+}
+
+// Retrieve the yielded value via destructuring
+let [functionThis] = gen1();
+console.log(functionThis); // undefined
+
+let obj = { method: gen1 };
+let [methodThis] = obj.method();
+console.log(methodThis === obj); // true
+
+function* gen2() {
+    console.log(this); // ReferenceError
+}
+new gen2();
+```
+
 # 一个简单的类似于 tj co 库的东西
 
 TODO

@@ -242,8 +242,16 @@ executeGeneratorFn(function* () {
     console.log(result);
 });
 
+executeGeneratorFn(function* () {
+    var userList = [];
+    for (var param of [{userId: 1}, {userId: 2}]) {
+        userList.push(yield request.bind(null, 'http://www.baidu.com', param));
+    }
+    console.log(userList);
+});
+
 function request(url, params, callback) {
-    setTimeout(() => callback('request result'), 3000);
+    setTimeout(() => callback('request result: ' + Math.random()), 3000);
 }
 
 function executeGeneratorFn(genFn, callback) {

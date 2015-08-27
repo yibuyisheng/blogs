@@ -13,7 +13,7 @@ marked.setOptions({
 });
 
 jade.filters.md = function (str) {
-    return marked(str);
+    return marked(str).replace(/url\(\.\/imgs\//g, 'url(../../imgs/');
 };
 
 var siteRoot = './site';
@@ -53,10 +53,10 @@ gulp.task('create-blog-pages', function (doneFn) {
 
             var jadeFilePath = siteRoot + '/blogs/' + fileName.slice(0, -3) + '.jade';
             var jadeContent = [
-                    'extends ../layout.jade',
-                    'block blog',
-                    '    include:md ../../src/' + fileName
-                ].join('\r');
+                'extends ../layout.jade',
+                'block blog',
+                '    include:md ../../src/' + fileName
+            ].join('\r');
 
             fs.writeFileSync(jadeFilePath, jadeContent);
         });
@@ -108,7 +108,7 @@ gulp.task('set-jade-test-root-path', function () {
     var path = siteRoot + '/layout.jade';
     fs.writeFileSync(
         path,
-        '- var rootPath = "/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r/, '')
+        '- var rootPath = "/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r/g, '')
     );
 });
 
@@ -116,7 +116,7 @@ gulp.task('set-jade-build-root-path', function () {
     var path = siteRoot + '/layout.jade';
     fs.writeFileSync(
         path,
-        '- var rootPath = "/blogs/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r/, '')
+        '- var rootPath = "/blogs/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r/g, '')
     );
 });
 
@@ -133,7 +133,7 @@ gulp.task(
     'watch',
     ['static-server', 'set-jade-test-root-path', 'create-blog-pages', 'jade-blogs', 'jade-index'],
     function () {
-        gulp.watch('../src/*.md', ['set-jade-test-root-path', 'create-blog-pages', 'jade-blogs', 'jade-index']);
+        gulp.watch('./src/*.md', ['set-jade-test-root-path', 'create-blog-pages', 'jade-blogs', 'jade-index']);
     }
 );
 

@@ -1,0 +1,169 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title>yibuyisheng's blogs</title><style>.hljs, code[class^="lang-"] {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #002b36;
+  color: #839496;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header,
+.hljs-doctype,
+.hljs-pi,
+.lisp .hljs-string {
+  color: #586e75;
+}
+
+/* Solarized Green */
+.hljs-keyword,
+.hljs-winutils,
+.method,
+.hljs-addition,
+.css .hljs-tag,
+.hljs-request,
+.hljs-status,
+.nginx .hljs-title {
+  color: #859900;
+}
+
+/* Solarized Cyan */
+.hljs-number,
+.hljs-command,
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-rule .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula,
+.hljs-regexp,
+.hljs-hexcolor,
+.hljs-link_url {
+  color: #2aa198;
+}
+
+/* Solarized Blue */
+.hljs-title,
+.hljs-localvars,
+.hljs-chunk,
+.hljs-decorator,
+.hljs-built_in,
+.hljs-identifier,
+.vhdl .hljs-literal,
+.hljs-id,
+.css .hljs-function,
+.hljs-name {
+  color: #268bd2;
+}
+
+/* Solarized Yellow */
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.smalltalk .hljs-number,
+.hljs-constant,
+.hljs-class .hljs-title,
+.hljs-parent,
+.hljs-type,
+.hljs-link_reference {
+  color: #b58900;
+}
+
+/* Solarized Orange */
+.hljs-preprocessor,
+.hljs-preprocessor .hljs-keyword,
+.hljs-pragma,
+.hljs-shebang,
+.hljs-symbol,
+.hljs-symbol .hljs-string,
+.diff .hljs-change,
+.hljs-special,
+.hljs-attr_selector,
+.hljs-subst,
+.hljs-cdata,
+.css .hljs-pseudo,
+.hljs-header {
+  color: #cb4b16;
+}
+
+/* Solarized Red */
+.hljs-deletion,
+.hljs-important {
+  color: #dc322f;
+}
+
+/* Solarized Violet */
+.hljs-link_label {
+  color: #6c71c4;
+}
+
+.tex .hljs-formula {
+  background: #073642;
+}
+
+</style><style type="text/css">body {
+    background: #fdf6e3;
+    font-family: Georgia, serif;
+}
+.container {
+    display: flex;
+}
+.nav {
+    margin-right: 20px;
+    min-width: 240px;
+}
+.nav a {
+    color: #556677;
+    text-decoration: none;
+}
+.nav h5 {
+    margin: 0;
+    line-height: 35px;
+    font-size: 14px;
+}
+.content {
+    flex: 1;
+    line-height: 1.4em;
+}
+.content img {
+    max-width: 100%;
+}
+</style></head><body><div class="container"><div class="nav"><h3><a href="/site/index.html">首页</a></h3><h5><a href="/site/blogs/使用 CSS background 构造一个棋盘.html">使用 CSS background 构造一个棋盘</a></h5><h5><a href="/site/blogs/generator.html">generator</a></h5><h5><a href="/site/blogs/百度 EFE 前端框架学习笔记（ef）.html">百度 EFE 前端框架学习笔记（ef）</a></h5><h5><a href="/site/blogs/百度 EFE 前端框架学习笔记（esui）.html">百度 EFE 前端框架学习笔记（esui）</a></h5><h5><a href="/site/blogs/百度 EFE 前端框架学习笔记（er）.html">百度 EFE 前端框架学习笔记（er）</a></h5><h5><a href="/site/blogs/Reflux 使用进化日记.html">Reflux 使用进化日记</a></h5><h5><a href="/site/blogs/记一次坑爹的对接经历.html">记一次坑爹的对接经历</a></h5></div><div class="content"><!-- config.time: 2015-06-01 -->
+<h1 id="-efe-ef-">百度（EFE）前端框架学习笔记（ef）</h1>
+<p>官方 EF 学习资料：<a href="https://github.com/ecomfe/ef/blob/master/doc/ActionPanel.md">ActionPanel</a>、<a href="https://github.com/ecomfe/ef/blob/master/doc/UIModel.md">UIModel</a>、<a href="https://github.com/ecomfe/ef/blob/master/doc/UIView.md">UIView</a>。</p>
+<h3 id="uiview-js">UIView.js</h3>
+<p>与 ESUI 结合的 <code>View</code> 基类。该类有一个主入口方法 enterDocument()，该函数在容器渲染完毕后触发，用于控制元素可见性及绑定事件等 DOM 操作。</p>
+<p>是 ESUI 中 View 类的子类。</p>
+<p>该类对应的实例上会有一个视图上下文对象（ view.viewContext ），此上下文对象会传递给每个子控件，也就是说每个子控件都会有一个 viewContext 属性。此上下文对象的详细信息参看<a href="https://github.com/yibuyisheng/blogs/issues/4">百度 EFE 前端框架学习笔记（esui）</a>的 <code>ViewContext.js</code> 部分。</p>
+<p>enterDocument() 方法会调用 ESUI 的 main.init() 方法，初始化当前 UIView 实例所管辖的 container 部分，生成各种各样的控件等等。</p>
+<p>此类生成的实例上有一个很重要的事件属性 uiView.uiEvents，该属性有2种方式：</p>
+<ul>
+<li>以 <code>id:eventName</code> 为键，以处理函数为值，比如 <code>{&#39;someId:click&#39;: function() {/* do something */}}</code>。</li>
+<li>以 <code>id</code> 为键，值为一个对象，对象中以 <code>eventName</code> 为键，处理函数为值，比如 <code>{someId: {eventName: function() {/* do something */}}}</code>。</li>
+</ul>
+<p>在此处声明的事件，运行时的 <code>this</code> 对象均是 <code>View</code> 实例，而非控件的实例。同时，在运行期，<code>UIView</code> 会克隆该属性，将其中所有的处理函数都进行一次 <code>bind</code>，将 <code>this</code> 指向自身，因此运行时的 <code>uiEvents</code> 与类声明时的不会相同。</p>
+<p>此类上的 bindEvents() 方法就会根据 uiEvents 指定的事件配置来给子控件绑定事件。</p>
+<h3 id="uimodel-js">UIModel.js</h3>
+<p>处理 ESUI 场景的 <code>Model</code> 实现。 UIModel 继承自 er 的 Model。</p>
+<p>UIModel 添加了 formatter 属性，用于对日期进行格式化。同时增加了一些操作数据的方法：set() 、 fill() 、 getPart()。</p>
+<h3 id="actionpanel-js">ActionPanel.js</h3>
+<p>用于加载子Action的面板控件。继承自 esui 的 Panel 类，不过没有 setContent() 方法。</p>
+<h3 id="-">小技巧</h3>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getControl</span>(<span class="hljs-params">node</span>) </span>{
+    <span class="hljs-keyword">var</span> controls = <span class="hljs-built_in">require</span>(<span class="hljs-string">'er/controller'</span>).currentAction.view.viewContext.getControls();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> k <span class="hljs-keyword">in</span> controls) {
+        <span class="hljs-keyword">var</span> control = controls[k];
+        <span class="hljs-keyword">if</span> (control.main === node) {
+            <span class="hljs-keyword">return</span> control;
+        }
+    }
+}
+</code></pre>
+<p>该函数可以根据节点找到这个节点对应的控件对象，对debug有一定帮助。</p>
+<div id="disqus_thread" class="container"></div></div></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'yibuyisheng';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><noscript>Please enable JavaScript to view the<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a><a href="http://disqus.com" class="dsq-brlink"></a>blog comments powered by</noscript><span class="logo-disqus"></span></body></html>

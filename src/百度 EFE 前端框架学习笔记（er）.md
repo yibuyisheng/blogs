@@ -1,3 +1,6 @@
+<!-- config.time: 2015-05-29 -->
+# 百度 EFe 前端框架学习笔记（er）
+
 首先上一张图：
 
 ![](https://raw.githubusercontent.com/ecomfe/er/master/doc/asset/er-overview.png)

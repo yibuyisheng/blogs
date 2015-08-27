@@ -1,0 +1,213 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title>yibuyisheng's blogs</title><style>.hljs, code[class^="lang-"] {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #002b36;
+  color: #839496;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header,
+.hljs-doctype,
+.hljs-pi,
+.lisp .hljs-string {
+  color: #586e75;
+}
+
+/* Solarized Green */
+.hljs-keyword,
+.hljs-winutils,
+.method,
+.hljs-addition,
+.css .hljs-tag,
+.hljs-request,
+.hljs-status,
+.nginx .hljs-title {
+  color: #859900;
+}
+
+/* Solarized Cyan */
+.hljs-number,
+.hljs-command,
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-rule .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula,
+.hljs-regexp,
+.hljs-hexcolor,
+.hljs-link_url {
+  color: #2aa198;
+}
+
+/* Solarized Blue */
+.hljs-title,
+.hljs-localvars,
+.hljs-chunk,
+.hljs-decorator,
+.hljs-built_in,
+.hljs-identifier,
+.vhdl .hljs-literal,
+.hljs-id,
+.css .hljs-function,
+.hljs-name {
+  color: #268bd2;
+}
+
+/* Solarized Yellow */
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.smalltalk .hljs-number,
+.hljs-constant,
+.hljs-class .hljs-title,
+.hljs-parent,
+.hljs-type,
+.hljs-link_reference {
+  color: #b58900;
+}
+
+/* Solarized Orange */
+.hljs-preprocessor,
+.hljs-preprocessor .hljs-keyword,
+.hljs-pragma,
+.hljs-shebang,
+.hljs-symbol,
+.hljs-symbol .hljs-string,
+.diff .hljs-change,
+.hljs-special,
+.hljs-attr_selector,
+.hljs-subst,
+.hljs-cdata,
+.css .hljs-pseudo,
+.hljs-header {
+  color: #cb4b16;
+}
+
+/* Solarized Red */
+.hljs-deletion,
+.hljs-important {
+  color: #dc322f;
+}
+
+/* Solarized Violet */
+.hljs-link_label {
+  color: #6c71c4;
+}
+
+.tex .hljs-formula {
+  background: #073642;
+}
+
+</style><style type="text/css">body {
+    background: #fdf6e3;
+    font-family: Georgia, serif;
+}
+.container {
+    display: flex;
+}
+.nav {
+    margin-right: 20px;
+    min-width: 240px;
+}
+.nav a {
+    color: #556677;
+    text-decoration: none;
+}
+.nav h5 {
+    margin: 0;
+    line-height: 35px;
+    font-size: 14px;
+}
+.content {
+    flex: 1;
+    line-height: 1.4em;
+}
+.content img {
+    max-width: 100%;
+}
+</style></head><body><div class="container"><div class="nav"><h3><a href="/site/index.html">首页</a></h3><h5><a href="/site/blogs/使用 CSS background 构造一个棋盘.html">使用 CSS background 构造一个棋盘</a></h5><h5><a href="/site/blogs/generator.html">generator</a></h5><h5><a href="/site/blogs/百度 EFE 前端框架学习笔记（ef）.html">百度 EFE 前端框架学习笔记（ef）</a></h5><h5><a href="/site/blogs/百度 EFE 前端框架学习笔记（esui）.html">百度 EFE 前端框架学习笔记（esui）</a></h5><h5><a href="/site/blogs/百度 EFE 前端框架学习笔记（er）.html">百度 EFE 前端框架学习笔记（er）</a></h5><h5><a href="/site/blogs/Reflux 使用进化日记.html">Reflux 使用进化日记</a></h5><h5><a href="/site/blogs/记一次坑爹的对接经历.html">记一次坑爹的对接经历</a></h5></div><div class="content"><!-- config.time: 2015-05-07 -->
+<h1 id="-">记一次坑爹的对接经历</h1>
+<p>事情是这样的：</p>
+<p>后端提供了一个数据接口 <code>/account/my/address/</code> 。咱是有追求的程序员，自然接口要采用 RESTful 的思想，于是服务器端非成功的处理，都会返回 http code 非200的状态码，坑由此而生。</p>
+<p>在前端请求这个地方，由于做的是移动端应用，果断采用了手写 xhr 请求，大致接口请求代码如下：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">encodeParams</span>(<span class="hljs-params">params</span>) </span>{
+    <span class="hljs-keyword">var</span> paramsStr = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> k <span class="hljs-keyword">in</span> params) {
+        paramsStr.push(k + <span class="hljs-string">'='</span> + params[k]);
+    }
+    <span class="hljs-keyword">return</span> paramsStr.join(<span class="hljs-string">'&amp;'</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">url, params</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
+        <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+        xhr.open(<span class="hljs-string">'POST'</span>, url);
+        xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ resolve(xhr.response); };
+        xhr.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ reject(xhr.response); };
+        xhr.setRequestHeader(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'application/x-www-form-urlencoded'</span>);
+        xhr.send(encodeParams(params));
+    });
+}
+
+post(<span class="hljs-string">'/account/my/address/'</span>, {<span class="hljs-comment">/*参数*/</span>})
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+        <span class="hljs-comment">// some code</span>
+    });
+</code></pre>
+<p>代码写好，拿到 chrome 中一测，出现一个似乎像是请求没发出去的错误：</p>
+<p><img src="https://github.com/yibuyisheng/blogs/blob/master/imgs/1.jpg?raw=true" alt=""></p>
+<p>对于当时不知道 chrome://net-internals/ 这个强大工具的我来说，这种错误简直就是一个莫名其妙的东西，很难搞。</p>
+<p>于是仔细看一眼 request header ，发现没有 <code>Content-Length</code> ！这是怎么回事？为什么浏览器没计算出来 <code>Content-Length</code> ？很不可思议！</p>
+<p>于是，尝试改变一下请求 body 的编码方式，将上述 post 函数改成这样：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createFormData</span>(<span class="hljs-params">params</span>) </span>{
+    <span class="hljs-keyword">var</span> fd = <span class="hljs-keyword">new</span> FormData();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> k <span class="hljs-keyword">in</span> params) {
+        fd.append(k, params[k]);
+    }
+    <span class="hljs-keyword">return</span> fd;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">url, params</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
+        <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+        xhr.open(<span class="hljs-string">'POST'</span>, url);
+        xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ resolve(xhr.response); };
+        xhr.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ reject(xhr.response); };
+        xhr.setRequestHeader(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'multipart/form-data'</span>);
+        xhr.send(createFormData(params));
+    });
+}
+</code></pre>
+<p>再测，出现这样的错：</p>
+<p><img src="https://github.com/yibuyisheng/blogs/blob/master/imgs/2.jpg?raw=true" alt=""></p>
+<p>仍然没有 <code>Content-Length</code> ，错误依旧，简直令人发指！</p>
+<p>于是重新审视当前的开发模式，整个结构是这样的：我在本地开发前端静态部分，需要数据的时候通过 xhr 请求到后端去请求，为了避免我本地开发的时候还要启动一个后端服务器程序，于是让后端的同学将后端代码部署在一个公网的服务器上，这样我就可以通过代理或者 CORS 的方式来请求相应的接口了。</p>
+<p>所以此时此刻，有点怀疑是不是这种模式引发的问题，但是再一想，其它很多获取数据提交数据都是这种模式啊，为啥就正常呢！所以这种怀疑被打消。</p>
+<p>chrome 的开发者工具提供的信息太有限，实在想不出来是什么问题，于是到 QQ 群求助网友，其中一位网页给出了这个： chrome://net-internals/ ，抱着试一试的心态，打开，观察，哇咔咔，好牛逼，请求的各个过程尽收眼底！其中我找到了我的 POST 请求：</p>
+<p><img src="https://github.com/yibuyisheng/blogs/blob/master/imgs/3.jpg?raw=true" alt=""></p>
+<p>嗯，看来请求还是被正常发送出去了的。再往下看，发现了这个：</p>
+<p><img src="https://github.com/yibuyisheng/blogs/blob/master/imgs/4.jpg?raw=true" alt=""></p>
+<p><code>ERR_UNEXPECTED_PROXY_AUTH</code> 映入眼帘，代理需要认证？啥玩意儿？然后再看到一个 <code>Server: nginx/1.4.6 (Ubuntu)</code> ，仔细想想，为毛 nginx 会说代理认证错误！抓狂，去找后端人员，后端人员果断说不可能是 nginx 有问题！</p>
+<p>于是，再次崩溃， google 吧！于是尝试各种关键字搜索： <code>ERR_UNEXPECTED_PROXY_AUTH</code> 、 <code>net_error = -323</code> ...</p>
+<p>搜索的时候，出现了一条关于 http code 407 的记录，点进去一看，惊呆了， 407 的含义如下：</p>
+<blockquote>
+<p>Proxy Authentication Required</p>
+</blockquote>
+<p>需要代理授权！再看看上面的那张图，后端返回的 http code 果然是407，于是找到后端人员，问他可能会返回407吗？答案是 yes ！（我“怒发冲冠”，于是后端同学，卒）</p>
+<h4 id="-">总结</h4>
+<p>这次问题解决总结下来有这么几个点，以后要注意：</p>
+<ul>
+<li>1、在 RESTful 开发中，一定要对状态码足够敏感；</li>
+<li>2、好好使用 chrome://net-internals/ ，确实挺强大；</li>
+<li>3、chrome 出现上述类似错误的时候（407、请求未成功发送出去等等），很可能不显示完整的请求头，不显示响应信息（因为按照语义，此时根本无响应信息可显示）。</li>
+</ul>
+<div id="disqus_thread" class="container"></div></div></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'yibuyisheng';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><noscript>Please enable JavaScript to view the<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a><a href="http://disqus.com" class="dsq-brlink"></a>blog comments powered by</noscript><span class="logo-disqus"></span></body></html>

@@ -1,3 +1,6 @@
+<!-- config.time: 2015-06-01 -->
+# 百度 EFE 前端框架学习笔记（esui）
+
 基础点：
 
 ### Control.js

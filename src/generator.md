@@ -1,8 +1,11 @@
-# 什么是 generator ？
+<!-- config.time: 2015-07-13 -->
+# generator
+
+### 什么是 generator ？
 
 可以暂停（ pause ）和唤醒（ resume ）的函数。
 
-# 实现一个迭代器
+### 实现一个迭代器
 
 ```js
 function* gen() {
@@ -30,7 +33,7 @@ print(JSON.stringify(it.next())); // 输出： {value: 5, done: true}
 print(JSON.stringify([...gen()])); // 输出： [2, 3, 4]
 ```
 
-# 创建 generator 的方式
+### 创建 generator 的方式
 
 ```js
 // 第一种
@@ -59,7 +62,7 @@ let myInst = new MyClass();
 let genObj = myInst.generatorMethod();
 ```
 
-# generator 嵌套： yield*
+### generator 嵌套： yield*
 
 ```js
 function* gen1() {
@@ -91,7 +94,7 @@ function* gen3() {
 print(JSON.stringify([...gen3()])); // 输出： [1, 2, 3, 4]
 ```
 
-# next 传值
+### next 传值
 
 ```js
 function* gen1() {
@@ -106,7 +109,7 @@ print(JSON.stringify(it.next()));
 print(JSON.stringify(it.next('outer value')));
 ```
 
-# `return()` 外部终止 generator
+### `return()` 外部终止 generator
 
 ```js
 function* gen1() {
@@ -125,7 +128,7 @@ print(JSON.stringify(it.next()));
 print(JSON.stringify(it.return('result')));
 ```
 
-# `throw()` 抛出异常
+### `throw()` 抛出异常
 
 ```js
 function* gen() {
@@ -147,7 +150,7 @@ print(JSON.stringify(it.next()));
 print(JSON.stringify(it.throw(new Error('error'))));
 ```
 
-# 很有有趣也有用的例子
+### 很有有趣也有用的例子
 
 ```js
 // for 循环延迟执行
@@ -173,7 +176,7 @@ let newArr = [...fn3(fn2(fn1([1, 2, 3])))];
 print(JSON.stringify(newArr)); // [1, 1.5, 2]
 ```
 
-# generator 类图
+### generator 类图
 
 规范里面有一张[很大的图](http://www.ecma-international.org/ecma-262/6.0/#sec-generatorfunction-objects)，有点复杂。所以，看一张小图：
 
@@ -233,7 +236,7 @@ function* gen2() {
 new gen2();
 ```
 
-# 一个简单的类似于 tj co 库的东西
+### 一个简单的类似于 tj co 库的东西
 
 ```js
 // 此段代码使用 node --harmony 执行

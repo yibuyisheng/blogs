@@ -134,36 +134,26 @@
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();</script></head><body><div class="container"><div class="nav"><h3><a href="/blogs/site/index.html">首页</a></h3><h5><a href="/blogs/site/blogs/CSS border-image.html">CSS border-image</a></h5><h5><a href="/blogs/site/blogs/CSS border-radius.html">CSS border-radius</a></h5><h5><a href="/blogs/site/blogs/使用 CSS background 构造一个棋盘.html">使用 CSS background 构造一个棋盘</a></h5><h5><a href="/blogs/site/blogs/generator.html">generator</a></h5><h5><a href="/blogs/site/blogs/百度 EFE 前端框架学习笔记（ef）.html">百度 EFE 前端框架学习笔记（ef）</a></h5><h5><a href="/blogs/site/blogs/百度 EFE 前端框架学习笔记（esui）.html">百度 EFE 前端框架学习笔记（esui）</a></h5><h5><a href="/blogs/site/blogs/百度 EFE 前端框架学习笔记（er）.html">百度 EFE 前端框架学习笔记（er）</a></h5><h5><a href="/blogs/site/blogs/Reflux 使用进化日记.html">Reflux 使用进化日记</a></h5><h5><a href="/blogs/site/blogs/记一次坑爹的对接经历.html">记一次坑爹的对接经历</a></h5></div><div class="content"><!-- config.time: 2015-08-27 -->
-<h1 id="css-border-image">CSS border-image</h1>
+<h1 id="css-border-radius">CSS border-radius</h1>
 <style>
 .demo1 {
-    display: inline-block;
-    width: 400px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
+    background: lightblue;
 
-    border-width: 60px 70px;
-    border-image: url(../../imgs/8.jpg) 60 70 round stretch;
+    border-radius: 20px/5px;
 }
 </style>
 
 <div class="demo1"></div>
 
-<p>上面示例的 css 代码为：</p>
-<pre><code class="lang-css"><span class="hljs-class">.demo1</span> <span class="hljs-rules">{
-    <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> inline-block</span></span>;
-    <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">400px</span></span></span>;
-    <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">200px</span></span></span>;
-
-    <span class="hljs-rule"><span class="hljs-attribute">border-width</span>:<span class="hljs-value"> <span class="hljs-number">60px</span> <span class="hljs-number">70px</span></span></span>;
-    <span class="hljs-rule"><span class="hljs-attribute">border-image</span>:<span class="hljs-value"> <span class="hljs-function">url</span>(../../imgs/<span class="hljs-number">8</span>.jpg) <span class="hljs-number">60</span> <span class="hljs-number">70</span> round stretch</span></span>;
-}</span>
-</code></pre>
-<p>CSS 中的 border-image 可以给边框设置图片背景，其参数主要分为三部分：</p>
-<ul>
-<li>1、图片来源。即示例中的 <code>url(../../imgs/8.jpg)</code> ；</li>
-<li>2、图片裁剪尺寸。即示例中的 <code>60 70</code>。裁剪尺寸遵循 <code>top-right-bottom-left</code> 规则，其数值可以是百分数，也可以是像素值。如果是像素值，则不能带单位，直接写数值就好了，示例中<code>60 70</code>的含义为：对图片实施裁剪，图片上部和下部分别裁掉60px，左部和右部分别裁掉70px，于是图片就形成9块，四个边角块是无法运用round（平铺）等效果的，中间那一块是没用的。如果为百分数，则是根据图片的尺寸来计算出相应的像素值的；</li>
-<li>3、图片可运用效果区域的展示效果。取值为 [round|repeat|stretch] 。正如2中所述，图片会被裁剪成9块，而这个展示效果只能运用于上、右、下、左的中间那一块。</li>
-</ul>
+<p>上述示例的 CSS 代码为：</p>
+<p>border-radius 是可以通过<code>/</code>的形式来对某一个角设置一个椭圆弧的。</p>
+<p>比如示例中的 <code>20px/5px</code> 的含义是：对于左上角的圆弧，圆心到上边框的距离是5px，到左边框的距离是20px；对于右上角的圆弧，圆心到上边框的距离是5px，到右边框的距离是20px；对于右下角的圆弧，圆心到下边框的距离是5px，到右边框的距离是20px；对于左下角的圆弧，圆心到下边框的距离是5px，到左边框的距离是20px。</p>
+<p>如果 border-radius 的半径小于或等于元素的边框厚度时，边框内角就会变成直角效果。</p>
+<p>对 img 元素运用 border-radius ， webkit 内核不能使图片边角出现圆角的效果，可以使用背景图片的方式来修正这个问题。</p>
+<p>当表格样式属性 border-collapse 是 collapse 时，对表格使用 border-radius 圆角效果，表格将不会展现出圆角效果，只有 border-collapse 为 separate 的时候，圆角才能正常展示。</p>
+<p>border-radius 可以做的效果：圆形、半圆、扇形、椭圆。</p>
 <div id="disqus_thread" class="container"></div></div></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 var disqus_shortname = 'yibuyisheng';
 /* * * DON'T EDIT BELOW THIS LINE * * */

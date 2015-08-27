@@ -124,8 +124,8 @@ gulp.task('static-server', function () {
     gulp.src('./')
         .pipe(webserver({
             livereload: true,
-            directoryListing: true,
-            open: 'http://127.0.0.1:8000/site/index.html'
+            directoryListing: true//,
+            //open: 'http://127.0.0.1:8000/site/index.html'
         }));
 });
 

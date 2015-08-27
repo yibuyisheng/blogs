@@ -13,7 +13,9 @@ marked.setOptions({
 });
 
 jade.filters.md = function (str) {
-    return marked(str).replace(/url\(\.\/imgs\//g, 'url(../../imgs/');
+    return marked(str)
+        .replace(/url\(\.\/imgs\//g, 'url(../../imgs/')
+        .replace(/src="\.\/imgs\//g, 'src="../../imgs/');
 };
 
 var siteRoot = './site';
@@ -123,7 +125,7 @@ gulp.task('set-jade-build-root-path', function () {
 gulp.task('static-server', function () {
     gulp.src('./')
         .pipe(webserver({
-            livereload: true,
+            //livereload: true,
             directoryListing: true//,
             //open: 'http://127.0.0.1:8000/site/index.html'
         }));

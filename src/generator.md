@@ -180,7 +180,7 @@ print(JSON.stringify(newArr)); // [1, 1.5, 2]
 
 规范里面有一张[很大的图](http://www.ecma-international.org/ecma-262/6.0/#sec-generatorfunction-objects)，有点复杂。所以，看一张小图：
 
-![](https://github.com/yibuyisheng/blogs/blob/master/imgs/5.jpg)
+![](./imgs/9.jpg)
 
 说明：
 

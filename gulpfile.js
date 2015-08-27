@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var gulpJade = require('gulp-jade');
 var jade = require('jade');
 var marked = require('marked');
+var webserver = require('gulp-webserver');
 
 marked.setOptions({
     highlight: function (code) {
@@ -103,8 +104,37 @@ gulp.task('create-blog-pages', function (doneFn) {
     }
 });
 
-gulp.task('watch-blogs', ['create-blog-pages', 'jade-blogs', 'jade-index'], function () {
-    gulp.watch('../src/*.md', ['create-blog-pages', 'jade-blogs', 'jade-index']);
+gulp.task('set-jade-test-root-path', function () {
+    var path = siteRoot + '/layout.jade';
+    fs.writeFileSync(
+        path,
+        '- var rootPath = "/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r/, '')
+    );
 });
 
-gulp.task('build', ['create-blog-pages', 'jade-blogs', 'jade-index']);
+gulp.task('set-jade-build-root-path', function () {
+    var path = siteRoot + '/layout.jade';
+    fs.writeFileSync(
+        path,
+        '- var rootPath = "/blogs/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r/, '')
+    );
+});
+
+gulp.task('static-server', function () {
+    gulp.src('./')
+        .pipe(webserver({
+            livereload: true,
+            directoryListing: true,
+            open: 'http://127.0.0.1:8000/site/index.html'
+        }));
+});
+
+gulp.task(
+    'watch-blogs',
+    ['static-server', 'set-jade-test-root-path', 'create-blog-pages', 'jade-blogs', 'jade-index'],
+    function () {
+        gulp.watch('../src/*.md', ['set-jade-test-root-path', 'create-blog-pages', 'jade-blogs', 'jade-index']);
+    }
+);
+
+gulp.task('build', ['set-jade-build-root-path', 'create-blog-pages', 'jade-blogs', 'jade-index']);

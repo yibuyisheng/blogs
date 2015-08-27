@@ -130,7 +130,7 @@ gulp.task('static-server', function () {
 });
 
 gulp.task(
-    'watch-blogs',
+    'watch',
     ['static-server', 'set-jade-test-root-path', 'create-blog-pages', 'jade-blogs', 'jade-index'],
     function () {
         gulp.watch('../src/*.md', ['set-jade-test-root-path', 'create-blog-pages', 'jade-blogs', 'jade-index']);

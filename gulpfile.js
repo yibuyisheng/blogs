@@ -15,38 +15,42 @@ jade.filters.md = function (str) {
     return marked(str);
 };
 
+var siteRoot = './site';
+
 gulp.task('jade-index', function () {
-    gulp.src('./index.jade')
+    gulp.src(siteRoot + '/index.jade')
         .pipe(gulpJade({
             jade: jade
         }))
         .on('error', function(err){
             console.log(err.message);
         })
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest(siteRoot));
 });
 
 gulp.task('jade-blogs', function () {
-    gulp.src('./blogs/*.jade')
+    gulp.src(siteRoot + '/blogs/*.jade')
         .pipe(gulpJade({
             jade: jade
         }))
-        .on('error', function(err){ console.log(err.message); })
-        .pipe(gulp.dest('./blogs'));
+        .on('error', function(err){
+            console.log(err.message);
+        })
+        .pipe(gulp.dest(siteRoot + '/blogs'));
 });
 
 // 生成对应于 src 目录下面的 md 博客文件的 jade 文件
 // 以及 titles.jade
 gulp.task('create-blog-pages', function (doneFn) {
     try {
-        var srcPath = '../src';
+        var srcPath = './src';
         var mdFiles = fs.readdirSync(srcPath);
         mdFiles.forEach(function (fileName) {
             if (fileName.slice(-3) !== '.md') {
                 return;
             }
 
-            var jadeFilePath = './blogs/' + fileName.slice(0, -3) + '.jade';
+            var jadeFilePath = siteRoot + '/blogs/' + fileName.slice(0, -3) + '.jade';
             var jadeContent = [
                     'extends ../layout.jade',
                     'block blog',
@@ -81,7 +85,7 @@ gulp.task('create-blog-pages', function (doneFn) {
                     + fileName.slice(0, -3);
             }).join('\r')
         ].join('\r');
-        fs.writeFileSync('./titles.jade', titlesContent);
+        fs.writeFileSync(siteRoot + '/titles.jade', titlesContent);
 
         doneFn();
     }
@@ -102,3 +106,5 @@ gulp.task('create-blog-pages', function (doneFn) {
 gulp.task('watch-blogs', ['create-blog-pages', 'jade-blogs', 'jade-index'], function () {
     gulp.watch('../src/*.md', ['create-blog-pages', 'jade-blogs', 'jade-index']);
 });
+
+gulp.task('build', ['create-blog-pages', 'jade-blogs', 'jade-index']);

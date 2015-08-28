@@ -143,7 +143,7 @@
 <li>3、当用户点击nodeClick的时候，需要判断nodes中是否存在nodeClick的祖先节点，如果不存在的话，则触发out click事件。</li>
 </ul>
 <p>按照这个分析，关键点就落在了判断节点父子关系上面了。</p>
-<p>其实早在IE5的时候，Node.prototype上面就有一个函数contains，用于判断父子关系，具体文档可参见：<a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.contains，但是从文档中，我们也可以看见mobile部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：">https://developer.mozilla.org/en-US/docs/Web/API/Node.contains，但是从文档中，我们也可以看见mobile部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：</a></p>
+<p>其实早在IE5的时候，Node.prototype上面就有一个函数contains，用于判断父子关系，具体文档可参见： <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.contains">https://developer.mozilla.org/en-US/docs/Web/API/Node.contains</a> ，但是从文档中，我们也可以看见mobile部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：</p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">contains</span><span class="hljs-params">(parentNode, childNode)</span> </span>{
   <span class="hljs-keyword">var</span> fn = Node.prototype.contains || <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(childNode)</span> </span>{
     <span class="hljs-keyword">while</span> (childNode) {

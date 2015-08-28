@@ -11,7 +11,7 @@
 
 按照这个分析，关键点就落在了判断节点父子关系上面了。
 
-其实早在IE5的时候，Node.prototype上面就有一个函数contains，用于判断父子关系，具体文档可参见：https://developer.mozilla.org/en-US/docs/Web/API/Node.contains，但是从文档中，我们也可以看见mobile部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：
+其实早在IE5的时候，Node.prototype上面就有一个函数contains，用于判断父子关系，具体文档可参见： https://developer.mozilla.org/en-US/docs/Web/API/Node.contains ，但是从文档中，我们也可以看见mobile部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：
 
 ```js
 function contains(parentNode, childNode) {

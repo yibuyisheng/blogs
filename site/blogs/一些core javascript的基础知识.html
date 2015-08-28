@@ -1,0 +1,291 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title>yibuyisheng's blogs</title><style>.hljs, code[class^="lang-"] {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #fbebd4;
+  color: #839496;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header,
+.hljs-doctype,
+.hljs-pi,
+.lisp .hljs-string {
+  color: #586e75;
+}
+
+/* Solarized Green */
+.hljs-keyword,
+.hljs-winutils,
+.method,
+.hljs-addition,
+.css .hljs-tag,
+.hljs-request,
+.hljs-status,
+.nginx .hljs-title {
+  color: #859900;
+}
+
+/* Solarized Cyan */
+.hljs-number,
+.hljs-command,
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-rule .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula,
+.hljs-regexp,
+.hljs-hexcolor,
+.hljs-link_url {
+  color: #2aa198;
+}
+
+/* Solarized Blue */
+.hljs-title,
+.hljs-localvars,
+.hljs-chunk,
+.hljs-decorator,
+.hljs-built_in,
+.hljs-identifier,
+.vhdl .hljs-literal,
+.hljs-id,
+.css .hljs-function,
+.hljs-name {
+  color: #268bd2;
+}
+
+/* Solarized Yellow */
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.smalltalk .hljs-number,
+.hljs-constant,
+.hljs-class .hljs-title,
+.hljs-parent,
+.hljs-type,
+.hljs-link_reference {
+  color: #b58900;
+}
+
+/* Solarized Orange */
+.hljs-preprocessor,
+.hljs-preprocessor .hljs-keyword,
+.hljs-pragma,
+.hljs-shebang,
+.hljs-symbol,
+.hljs-symbol .hljs-string,
+.diff .hljs-change,
+.hljs-special,
+.hljs-attr_selector,
+.hljs-subst,
+.hljs-cdata,
+.css .hljs-pseudo,
+.hljs-header {
+  color: #cb4b16;
+}
+
+/* Solarized Red */
+.hljs-deletion,
+.hljs-important {
+  color: #dc322f;
+}
+
+/* Solarized Violet */
+.hljs-link_label {
+  color: #6c71c4;
+}
+
+.tex .hljs-formula {
+  background: #073642;
+}
+
+</style><style type="text/css">body {
+    background: #fdf6e3;
+    font-family: Georgia, serif;
+}
+.container {
+    display: flex;
+}
+.nav {
+    margin-right: 20px;
+    min-width: 240px;
+}
+.nav a {
+    color: #556677;
+    text-decoration: none;
+}
+.nav h5 {
+    margin: 0;
+    line-height: 35px;
+    font-size: 14px;
+}
+.content {
+    flex: 1;
+    line-height: 1.4em;
+}
+.content img {
+    max-width: 100%;
+}
+</style><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();</script></head><body><div class="container"><div class="nav"><h3><a href="/blogs/site/index.html">首页</a></h3><h5><a href="/blogs/site/blogs/CSS border-radius.html">CSS border-radius</a></h5><h5><a href="/blogs/site/blogs/CSS border-image.html">CSS border-image</a></h5><h5><a href="/blogs/site/blogs/使用 CSS background 构造一个棋盘.html">使用 CSS background 构造一个棋盘</a></h5><h5><a href="/blogs/site/blogs/generator.html">generator</a></h5><h5><a href="/blogs/site/blogs/百度 EFE 前端框架学习笔记（esui）.html">百度 EFE 前端框架学习笔记（esui）</a></h5><h5><a href="/blogs/site/blogs/百度 EFE 前端框架学习笔记（ef）.html">百度 EFE 前端框架学习笔记（ef）</a></h5><h5><a href="/blogs/site/blogs/百度 EFE 前端框架学习笔记（er）.html">百度 EFE 前端框架学习笔记（er）</a></h5><h5><a href="/blogs/site/blogs/Reflux 使用进化日记.html">Reflux 使用进化日记</a></h5><h5><a href="/blogs/site/blogs/记一次坑爹的对接经历.html">记一次坑爹的对接经历</a></h5><h5><a href="/blogs/site/blogs/一些core javascript的基础知识.html">一些core javascript的基础知识</a></h5><h5><a href="/blogs/site/blogs/web前端out click事件的实现.html">web前端out click事件的实现</a></h5></div><div class="content"><!-- config.time: 2014-10-22 22:13 -->
+<p>#一些core javascript的基础知识</p>
+<h3 id="-settimeout">一、setTimeout</h3>
+<pre><code class="lang-js"><span class="hljs-function">setTimtout</span>(<span class="hljs-function">function</span>(){
+   <span class="hljs-function">alert</span>(2);                           <span class="hljs-comment">// 后弹出</span>
+},0);
+<span class="hljs-function">alert</span>(1);                              <span class="hljs-comment">// 先弹出</span>
+</code></pre>
+<p>对于如上代码，包含原理如下：</p>
+<ul>
+<li>1、首先jsvm只会执行一个线程；</li>
+<li>2、当这个线程遇到setTimout的时候，就会讲这个function放到某个队列里面；</li>
+<li>3、当前这个线程空闲的时候，就会执行任务队列轮询的代码，将满足条件的函数拿出来执行。</li>
+</ul>
+<p>比较简单典型的一个应用场景就是：</p>
+<pre><code class="lang-js">$(elem).html(xxxxxx);
+
+setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// 内部DOM操作很复杂，此处setTimeout用于保证在内部DOM操作结束并且相关内存被释放掉后执行后续代码</span>
+}, <span class="hljs-number">0</span>);
+</code></pre>
+<h3 id="-eval">二、eval</h3>
+<p>js中除了全局作用域和函数作用域之外，还存在一个eval作用域。</p>
+<p>eval函数执行的时候，会根据当前执行上下文创建一个作用域。</p>
+<p>此处有如下代码：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> SomeThing();
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">eval</span>(<span class="hljs-string">''</span>);
+  };
+}
+</code></pre>
+<h3 id="-">三、预编译</h3>
+<p>先分别上如下几个片段的代码：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
+a();
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
+  alert(<span class="hljs-number">1</span>);
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="undefined">
+a();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
+  alert(<span class="hljs-number">1</span>);
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
+a();
+<span class="hljs-keyword">var</span> b = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
+  alert(<span class="hljs-number">1</span>);
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>执行结果分别是：</p>
+<pre><code>第一段代码：弹出<span class="hljs-number">1</span>；
+
+第二段代码：第一个script片段报错，<span class="hljs-literal">a</span>不存在；
+
+第三段代码：报错，<span class="hljs-literal">a</span>不存在；
+</code></pre><p>原因：</p>
+<p>　　第一段代码中，jsvm会预编译，构造好a函数，所以访问a函数的顺序是不重要的；</p>
+<p>　　第二段代码中，预编译是会分代码块执行的，每个script都会形成一个代码块，即便script是通过src引入js的；</p>
+<p>　　第三段代码中，a函数的定义由于放在了一个表达式当中，因此jsvm不会预编译。</p>
+<p>但是，此处还可以继续深入，第三段代码改成如下所示：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
+<span class="hljs-keyword">var</span> b = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
+  alert(<span class="hljs-number">1</span>);
+}
+a();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>这段代码也同样会报错，a不存在。为什么呢？原因就是a函数放在了表达式当中，jsvm会把a函数看作一个匿名函数，因此在当前语句执行完，a就被释放掉了。</p>
+<p>但是，请注意，上面讨论的都是根据w3c标准得出的结果，在第三段和第四段代码中，IE 6、7、8还是会预编译的，并且不会释放掉a，因此不会报错。</p>
+<h3 id="-">四、自执行函数</h3>
+<p>自执行函数的几种形式：</p>
+<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> <span class="hljs-comment">{}</span>)<span class="hljs-params">()</span>;</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> <span class="hljs-comment">{}</span><span class="hljs-params">()</span>);</span>
+!<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span><span class="hljs-comment">{}</span><span class="hljs-params">()</span>;</span>
+void <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span><span class="hljs-comment">{}</span><span class="hljs-params">()</span>;</span>
+</code></pre>
+<p>其中第三种写法会造成额外的运算，因为要对返回的内容做“非”操作。</p>
+<h3 id="-">五、预编译中的变量声明</h3>
+<p>如下代码：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">(x)</span></span>{
+  <span class="hljs-keyword">return</span> x*<span class="hljs-number">2</span>;
+}
+<span class="hljs-keyword">var</span> a;
+alert(a);
+</code></pre>
+<p>var a只是声明，并不会干啥，var a只会让当前作用域的alert(a)不会报a不存在的错误，a实际上是什么，需要显示赋值；如果var a之前已经存在a了，则啥也不干。</p>
+<h3 id="-function-">六、function传参</h3>
+<p>如下代码：</p>
+<pre><code class="lang-js">function fn1(a, b, <span class="hljs-built_in">c</span>){
+   a = <span class="hljs-number">1.2</span>;
+   b = <span class="hljs-number">2.2</span>;
+   <span class="hljs-built_in">c</span>.<span class="hljs-built_in">c</span> = <span class="hljs-number">3.2</span>;
+}
+
+<span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">var</span> b = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">c</span> = {<span class="hljs-built_in">c</span>:<span class="hljs-number">3</span>};
+
+fn1(a,b,<span class="hljs-built_in">c</span>);
+
+alert(a);
+alert(b);
+alert(<span class="hljs-built_in">c</span>.<span class="hljs-built_in">c</span>);
+</code></pre>
+<p>原理不难理解，注意值类型和引用类型的区别。</p>
+<h3 id="-">七、作用域链</h3>
+<p>有如下几点：</p>
+<ul>
+<li>1、作用域链是在定义的时候就确定下来了的；</li>
+<li>2、隐式对象模型：对于一个作用域，jsvm会创建一个隐式对象，然后在这个对象上面绑定当前作用域的各种变量。多个函数的嵌套定义也就会形成一条作用域链了。如果在某个作用域中要访问一个a变量，则会首先在当前作用域中查找是否存在a变量，如果不存在，则向上找父作用域隐式对象中是否存在a变量，依次类推，如果到了根作用域还找不到a变量的话，就会报错了。</li>
+</ul>
+<h3 id="-">八、类数组结构</h3>
+<p>第一个问题，如何构造类数组结构？思路简单，不赘述。</p>
+<p>jquery选择器构造出来的就是一个类数组结构。</p>
+<h3 id="-">九、工厂模式</h3>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factory</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ThisIsAClass();
+}
+</code></pre>
+<div id="disqus_thread" class="container"></div></div></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'yibuyisheng';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><noscript>Please enable JavaScript to view the<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a><a href="http://disqus.com" class="dsq-brlink"></a>blog comments powered by</noscript><span class="logo-disqus"></span></body></html>

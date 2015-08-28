@@ -1,0 +1,196 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title>yibuyisheng's blogs</title><style>.hljs, code[class^="lang-"] {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #fbebd4;
+  color: #839496;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header,
+.hljs-doctype,
+.hljs-pi,
+.lisp .hljs-string {
+  color: #586e75;
+}
+
+/* Solarized Green */
+.hljs-keyword,
+.hljs-winutils,
+.method,
+.hljs-addition,
+.css .hljs-tag,
+.hljs-request,
+.hljs-status,
+.nginx .hljs-title {
+  color: #859900;
+}
+
+/* Solarized Cyan */
+.hljs-number,
+.hljs-command,
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-rule .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula,
+.hljs-regexp,
+.hljs-hexcolor,
+.hljs-link_url {
+  color: #2aa198;
+}
+
+/* Solarized Blue */
+.hljs-title,
+.hljs-localvars,
+.hljs-chunk,
+.hljs-decorator,
+.hljs-built_in,
+.hljs-identifier,
+.vhdl .hljs-literal,
+.hljs-id,
+.css .hljs-function,
+.hljs-name {
+  color: #268bd2;
+}
+
+/* Solarized Yellow */
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.smalltalk .hljs-number,
+.hljs-constant,
+.hljs-class .hljs-title,
+.hljs-parent,
+.hljs-type,
+.hljs-link_reference {
+  color: #b58900;
+}
+
+/* Solarized Orange */
+.hljs-preprocessor,
+.hljs-preprocessor .hljs-keyword,
+.hljs-pragma,
+.hljs-shebang,
+.hljs-symbol,
+.hljs-symbol .hljs-string,
+.diff .hljs-change,
+.hljs-special,
+.hljs-attr_selector,
+.hljs-subst,
+.hljs-cdata,
+.css .hljs-pseudo,
+.hljs-header {
+  color: #cb4b16;
+}
+
+/* Solarized Red */
+.hljs-deletion,
+.hljs-important {
+  color: #dc322f;
+}
+
+/* Solarized Violet */
+.hljs-link_label {
+  color: #6c71c4;
+}
+
+.tex .hljs-formula {
+  background: #073642;
+}
+
+</style><style type="text/css">body {
+    background: #fdf6e3;
+    font-family: Georgia, serif;
+}
+.container {
+    display: flex;
+}
+.nav {
+    margin-right: 20px;
+    min-width: 240px;
+}
+.nav a {
+    color: #556677;
+    text-decoration: none;
+}
+.nav h5 {
+    margin: 0;
+    line-height: 35px;
+    font-size: 14px;
+}
+.content {
+    flex: 1;
+    line-height: 1.4em;
+}
+.content img {
+    max-width: 100%;
+}
+</style><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();</script></head><body><div class="container"><div class="nav"><h3><a href="/blogs/site/index.html">首页</a></h3><h5><a href="/blogs/site/blogs/CSS border-radius.html">CSS border-radius</a></h5><h5><a href="/blogs/site/blogs/CSS border-image.html">CSS border-image</a></h5><h5><a href="/blogs/site/blogs/使用 CSS background 构造一个棋盘.html">使用 CSS background 构造一个棋盘</a></h5><h5><a href="/blogs/site/blogs/generator.html">generator</a></h5><h5><a href="/blogs/site/blogs/百度 EFE 前端框架学习笔记（esui）.html">百度 EFE 前端框架学习笔记（esui）</a></h5><h5><a href="/blogs/site/blogs/百度 EFE 前端框架学习笔记（ef）.html">百度 EFE 前端框架学习笔记（ef）</a></h5><h5><a href="/blogs/site/blogs/百度 EFE 前端框架学习笔记（er）.html">百度 EFE 前端框架学习笔记（er）</a></h5><h5><a href="/blogs/site/blogs/Reflux 使用进化日记.html">Reflux 使用进化日记</a></h5><h5><a href="/blogs/site/blogs/记一次坑爹的对接经历.html">记一次坑爹的对接经历</a></h5><h5><a href="/blogs/site/blogs/一些core javascript的基础知识.html">一些core javascript的基础知识</a></h5><h5><a href="/blogs/site/blogs/web前端out click事件的实现.html">web前端out click事件的实现</a></h5></div><div class="content"><!-- config.time: 2014-10-22 14:52 -->
+<h1 id="web-out-click-">web前端out click事件的实现</h1>
+<p>在web前端开发中，元素外部点击事件算是非常常用的一种事件了。比如弹出一个对话框，点击对话框外部的时候需要把这个对话框关掉。</p>
+<p>实现这个事件有一个核心的东西，就是判断两个节点是否存在父子关系，整个事件流程如下：</p>
+<ul>
+<li>1、事先设定好的一组元素，如果在这组元素外部点击的话，就会触发out click事件，这组元素暂记为nodes；</li>
+<li>2、用户点击一个元素，可以从event.target中获取到当前用户点击的节点，暂记为nodeClick；</li>
+<li>3、当用户点击nodeClick的时候，需要判断nodes中是否存在nodeClick的祖先节点，如果不存在的话，则触发out click事件。</li>
+</ul>
+<p>按照这个分析，关键点就落在了判断节点父子关系上面了。</p>
+<p>其实早在IE5的时候，Node.prototype上面就有一个函数contains，用于判断父子关系，具体文档可参见：<a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.contains，但是从文档中，我们也可以看见mobile部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：">https://developer.mozilla.org/en-US/docs/Web/API/Node.contains，但是从文档中，我们也可以看见mobile部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：</a></p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">contains</span><span class="hljs-params">(parentNode, childNode)</span> </span>{
+  <span class="hljs-keyword">var</span> fn = Node.prototype.contains || <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(childNode)</span> </span>{
+    <span class="hljs-keyword">while</span> (childNode) {
+      <span class="hljs-keyword">if</span> (childNode === parentNode) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+      childNode = childNode.parentNode;
+    }
+  };
+  <span class="hljs-keyword">return</span> fn.call(parentNode, childNode);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isIn</span><span class="hljs-params">(parentNodes, node)</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, il = parentNodes.length; i &lt; il; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (contains(parentNodes[i], node)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<p>实现了这个之后，接下来的事情就是维护回调函数队列了，实现机制可能会有多种，此处给出其中一种。</p>
+<p>给出一个Array，用于记录所有回调函数，其中每一个数组元素的结构如下：</p>
+<pre><code class="lang-js">{
+  nodes: [node1, node2, ...],      <span class="hljs-comment">// 对应上一大步中的nodes变量，即事先设定好的那一组元素</span>
+  <span class="hljs-keyword">callback</span>: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{}          <span class="hljs-comment">// 触发本次out click事件的回调函数</span>
+}
+</code></pre>
+<p>暂记这个Array变量的名字是outerCallbacks。</p>
+<p>接下来，就剩下对外提供API了，此处向外部提供两个API：</p>
+<ul>
+<li>1、on函数，用于注册回调函数；</li>
+<li>2、off函数，用于取消回调函数。</li>
+</ul>
+<p>on函数的实现非常简单，此处直接上代码：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outer</span><span class="hljs-params">(elem, callback)</span></span> {
+  <span class="hljs-keyword">if</span> (!isFunction(callback)) <span class="hljs-keyword">return</span>;            // isFunction = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(obj)</span></span> {<span class="hljs-keyword">return</span> Object.prototype.toString.call(obj) === <span class="hljs-string">'[object Function]'</span>;}
+
+  outerCallbacks.push({
+    nodes: (isArray(elem) ? elem : [elem]),     // isArray = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(obj)</span></span> {<span class="hljs-keyword">return</span> Object.prototype.toString.call(obj) === <span class="hljs-string">'[object Array]'</span>}
+    callback: callback
+  });
+}
+</code></pre>
+<p>实现off函数的时候，有一个难点和一个注意点：</p>
+<p>难点：参数处理，条件判断；</p>
+<p>注意点：在out click回调函数里面调用了off函数怎么办？</p>
+<div id="disqus_thread" class="container"></div></div></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'yibuyisheng';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><noscript>Please enable JavaScript to view the<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a><a href="http://disqus.com" class="dsq-brlink"></a>blog comments powered by</noscript><span class="logo-disqus"></span></body></html>

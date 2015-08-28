@@ -1,5 +1,5 @@
 <!-- config.time: 2014-10-22 22:13 -->
-#一些 core javascript 的基础知识
+# 一些 core javascript 的基础知识
 
 ### 一、 setTimeout
 

@@ -1,4 +1,22 @@
-extends ./layout.jade
+head
+    title yibuyisheng's blogs
+    meta(name="viewport", content="width=device-width,initial-scale=1,user-scalable=no")
+    style(type="text/css").
+        body {
+            background: #fdf6e3;
+            font-family: Georgia, serif;
+            text-align: center;
+        }
+        h5 {
+            margin: 0;
+            line-height: 35px;
+            font-size: 14px;
+        }
 
-block blog
-    include:md ./introduction.md
+        h5 a, h3 a {
+            color: #556677;
+            text-decoration: none;
+        }
+
+body
+    include ./titles.jade

@@ -11,9 +11,12 @@
   "devDependencies": {
     "etpl": "^3.0.1",
     "gulp": "^3.9.0",
+    "gulp-data": "^1.2.0",
     "gulp-jade": "^1.1.0",
+    "gulp-util": "^3.0.6",
     "gulp-webserver": "^0.9.1",
     "highlight.js": "^8.7.0",
-    "marked": "^0.3.5"
+    "marked": "^0.3.5",
+    "through2": "^2.0.0"
   }
 }

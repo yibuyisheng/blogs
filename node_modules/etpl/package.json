@@ -1,0 +1,60 @@
+{
+  "name": "etpl",
+  "version": "3.0.1",
+  "contributors": [
+    {
+      "name": "erik",
+      "email": "errorrik@gmail.com"
+    },
+    {
+      "name": "otakustay",
+      "email": "otakustay@gmail.com"
+    },
+    {
+      "name": "firede",
+      "email": "firede@firede.us"
+    }
+  ],
+  "main": "main",
+  "homepage": "http://ecomfe.github.io/etpl/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ecomfe/etpl.git"
+  },
+  "description": "ETPL是一个强复用、灵活、高性能的JavaScript模板引擎，适用于浏览器端或Node环境中视图的生成。",
+  "scripts": {
+    "test": "jasmine-node test/spec"
+  },
+  "devDependencies": {
+    "jasmine-node": "1.14.2"
+  },
+  "gitHead": "1cfbc766bd4ade02a21028cc35df84e569809bdb",
+  "bugs": {
+    "url": "https://github.com/ecomfe/etpl/issues"
+  },
+  "_id": "etpl@3.0.1",
+  "_shasum": "727e7a14fb6e8a8c4c1302bf6d6f92cde75cfbce",
+  "_from": "etpl@*",
+  "_npmVersion": "1.4.21",
+  "_npmUser": {
+    "name": "ecomfe",
+    "email": "ecomfe@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "errorrik",
+      "email": "errorrik@gmail.com"
+    },
+    {
+      "name": "ecomfe",
+      "email": "ecomfe@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "727e7a14fb6e8a8c4c1302bf6d6f92cde75cfbce",
+    "tarball": "http://registry.npmjs.org/etpl/-/etpl-3.0.1.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/etpl/-/etpl-3.0.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

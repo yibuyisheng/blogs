@@ -5,6 +5,7 @@ var gulpJade = require('gulp-jade');
 var jade = require('jade');
 var marked = require('marked');
 var webserver = require('gulp-webserver');
+var etpl = require('etpl');
 
 marked.setOptions({
     highlight: function (code) {
@@ -110,7 +111,7 @@ gulp.task('set-jade-test-root-path', function () {
     var path = siteRoot + '/layout.jade';
     fs.writeFileSync(
         path,
-        '- var rootPath = "/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r/g, '')
+        '- var rootPath = "/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r\n{0,1}/g, '')
     );
 });
 
@@ -118,7 +119,7 @@ gulp.task('set-jade-build-root-path', function () {
     var path = siteRoot + '/layout.jade';
     fs.writeFileSync(
         path,
-        '- var rootPath = "/blogs/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r/g, '')
+        '- var rootPath = "/blogs/site"\r' + String(fs.readFileSync(path)).replace(/\- var rootPath = ".*"\r\n{0,1}/g, '')
     );
 });
 

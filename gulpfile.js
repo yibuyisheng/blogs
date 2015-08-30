@@ -1,12 +1,11 @@
 var fs = require('fs');
-
 var gulp = require('gulp');
 var gulpJade = require('gulp-jade');
 var jade = require('jade');
 var marked = require('marked');
 var webserver = require('gulp-webserver');
 var gutil = require('gulp-util');
-var gulpData = require('gulp-data');
+var etpl = require('etpl');
 
 marked.setOptions({
     highlight: function (code) {
@@ -32,17 +31,17 @@ gulp.task('create-blog-pages', function (doneFn) {
             }
 
             var jadeFilePath = process.cwd() + '/site/blogs/' + fileName.slice(0, -3) + '.jade';
-            var jadeContent = [
+            var jadeContent = etpl.compile([
                 'extends ../bloglayout.jade',
                 'block title',
-                '    | ' + fileName.slice(0, -3),
+                '    | ${blogTitle}',
                 'block nav',
                 '    a(href="#{rootPath}/index.html") 首页',
                 '    | &nbsp;&nbsp;》',
-                '    | ' + fileName.slice(0, -3),
+                '    | ${blogTitle}',
                 'block blog',
-                '    include:md ../../src/' + fileName
-            ].join('\r');
+                '    include:md ../../src/${fileName}'
+            ].join('\r'))({blogTitle: fileName.slice(0, -3), fileName: fileName});
 
             fs.writeFileSync(jadeFilePath, jadeContent);
         });
@@ -60,16 +59,24 @@ gulp.task('create-blog-pages', function (doneFn) {
             return fileObj.fileName;
         });
 
-        var titlesContent = [
-            mdFiles.map(function (fileName) {
-                if (fileName.slice(-3) !== '.md') {
-                    return '';
+        var titlesContent = etpl.compile([
+            '<!-- for: ${blogs} as ${blog} -->',
+            'h5\r',
+            '    a(href="#{rootPath}/blogs/${blog.title}.html") ${blog.title}\r',
+            '<!-- /for -->'
+        ].join(''))({
+            blogs: mdFiles.filter(
+                function (fileName) {
+                    return fileName.slice(-3) === '.md';
                 }
-                return 'h5\r    a(href="#{rootPath}/blogs/'
-                    + fileName.slice(0, -3) + '.html") '
-                    + fileName.slice(0, -3);
-            }).join('\r')
-        ].join('\r');
+            ).map(
+                function (fileName) {
+                    return {
+                        title: fileName.slice(0, -3)
+                    };
+                }
+            )
+        });
         fs.writeFileSync(process.cwd() + '/site/titles.jade', titlesContent);
 
         doneFn();

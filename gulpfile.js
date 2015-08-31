@@ -59,25 +59,32 @@ gulp.task('create-blog-pages', function (doneFn) {
             return fileObj.fileName;
         });
 
+        var blogs = mdFiles.filter(
+            function (fileName) {
+                return fileName.slice(-3) === '.md';
+            }
+        ).map(
+            function (fileName) {
+                return {
+                    title: fileName.slice(0, -3)
+                };
+            }
+        );
+
         var titlesContent = etpl.compile([
             '<!-- for: ${blogs} as ${blog} -->',
             'h5\r',
             '    a(href="#{rootPath}/blogs/${blog.title}.html") ${blog.title}\r',
             '<!-- /for -->'
-        ].join(''))({
-            blogs: mdFiles.filter(
-                function (fileName) {
-                    return fileName.slice(-3) === '.md';
-                }
-            ).map(
-                function (fileName) {
-                    return {
-                        title: fileName.slice(0, -3)
-                    };
-                }
-            )
-        });
+        ].join(''))({blogs: blogs});
         fs.writeFileSync(process.cwd() + '/site/titles.jade', titlesContent);
+
+        var readmeContent = etpl.compile([
+            '<!-- for: ${blogs} as ${blog} -->',
+            '[${blog.title}](http://yibuyisheng.github.io/blogs/site/blogs/${blog.title}.html)\r',
+            '<!-- /for -->'
+        ].join(''))({blogs: blogs});
+        fs.writeFileSync(process.cwd() + '/README.md', readmeContent);
 
         doneFn();
     }

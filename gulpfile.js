@@ -81,7 +81,7 @@ gulp.task('create-blog-pages', function (doneFn) {
 
         var readmeContent = etpl.compile([
             '<!-- for: ${blogs} as ${blog} -->',
-            '[${blog.title}](http://yibuyisheng.github.io/blogs/site/blogs/${blog.title}.html)\r',
+            '* [${blog.title}](http://yibuyisheng.github.io/blogs/site/blogs/${blog.title}.html)\r',
             '<!-- /for -->'
         ].join(''))({blogs: blogs});
         fs.writeFileSync(process.cwd() + '/README.md', readmeContent);

@@ -12,13 +12,6 @@ html
         block head
 
         style.
-            code {
-                background: #fbebd4;
-                margin: 0 3px;
-                padding: 3px;
-                border-radius: 4px;
-            }
-
             .hljs, code[class^="lang-"] {
               display: block;
               overflow-x: auto;
@@ -129,6 +122,16 @@ html
                 margin: 0;
                 padding: 15px;
             }
+            code {
+                background: #fbebd4;
+                margin: 0 3px;
+                padding: .2em .5em;
+                border-radius: 4px;
+            }
+            pre code {
+                display: block;
+                padding: .5em;
+            }
             blockquote {
                 background: #eee;
                 font-size: 14px;
@@ -147,7 +150,7 @@ html
                 text-decoration: none;
             }
             .content {
-                line-height: 1.4;
+                line-height: 1.6;
             }
             .content img {
                 max-width: 100%;

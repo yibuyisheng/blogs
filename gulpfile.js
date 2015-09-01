@@ -23,7 +23,7 @@ jade.filters.md = function (str) {
 // 以及 titles.jade
 gulp.task('create-blog-pages', function (doneFn) {
     try {
-        var srcPath = './src';
+        var srcPath = './blogs';
         var mdFiles = fs.readdirSync(srcPath);
         mdFiles.forEach(function (fileName) {
             if (fileName.slice(-3) !== '.md') {
@@ -40,7 +40,7 @@ gulp.task('create-blog-pages', function (doneFn) {
                 '    | &nbsp;&nbsp;》',
                 '    | ${blogTitle}',
                 'block blog',
-                '    include:md ../../src/${fileName}'
+                '    include:md ../../blogs/${fileName}'
             ].join('\r'))({blogTitle: fileName.slice(0, -3), fileName: fileName});
 
             fs.writeFileSync(jadeFilePath, jadeContent);
@@ -116,7 +116,7 @@ gulp.task(
     ['static-server', 'create-blog-pages', 'compile:test'],
     function () {
         return gulp.watch([
-            './src/*.md',
+            './blogs/*.md',
             './site/**/*.jade',
             './site/**/*.conf'
         ], [

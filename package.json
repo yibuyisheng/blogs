@@ -17,6 +17,7 @@
     "gulp-webserver": "^0.9.1",
     "highlight.js": "^8.7.0",
     "marked": "^0.3.5",
+    "phantom": "^0.7.2",
     "through2": "^2.0.0"
   }
 }

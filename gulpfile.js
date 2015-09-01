@@ -6,6 +6,7 @@ var marked = require('marked');
 var webserver = require('gulp-webserver');
 var gutil = require('gulp-util');
 var etpl = require('etpl');
+var phantom = require('phantom');
 
 marked.setOptions({
     highlight: function (code) {
@@ -104,6 +105,16 @@ gulp.task('create-blog-pages', function (doneFn) {
     }
 });
 
+gulp.task('demos', function (doneFn) {
+    var files = fs.readdirSync('./demos');
+    buildDemosImg(files.filter(function (file) {
+        return file.slice(-5) === '.html';
+    }), doneFn);
+});
+
+gulp.task('watch-demos', function () {
+    gulp.watch('./demos/**/*.html', ['demos']);
+});
 
 gulp.task('static-server', function () {
     return gulp.src('./')
@@ -115,7 +126,7 @@ gulp.task('static-server', function () {
 
 gulp.task(
     'watch',
-    ['static-server', 'create-blog-pages', 'compile:test'],
+    ['static-server', 'create-blog-pages', 'compile:test', 'watch-demos'],
     function () {
         return gulp.watch([
             './blogs/*.md',
@@ -136,7 +147,34 @@ gulp.task('compile:production', function () {
     return gulpCompile(process.cwd() + '/site/production.conf');
 });
 
-gulp.task('build', ['create-blog-pages', 'compile:production']);
+gulp.task('build', ['create-blog-pages', 'compile:production', 'demos']);
+
+function buildDemosImg(demoFileNames, doneFn) {
+    demoFileNames.forEach(function (fileName) {
+        var counter = 0;
+        buildDemo(fileName, function () {
+            counter++;
+            if (counter === demoFileNames.length) {
+                doneFn();
+            }
+        });
+    });
+
+    function buildDemo(fileName, doneFn) {
+        phantom.create(function (ph) {
+            ph.createPage(function (page) {
+                page.open('./demos/' + fileName, function (status) {
+                    if (status === 'success') {
+                        page.render('./demos/' + fileName + '.png');
+                    }
+
+                    ph.exit();
+                    doneFn();
+                });
+            });
+        });
+    }
+}
 
 function gulpCompile(configFilePath) {
     return gulp.src([

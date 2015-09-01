@@ -1,18 +1,7 @@
 <!-- config.time: 2015-08-27 -->
 # CSS border-image
 
-<style>
-.demo1 {
-    display: inline-block;
-    width: 400px;
-    height: 200px;
-
-    border-width: 60px 70px;
-    border-image: url(./imgs/8.jpg) 60 70 round stretch;
-}
-</style>
-
-<div class="demo1"></div>
+<div class="demo" name="border-image.html"></div>
 
 上面示例的 css 代码为：
 

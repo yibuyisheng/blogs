@@ -174,12 +174,13 @@ CSS border-image</div><div class="content"><!-- config.time: 2015-08-27 -->
 <li>2、图片裁剪尺寸。即示例中的 <code>60 70</code>。裁剪尺寸遵循 <code>top-right-bottom-left</code> 规则，其数值可以是百分数，也可以是像素值。如果是像素值，则不能带单位，直接写数值就好了，示例中<code>60 70</code>的含义为：对图片实施裁剪，图片上部和下部分别裁掉60px，左部和右部分别裁掉70px，于是图片就形成9块，四个边角块是无法运用round（平铺）等效果的，中间那一块是没用的。如果为百分数，则是根据图片的尺寸来计算出相应的像素值的；</li>
 <li>3、图片可运用效果区域的展示效果。取值为 [round|repeat|stretch] 。正如2中所述，图片会被裁剪成9块，而这个展示效果只能运用于上、右、下、左的中间那一块。</li>
 </ul>
-<div id="disqus_thread"></div></div></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES * * */
-var disqus_shortname = 'ybys';
-
-/* * * DON'T EDIT BELOW THIS LINE * * */
+<div data-thread-key="CSS border-image" data-title="CSS border-image" data-url="http://yibuyisheng.github.io/blogs/site/blogs/CSS border-image.html" class="ds-thread"></div></div></div><script type="text/javascript">var duoshuoQuery = {short_name:"yibuyishengblogs"};
 (function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();</script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></body></html>
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script></body></html>

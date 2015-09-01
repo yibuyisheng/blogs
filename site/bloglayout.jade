@@ -170,18 +170,30 @@ html
                 block blog
 
                 if env === "production"
-                    div(id="disqus_thread")
+                    block commentBoxBlock
+                    //- div.ds-thread(data-thread-key="请将此处替换成文章在你的站点中的ID", data-title="请替换成文章的标题", data-url="请替换成文章的网址")
 
         if env === "production"
             script(type="text/javascript").
-                /* * * CONFIGURATION VARIABLES * * */
-                var disqus_shortname = 'ybys';
-
-                /* * * DON'T EDIT BELOW THIS LINE * * */
+                var duoshuoQuery = {short_name:"yibuyishengblogs"};
                 (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                     || document.getElementsByTagName('body')[0]).appendChild(ds);
                 })();
-            noscript Please enable JavaScript to view the
-                a(href="https://disqus.com/?ref_noscript", rel="nofollow") comments powered by Disqus.
+
+            //- script(type="text/javascript").
+            //-     /* * * CONFIGURATION VARIABLES * * */
+            //-     var disqus_shortname = 'ybys';
+
+            //-     /* * * DON'T EDIT BELOW THIS LINE * * */
+            //-     (function() {
+            //-         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            //-         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            //-         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            //-     })();
+            //- noscript Please enable JavaScript to view the
+            //-     a(href="https://disqus.com/?ref_noscript", rel="nofollow") comments powered by Disqus.

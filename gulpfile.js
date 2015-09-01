@@ -40,7 +40,9 @@ gulp.task('create-blog-pages', function (doneFn) {
                 '    | &nbsp;&nbsp;》',
                 '    | ${blogTitle}',
                 'block blog',
-                '    include:md ../../blogs/${fileName}'
+                '    include:md ../../blogs/${fileName}',
+                'block commentBoxBlock',
+                '    div.ds-thread(data-thread-key="${blogTitle}", data-title="${blogTitle}", data-url="http://yibuyisheng.github.io/blogs/site/blogs/${blogTitle}.html")'
             ].join('\r'))({blogTitle: fileName.slice(0, -3), fileName: fileName});
 
             fs.writeFileSync(jadeFilePath, jadeContent);

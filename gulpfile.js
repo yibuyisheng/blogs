@@ -112,6 +112,21 @@ gulp.task('demos', function (doneFn) {
     }), doneFn);
 });
 
+gulp.task('phantom-support', function (doneFn) {
+    phantom.create(function (ph) {
+        ph.createPage(function (page) {
+            page.open('http://modernizr.com/docs/#s2', function (status) {
+                if (status === 'success') {
+                    page.render('./demos/phantom-support.png');
+                }
+
+                ph.exit();
+                doneFn();
+            });
+        });
+    });
+});
+
 gulp.task('watch-demos', function () {
     gulp.watch('./demos/**/*.html', ['demos']);
 });

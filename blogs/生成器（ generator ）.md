@@ -1,5 +1,5 @@
 <!-- config.time: 2015-07-13 -->
-# generator
+# 生成器（ generator ）
 
 ### 什么是 generator ？
 

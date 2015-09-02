@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="uyan_auth" content="711800a0ee"><title>generator</title><style>code {
+<!DOCTYPE html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="uyan_auth" content="711800a0ee"><title>生成器（ generator ）</title><style>code {
     background: #fbebd4;
     margin: 0 3px;
     padding: .2em .5em;
@@ -152,8 +152,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();</script></head><body><div class="container"><div class="nav"><a href="/blogs/site/index.html">首页</a>&nbsp;&nbsp;》
-generator</div><div class="content"><!-- config.time: 2015-07-13 -->
-<h1 id="generator">generator</h1>
+生成器（ generator ）</div><div class="content"><!-- config.time: 2015-07-13 -->
+<h1 id="-generator-">生成器（ generator ）</h1>
 <h3 id="-generator-">什么是 generator ？</h3>
 <p>可以暂停（ pause ）和唤醒（ resume ）的函数。</p>
 <h3 id="-">实现一个迭代器</h3>
@@ -393,7 +393,7 @@ function executeGeneratorFn(genFn, callback) {
     }
 }
 </code></pre>
-<div data-thread-key="generator" data-title="generator" data-url="http://yibuyisheng.github.io/blogs/site/blogs/generator.html" class="ds-thread"></div></div></div><script type="text/javascript">var duoshuoQuery = {short_name:"yibuyishengblogs"};
+<div data-thread-key="生成器（ generator ）" data-title="生成器（ generator ）" data-url="http://yibuyisheng.github.io/blogs/site/blogs/生成器（ generator ）.html" class="ds-thread"></div></div></div><script type="text/javascript">var duoshuoQuery = {short_name:"yibuyishengblogs"};
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
@@ -423,10 +423,14 @@ function loadDemos() {
     });
 
     function loadImg(name, $con) {
+        var tip = [
+            '您的浏览器目前可能还不支持直接展示当前示例内容，已使用 phantomjs 将其自动转换成图片，点击图片可以查看实现当前内容效果的源码。',
+            '由于 phantomjs 对于某些 CSS 新特性支持也不太好，因此建议切换到最新桌面版的 Chrome 浏览器访问本博客。'
+        ].join('');
         $con.html([
-            '<img class="demo-img" src="/blogs/demos/' + name + '.png" title="您的浏览器目前可能还不支持直接展示当前内容，已自动转换成图片，点击图片可以查看实现当前内容效果的源码。建议您切换到最新版的 Chrome 浏览器访问本站">',
+            '<img class="demo-img" src="/blogs/demos/' + name + '.png" title="' + tip + '">',
             '<pre class="demo-code" style="display:none"><code></code></pre>',
-            '<p style="font-size:12px;color:#666;"><strong>注：</strong>您的浏览器目前可能还不支持直接展示当前内容，已自动转换成图片，点击图片可以查看实现当前内容效果的源码。建议您切换到最新桌面版的 Chrome 浏览器访问本博客。</p>'
+            '<p style="font-size:12px;color:#666;"><strong>注：</strong>' + tip + '</p>'
         ].join(''));
 
         getHtml(name, function (html) {

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="uyan_auth" content="711800a0ee"><title>一些core javascript的基础知识</title><style>code {
+<!DOCTYPE html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="uyan_auth" content="711800a0ee"><title>web 前端外部点击事件的实现</title><style>code {
     background: #fbebd4;
     margin: 0 3px;
     padding: .2em .5em;
@@ -152,157 +152,61 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();</script></head><body><div class="container"><div class="nav"><a href="/blogs/site/index.html">首页</a>&nbsp;&nbsp;》
-一些core javascript的基础知识</div><div class="content"><!-- config.time: 2014-10-22 22:13 -->
-<h1 id="-core-javascript-">一些 core javascript 的基础知识</h1>
-<h3 id="-settimeout">一、 setTimeout</h3>
-<pre><code class="lang-js"><span class="hljs-function">setTimtout</span>(<span class="hljs-function">function</span>(){
-   <span class="hljs-function">alert</span>(2);                           <span class="hljs-comment">// 后弹出</span>
-},0);
-<span class="hljs-function">alert</span>(1);                              <span class="hljs-comment">// 先弹出</span>
-</code></pre>
-<p>对于如上代码，包含原理如下：</p>
+web 前端外部点击事件的实现</div><div class="content"><!-- config.time: 2014-10-22 14:52 -->
+<h1 id="web-">web 前端外部点击事件的实现</h1>
+<p>在 web 前端开发中，元素外部点击事件算是非常常用的一种事件了。比如弹出一个对话框，点击对话框外部的时候需要把这个对话框关掉。</p>
+<p>实现这个事件有一个核心的东西，就是判断两个节点是否存在父子关系，整个事件流程如下：</p>
 <ul>
-<li>1、首先 jsvm 只会执行一个线程；</li>
-<li>2、当这个线程遇到 <code>setTimout()</code> 的时候，就会将这个 function 放到某个队列里面；</li>
-<li>3、当前这个线程空闲的时候，就会执行任务队列轮询的代码，将满足条件的函数拿出来执行。</li>
+<li>1、事先设定好的一组元素，如果在这组元素外部点击的话，就会触发外部点击事件，这组元素暂记为 nodes ；</li>
+<li>2、用户点击一个元素，可以从 event.target 中获取到当前用户点击的节点，暂记为 nodeClick ；</li>
+<li>3、当用户点击 nodeClick 的时候，需要判断 nodes 中是否存在 nodeClick 的祖先节点，如果不存在的话，则触发外部点击事件。</li>
 </ul>
-<p>比较简单典型的一个应用场景就是：</p>
-<pre><code class="lang-js">$(elem).html(xxxxxx);
-
-setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-comment">// 内部DOM操作很复杂，此处setTimeout用于保证在内部DOM操作结束并且相关内存被释放掉后执行后续代码</span>
-}, <span class="hljs-number">0</span>);
-</code></pre>
-<h3 id="-eval">二、 eval</h3>
-<p>js 中除了全局作用域和函数作用域之外，还存在一个 eval 作用域。</p>
-<p>eval 函数执行的时候，会根据当前执行上下文创建一个作用域。</p>
-<p>此处有如下代码：</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> SomeThing();
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">eval</span>(<span class="hljs-string">''</span>);
+<p>按照这个分析，关键点就落在了判断节点父子关系上面了。</p>
+<p>其实早在 IE5 的时候，元素节点上面就有一个方法 <code>contains()</code> ，用于判断父子关系，具体文档可参见： <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.contains">https://developer.mozilla.org/en-US/docs/Web/API/Node.contains</a> 。从文档中，我们可以看见 mobile 部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">contains</span><span class="hljs-params">(parentNode, childNode)</span> </span>{
+  <span class="hljs-keyword">var</span> fn = Node.prototype.contains || <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(childNode)</span> </span>{
+    <span class="hljs-keyword">while</span> (childNode) {
+      <span class="hljs-keyword">if</span> (childNode === parentNode) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+      childNode = childNode.parentNode;
+    }
   };
+  <span class="hljs-keyword">return</span> fn.call(parentNode, childNode);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isIn</span><span class="hljs-params">(parentNodes, node)</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, il = parentNodes.length; i &lt; il; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (contains(parentNodes[i], node)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 }
 </code></pre>
-<h3 id="-">三、预编译</h3>
-<p>先分别上如下几个片段的代码：</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
-a();
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
-  alert(<span class="hljs-number">1</span>);
+<p>实现了这个之后，接下来的事情就是维护回调函数队列了，实现机制可能会有多种，此处给出其中一种。</p>
+<p>给出一个Array，用于记录所有回调函数，其中每一个数组元素的结构如下：</p>
+<pre><code class="lang-js">{
+  nodes: [node1, node2, ...],      <span class="hljs-comment">// 对应上一大步中的nodes变量，即事先设定好的那一组元素</span>
+  <span class="hljs-keyword">callback</span>: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{}          <span class="hljs-comment">// 触发本次out click事件的回调函数</span>
 }
-</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="undefined">
-a();
-</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
-  alert(<span class="hljs-number">1</span>);
-}
-</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
-</code></pre>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
-a();
-<span class="hljs-keyword">var</span> b = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
-  alert(<span class="hljs-number">1</span>);
-}
-</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
-</code></pre>
-<p>执行结果分别是：</p>
+<p>暂记这个 Array 变量的名字是 outerCallbacks 。</p>
+<p>接下来，就剩下对外提供 API 了，此处向外部提供两个 API ：</p>
 <ul>
-<li>第一段代码：弹出1；</li>
-<li>第二段代码：第一个script片段报错，a不存在；</li>
-<li>第三段代码：报错，a不存在；</li>
+<li>1、 <code>on()</code> 函数，用于注册回调函数；</li>
+<li>2、 <code>off()</code> 函数，用于取消回调函数。</li>
 </ul>
-<p>原因：</p>
-<ul>
-<li>第一段代码中，jsvm会预编译，构造好a函数，所以访问a函数的顺序是不重要的；</li>
-<li>第二段代码中，预编译是会分代码块执行的，每个script都会形成一个代码块，即便script是通过src引入js的；</li>
-<li>第三段代码中，a函数的定义由于放在了一个表达式当中，因此jsvm不会预编译。</li>
-</ul>
-<p>但是，此处还可以继续深入，第三段代码改成如下所示：</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
-<span class="hljs-keyword">var</span> b = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
-  alert(<span class="hljs-number">1</span>);
-}
-a();
-</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
-</code></pre>
-<p>这段代码也同样会报错， a 不存在。为什么呢？原因就是 a 函数放在了表达式当中， jsvm 会把 a 函数看作一个匿名函数，因此在当前语句执行完， a 就被释放掉了。</p>
-<p>但是，请注意，上面讨论的都是根据 w3c 标准得出的结果，在第三段和第四段代码中，IE 6、7、8还是会预编译的，并且不会释放掉a，因此不会报错。</p>
-<h3 id="-">四、自执行函数</h3>
-<p>自执行函数的几种形式：</p>
-<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> <span class="hljs-comment">{}</span>)<span class="hljs-params">()</span>;</span>
-(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> <span class="hljs-comment">{}</span><span class="hljs-params">()</span>);</span>
-!<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span><span class="hljs-comment">{}</span><span class="hljs-params">()</span>;</span>
-void <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span><span class="hljs-comment">{}</span><span class="hljs-params">()</span>;</span>
-</code></pre>
-<p>其中第三种写法会造成额外的运算，因为要对返回的内容做“非”操作。</p>
-<h3 id="-">五、预编译中的变量声明</h3>
-<p>如下代码：</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">(x)</span></span>{
-  <span class="hljs-keyword">return</span> x*<span class="hljs-number">2</span>;
-}
-<span class="hljs-keyword">var</span> a;
-alert(a);
-</code></pre>
-<p><code>var a</code> 只是声明，并不会干啥， <code>var a</code> 只会让当前作用域的 <code>alert(a)</code> 不会报 a 不存在的错误， a 实际上是什么，需要显示赋值；如果 <code>var a</code> 之前已经存在 a 了，则啥也不干。</p>
-<h3 id="-function-">六、 function 传参</h3>
-<p>如下代码：</p>
-<pre><code class="lang-js">function fn1(a, b, <span class="hljs-built_in">c</span>){
-   a = <span class="hljs-number">1.2</span>;
-   b = <span class="hljs-number">2.2</span>;
-   <span class="hljs-built_in">c</span>.<span class="hljs-built_in">c</span> = <span class="hljs-number">3.2</span>;
-}
+<p>on函数的实现非常简单，此处直接上代码：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outer</span><span class="hljs-params">(elem, callback)</span></span> {
+  <span class="hljs-keyword">if</span> (!isFunction(callback)) <span class="hljs-keyword">return</span>;            // isFunction = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(obj)</span></span> {<span class="hljs-keyword">return</span> Object.prototype.toString.call(obj) === <span class="hljs-string">'[object Function]'</span>;}
 
-<span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;
-<span class="hljs-keyword">var</span> b = <span class="hljs-number">2</span>;
-<span class="hljs-keyword">var</span> <span class="hljs-built_in">c</span> = {<span class="hljs-built_in">c</span>:<span class="hljs-number">3</span>};
-
-fn1(a,b,<span class="hljs-built_in">c</span>);
-
-alert(a);
-alert(b);
-alert(<span class="hljs-built_in">c</span>.<span class="hljs-built_in">c</span>);
-</code></pre>
-<p>原理不难理解，注意值类型和引用类型的区别。</p>
-<h3 id="-">七、作用域链</h3>
-<p>有如下几点：</p>
-<ul>
-<li>1、作用域链是在定义的时候就确定下来了的；</li>
-<li>2、隐式对象模型：对于一个作用域， jsvm 会创建一个隐式对象，然后在这个对象上面绑定当前作用域的各种变量。多个函数的嵌套定义也就会形成一条作用域链了。如果在某个作用域中要访问一个 a 变量，则会首先在当前作用域中查找是否存在 a 变量，如果不存在，则向上找父作用域隐式对象中是否存在 a 变量，依次类推，如果到了根作用域还找不到 a 变量的话，就会报错了。</li>
-</ul>
-<h3 id="-">八、类数组结构</h3>
-<p>第一个问题，如何构造类数组结构？思路简单，不赘述。</p>
-<p>jquery 选择器构造出来的就是一个类数组结构。</p>
-<h3 id="-">九、工厂模式</h3>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factory</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ThisIsAClass();
+  outerCallbacks.push({
+    nodes: (isArray(elem) ? elem : [elem]),     // isArray = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(obj)</span></span> {<span class="hljs-keyword">return</span> Object.prototype.toString.call(obj) === <span class="hljs-string">'[object Array]'</span>}
+    callback: callback
+  });
 }
 </code></pre>
-<div data-thread-key="一些core javascript的基础知识" data-title="一些core javascript的基础知识" data-url="http://yibuyisheng.github.io/blogs/site/blogs/一些core javascript的基础知识.html" class="ds-thread"></div></div></div><script type="text/javascript">var duoshuoQuery = {short_name:"yibuyishengblogs"};
+<p>实现 <code>off()</code> 函数的时候，有一个难点和一个注意点：</p>
+<p>难点：参数处理，条件判断；</p>
+<p>注意点：在外部点击事件回调函数里面调用了 <code>off()</code> 函数怎么办？</p>
+<p>可以参看我的实现： <a href="https://github.com/yibuyisheng/web-ui/blob/master/static/js/event/outer.js">https://github.com/yibuyisheng/web-ui/blob/master/static/js/event/outer.js</a> 。</p>
+<div data-thread-key="web 前端外部点击事件的实现" data-title="web 前端外部点击事件的实现" data-url="http://yibuyisheng.github.io/blogs/site/blogs/web 前端外部点击事件的实现.html" class="ds-thread"></div></div></div><script type="text/javascript">var duoshuoQuery = {short_name:"yibuyishengblogs"};
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
@@ -332,10 +236,14 @@ function loadDemos() {
     });
 
     function loadImg(name, $con) {
+        var tip = [
+            '您的浏览器目前可能还不支持直接展示当前示例内容，已使用 phantomjs 将其自动转换成图片，点击图片可以查看实现当前内容效果的源码。',
+            '由于 phantomjs 对于某些 CSS 新特性支持也不太好，因此建议切换到最新桌面版的 Chrome 浏览器访问本博客。'
+        ].join('');
         $con.html([
-            '<img class="demo-img" src="/blogs/demos/' + name + '.png" title="您的浏览器目前可能还不支持直接展示当前内容，已自动转换成图片，点击图片可以查看实现当前内容效果的源码。建议您切换到最新版的 Chrome 浏览器访问本站">',
+            '<img class="demo-img" src="/blogs/demos/' + name + '.png" title="' + tip + '">',
             '<pre class="demo-code" style="display:none"><code></code></pre>',
-            '<p style="font-size:12px;color:#666;"><strong>注：</strong>您的浏览器目前可能还不支持直接展示当前内容，已自动转换成图片，点击图片可以查看实现当前内容效果的源码。建议您切换到最新桌面版的 Chrome 浏览器访问本博客。</p>'
+            '<p style="font-size:12px;color:#666;"><strong>注：</strong>' + tip + '</p>'
         ].join(''));
 
         getHtml(name, function (html) {

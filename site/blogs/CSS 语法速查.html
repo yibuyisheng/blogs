@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="uyan_auth" content="711800a0ee"><title>使用 CSS background 构造一个棋盘</title><style>code {
+<!DOCTYPE html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="uyan_auth" content="711800a0ee"><title>CSS 语法速查</title><style>code {
     background: #fbebd4;
     margin: 0 3px;
     padding: .2em .5em;
@@ -152,53 +152,31 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();</script></head><body><div class="container"><div class="nav"><a href="/blogs/site/index.html">首页</a>&nbsp;&nbsp;》
-使用 CSS background 构造一个棋盘</div><div class="content"><!-- config.time: 2015-08-25 -->
-<h1 id="-css-background-">使用 CSS background 构造一个棋盘</h1>
-<p><a href="http://www.w3.org/TR/css3-background">CSS background 的规范文档</a>。</p>
-<p><img src="https://raw.githubusercontent.com/yibuyisheng/blogs/master/imgs/6.png" alt=""></p>
-<p>使用的 CSS 代码如下：</p>
-<pre><code class="lang-css">    div.demo1 {
-        width: <span class="hljs-number">300</span>px;
-        height: <span class="hljs-number">150</span>px;
+CSS 语法速查</div><div class="content"><!-- config.time: 2015-09-03 19:06 -->
+<h1 id="css-">CSS 语法速查</h1>
+<h3 id="-background-http-www-w3-org-tr-css3-background-"><a href="http://www.w3.org/TR/css3-background/">background</a></h3>
+<pre><code>[ <span class="hljs-variable">&lt;bg-layer&gt;</span> , ]* <span class="hljs-variable">&lt;final-bg-layer&gt;</span>
 
-        background-color: <span class="hljs-preprocessor">#eee;</span>
-        background-image:
-            linear-gradient(<span class="hljs-number">45</span>deg, <span class="hljs-preprocessor">#bbb <span class="hljs-number">25</span>%, transparent <span class="hljs-number">0</span>),</span>
-            linear-gradient(<span class="hljs-number">45</span>deg, transparent <span class="hljs-number">75</span>%, <span class="hljs-preprocessor">#bbb <span class="hljs-number">0</span>),</span>
-            linear-gradient(<span class="hljs-number">45</span>deg, <span class="hljs-preprocessor">#bbb <span class="hljs-number">25</span>%, transparent <span class="hljs-number">0</span>),</span>
-            linear-gradient(<span class="hljs-number">45</span>deg, transparent <span class="hljs-number">75</span>%, <span class="hljs-preprocessor">#bbb <span class="hljs-number">0</span>);</span>
-        background-size: <span class="hljs-number">30</span>px <span class="hljs-number">30</span>px;
-        background-position: <span class="hljs-number">0</span> <span class="hljs-number">0</span>, <span class="hljs-number">15</span>px <span class="hljs-number">15</span>px, <span class="hljs-number">15</span>px <span class="hljs-number">15</span>px, <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
-    }
-</code></pre>
-<p>整个 div 的背景色是 #eee 。</p>
-<p>这个背景是由四幅代码“制造”的图片构成的，分别对应于四行 linear-gradient 。</p>
-<p>第一幅图片，颜色渐变，角度是 45deg ，于是从图片的左下角开始往右上角渐变。0-25%的颜色是 #bbb ，25%-100%的颜色是透明的（ transparent ），图片的大小是30px*30px的，图片从坐标(0,0)处开始绘制。</p>
-<p>第二幅图片，颜色渐变，角度是 45deg ，于是从图片的左下角开始往右上角渐变。0-75%的颜色是透明的（ transparent ），75%-100%的颜色是 #bbb ，图片的大小是30px*30px的，图片从坐标(15px,15px)处开始绘制。</p>
-<p>第三幅图片，颜色渐变，角度是 45deg ，于是从图片的左下角开始往右上角渐变。0-25%的颜色是 #bbb ，25%-100%的颜色是透明的（ transparent ），图片的大小是30px*30px的，图片从坐标(15px,15px)处开始绘制。</p>
-<p>第四幅图片，颜色渐变，角度是 45deg ，于是从图片的左下角开始往右上角渐变。0-75%的颜色是透明的（ transparent ），75%-100%的颜色是 #bbb ，图片的大小是30px*30px的，图片从坐标(0,0)处开始绘制。</p>
-<p>为了更清晰的看到每幅图片代码对应的区域，参考一下一段代码及其效果：</p>
-<pre><code class="lang-css">    div.demo2 {
-        width: <span class="hljs-number">300</span>px;
-        height: <span class="hljs-number">150</span>px;
+    <span class="hljs-variable">&lt;bg-layer&gt;</span> = <span class="hljs-variable">&lt;bg-image&gt;</span> || <span class="hljs-variable">&lt;position&gt;</span> [ / <span class="hljs-variable">&lt;bg-size&gt;</span> ]? || <span class="hljs-variable">&lt;repeat-style&gt;</span> || <span class="hljs-variable">&lt;attachment&gt;</span> || <span class="hljs-variable">&lt;box&gt;</span> || <span class="hljs-variable">&lt;box&gt;</span>
+    <span class="hljs-variable">&lt;final-bg-layer&gt;</span> = <span class="hljs-variable">&lt;bg-image&gt;</span> || <span class="hljs-variable">&lt;position&gt;</span> [ / <span class="hljs-variable">&lt;bg-size&gt;</span> ]? || <span class="hljs-variable">&lt;repeat-style&gt;</span> || <span class="hljs-variable">&lt;attachment&gt;</span> || <span class="hljs-variable">&lt;box&gt;</span> || <span class="hljs-variable">&lt;box&gt;</span> || <span class="hljs-variable">&lt;'background-color'&gt;</span>
 
-        background-color: <span class="hljs-preprocessor">#eee;</span>
-        background-image:
-            linear-gradient(<span class="hljs-number">45</span>deg, red <span class="hljs-number">25</span>%, transparent <span class="hljs-number">0</span>),
-            linear-gradient(<span class="hljs-number">45</span>deg, transparent <span class="hljs-number">75</span>%, blue <span class="hljs-number">0</span>),
-            linear-gradient(<span class="hljs-number">45</span>deg, green <span class="hljs-number">25</span>%, transparent <span class="hljs-number">0</span>),
-            linear-gradient(<span class="hljs-number">45</span>deg, transparent <span class="hljs-number">75</span>%, orange <span class="hljs-number">0</span>);
-        background-size: <span class="hljs-number">30</span>px <span class="hljs-number">30</span>px;
-        background-position: <span class="hljs-number">0</span> <span class="hljs-number">0</span>, <span class="hljs-number">15</span>px <span class="hljs-number">15</span>px, <span class="hljs-number">15</span>px <span class="hljs-number">15</span>px, <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
-    }
-</code></pre>
-<p><img src="https://raw.githubusercontent.com/yibuyisheng/blogs/master/imgs/7.png" alt=""></p>
-<h3 id="-">结语</h3>
-<p>css 的 background 属性现在很强大了，利用背景“图片”的层叠，可以做出很多绚丽的背景效果。</p>
-<h3 id="-css-background-">更多 CSS background 的效果：</h3>
-<div class="demo" name="envelope.html"></div>
-<div class="demo" name="css background.html"></div>
-<div class="demo" name="marching ants borders.html"></div><div data-thread-key="使用 CSS background 构造一个棋盘" data-title="使用 CSS background 构造一个棋盘" data-url="http://yibuyisheng.github.io/blogs/site/blogs/使用 CSS background 构造一个棋盘.html" class="ds-thread"></div></div></div><script type="text/javascript">var duoshuoQuery = {short_name:"yibuyishengblogs"};
+        <span class="hljs-variable">&lt;bg-image&gt;</span> = <span class="hljs-variable">&lt;image&gt;</span> | <span class="hljs-keyword">none</span>
+</code></pre><p><a href="http://www.w3.org/TR/css3-background/#ltimagegt">&lt;image&gt;</a>
+<a href="http://www.w3.org/TR/css3-background/#ltpositiongt">&lt;position&gt;</a>
+<a href="http://www.w3.org/TR/css3-background/#ltbg-sizegt">&lt;bg-size&gt;</a>
+<a href="http://www.w3.org/TR/css3-background/#ltrepeat-stylegt">&lt;repeat-style&gt;</a>
+<a href="http://www.w3.org/TR/css3-background/#ltattachmentgt">&lt;attachment&gt;</a>
+<a href="http://www.w3.org/TR/css3-background/#ltboxgt">&lt;box&gt;</a></p>
+<h3 id="-radial-gradient-http-www-w3-org-tr-2012-cr-css3-images-20120417-radial-gradients-"><a href="http://www.w3.org/TR/2012/CR-css3-images-20120417/#radial-gradients">radial-gradient()</a></h3>
+<pre><code><span class="hljs-variable">&lt;radial-gradient&gt;</span> = radial-gradient(
+  [ [ <span class="hljs-variable">&lt;shape&gt;</span> ||<span class="hljs-string"> &lt;size&gt; ] [ at &lt;position&gt; ]? , </span>|
+    at <span class="hljs-variable">&lt;position&gt;</span>, 
+  ]?
+  <span class="hljs-variable">&lt;color-stop&gt;</span> [ , <span class="hljs-variable">&lt;color-stop&gt;</span> ]+
+)
+
+    <span class="hljs-variable">&lt;shape&gt;</span> = circle ||<span class="hljs-string"> ellipse</span>
+</code></pre><div data-thread-key="CSS 语法速查" data-title="CSS 语法速查" data-url="http://yibuyisheng.github.io/blogs/site/blogs/CSS 语法速查.html" class="ds-thread"></div></div></div><script type="text/javascript">var duoshuoQuery = {short_name:"yibuyishengblogs"};
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;

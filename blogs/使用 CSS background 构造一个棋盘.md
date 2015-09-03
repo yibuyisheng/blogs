@@ -1,6 +1,8 @@
 <!-- config.time: 2015-08-25 -->
 # 使用 CSS background 构造一个棋盘
 
+[CSS background 的规范文档](http://www.w3.org/TR/css3-background)。
+
 ![](https://raw.githubusercontent.com/yibuyisheng/blogs/master/imgs/6.png)
 
 使用的 CSS 代码如下：

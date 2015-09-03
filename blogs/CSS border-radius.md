@@ -2,6 +2,10 @@
 
 # CSS border-radius
 
+`border-radius` 的取值：
+
+> [ &lt;length&gt; | &lt;percentage&gt; ]{1,4} [ / [ &lt;length&gt; | &lt;percentage&gt; ]{1,4} ]?
+
 <style>
 .demo1 {
     width: 100px;
@@ -27,3 +31,5 @@ border-radius 是可以通过`/`的形式来对某一个角设置一个椭圆弧
 当表格样式属性 border-collapse 是 collapse 时，对表格使用 border-radius 圆角效果，表格将不会展现出圆角效果，只有 border-collapse 为 separate 的时候，圆角才能正常展示。
 
 border-radius 可以做的效果：圆形、半圆、扇形、椭圆。
+
+<div class="demo" name="half ellipse.html"></div>

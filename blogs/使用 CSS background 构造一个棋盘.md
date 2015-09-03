@@ -57,6 +57,8 @@
 
 css 的 background 属性现在很强大了，利用背景“图片”的层叠，可以做出很多绚丽的背景效果。
 
+### 更多 CSS background 的效果：
 
-
-[更多效果](http://yibuyisheng.github.io/cssplayground/amazingbackground)。
+<div class="demo" name="envelope.html"></div>
+<div class="demo" name="css background.html"></div>
+<div class="demo" name="marching ants borders.html"></div>

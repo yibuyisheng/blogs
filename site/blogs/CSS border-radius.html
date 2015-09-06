@@ -188,7 +188,7 @@ CSS border-radius</div><div class="content"><!-- config.time: 2015-08-27 -->
 })();
 </script><script>$(loadDemos);
 function loadDemos() {
-    var exp = new RegExp('Chrome/44');
+    var exp = new RegExp('Chrome');
     if (exp.test(navigator.userAgent)) {
         $('.demo').each(function () {
             loadHtml($(this).attr('name'), $(this));

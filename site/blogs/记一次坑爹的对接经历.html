@@ -239,7 +239,7 @@ post(<span class="hljs-string">'/account/my/address/'</span>, {<span class="hljs
 })();
 </script><script>$(loadDemos);
 function loadDemos() {
-    var exp = new RegExp('Chrome/44');
+    var exp = new RegExp('Chrome');
     if (exp.test(navigator.userAgent)) {
         $('.demo').each(function () {
             loadHtml($(this).attr('name'), $(this));

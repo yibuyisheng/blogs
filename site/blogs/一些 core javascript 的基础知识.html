@@ -313,7 +313,7 @@ alert(<span class="hljs-built_in">c</span>.<span class="hljs-built_in">c</span>)
 })();
 </script><script>$(loadDemos);
 function loadDemos() {
-    var exp = new RegExp('Chrome/44');
+    var exp = new RegExp('Chrome');
     if (exp.test(navigator.userAgent)) {
         $('.demo').each(function () {
             loadHtml($(this).attr('name'), $(this));

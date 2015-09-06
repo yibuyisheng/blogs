@@ -172,7 +172,7 @@ CSS 空心字</div><div class="content"><!-- config.time: 2015-09-02 -->
 })();
 </script><script>$(loadDemos);
 function loadDemos() {
-    var exp = new RegExp('Chrome/44');
+    var exp = new RegExp('Chrome');
     if (exp.test(navigator.userAgent)) {
         $('.demo').each(function () {
             loadHtml($(this).attr('name'), $(this));

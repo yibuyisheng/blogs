@@ -1,5 +1,4 @@
 <!-- config.time: 2015-10-05 17:04 -->
-
 # 一个 JavaScript
 
 ES6 使用了“一个 JavaScript ”的方式来避免版本化的问题。

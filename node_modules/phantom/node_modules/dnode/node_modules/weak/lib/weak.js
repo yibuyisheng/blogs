@@ -18,7 +18,8 @@ bindings._setCallback(callback);
 
 exports = module.exports = create;
 exports.addCallback = exports.addListener = addCallback;
-exports.removeCallback = exports.removeListener = addCallback;
+exports.removeCallback = exports.removeListener = removeCallback;
+exports.removeCallbacks = exports.removeListeners = removeCallbacks;
 exports.callbacks = exports.listeners = callbacks;
 
 // backwards-compat with node-weakref
@@ -75,7 +76,7 @@ function removeCallback (weakref, fn) {
 }
 
 /**
- * Removes a weak callback function from the Weakref instance.
+ * Returns a copy of the listeners on the Weakref instance.
  *
  * @api public
  */
@@ -85,13 +86,25 @@ function callbacks (weakref) {
   return emitter.listeners(CB);
 }
 
+
+/**
+ * Removes all callbacks on the Weakref instance.
+ *
+ * @api public
+ */
+
+function removeCallbacks (weakref) {
+  var emitter = bindings._getEmitter(weakref);
+  return emitter.removeAllListeners(CB);
+}
+
 /**
  * Common weak callback function.
  *
  * @api private
  */
 
-function callback (obj, emitter) {
-  emitter.emit(CB, obj);
-  obj = emitter = null;
+function callback (emitter) {
+  emitter.emit(CB);
+  emitter = null;
 }

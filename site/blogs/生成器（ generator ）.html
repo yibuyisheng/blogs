@@ -157,55 +157,55 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 <h3 id="-generator-">什么是 generator ？</h3>
 <p>可以暂停（ pause ）和唤醒（ resume ）的函数。</p>
 <h3 id="-">实现一个迭代器</h3>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">for</span> <span class="hljs-params">(let a of [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])</span> {
-        yield a + <span class="hljs-number">1</span>;
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> a <span class="hljs-keyword">of</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) {
+        <span class="hljs-keyword">yield</span> a + <span class="hljs-number">1</span>;
     }
 
-    return <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
 }
 
 <span class="hljs-comment">// 下面的 for 循环输出：</span>
 <span class="hljs-comment">// 2</span>
 <span class="hljs-comment">// 3</span>
 <span class="hljs-comment">// 4</span>
-<span class="hljs-keyword">for</span> <span class="hljs-params">(let b of gen<span class="hljs-params">()</span>)</span> {
-    print<span class="hljs-params">(JSON.stringify<span class="hljs-params">(b)</span>)</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> b <span class="hljs-keyword">of</span> gen()) {
+    print(<span class="hljs-built_in">JSON</span>.stringify(b));
 }
 
-<span class="hljs-built_in">let</span> it = gen<span class="hljs-params">()</span>;
-print<span class="hljs-params">(JSON.stringify<span class="hljs-params">(it.next<span class="hljs-params">()</span>)</span>)</span>; <span class="hljs-comment">// 输出： {value: 2, done: false}</span>
-print<span class="hljs-params">(JSON.stringify<span class="hljs-params">(it.next<span class="hljs-params">()</span>)</span>)</span>; <span class="hljs-comment">// 输出： {value: 3, done: false}</span>
-print<span class="hljs-params">(JSON.stringify<span class="hljs-params">(it.next<span class="hljs-params">()</span>)</span>)</span>; <span class="hljs-comment">// 输出： {value: 4, done: false}</span>
-print<span class="hljs-params">(JSON.stringify<span class="hljs-params">(it.next<span class="hljs-params">()</span>)</span>)</span>; <span class="hljs-comment">// 输出： {value: 5, done: true}</span>
+<span class="hljs-keyword">let</span> it = gen();
+print(<span class="hljs-built_in">JSON</span>.stringify(it.next())); <span class="hljs-comment">// 输出： {value: 2, done: false}</span>
+print(<span class="hljs-built_in">JSON</span>.stringify(it.next())); <span class="hljs-comment">// 输出： {value: 3, done: false}</span>
+print(<span class="hljs-built_in">JSON</span>.stringify(it.next())); <span class="hljs-comment">// 输出： {value: 4, done: false}</span>
+print(<span class="hljs-built_in">JSON</span>.stringify(it.next())); <span class="hljs-comment">// 输出： {value: 5, done: true}</span>
 
-print<span class="hljs-params">(JSON.stringify<span class="hljs-params">([...gen<span class="hljs-params">()</span>])</span>)</span>; <span class="hljs-comment">// 输出： [2, 3, 4]</span>
+print(<span class="hljs-built_in">JSON</span>.stringify([...gen()])); <span class="hljs-comment">// 输出： [2, 3, 4]</span>
 </code></pre>
 <h3 id="-generator-">创建 generator 的方式</h3>
 <pre><code class="lang-js"><span class="hljs-comment">// 第一种</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">genFunc</span><span class="hljs-params">()</span> {</span> ··· }
-<span class="hljs-built_in">let</span> genObj = genFunc<span class="hljs-params">()</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">genFunc</span>(<span class="hljs-params"></span>) </span>{ ··· }
+<span class="hljs-keyword">let</span> genObj = genFunc();
 
 <span class="hljs-comment">// 第二种</span>
-const genFunc = <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-params">()</span> {</span> ··· };
-<span class="hljs-built_in">let</span> genObj = genFunc<span class="hljs-params">()</span>;
+<span class="hljs-keyword">const</span> genFunc = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{ ··· };
+<span class="hljs-keyword">let</span> genObj = genFunc();
 
 <span class="hljs-comment">// 第三种</span>
-<span class="hljs-built_in">let</span> obj = {
-    <span class="hljs-built_in">*</span> generatorMethod<span class="hljs-params">()</span> {
+<span class="hljs-keyword">let</span> obj = {
+    * generatorMethod() {
         ···
     }
 };
-<span class="hljs-built_in">let</span> genObj = obj.generatorMethod<span class="hljs-params">()</span>;
+<span class="hljs-keyword">let</span> genObj = obj.generatorMethod();
 
 <span class="hljs-comment">// 第四种</span>
-class MyClass {
-    <span class="hljs-built_in">*</span> generatorMethod<span class="hljs-params">()</span> {
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+    * generatorMethod() {
         ···
     }
 }
-<span class="hljs-built_in">let</span> myInst = new MyClass<span class="hljs-params">()</span>;
-<span class="hljs-built_in">let</span> genObj = myInst.generatorMethod<span class="hljs-params">()</span>;
+<span class="hljs-keyword">let</span> myInst = <span class="hljs-keyword">new</span> MyClass();
+<span class="hljs-keyword">let</span> genObj = myInst.generatorMethod();
 </code></pre>
 <h3 id="generator-yield-">generator 嵌套： yield*</h3>
 <pre><code class="lang-js">function* gen1() {
@@ -237,16 +237,16 @@ function* gen3() {
 print(<span class="hljs-type">JSON</span>.stringify([...gen3()])); // 输出： [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
 </code></pre>
 <h3 id="next-">next 传值</h3>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen1</span><span class="hljs-params">()</span> {</span>
-    print<span class="hljs-params">(JSON.stringify<span class="hljs-params">(yield)</span>)</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">function</span>* gen1() {
+    <span class="hljs-built_in">print</span>(JSON.stringify(yield));
 }
-<span class="hljs-built_in">let</span> it = gen1<span class="hljs-params">()</span>;
-<span class="hljs-comment">// 输出：</span>
-<span class="hljs-comment">// {value: undefined, done: false}</span>
-<span class="hljs-comment">// outer value</span>
-<span class="hljs-comment">// {value: undefined, done: true}</span>
-print<span class="hljs-params">(JSON.stringify<span class="hljs-params">(it.next<span class="hljs-params">()</span>)</span>)</span>;
-print<span class="hljs-params">(JSON.stringify<span class="hljs-params">(it.next<span class="hljs-params">('outer value')</span>)</span>)</span>;
+<span class="hljs-keyword">let</span> <span class="hljs-literal">it</span> = gen1();
+<span class="hljs-pi">// 输出：
+//</span> {<span class="hljs-attribute">value</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attribute">done</span>: <span class="hljs-literal">false</span>}
+<span class="hljs-pi">// outer value
+//</span> {<span class="hljs-attribute">value</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attribute">done</span>: <span class="hljs-literal">true</span>}
+<span class="hljs-built_in">print</span>(JSON.stringify(<span class="hljs-literal">it</span>.next()));
+<span class="hljs-built_in">print</span>(JSON.stringify(<span class="hljs-literal">it</span>.next(<span class="hljs-string">'outer value'</span>)));
 </code></pre>
 <h3 id="-return-generator"><code>return()</code> 外部终止 generator</h3>
 <pre><code class="lang-js">function* gen1() {
@@ -308,7 +308,7 @@ print(<span class="hljs-built_in">JSON</span>.stringify(newArr)); <span class="h
 </code></pre>
 <h3 id="generator-">generator 类图</h3>
 <p>规范里面有一张<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-generatorfunction-objects">很大的图</a>，有点复杂。所以，看一张小图：</p>
-<p><img src="../../imgs/9.jpg" alt=""></p>
+<p><img src="./imgs/9.jpg" alt=""></p>
 <p>说明：</p>
 <ul>
 <li>空心箭头表示两个对象的继承关系。换句话说，从 x 指向 y 的箭头意味着 <code>Object.getPrototypeOf(x) === y</code> 。</li>

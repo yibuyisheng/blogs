@@ -5,6 +5,16 @@ This is a full list of available classes corresponding to languages'
 syntactic structures. The parentheses after language name contain identifiers
 used as class names in ``<code>`` element.
 
+
+Gams ("gms", "gams")
+--------------------
+
+* ``section``:          section
+* ``keyword``:          keyword
+* ``number``:           number
+* ``string``:           string
+
+
 Python ("python", "py", "gyp")
 ------------------------------
 
@@ -131,6 +141,14 @@ Go ("go", "golang")
 * ``constant``:         true false nil iota
 * ``typename``:         built-in plain types (int, string etc.)
 * ``built_in``:         built-in functions
+
+Golo ("golo", "gololang")
+-------------------
+
+* ``keyword``:          language keywords
+* ``literal``:          true false null
+* ``typename``:         Golo type objects (DynamicObject, struct, ...)
+* ``annotation``:       decorator
 
 Gradle ("gradle")
 -----------------
@@ -604,9 +622,19 @@ Fortran ("fortran", "f90", "f95")
 ---------------------------------
 
 * ``comment``:          comment
-* ``string``:           string constant (single or double quote)
+* ``function``:         name of a function or a subroutine 
+* ``keyword``:          language keywords (function, if) 
 * ``number``:           number
-* ``keyword``:          language keywords (function, if)
+* ``string``:           string constant (single or double quote)
+
+IRPF90 ("irpf90")
+-----------------
+
+* ``comment``:          comment
+* ``function``:         name of a function or a subroutine
+* ``keyword``:          language keywords (function, if) 
+* ``number``:           number
+* ``string``:           string constant (single or double quote)
 
 C++ ("cpp", "c", "cc", "h", "c++", "h++", "hpp")
 ------------------------------------------------
@@ -1475,7 +1503,7 @@ ARM assembler ("armasm", "arm")
 * ``title``:            symbol versions
 
 AutoIt ("autoit")
--------------------------
+-----------------
 
 * ``keyword``:          keyword
 * ``literal``:          True, False, And, Null, Not, Or
@@ -1486,3 +1514,28 @@ AutoIt ("autoit")
 * ``comment``:          comment
 * ``number``:           number
 * ``preprocessor``:     AutoIt3Wrapper directives section
+
+Access log ("accesslog")
+------------------------
+
+* ``keyword``:          HTTP method name
+* ``string``:           date, request string, user-agent etc
+* ``number``:           IP-address, numbers
+
+Crystal ("crystal", "cr")
+-------------------------
+
+* ``keyword``:          keyword
+* ``string``:           string
+* ``number``:           number
+* ``symbol``:           symbol
+* ``regexp``:           regexp
+* ``literal``:          true, false or nil
+* ``constant``:         constant
+* ``variable``:         global, instance, class and fresh variables
+* ``subst``:            in-string substitution (#{...})
+* ``expansion``:        macro expansion ({{...}}, {%...%})
+* ``class``:            class, module, struct, enum, union or lib header
+* ``function``:         method or function header
+* ``title``:            a method name or class name
+* ``parent``:           name of a parent class

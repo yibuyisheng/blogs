@@ -1,4 +1,5 @@
 <!-- config.time: 2015-08-27 -->
+<!-- config.brief: 上面示例的 css 代码为：CSS 中的 border-image 可以给边框设置图片背景，其参数主要分为三部分： -->
 # CSS border-image
 
 <div class="demo" name="border-image.html"></div>

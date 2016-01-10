@@ -1,4 +1,5 @@
 <!-- config.time: 2015-08-27 -->
+<!-- config.brief: border-radius 的取值：上述示例的 CSS 代码为：border-radius 是可以通过/的形式来对某一个角设置一个椭圆弧的。 -->
 
 # CSS border-radius
 

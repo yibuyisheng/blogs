@@ -1,4 +1,6 @@
 <!-- config.time: 2015-06-01 -->
+<!-- config.brief: 官方 EF 学习资料：与 ESUI 结合的 `View` 基类。该类有一个主入口方法 enterDocument()，该函数在容器渲染完毕后触发，用于控制元素可见性及绑定事件等 DOM 操作。 -->
+
 # 百度（EFE）前端框架学习笔记（ef）
 
 官方 EF 学习资料：[ActionPanel](https://github.com/ecomfe/ef/blob/master/doc/ActionPanel.md)、[UIModel](https://github.com/ecomfe/ef/blob/master/doc/UIModel.md)、[UIView](https://github.com/ecomfe/ef/blob/master/doc/UIView.md)。

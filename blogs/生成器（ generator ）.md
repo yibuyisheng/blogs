@@ -1,4 +1,6 @@
 <!-- config.time: 2015-07-13 -->
+<!-- config.brief: 可以暂停（ pause ）和唤醒（ resume ）的函数。 -->
+
 # 生成器（ generator ）
 
 ### 什么是 generator ？

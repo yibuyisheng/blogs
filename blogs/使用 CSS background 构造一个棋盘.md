@@ -1,4 +1,6 @@
 <!-- config.time: 2015-08-25 -->
+<!-- config.brief: 使用的 CSS 代码如下：整个 div 的背景色是 #eee 。这个背景是由四幅代码“制造”的图片构成的，分别对应于四行 linear-gradient 。 -->
+
 # 使用 CSS background 构造一个棋盘
 
 [CSS background 的规范文档](http://www.w3.org/TR/css3-background)。

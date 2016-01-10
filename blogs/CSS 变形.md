@@ -1,4 +1,5 @@
 <!-- config.time: 2015-09-01 -->
+<!-- config.brief: 2D 常用的变形函数： tranlate() 、 scale() 、 rotate() 、 skew() 、 matrix() 。示例：下图描述了 skew(30deg, 10deg) 的工作原理： -->
 
 # CSS 变形
 

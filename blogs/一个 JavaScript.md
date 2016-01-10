@@ -1,4 +1,6 @@
 <!-- config.time: 2015-10-05 17:04 -->
+<!-- config.brief: ES6 使用了“一个 JavaScript ”的方式来避免版本化的问题。那么，什么是“版本化”？什么又是“一个 JavaScript”呢？ -->
+
 # 一个 JavaScript
 
 ES6 使用了“一个 JavaScript ”的方式来避免版本化的问题。

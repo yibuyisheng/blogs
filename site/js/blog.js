@@ -1,6 +1,7 @@
 $(loadDemos);
+
 function loadDemos() {
-    var exp = new RegExp('#{demoexpstr}');
+    var exp = new RegExp(CONFIG.demoexpstr);
     if (exp.test(navigator.userAgent)) {
         $('.demo').each(function () {
             loadHtml($(this).attr('name'), $(this));
@@ -13,7 +14,7 @@ function loadDemos() {
     }
 
     $('.demo').on('click', '.demo-img', function () {
-        $.get('#{demoDir}/demos/' + $(this).closest('.demo').attr('name'), function (data) {
+        $.get(CONFIG.demoDir + '/demos/' + $(this).closest('.demo').attr('name'), function (data) {
 
         });
     });
@@ -24,7 +25,7 @@ function loadDemos() {
             '由于 phantomjs 对于某些 CSS 新特性支持也不太好，因此建议切换到最新桌面版的 Chrome 浏览器访问本博客。'
         ].join('');
         $con.html([
-            '<img class="demo-img" src="#{demoDir}/demos/' + name + '.png" title="' + tip + '">',
+            '<img class="demo-img" src="' + CONFIG.demoDir + '/demos/' + name + '.png" title="' + tip + '">',
             '<pre class="demo-code" style="display:none"><code></code></pre>',
             '<p style="font-size:12px;color:#666;"><strong>注：</strong>' + tip + '</p>'
         ].join(''));
@@ -45,7 +46,7 @@ function loadDemos() {
     }
 
     function getHtml(name, loadFn) {
-        $.get('#{demoDir}/demos/' + name, function (html) {
+        $.get(CONFIG.demoDir + '/demos/' + name, function (html) {
             loadFn(
                 html.replace(/url\(\.\.\/imgs\//g, 'url(../../imgs/')
                     .replace(/src="\.\.\/imgs\//g, 'src="../../imgs/')

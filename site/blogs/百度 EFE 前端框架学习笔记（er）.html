@@ -36,7 +36,8 @@
         <div class="blog-page container">
             <div class="card">
                 <div class="card-block">
-                    <!-- config.time: 2015-05-29 -->
+                    <div class="hljs">
+                        <!-- config.time: 2015-05-29 -->
 <!-- config.brief: 首先上一张图：此模块返回一个 ajax 对象，用于发送 ajax 请求，最主要的就是 request 方法。同时该对象上也会挂载 Ajax 构造函数。 -->
 <h1 id="-efe-er-">百度 EFE 前端框架学习笔记（er）</h1>
 <p>首先上一张图：</p>
@@ -209,6 +210,7 @@
 <p>对于当前 url 加载到的 action 模块对象，如果是一个函数，则认为是一个 Action 构造函数，直接实例化；如果是一个包含 createRuntimeAction() 的对象，则认为这个 createRuntimeAction() 函数就是一个 Action 工厂函数，调用该工厂函数就可以创建出 action 对象；否则认为这个模块对象就是 action 实例。</p>
 <p>找到了当前 url 对应的主 action 之后，就要开始进入这个 action 了。在进入之前，需要销毁之前的主 action（调用 action.leave() 方法）。销毁之后，调用 action.enter()，进入当前 action。</p>
 
+                    </div>
                 </div>
             </div>
 

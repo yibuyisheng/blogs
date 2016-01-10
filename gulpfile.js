@@ -21,7 +21,10 @@ gulp.task('sass', function () {
 });
 
 gulp.task('sass:watch', ['sass'], function () {
-    gulp.watch('./site/sass/**/*.sass', ['sass']);
+    gulp.watch([
+        './site/sass/**/*',
+        './site/sass/**'
+    ], ['sass']);
 });
 
 gulp.task('demos', function (doneFn) {

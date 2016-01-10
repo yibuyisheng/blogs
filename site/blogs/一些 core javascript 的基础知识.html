@@ -36,7 +36,8 @@
         <div class="blog-page container">
             <div class="card">
                 <div class="card-block">
-                    <!-- config.time: 2014-10-22 22:13 -->
+                    <div class="hljs">
+                        <!-- config.time: 2014-10-22 22:13 -->
 <!-- config.brief: 对于如上代码，包含原理如下：1、首先 jsvm 只会执行一个线程；2、当这个线程遇到 `setTimout()` 的时候，就会将这个 function 放到某个队列里面；3、当前这个线程空闲的时候，就会执行任务队列轮询的代码，将满足条件的函数拿出来执行。 -->
 <h1 id="-core-javascript-">一些 core javascript 的基础知识</h1>
 <h3 id="-settimeout">一、 setTimeout</h3>
@@ -188,6 +189,7 @@ alert(<span class="hljs-built_in">c</span>.<span class="hljs-built_in">c</span>)
 }
 </code></pre>
 
+                    </div>
                 </div>
             </div>
 

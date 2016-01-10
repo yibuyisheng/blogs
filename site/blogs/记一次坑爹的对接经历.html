@@ -36,7 +36,8 @@
         <div class="blog-page container">
             <div class="card">
                 <div class="card-block">
-                    <!-- config.time: 2015-05-07 -->
+                    <div class="hljs">
+                        <!-- config.time: 2015-05-07 -->
 <!-- config.brief: 事情是这样的：后端提供了一个数据接口 /account/my/address/ 。咱是有追求的程序员，自然接口要采用 RESTful 的思想，于是服务器端非成功的处理，都会返回 http code 非200的状态码，坑由此而生。 -->
 <h1 id="-">记一次坑爹的对接经历</h1>
 <p>事情是这样的：</p>
@@ -114,6 +115,7 @@ post(<span class="hljs-string">'/account/my/address/'</span>, {<span class="hljs
 <li>3、chrome 出现上述类似错误的时候（407、请求未成功发送出去等等），很可能不显示完整的请求头，不显示响应信息（因为按照语义，此时根本无响应信息可显示）。</li>
 </ul>
 
+                    </div>
                 </div>
             </div>
 

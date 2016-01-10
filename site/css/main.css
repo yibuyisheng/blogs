@@ -4394,13 +4394,13 @@ a.bg-danger:focus, a.bg-danger:hover {
   .hidden-print {
     display: none !important; } }
 
-code {
+.hljs code {
   background: #fbebd4;
   margin: 0 3px;
   padding: .2em .5em;
   border-radius: 4px; }
 
-pre code {
+.hljs pre code {
   display: block;
   padding: .5em; }
 
@@ -4408,10 +4408,18 @@ pre code {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #fbebd4;
-  color: #839496;
   -webkit-text-size-adjust: none;
   -webkit-overflow-scrolling: touch; }
+
+.hljs blockquote {
+  color: #666;
+  border-left: .3em solid #268bd2;
+  padding: .5em .4em;
+  background: #eee;
+  margin: 1.5em 0; }
+
+.hljs blockquote p {
+  margin: 0; }
 
 .hljs-comment,
 .diff .hljs-header,

@@ -1,0 +1,113 @@
+<!-- target: baseLayout -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="uyan_auth" content="711800a0ee">
+        <link rel="stylesheet" type="text/css" href="${rootPath}/css/main.css">
+        <script src="${rootPath}/js/jquery.js"></script>
+        <!-- if: ${env} === 'production' -->
+        <script type="text/javascript">
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+        <!-- /if -->
+        <!-- block: head --><!-- /block -->
+    </head>
+    <body>
+        <div class="navbar navbar-dark bg-inverse">
+            <div class="container">
+                <a href="${rootPath}/index.html" class="navbar-brand">首页</a>
+            </div>
+        </div>
+        <!-- block: body --><!-- /block -->
+    </body>
+
+<!-- target: readmeTitleList -->
+    <!-- for: ${blogs} as ${blog} -->
+        * [${blog.title}](http://yibuyisheng.github.io/blogs/site/blogs/${blog.title}.html)
+    <!-- /for -->
+
+<!-- target: blogPage(master=baseLayout) -->
+    <!-- block: head -->
+        <title>${blog.title}</title>
+    <!-- /block -->
+    <!-- block: body -->
+        <div class="blog-page container">
+            <div class="card">
+                <div class="card-block">
+                    ${blog.content|md}
+                </div>
+            </div>
+
+            <!-- if: ${env} === 'production' -->
+                <div class="card">
+                    <div class="card-block">
+                        <div class="ds-thread"
+                            data-thread-key="${blog.title}"
+                            data-title="${blog.title}"
+                            data-url="http://yibuyisheng.github.io/blogs/site/blogs/${blog.title}.html">
+                        </div>
+                    </div>
+                </div>
+            <!-- /if -->
+        </div>
+        <!-- if: ${env} === 'production' -->
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"yibuyishengblogs"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                     || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+        <!-- /if -->
+        <script type="text/javascript" src="${rootPath}/js/blog.js"></script>
+    <!-- /block -->
+
+<!-- target: indexPage(master=baseLayout) -->
+    <!-- block: head --><!-- /block -->
+    <!-- block: body -->
+        <div class="index-page container">
+            <div class="row">
+                <div class="col-md-9">
+                    <!-- for: ${blogs} as ${blog} -->
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">
+                                    ${blog.title}
+                                </h4>
+                                <p class="card-text">${blog.brief}</p>
+                                <p class="text-md-right">${blog.timeText}</p>
+                                <div class="text-md-right">
+                                    <a class="btn btn-info" href="${rootPath}/blogs/${blog.title}.html">查看全文</a>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- /for -->
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <h5>关于作者</h5>
+                        <div class="list-group">
+                            <p class="list-group-item">职位：前端工程师</p>
+                            <p class="list-group-item">邮箱：yibuyisheng@163.com</p>
+                            <p>
+                                <a href="https://github.com/yibuyisheng/" target="_blank">GitHub</a>
+                                <a href="http://weibo.com/u/2674779523" target="_blank">weibo</a>
+                                <a href="http://www.zhihu.com/people/yibuyisheng" target="_blank">知乎</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- /block -->
+

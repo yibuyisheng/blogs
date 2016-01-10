@@ -13,12 +13,18 @@
     "gulp": "^3.9.0",
     "gulp-data": "^1.2.0",
     "gulp-jade": "^1.1.0",
-    "gulp-util": "^3.0.6",
+    "gulp-sass": "^2.1.1",
+    "gulp-util": "^3.0.7",
     "gulp-webserver": "^0.9.1",
-    "highlight.js": "^8.7.0",
+    "highlight.js": "^8.9.1",
     "jade": "^1.11.0",
     "marked": "^0.3.5",
     "phantom": "^0.7.2",
     "through2": "^2.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.2",
+    "moment": "^2.11.0",
+    "underscore": "^1.8.3"
   }
 }

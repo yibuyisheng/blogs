@@ -1,12 +1,12 @@
 var fs = require('fs');
 var gulp = require('gulp');
-var gulpJade = require('gulp-jade');
-var jade = require('jade');
 var marked = require('marked');
 var webserver = require('gulp-webserver');
-var gutil = require('gulp-util');
 var etpl = require('etpl');
-var phantom = require('phantom');
+var path = require('path');
+var u = require('underscore');
+var moment = require('moment');
+var sass = require('gulp-sass');
 
 marked.setOptions({
     highlight: function (code) {
@@ -14,95 +14,14 @@ marked.setOptions({
     }
 });
 
-jade.filters.md = function (str) {
-    return marked(str)
-        .replace(/url\(\.\/imgs\//g, 'url(../../imgs/')
-        .replace(/src="\.\/imgs\//g, 'src="../../imgs/');
-};
+gulp.task('sass', function () {
+    gulp.src('./site/sass/**/*.sass')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./site/css'));
+});
 
-// 生成对应于 src 目录下面的 md 博客文件的 jade 文件
-// 以及 titles.jade
-gulp.task('create-blog-pages', function (doneFn) {
-    try {
-        var srcPath = './blogs';
-        var mdFiles = fs.readdirSync(srcPath);
-        mdFiles.forEach(function (fileName) {
-            if (fileName.slice(-3) !== '.md') {
-                return;
-            }
-
-            var jadeFilePath = process.cwd() + '/site/blogs/' + fileName.slice(0, -3) + '.jade';
-            var jadeContent = etpl.compile([
-                'extends ../bloglayout.jade',
-                'block title',
-                '    | ${blogTitle}',
-                'block nav',
-                '    a(href="#{rootPath}/index.html") 首页',
-                '    | &nbsp;&nbsp;》',
-                '    | ${blogTitle}',
-                'block blog',
-                '    include:md ../../blogs/${fileName}',
-                'block commentBoxBlock',
-                '    div.ds-thread(data-thread-key="${blogTitle}", data-title="${blogTitle}", data-url="http://yibuyisheng.github.io/blogs/site/blogs/${blogTitle}.html")'
-            ].join('\r'))({blogTitle: fileName.slice(0, -3), fileName: fileName});
-
-            fs.writeFileSync(jadeFilePath, jadeContent);
-        });
-
-        // 排一下序
-        mdFiles = mdFiles.map(function (fileName) {
-            var mdStr = fs.readFileSync(srcPath + '/' + fileName);
-            return {
-                time: getBlogTime(String(mdStr)),
-                fileName: fileName
-            };
-        }).sort(function (a, b) {
-            return b.time.getTime() - a.time.getTime();
-        }).map(function (fileObj) {
-            return fileObj.fileName;
-        });
-
-        var blogs = mdFiles.filter(
-            function (fileName) {
-                return fileName.slice(-3) === '.md';
-            }
-        ).map(
-            function (fileName) {
-                return {
-                    title: fileName.slice(0, -3)
-                };
-            }
-        );
-
-        var titlesContent = etpl.compile([
-            '<!-- for: ${blogs} as ${blog} -->',
-            'h5\r',
-            '    a(href="#{rootPath}/blogs/${blog.title}.html") ${blog.title}\r',
-            '<!-- /for -->'
-        ].join(''))({blogs: blogs});
-        fs.writeFileSync(process.cwd() + '/site/titles.jade', titlesContent);
-
-        var readmeContent = etpl.compile([
-            '<!-- for: ${blogs} as ${blog} -->',
-            '* [${blog.title}](http://yibuyisheng.github.io/blogs/site/blogs/${blog.title}.html)\r',
-            '<!-- /for -->'
-        ].join(''))({blogs: blogs});
-        fs.writeFileSync(process.cwd() + '/README.md', readmeContent);
-
-        doneFn();
-    }
-    catch (error) {
-        doneFn(error);
-    }
-
-    // 拿到 blog 发布时间
-    function getBlogTime(mdStr) {
-        var timeMatch = mdStr.match(/<!-- config.time: ([0-9|\-|:|\s]+) -->/);
-        if (timeMatch && timeMatch.length >= 2) {
-            return new Date(timeMatch[1]);
-        }
-        return new Date();
-    }
+gulp.task('sass:watch', ['sass'], function () {
+    gulp.watch('./site/sass/**/*.sass', ['sass']);
 });
 
 gulp.task('demos', function (doneFn) {
@@ -124,30 +43,29 @@ gulp.task('static-server', function () {
         }));
 });
 
+gulp.task('compile:test', function () {
+    return createBlogPages('test');
+});
+
+gulp.task('compile:production', function () {
+    return createBlogPages('production');
+});
+
 gulp.task(
-    'watch',
-    ['static-server', 'create-blog-pages', 'compile:test', 'watch-demos'],
+    'dev',
+    ['static-server', 'compile:test', 'watch-demos', 'sass:watch'],
     function () {
         return gulp.watch([
             './blogs/*.md',
-            './site/**/*.jade',
-            './site/**/*.conf'
+            './site/**/*.conf',
+            './site/template.tpl.html'
         ], [
-            'create-blog-pages',
             'compile:test'
         ]);
     }
 );
 
-gulp.task('compile:test', function () {
-    return gulpCompile(process.cwd() + '/site/test.conf');
-});
-
-gulp.task('compile:production', function () {
-    return gulpCompile(process.cwd() + '/site/production.conf');
-});
-
-gulp.task('build', ['create-blog-pages', 'compile:production', 'demos']);
+gulp.task('build', ['compile:production', 'demos']);
 
 function buildDemosImg(demoFileNames, doneFn) {
     demoFileNames.forEach(function (fileName) {
@@ -167,7 +85,6 @@ function buildDemosImg(demoFileNames, doneFn) {
                     if (status === 'success') {
                         page.render('./demos/' + fileName + '.png');
                     }
-                    console.log(fileName, status);
 
                     ph.exit();
                     doneFn();
@@ -177,16 +94,74 @@ function buildDemosImg(demoFileNames, doneFn) {
     }
 }
 
-function gulpCompile(configFilePath) {
-    return gulp.src([
-        process.cwd() + '/site/blogs/**/*.jade',
-        process.cwd() + '/site/index.jade',
-        process.cwd() + '/site/mobile.jade'
-    ]).pipe(gulpJade({
-        locals: JSON.parse(fs.readFileSync(configFilePath))
-    })).on('error', function (error) {
-        gutil.log(error.message);
-    }).pipe(gulp.dest(function (file) {
-        return file.base;
-    }));
+function createBlogPages(env) {
+    var etplEngin = new etpl.Engine();
+    etplEngin.compile(fs.readFileSync(path.join(__dirname, 'site/template.tpl.html')).toString());
+
+    etplEngin.addFilter('md', function (mdCode) {
+        return marked(mdCode)
+            .replace(/url\(\.\/imgs\//g, 'url(../../imgs/')
+            .replace(/src="\.\/imgs\//g, 'src="../../imgs/');
+    });
+
+    var config = JSON.parse(fs.readFileSync('./site/' + env + '.conf'));
+
+    var mdFiles = fs.readdirSync(path.join(__dirname, 'blogs'));
+    mdFiles = mdFiles.filter(function (fileName) {
+        return /\.md$/.test(fileName);
+    }).map(function (fileName) {
+        var fullPath = path.join(__dirname, 'blogs', fileName);
+        var content = fs.readFileSync(fullPath).toString();
+        var time = getBlogTime(content);
+        return {
+            fileName: fileName,
+            path: fullPath,
+            content: content,
+            time: time,
+            timeText: moment(time).format('YYYY-MM-DD HH:mm:ss'),
+            brief: getBlogBrief(content),
+            title: fileName.slice(0, -3)
+        };
+    });
+
+    var blogs = mdFiles.sort(function (a, b) {
+        return b.time.getTime() - a.time.getTime();
+    });
+
+    blogs.forEach(function (blog) {
+        fs.writeFileSync(
+            path.join(__dirname, '/site/blogs', blog.fileName.slice(0, -3) + '.html'),
+            etplEngin.getRenderer('blogPage')(getData({blog: blog}))
+        );
+    });
+
+    fs.writeFileSync(
+        path.join(__dirname, 'site/index.html'),
+        etplEngin.getRenderer('indexPage')(getData({blogs: blogs}))
+    );
+    fs.writeFileSync(
+        path.join(__dirname, '/README.md'),
+        etplEngin.getRenderer('readmeTitleList')(getData({blogs: blogs}))
+    );
+
+    function getData(local) {
+        return u.extend({}, config, local);
+    }
+
+    function getBlogBrief(mdStr) {
+        var briefMatch = mdStr.match(/<!--\s*config.brief:(.+)-->/);
+        if (briefMatch && briefMatch.length >= 2) {
+            return briefMatch[1].replace(/^\s|\s$/g, '');
+        }
+        return '';
+    }
+
+    // 拿到 blog 发布时间
+    function getBlogTime(mdStr) {
+        var timeMatch = mdStr.match(/<!--\s*config.time:\s*([0-9\-:\s]+)\s*-->/);
+        if (timeMatch && timeMatch.length >= 2) {
+            return new Date(timeMatch[1]);
+        }
+        return new Date();
+    }
 }

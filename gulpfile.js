@@ -7,6 +7,7 @@ var path = require('path');
 var u = require('underscore');
 var moment = require('moment');
 var sass = require('gulp-sass');
+var phantom = require('phantom');
 
 marked.setOptions({
     highlight: function (code) {
@@ -101,8 +102,9 @@ function createBlogPages(env) {
     var etplEngin = new etpl.Engine();
     etplEngin.compile(fs.readFileSync(path.join(__dirname, 'site/template.tpl.html')).toString());
 
+    var renderer = new marked.Renderer();
     etplEngin.addFilter('md', function (mdCode) {
-        return marked(mdCode)
+        return marked(mdCode, {renderer: renderer})
             .replace(/url\(\.\/imgs\//g, 'url(../../imgs/')
             .replace(/src="\.\/imgs\//g, 'src="../../imgs/');
     });

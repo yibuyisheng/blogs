@@ -1,0 +1,190 @@
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="uyan_auth" content="711800a0ee">
+        <link rel="stylesheet" type="text/css" href="/blogs/site/css/main.css">
+        <script src="/blogs/site/js/jquery.js"></script>
+        
+        <script type="text/javascript">
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+        <script>
+        var CONFIG = {
+            demoDir: '/blogs',
+            demoexpstr: 'Chrome'
+        };
+        </script>
+        
+        
+        <title>使用marked解析markdown</title>
+    
+    </head>
+    <body>
+        <div class="navbar navbar-dark bg-inverse">
+            <div class="container">
+                <a href="/blogs/site/index.html" class="navbar-brand">首页</a>
+            </div>
+        </div>
+        
+        <div class="blog-page container">
+            <div class="card">
+                <div class="card-block">
+                    <div class="hljs">
+                        <!-- config.time: 2016-05-20 -->
+<!-- config.brief: 使用marked解析markdown -->
+<p><a href="https://github.com/chjj/marked">marked</a> 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。</p>
+<p>最简单直接的一种使用方式：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>);
+<span class="hljs-built_in">console</span>.log(marked(<span class="hljs-string">'I am using __markdown__.'</span>));
+<span class="hljs-comment">// Outputs: &lt;p&gt;I am using &lt;strong&gt;markdown&lt;/strong&gt;.&lt;/p&gt;</span>
+</code></pre>
+<p>marked 库主要提供了一个 marked 函数，该函数声明为：</p>
+<pre><code><span class="hljs-label">type</span> OptionsType = {
+<span class="hljs-label">    highlight:</span> (<span class="hljs-preprocessor">function</span>(<span class="hljs-preprocessor">code</span>: <span class="hljs-keyword">string, </span>lang: <span class="hljs-keyword">string, </span>callback: <span class="hljs-preprocessor">function</span>(err: Error, <span class="hljs-preprocessor">code</span>: <span class="hljs-keyword">string)))=,
+</span><span class="hljs-label">    renderer:</span> <span class="hljs-keyword">marked.Renderer=,
+</span><span class="hljs-label">    gfm:</span> <span class="hljs-keyword">boolean=,
+</span><span class="hljs-label">    tables:</span> <span class="hljs-keyword">boolean=,
+</span><span class="hljs-label">    breaks:</span> <span class="hljs-keyword">boolean=,
+</span><span class="hljs-label">    pedantic:</span> <span class="hljs-keyword">boolean=,
+</span><span class="hljs-label">    sanitize:</span> <span class="hljs-keyword">boolean=,
+</span><span class="hljs-label">    smartLists:</span> <span class="hljs-keyword">boolean=
+</span>}<span class="hljs-comment">;</span>
+<span class="hljs-keyword">marked(markdownString: </span><span class="hljs-keyword">string, </span>options: OptionsType=, callback: <span class="hljs-preprocessor">Function</span>=): <span class="hljs-keyword">string;</span>
+</code></pre><p>其中，marked 可以通过 renderer 配置提供了自定义解析途径。</p>
+<p>renderer 配置对应的是一个 marked.Renderer 类，此类主要包含了如下的钩子方法：</p>
+<ul>
+<li>code(string code, string language)</li>
+<li>blockquote(string quote)</li>
+<li>html(string html)</li>
+<li>heading(string text, number level)</li>
+<li>hr()</li>
+<li>list(string body, boolean ordered)</li>
+<li>listitem(string text)</li>
+<li>paragraph(string text)</li>
+<li>table(string header, string body)</li>
+<li>tablerow(string content)</li>
+<li>tablecell(string content, object flags)</li>
+<li>strong(string text)</li>
+<li>em(string text)</li>
+<li>codespan(string code)</li>
+<li>br()</li>
+<li>del(string text)</li>
+<li>link(string href, string title, string text)</li>
+<li>image(string href, string title, string text)</li>
+</ul>
+<p>所有的这些方法，都可以在 renderer 实例上面覆盖掉。marked 在解析到 markdown 标记的时候，都会去调用相应的钩子方法，而钩子方法的返回结果，就会是该标记最终的解析结果。这样一来，就生成了自定义的解析结果。</p>
+<p>marked 还有一个重要的配置：highlight，可以对代码块进行解析，配合相应的 css ，达到语法高亮效果。</p>
+<p>以上就是 marked 最基本最核心的用法了。</p>
+<p>其实本文的重点是记录在使用过程中遇到的一些坑，下面进入重点。</p>
+<h2 id="markdown-">markdown 缩进问题</h2>
+<p>在 markdown 的语法中，标题下面（换行之后）标记是不能缩进的，而列表项下面的标记是可以缩进的。</p>
+<p>现在前端开发，经常会使用一些模板引擎，比如 <a href="https://github.com/ecomfe/etpl">ETPL</a> ，这些模板，一般都会提供过滤器的功能。以 ETPL 为例，可以在 js 代码中这样添加一个过滤器：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> etpl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'etpl'</span>);
+<span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>);
+etpl.addFilter(<span class="hljs-string">'markdown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">source, useExtra</span>) </span>{
+    <span class="hljs-keyword">return</span> marked(source);
+});
+</code></pre>
+<p>此时在对应的模板中，就可以使用该过滤器了：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- filter: markdown() --&gt;</span>
+    ### 标题
+
+    内容
+    <span class="hljs-comment">&lt;!-- /filter --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p>此时，解析出来的样子会让人瞠目结舌：过滤器里面的 markdown 标记根本不会被解析掉，整个 markdown 标记块会被当成代码块。</p>
+<p>为什么会这样呢？</p>
+<p>如果打印一下 markdown 过滤器处理函数中的 source 参数：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> etpl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'etpl'</span>);
+<span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>);
+etpl.addFilter(<span class="hljs-string">'markdown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">source, useExtra</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(source);
+    <span class="hljs-keyword">return</span> marked(source);
+});
+</code></pre>
+<p>可以发现，打印出来的内容会是这个样子：</p>
+<pre><code><span class="hljs-string">"</span>
+    <span class="hljs-preprocessor">### 标题</span>
+
+    内容
+    <span class="hljs-string">"</span>
+</code></pre><p>第一行没啥内容，第二行并没有顶行，而是有缩进的，然后最后一行没实际内容，只有一个缩进。</p>
+<p>这明显跟 markdown 语法有冲突，必须要进行如下处理：</p>
+<ul>
+<li>1、第一行和最后一行没啥实际内容，可以去掉；</li>
+<li>2、检测第一行前面的缩进空格数（这里假定缩进用的是空格），记录下来，假设为 <code>n</code> ；</li>
+<li>3、将每一行前面的 <code>n</code> 个空格去掉。</li>
+</ul>
+<p>具体的代码实现如下：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> etpl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'etpl'</span>);
+<span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>);
+etpl.addFilter(<span class="hljs-string">'markdown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">source, useExtra</span>) </span>{
+    source = source.replace(<span class="hljs-regexp">/(^\n+|\n+$)/g</span>, <span class="hljs-string">''</span>);
+    <span class="hljs-keyword">var</span> uselessSpaceCount = source.match(<span class="hljs-regexp">/^\s*/</span>)[<span class="hljs-number">0</span>].length;
+    source = source.replace(<span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">'^ {'</span> + uselessSpaceCount + <span class="hljs-string">'}'</span>, <span class="hljs-string">'gm'</span>), <span class="hljs-string">''</span>);
+    <span class="hljs-keyword">return</span> marked(source);
+});
+</code></pre>
+<h2 id="html-">HTML 标签</h2>
+<p>有的时候，可能想给 markdown 标记的某一块加上背景色，比如：</p>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- filter: markdown() --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"background-red"</span>&gt;</span>
+### 标题
+
+内容
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- /filter --&gt;</span>
+</code></pre>
+<p>这样写又会崩溃了， div 内部的 markdown 标记并不会被解析！</p>
+<p>解决方法就是把 div 放过滤器外边吧：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"background-red"</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- filter: markdown() --&gt;</span>
+### 标题
+
+内容
+<span class="hljs-comment">&lt;!-- /filter --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+
+                    </div>
+                </div>
+            </div>
+
+            
+                <div class="card">
+                    <div class="card-block">
+                        <div class="ds-thread"
+                            data-thread-key="使用marked解析markdown"
+                            data-title="使用marked解析markdown"
+                            data-url="http://yibuyisheng.github.io/blogs/site/blogs/使用marked解析markdown.html">
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"yibuyishengblogs"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                     || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+        
+        <script type="text/javascript" src="/blogs/site/js/blog.js"></script>
+    
+    </body>
+

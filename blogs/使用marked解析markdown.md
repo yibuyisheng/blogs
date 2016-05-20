@@ -1,4 +1,4 @@
-<!-- config.time: 2016-05-20 -->
+<!-- config.time: 2016-05-20 13:49:00 -->
 <!-- config.brief: 使用marked解析markdown -->
 
 [marked](https://github.com/chjj/marked) 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。

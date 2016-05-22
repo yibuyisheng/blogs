@@ -1,4 +1,5 @@
 
+* [oracle安装](http://yibuyisheng.github.io/blogs/site/blogs/oracle安装.html)
 * [使用marked解析markdown](http://yibuyisheng.github.io/blogs/site/blogs/使用marked解析markdown.html)
 * [实现第一个 vscode 扩展](http://yibuyisheng.github.io/blogs/site/blogs/实现第一个 vscode 扩展.html)
 * [爬虫与编码](http://yibuyisheng.github.io/blogs/site/blogs/爬虫与编码.html)

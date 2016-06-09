@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,6 +139,205 @@
 <h3 id="很有有趣也有用的例子"><a href="#很有有趣也有用的例子" class="headerlink" title="很有有趣也有用的例子"></a>很有有趣也有用的例子</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for 循环延迟执行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fn1</span>(<span class="params">iterable</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">yield</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fn2</span>(<span class="params">iterable</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">        <span class="keyword">yield</span> x + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fn3</span>(<span class="params">iterable</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">        <span class="keyword">yield</span> x / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> newArr = [...fn3(fn2(fn1([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])))];</span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(newArr)); <span class="comment">// [1, 1.5, 2]</span></span><br></pre></td></tr></table></figure>
 <h3 id="generator-类图"><a href="#generator-类图" class="headerlink" title="generator 类图"></a>generator 类图</h3><p>规范里面有一张<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-generatorfunction-objects" target="_blank" rel="external">很大的图</a>，有点复杂。所以，看一张小图：</p>
 <p><img src="./imgs/9.jpg" alt=""></p>
+=======
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="uyan_auth" content="711800a0ee">
+        <link rel="stylesheet" type="text/css" href="/blogs/site/css/main.css">
+        <script src="/blogs/site/js/jquery.js"></script>
+        
+        <script type="text/javascript">
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+        <script>
+        var CONFIG = {
+            demoDir: '/blogs',
+            demoexpstr: 'Chrome'
+        };
+        </script>
+        
+        
+        <title>生成器（ generator ）</title>
+    
+    </head>
+    <body>
+        <div class="navbar navbar-dark bg-inverse">
+            <div class="container">
+                <a href="/blogs/site/index.html" class="navbar-brand">首页</a>
+            </div>
+        </div>
+        
+        <div class="blog-page container">
+            <div class="card">
+                <div class="card-block">
+                    <div class="hljs">
+                        <!-- config.time: 2015-07-13 -->
+<!-- config.brief: 可以暂停（ pause ）和唤醒（ resume ）的函数。 -->
+<h1 id="-generator-">生成器（ generator ）</h1>
+<h3 id="-generator-">什么是 generator ？</h3>
+<p>可以暂停（ pause ）和唤醒（ resume ）的函数。</p>
+<h3 id="-">实现一个迭代器</h3>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> a <span class="hljs-keyword">of</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) {
+        <span class="hljs-keyword">yield</span> a + <span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+}
+
+<span class="hljs-comment">// 下面的 for 循环输出：</span>
+<span class="hljs-comment">// 2</span>
+<span class="hljs-comment">// 3</span>
+<span class="hljs-comment">// 4</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> b <span class="hljs-keyword">of</span> gen()) {
+    print(<span class="hljs-built_in">JSON</span>.stringify(b));
+}
+
+<span class="hljs-keyword">let</span> it = gen();
+print(<span class="hljs-built_in">JSON</span>.stringify(it.next())); <span class="hljs-comment">// 输出： {value: 2, done: false}</span>
+print(<span class="hljs-built_in">JSON</span>.stringify(it.next())); <span class="hljs-comment">// 输出： {value: 3, done: false}</span>
+print(<span class="hljs-built_in">JSON</span>.stringify(it.next())); <span class="hljs-comment">// 输出： {value: 4, done: false}</span>
+print(<span class="hljs-built_in">JSON</span>.stringify(it.next())); <span class="hljs-comment">// 输出： {value: 5, done: true}</span>
+
+print(<span class="hljs-built_in">JSON</span>.stringify([...gen()])); <span class="hljs-comment">// 输出： [2, 3, 4]</span>
+</code></pre>
+<h3 id="-generator-">创建 generator 的方式</h3>
+<pre><code class="lang-js"><span class="hljs-comment">// 第一种</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">genFunc</span>(<span class="hljs-params"></span>) </span>{ ··· }
+<span class="hljs-keyword">let</span> genObj = genFunc();
+
+<span class="hljs-comment">// 第二种</span>
+<span class="hljs-keyword">const</span> genFunc = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{ ··· };
+<span class="hljs-keyword">let</span> genObj = genFunc();
+
+<span class="hljs-comment">// 第三种</span>
+<span class="hljs-keyword">let</span> obj = {
+    * generatorMethod() {
+        ···
+    }
+};
+<span class="hljs-keyword">let</span> genObj = obj.generatorMethod();
+
+<span class="hljs-comment">// 第四种</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+    * generatorMethod() {
+        ···
+    }
+}
+<span class="hljs-keyword">let</span> myInst = <span class="hljs-keyword">new</span> MyClass();
+<span class="hljs-keyword">let</span> genObj = myInst.generatorMethod();
+</code></pre>
+<h3 id="generator-yield-">generator 嵌套： yield*</h3>
+<pre><code class="lang-js">function* gen1() {
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">return</span> '<span class="hljs-literal">result</span> <span class="hljs-keyword">of</span> gen1';
+}
+function* gen2() {
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+
+    // `<span class="hljs-keyword">yield</span>* gen1()` 类似于
+    // <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> x <span class="hljs-keyword">of</span> gen1()) {
+    //      <span class="hljs-keyword">yield</span> x;
+    // }
+    print(<span class="hljs-type">JSON</span>.stringify(<span class="hljs-keyword">yield</span>* gen1()));
+
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">4</span>;
+}
+// 输出：
+// '<span class="hljs-literal">result</span> <span class="hljs-keyword">of</span> gen1'
+// [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+print(<span class="hljs-type">JSON</span>.stringify([...gen2()]));
+
+function* gen3() {
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">yield</span>* [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">4</span>;
+}
+print(<span class="hljs-type">JSON</span>.stringify([...gen3()])); // 输出： [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+</code></pre>
+<h3 id="next-">next 传值</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">function</span>* gen1() {
+    <span class="hljs-built_in">print</span>(JSON.stringify(yield));
+}
+<span class="hljs-keyword">let</span> <span class="hljs-literal">it</span> = gen1();
+<span class="hljs-pi">// 输出：
+//</span> {<span class="hljs-attribute">value</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attribute">done</span>: <span class="hljs-literal">false</span>}
+<span class="hljs-pi">// outer value
+//</span> {<span class="hljs-attribute">value</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attribute">done</span>: <span class="hljs-literal">true</span>}
+<span class="hljs-built_in">print</span>(JSON.stringify(<span class="hljs-literal">it</span>.next()));
+<span class="hljs-built_in">print</span>(JSON.stringify(<span class="hljs-literal">it</span>.next(<span class="hljs-string">'outer value'</span>)));
+</code></pre>
+<h3 id="-return-generator"><code>return()</code> 外部终止 generator</h3>
+<pre><code class="lang-js">function* gen1() {
+    print('a');
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    print('b');
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+    print('c');
+}
+// 输出：
+// a
+// {value: <span class="hljs-number">1</span>, done: <span class="hljs-literal">false</span>}
+// {value: '<span class="hljs-literal">result</span>', done: <span class="hljs-literal">true</span>}
+<span class="hljs-keyword">let</span> it = gen1();
+print(<span class="hljs-type">JSON</span>.stringify(it.next()));
+print(<span class="hljs-type">JSON</span>.stringify(it.<span class="hljs-keyword">return</span>('<span class="hljs-literal">result</span>')));
+</code></pre>
+<h3 id="-throw-"><code>throw()</code> 抛出异常</h3>
+<pre><code class="lang-js">function* gen() {
+    <span class="hljs-keyword">try</span> {
+        print('<span class="hljs-type">Started</span>');
+        <span class="hljs-keyword">yield</span>;
+    } catch (error) {
+        print('<span class="hljs-type">Caught</span>: ' + error.message);
+    }
+    <span class="hljs-keyword">return</span> '<span class="hljs-keyword">return</span> <span class="hljs-literal">result</span>';
+}
+// 输出：
+// <span class="hljs-type">Started</span>
+// {value: undefined, done: <span class="hljs-literal">false</span>}
+// <span class="hljs-type">Caught</span>: error
+// {value: '<span class="hljs-keyword">return</span> <span class="hljs-literal">result</span>', done: <span class="hljs-literal">true</span>}
+<span class="hljs-keyword">let</span> it = gen();
+print(<span class="hljs-type">JSON</span>.stringify(it.next()));
+print(<span class="hljs-type">JSON</span>.stringify(it.throw(new <span class="hljs-type">Error</span>('error'))));
+</code></pre>
+<h3 id="-">很有有趣也有用的例子</h3>
+<pre><code class="lang-js"><span class="hljs-comment">// for 循环延迟执行</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">fn1</span>(<span class="hljs-params">iterable</span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> x <span class="hljs-keyword">of</span> iterable) {
+        <span class="hljs-keyword">if</span> (x === <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">continue</span>;
+        }
+        <span class="hljs-keyword">yield</span> x;
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">fn2</span>(<span class="hljs-params">iterable</span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> x <span class="hljs-keyword">of</span> iterable) {
+        <span class="hljs-keyword">yield</span> x + <span class="hljs-number">1</span>;
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">fn3</span>(<span class="hljs-params">iterable</span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> x <span class="hljs-keyword">of</span> iterable) {
+        <span class="hljs-keyword">yield</span> x / <span class="hljs-number">2</span>;
+    }
+}
+<span class="hljs-keyword">let</span> newArr = [...fn3(fn2(fn1([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])))];
+print(<span class="hljs-built_in">JSON</span>.stringify(newArr)); <span class="hljs-comment">// [1, 1.5, 2]</span>
+</code></pre>
+<h3 id="generator-">generator 类图</h3>
+<p>规范里面有一张<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-generatorfunction-objects">很大的图</a>，有点复杂。所以，看一张小图：</p>
+<p><img src="../../imgs/9.jpg" alt=""></p>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>说明：</p>
 <ul>
 <li>空心箭头表示两个对象的继承关系。换句话说，从 x 指向 y 的箭头意味着 <code>Object.getPrototypeOf(x) === y</code> 。</li>
@@ -150,6 +350,7 @@
 </ul>
 <p>此图看完可能没有直观的感受，看两个例子先。</p>
 <p>第一个， generator 函数表现得很像一个构造函数，因为通过 <code>new</code> 调用和直接调用，两者的效果是一样的，都返回 generator 对象，如下所示：</p>
+<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; function* g() &#123;&#125;</span><br><span class="line">&gt; g.prototype.hello = function () &#123; return &apos;hi!&apos;&#125;;</span><br><span class="line">&gt; let obj = g();</span><br><span class="line">&gt; obj instanceof g</span><br><span class="line">true</span><br><span class="line">&gt; obj.hello()</span><br><span class="line">&apos;hi!&apos;</span><br></pre></td></tr></table></figure>
 <p>第二个，如果想给所有的 generator 对象添加一个方法，就可以放在 <code>(Generator).prototype</code> 上面，如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; let Generator_prototype = Object.getPrototypeOf(function* () &#123;&#125;).prototype;</span><br><span class="line">&gt; Generator_prototype.hello = function () &#123; return &apos;hi!&apos;&#125;;</span><br><span class="line">&gt; let generatorObject = (function* () &#123;&#125;)();</span><br><span class="line">&gt; generatorObject.hello()</span><br><span class="line">&apos;hi!&apos;</span><br></pre></td></tr></table></figure>
@@ -218,3 +419,111 @@
 
 </body>
 </html>
+=======
+<pre><code>&gt; <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">g</span>(<span class="hljs-params"></span>) </span>{}
+&gt; g.prototype.hello = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">'hi!'</span>};
+&gt; <span class="hljs-keyword">let</span> obj = g();
+&gt; obj <span class="hljs-keyword">instanceof</span> g
+<span class="hljs-literal">true</span>
+&gt; obj.hello()
+<span class="hljs-string">'hi!'</span>
+</code></pre><p>第二个，如果想给所有的 generator 对象添加一个方法，就可以放在 <code>(Generator).prototype</code> 上面，如下所示：</p>
+<pre><code>&gt; <span class="hljs-keyword">let</span> Generator_prototype = <span class="hljs-built_in">Object</span>.getPrototypeOf(<span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{}).prototype;
+&gt; Generator_prototype.hello = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">'hi!'</span>};
+&gt; <span class="hljs-keyword">let</span> generatorObject = (<span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{})();
+&gt; generatorObject.hello()
+<span class="hljs-string">'hi!'</span>
+</code></pre><p>generator 内部的 <code>this</code> 是有一些猫腻的：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen1</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-pi">    'use strict'</span>; <span class="hljs-comment">// just in case</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">this</span>;
+}
+
+<span class="hljs-comment">// Retrieve the yielded value via destructuring</span>
+<span class="hljs-keyword">let</span> [functionThis] = gen1();
+<span class="hljs-built_in">console</span>.log(functionThis); <span class="hljs-comment">// undefined</span>
+
+<span class="hljs-keyword">let</span> obj = { method: gen1 };
+<span class="hljs-keyword">let</span> [methodThis] = obj.method();
+<span class="hljs-built_in">console</span>.log(methodThis === obj); <span class="hljs-comment">// true</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen2</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>); <span class="hljs-comment">// ReferenceError</span>
+}
+<span class="hljs-keyword">new</span> gen2();
+</code></pre>
+<h3 id="-tj-co-">一个简单的类似于 tj co 库的东西</h3>
+<pre><code class="lang-js">// 此段代码使用 node --harmony 执行
+executeGeneratorFn(function* () {
+    <span class="hljs-keyword">var</span> <span class="hljs-literal">result</span> = <span class="hljs-keyword">yield</span> request.<span class="hljs-keyword">bind</span>(null, 'http://www.baidu.com', {userId: <span class="hljs-number">1</span>});
+    console.log(<span class="hljs-literal">result</span>);
+});
+
+executeGeneratorFn(function* () {
+    <span class="hljs-keyword">var</span> userList = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> param <span class="hljs-keyword">of</span> [{userId: <span class="hljs-number">1</span>}, {userId: <span class="hljs-number">2</span>}]) {
+        userList.push(<span class="hljs-keyword">yield</span> request.<span class="hljs-keyword">bind</span>(null, 'http://www.baidu.com', param));
+    }
+    console.log(userList);
+});
+
+function request(url, params, callback) {
+    setTimeout(() =&gt; callback('request <span class="hljs-literal">result</span>: ' + <span class="hljs-type">Math</span>.random()), <span class="hljs-number">3000</span>);
+}
+
+function executeGeneratorFn(genFn, callback) {
+    <span class="hljs-keyword">var</span> <span class="hljs-keyword">iterator</span> = genFn();
+    next();
+
+    function next() {
+        <span class="hljs-keyword">try</span> {
+            execute(<span class="hljs-keyword">iterator</span>.next(arguments));
+        } catch (e) {
+            callback instanceof <span class="hljs-type">Function</span> &amp;&amp; callback(e);
+        }
+    }
+
+    function execute(nextValue) {
+        <span class="hljs-keyword">if</span> (!nextValue.done) {
+            nextValue.value(next);
+        } <span class="hljs-keyword">else</span> {
+            callback instanceof <span class="hljs-type">Function</span> &amp;&amp; callback(null, nextValue.value);
+        }
+    }
+}
+</code></pre>
+
+                    </div>
+                </div>
+            </div>
+
+            
+                <div class="card">
+                    <div class="card-block">
+                        <div class="ds-thread"
+                            data-thread-key="生成器（ generator ）"
+                            data-title="生成器（ generator ）"
+                            data-url="http://yibuyisheng.github.io/blogs/site/blogs/生成器（ generator ）.html">
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"yibuyishengblogs"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                     || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+        
+        <script type="text/javascript" src="/blogs/site/js/blog.js"></script>
+    
+    </body>
+
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd

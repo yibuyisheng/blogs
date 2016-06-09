@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,10 +145,61 @@
 
             <div class="post-content" id="post-content" itemprop="postContent">
               <h3 id="一、-setTimeout"><a href="#一、-setTimeout" class="headerlink" title="一、 setTimeout"></a>一、 setTimeout</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setTimtout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   alert(<span class="number">2</span>);                           <span class="comment">// 后弹出</span></span><br><span class="line">&#125;,<span class="number">0</span>);</span><br><span class="line">alert(<span class="number">1</span>);                              <span class="comment">// 先弹出</span></span><br></pre></td></tr></table></figure>
+=======
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="uyan_auth" content="711800a0ee">
+        <link rel="stylesheet" type="text/css" href="/blogs/site/css/main.css">
+        <script src="/blogs/site/js/jquery.js"></script>
+        
+        <script type="text/javascript">
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+        <script>
+        var CONFIG = {
+            demoDir: '/blogs',
+            demoexpstr: 'Chrome'
+        };
+        </script>
+        
+        
+        <title>一些 core javascript 的基础知识</title>
+    
+    </head>
+    <body>
+        <div class="navbar navbar-dark bg-inverse">
+            <div class="container">
+                <a href="/blogs/site/index.html" class="navbar-brand">首页</a>
+            </div>
+        </div>
+        
+        <div class="blog-page container">
+            <div class="card">
+                <div class="card-block">
+                    <div class="hljs">
+                        <!-- config.time: 2014-10-22 22:13 -->
+<!-- config.brief: 对于如上代码，包含原理如下：1、首先 jsvm 只会执行一个线程；2、当这个线程遇到 `setTimout()` 的时候，就会将这个 function 放到某个队列里面；3、当前这个线程空闲的时候，就会执行任务队列轮询的代码，将满足条件的函数拿出来执行。 -->
+<h1 id="-core-javascript-">一些 core javascript 的基础知识</h1>
+<h3 id="-settimeout">一、 setTimeout</h3>
+<pre><code class="lang-js"><span class="hljs-function">setTimtout</span>(<span class="hljs-function">function</span>(){
+   <span class="hljs-function">alert</span>(2);                           <span class="hljs-comment">// 后弹出</span>
+},0);
+<span class="hljs-function">alert</span>(1);                              <span class="hljs-comment">// 先弹出</span>
+</code></pre>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>对于如上代码，包含原理如下：</p>
 <ul>
 <li>1、首先 jsvm 只会执行一个线程；</li>
 <li>2、当这个线程遇到 <code>setTimout()</code> 的时候，就会将这个 function 放到某个队列里面；</li>
+<<<<<<< HEAD
 <li>3、当前这个线程空闲的时候，就会执行任务队列轮询的代码，将满足条件的函数拿出来执行。<a id="more"></a>
 </li>
 </ul>
@@ -161,6 +213,69 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">a();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span><br><span class="line">a();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">a();</span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+=======
+<li>3、当前这个线程空闲的时候，就会执行任务队列轮询的代码，将满足条件的函数拿出来执行。</li>
+</ul>
+<p>比较简单典型的一个应用场景就是：</p>
+<pre><code class="lang-js">$(elem).html(xxxxxx);
+
+setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// 内部DOM操作很复杂，此处setTimeout用于保证在内部DOM操作结束并且相关内存被释放掉后执行后续代码</span>
+}, <span class="hljs-number">0</span>);
+</code></pre>
+<h3 id="-eval">二、 eval</h3>
+<p>js 中除了全局作用域和函数作用域之外，还存在一个 eval 作用域。</p>
+<p>eval 函数执行的时候，会根据当前执行上下文创建一个作用域。</p>
+<p>此处有如下代码：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> SomeThing();
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">eval</span>(<span class="hljs-string">''</span>);
+  };
+}
+</code></pre>
+<h3 id="-">三、预编译</h3>
+<p>先分别上如下几个片段的代码：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
+a();
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
+  alert(<span class="hljs-number">1</span>);
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="undefined">
+a();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
+  alert(<span class="hljs-number">1</span>);
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
+a();
+<span class="hljs-keyword">var</span> b = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
+  alert(<span class="hljs-number">1</span>);
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>执行结果分别是：</p>
 <ul>
 <li>第一段代码：弹出1；</li>
@@ -174,6 +289,7 @@
 <li>第三段代码中，a函数的定义由于放在了一个表达式当中，因此jsvm不会预编译。</li>
 </ul>
 <p>但是，此处还可以继续深入，第三段代码改成如下所示：</p>
+<<<<<<< HEAD
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这段代码也同样会报错， a 不存在。为什么呢？原因就是 a 函数放在了表达式当中， jsvm 会把 a 函数看作一个匿名函数，因此在当前语句执行完， a 就被释放掉了。</p>
 <p>但是，请注意，上面讨论的都是根据 w3c 标准得出的结果，在第三段和第四段代码中，IE 6、7、8还是会预编译的，并且不会释放掉a，因此不会报错。</p>
@@ -187,10 +303,65 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">a, b, c</span>)</span>&#123;</span><br><span class="line">   a = <span class="number">1.2</span>;</span><br><span class="line">   b = <span class="number">2.2</span>;</span><br><span class="line">   c.c = <span class="number">3.2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> c = &#123;c:<span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line">fn1(a,b,c);</span><br><span class="line"></span><br><span class="line">alert(a);</span><br><span class="line">alert(b);</span><br><span class="line">alert(c.c);</span><br></pre></td></tr></table></figure>
 <p>原理不难理解，注意值类型和引用类型的区别。</p>
 <h3 id="七、作用域链"><a href="#七、作用域链" class="headerlink" title="七、作用域链"></a>七、作用域链</h3><p>有如下几点：</p>
+=======
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
+<span class="hljs-keyword">var</span> b = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>{
+  alert(<span class="hljs-number">1</span>);
+}
+a();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>这段代码也同样会报错， a 不存在。为什么呢？原因就是 a 函数放在了表达式当中， jsvm 会把 a 函数看作一个匿名函数，因此在当前语句执行完， a 就被释放掉了。</p>
+<p>但是，请注意，上面讨论的都是根据 w3c 标准得出的结果，在第三段和第四段代码中，IE 6、7、8还是会预编译的，并且不会释放掉a，因此不会报错。</p>
+<h3 id="-">四、自执行函数</h3>
+<p>自执行函数的几种形式：</p>
+<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> <span class="hljs-comment">{}</span>)<span class="hljs-params">()</span>;</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> <span class="hljs-comment">{}</span><span class="hljs-params">()</span>);</span>
+!<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span><span class="hljs-comment">{}</span><span class="hljs-params">()</span>;</span>
+void <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span><span class="hljs-comment">{}</span><span class="hljs-params">()</span>;</span>
+</code></pre>
+<p>其中第三种写法会造成额外的运算，因为要对返回的内容做“非”操作。</p>
+<h3 id="-">五、预编译中的变量声明</h3>
+<p>如下代码：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span><span class="hljs-params">(x)</span></span>{
+  <span class="hljs-keyword">return</span> x*<span class="hljs-number">2</span>;
+}
+<span class="hljs-keyword">var</span> a;
+alert(a);
+</code></pre>
+<p><code>var a</code> 只是声明，并不会干啥， <code>var a</code> 只会让当前作用域的 <code>alert(a)</code> 不会报 a 不存在的错误， a 实际上是什么，需要显示赋值；如果 <code>var a</code> 之前已经存在 a 了，则啥也不干。</p>
+<h3 id="-function-">六、 function 传参</h3>
+<p>如下代码：</p>
+<pre><code class="lang-js">function fn1(a, b, <span class="hljs-built_in">c</span>){
+   a = <span class="hljs-number">1.2</span>;
+   b = <span class="hljs-number">2.2</span>;
+   <span class="hljs-built_in">c</span>.<span class="hljs-built_in">c</span> = <span class="hljs-number">3.2</span>;
+}
+
+<span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">var</span> b = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">c</span> = {<span class="hljs-built_in">c</span>:<span class="hljs-number">3</span>};
+
+fn1(a,b,<span class="hljs-built_in">c</span>);
+
+alert(a);
+alert(b);
+alert(<span class="hljs-built_in">c</span>.<span class="hljs-built_in">c</span>);
+</code></pre>
+<p>原理不难理解，注意值类型和引用类型的区别。</p>
+<h3 id="-">七、作用域链</h3>
+<p>有如下几点：</p>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <ul>
 <li>1、作用域链是在定义的时候就确定下来了的；</li>
 <li>2、隐式对象模型：对于一个作用域， jsvm 会创建一个隐式对象，然后在这个对象上面绑定当前作用域的各种变量。多个函数的嵌套定义也就会形成一条作用域链了。如果在某个作用域中要访问一个 a 变量，则会首先在当前作用域中查找是否存在 a 变量，如果不存在，则向上找父作用域隐式对象中是否存在 a 变量，依次类推，如果到了根作用域还找不到 a 变量的话，就会报错了。</li>
 </ul>
+<<<<<<< HEAD
 <h3 id="八、类数组结构"><a href="#八、类数组结构" class="headerlink" title="八、类数组结构"></a>八、类数组结构</h3><p>第一个问题，如何构造类数组结构？思路简单，不赘述。</p>
 <p>jquery 选择器构造出来的就是一个类数组结构。</p>
 <h3 id="九、工厂模式"><a href="#九、工厂模式" class="headerlink" title="九、工厂模式"></a>九、工厂模式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factory</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> ThisIsAClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -256,3 +427,47 @@
 
 </body>
 </html>
+=======
+<h3 id="-">八、类数组结构</h3>
+<p>第一个问题，如何构造类数组结构？思路简单，不赘述。</p>
+<p>jquery 选择器构造出来的就是一个类数组结构。</p>
+<h3 id="-">九、工厂模式</h3>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factory</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ThisIsAClass();
+}
+</code></pre>
+
+                    </div>
+                </div>
+            </div>
+
+            
+                <div class="card">
+                    <div class="card-block">
+                        <div class="ds-thread"
+                            data-thread-key="一些 core javascript 的基础知识"
+                            data-title="一些 core javascript 的基础知识"
+                            data-url="http://yibuyisheng.github.io/blogs/site/blogs/一些 core javascript 的基础知识.html">
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"yibuyishengblogs"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                     || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+        
+        <script type="text/javascript" src="/blogs/site/js/blog.js"></script>
+    
+    </body>
+
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,6 +142,66 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/ecmascript;version=6"</span>&gt;</span><span class="undefined"></span><br><span class="line">    ···</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>也可以在代码内部标记版本（类似于 <code>&#39;use strict&#39;</code> ，放在 JavaScript 文件第一行）：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use version <span class="number">6</span>;</span><br></pre></td></tr></table></figure>
+=======
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="uyan_auth" content="711800a0ee">
+        <link rel="stylesheet" type="text/css" href="/blogs/site/css/main.css">
+        <script src="/blogs/site/js/jquery.js"></script>
+        
+        <script type="text/javascript">
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+        <script>
+        var CONFIG = {
+            demoDir: '/blogs',
+            demoexpstr: 'Chrome'
+        };
+        </script>
+        
+        
+        <title>一个 JavaScript</title>
+    
+    </head>
+    <body>
+        <div class="navbar navbar-dark bg-inverse">
+            <div class="container">
+                <a href="/blogs/site/index.html" class="navbar-brand">首页</a>
+            </div>
+        </div>
+        
+        <div class="blog-page container">
+            <div class="card">
+                <div class="card-block">
+                    <div class="hljs">
+                        <!-- config.time: 2015-10-05 17:04 -->
+<!-- config.brief: ES6 使用了“一个 JavaScript ”的方式来避免版本化的问题。那么，什么是“版本化”？什么又是“一个 JavaScript”呢？ -->
+<h1 id="-javascript">一个 JavaScript</h1>
+<p>ES6 使用了“一个 JavaScript ”的方式来避免版本化的问题。</p>
+<p>那么，什么是“版本化”？什么又是“一个 JavaScript”呢？</p>
+<h2 id="-">版本化</h2>
+<p>一般地，版本化就是说一门语言分成了不同的版本，新版本可以清理老版本中不好的特性，或者改变某些特性的运作方式。这就会导致新的代码无法在老引擎中运行，老的代码也不能在新引擎中运行。很可能某些代码就只能在特定版本的引擎中正常运行，然后针对不同版本的引擎，就要写不同的代码。</p>
+<p>如果代码库升级到新的语言版本，就有两种处理方式。</p>
+<p>第一种，彻底升级代码库中所有的代码。但是如果代码库的代码量很大的话，就很坑爹了。</p>
+<p>第二种，让代码库包含多个语言版本的代码，根据指定的语言版本使用不同的执行引擎。对于 ES6 ，就可以使用媒体类型来标记 ES6 代码，比如在 HTTP 响应头中设置：</p>
+<pre><code>Content-Type: <span class="hljs-type">application</span>/ecmascript;<span class="hljs-property">version</span>=<span class="hljs-number">6</span>
+</code></pre><p>也可以利用 <code>&lt;script&gt;</code> 标签的 <code>type</code> 属性来标记：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"application/ecmascript;version=6"</span>&gt;</span><span class="undefined">
+    ···
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p>也可以在代码内部标记版本（类似于 <code>&#39;use strict&#39;</code> ，放在 JavaScript 文件第一行）：</p>
+<pre><code class="lang-js"><span class="hljs-operator"><span class="hljs-keyword">use</span> <span class="hljs-keyword">version</span> <span class="hljs-number">6</span>;</span>
+</code></pre>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>这两种类型的标记方式都有问题：外部版本标记法很脆弱，容易丢失；内部版本标记法又会使代码显得杂乱。</p>
 <p>一个更根本的问题是，针对不同的语言版本，要维护不同的执行引擎。这就产生了几个问题：</p>
 <ul>
@@ -149,19 +210,37 @@
 <li>代码变得更加难以重构，因为在移动代码的时候需要考虑语言版本的问题。</li>
 </ul>
 <p>因此，应该避免版本化，尤其是 JavaScript 和 web 。</p>
+<<<<<<< HEAD
 <h2 id="一个-JavaScript"><a href="#一个-JavaScript" class="headerlink" title="一个 JavaScript"></a>一个 JavaScript</h2><p>既然版本化有这么多弊端，对于 JavaScript 和 web 来说都不适用，那么如何避免版本化呢？</p>
 <p>采用向后兼容的方式。这就是说我们必须放弃一些关于清理 JavaScript 语言的野心：不能引入破坏性的改变。向后兼容就是不移除已有特性，也不改变已有特性。该规则的口号就是：“不要破坏 web 代码”。</p>
 <p>我们可以增加新的特性，使已有的特性更加强大。</p>
 <p>这样一来，新的语言和引擎就不需要版本号了，因为仍然需要能够运行老的代码。 David Herman 称这种避免版本化的方式为“<a href="http://exploringjs.com/es6/ch_one-javascript.html#one-js_1" target="_blank" rel="external">一个 JavaScript </a>”，它避免了 JavaScript 被拆分成不同的版本或者模式。甚至，“一个 JavaScript ”纠正了之前由于严格模式引入的 JavaScript 分支。</p>
+=======
+<h2 id="-javascript">一个 JavaScript</h2>
+<p>既然版本化有这么多弊端，对于 JavaScript 和 web 来说都不适用，那么如何避免版本化呢？</p>
+<p>采用向后兼容的方式。这就是说我们必须放弃一些关于清理 JavaScript 语言的野心：不能引入破坏性的改变。向后兼容就是不移除已有特性，也不改变已有特性。该规则的口号就是：“不要破坏 web 代码”。</p>
+<p>我们可以增加新的特性，使已有的特性更加强大。</p>
+<p>这样一来，新的语言和引擎就不需要版本号了，因为仍然需要能够运行老的代码。 David Herman 称这种避免版本化的方式为“<a href="http://exploringjs.com/es6/ch_one-javascript.html#one-js_1">一个 JavaScript </a>”，它避免了 JavaScript 被拆分成不同的版本或者模式。甚至，“一个 JavaScript ”纠正了之前由于严格模式引入的 JavaScript 分支。</p>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>“一个 Javascript ”并不是说就要完全放弃对语言的清理。相对于去掉已有的特性，可以引入新的干净的特性。 <code>let</code> 就是这样干的，它用于声明块级变量，是 <code>var</code> 的改进版。但是它并没有替换掉 <code>var</code> ，只是作为更好的方案与 <code>var</code> 并存。</p>
 <p>将来某个时候，可能会清除掉不再有人使用的特性。实际上，一些 ES6 特性是通过调查 web 上的代码来设计的，比如下面两个：</p>
 <ul>
 <li><code>let</code> 声明很难引入到非严格模式中，因为在非严格模式下 let 并不是保留字。在 ES5 中，有且仅有一种形式的 let 变量是合法的：</li>
 </ul>
+<<<<<<< HEAD
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span>[x] = arr;</span><br></pre></td></tr></table></figure>
 <p>调查发现， web 上没人会在非严格模式下这样使用 <code>let</code> 变量，这就使得 TC39 能够将 <code>let</code> 引入非严格模式中。</p>
 <h2 id="严格模式和-ES6"><a href="#严格模式和-ES6" class="headerlink" title="严格模式和 ES6"></a>严格模式和 ES6</h2><p>ECMAScript 5 引入严格模式来对语言进行清理。在文件或者函数的第一行放入下面的内容就可以打开严格模式：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br></pre></td></tr></table></figure>
+=======
+<pre><code class="lang-js">let<span class="hljs-string">[x]</span> = arr;
+</code></pre>
+<p>调查发现， web 上没人会在非严格模式下这样使用 <code>let</code> 变量，这就使得 TC39 能够将 <code>let</code> 引入非严格模式中。</p>
+<h2 id="-es6">严格模式和 ES6</h2>
+<p>ECMAScript 5 引入严格模式来对语言进行清理。在文件或者函数的第一行放入下面的内容就可以打开严格模式：</p>
+<pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
+</code></pre>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>严格模式带来了三种具有破坏性的改变：</p>
 <ul>
 <li>语法改变：一些之前合法的语法在严格模式下面是不允许的。例如：<ul>
@@ -183,6 +262,7 @@
 </li>
 </ul>
 <p>从严格模式的这些破坏性改变中可以看出，版本化是很棘手的：即便能够制定出一个干净版本的 JavaScript ，也很难被大家接受。主要原因在于会破坏很多现有的代码，会减缓执行速度，并且引入到文件很繁琐（更不用说交互式的命令行）。</p>
+<<<<<<< HEAD
 <h2 id="支持松散（非严格）模式"><a href="#支持松散（非严格）模式" class="headerlink" title="支持松散（非严格）模式"></a>支持松散（非严格）模式</h2><p><code>一个 JavaScript</code> 意味着我们不能放弃松散模式：此模式将会继续存在（例如在 HTML 属性中）。因此，我们不能基于严格模式来构建 ECMAScript 6 ，必须同时在严格模式和非严格模式（又称为松散模式）中都增加相同的特性。否则，严格模式就会成为语言的一个不同版本，回到了版本化的方式。</p>
 <p>但是很不幸，有两个特性很难引入松散模式： <code>let</code> 声明和块级函数声明。让我们看看为什么很难引入和如何引入。</p>
 <h2 id="松散模式中的-let-声明"><a href="#松散模式中的-let-声明" class="headerlink" title="松散模式中的 let 声明"></a>松散模式中的 <code>let</code> 声明</h2><p><code>let</code> 使你能够声明块级变量。这很难被引入到松散模式，因为 <code>let</code> 仅在严格模式下是保留字。也就是说，下面两条语句在 ES5 的松散模式下是合法的：</p>
@@ -193,10 +273,31 @@
 <h2 id="松散模式下的块级函数声明"><a href="#松散模式下的块级函数声明" class="headerlink" title="松散模式下的块级函数声明"></a>松散模式下的块级函数声明</h2><p>ECMAScript 5 严格模式中，是禁止在块中声明函数的；在松散模式下，却可以这么做，但是没说这样做会发生什么。因此，很多 JavaScript 实现都支持块级函数声明，但是处理方式是不一样的。</p>
 <p>ECMAScript 6 想要块中的函数声明本地化（即该函数的作用域就在该块中）。作为 ES5 严格模式的升级，这是没问题的，但是会破坏一些松散模式的代码。因此， ES6 为浏览器提供了“<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-block-level-function-declarations-web-legacy-compatibility-semantics" target="_blank" rel="external"> web 遗留的兼容语义</a>”，允许块中的函数声明在函数作用域范围内存在。</p>
 <h2 id="其它关键字"><a href="#其它关键字" class="headerlink" title="其它关键字"></a>其它关键字</h2><p>标识符 <code>yield</code> 和 <code>static</code> 仅在 ES5 的严格模式下是保留字。 ECMAScript 6 使用上下文相关的语法规则来使它们在松散模式下起作用：</p>
+=======
+<h2 id="-">支持松散（非严格）模式</h2>
+<p><code>一个 JavaScript</code> 意味着我们不能放弃松散模式：此模式将会继续存在（例如在 HTML 属性中）。因此，我们不能基于严格模式来构建 ECMAScript 6 ，必须同时在严格模式和非严格模式（又称为松散模式）中都增加相同的特性。否则，严格模式就会成为语言的一个不同版本，回到了版本化的方式。</p>
+<p>但是很不幸，有两个特性很难引入松散模式： <code>let</code> 声明和块级函数声明。让我们看看为什么很难引入和如何引入。</p>
+<h2 id="-let-">松散模式中的 <code>let</code> 声明</h2>
+<p><code>let</code> 使你能够声明块级变量。这很难被引入到松散模式，因为 <code>let</code> 仅在严格模式下是保留字。也就是说，下面两条语句在 ES5 的松散模式下是合法的：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> <span class="hljs-keyword">let</span> = [];
+<span class="hljs-keyword">let</span>[x] = <span class="hljs-string">'abc'</span>;
+</code></pre>
+<p>在 ECMASCript 6 的严格模式下，第一行就会抛出异常。因为使用了 <code>let</code> 作为变量名。然后第二行会被解析为一个 <code>let</code> 变量声明（使用解构）。</p>
+<p>在 ECMAScript 6 的松散模式下，第一行不会抛出异常，但是第二行依然被解析为一个 <code>let</code> 声明。这种使用 <code>let</code> 的方式在 web 上是极少见的，因此 ES6 可以直接这样来解析。 ES5 松散模式下的其他 <code>let</code> 声明的书写方式不会被误解：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> foo = <span class="hljs-number">123</span>;
+<span class="hljs-keyword">let</span> {x,y} = computeCoordinates<span class="hljs-literal">()</span>;
+</code></pre>
+<h2 id="-">松散模式下的块级函数声明</h2>
+<p>ECMAScript 5 严格模式中，是禁止在块中声明函数的；在松散模式下，却可以这么做，但是没说这样做会发生什么。因此，很多 JavaScript 实现都支持块级函数声明，但是处理方式是不一样的。</p>
+<p>ECMAScript 6 想要块中的函数声明本地化（即该函数的作用域就在该块中）。作为 ES5 严格模式的升级，这是没问题的，但是会破坏一些松散模式的代码。因此， ES6 为浏览器提供了“<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-block-level-function-declarations-web-legacy-compatibility-semantics"> web 遗留的兼容语义</a>”，允许块中的函数声明在函数作用域范围内存在。</p>
+<h2 id="-">其它关键字</h2>
+<p>标识符 <code>yield</code> 和 <code>static</code> 仅在 ES5 的严格模式下是保留字。 ECMAScript 6 使用上下文相关的语法规则来使它们在松散模式下起作用：</p>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <ul>
 <li>在松散模式下， <code>yield</code> 仅在生成器函数中是保留字。</li>
 <li><code>static</code> 现在仅用于类字面量中，类字面中默认就是严格模式的（见下文）。</li>
 </ul>
+<<<<<<< HEAD
 <h2 id="隐式的严格模式"><a href="#隐式的严格模式" class="headerlink" title="隐式的严格模式"></a>隐式的严格模式</h2><p>在 ECMAScript 6 中，模块体和类体默认就是严格模式的–没必要使用 <code>use strict</code> 标记。考虑到将来所有的代码都会位于模块中， ECMAScript 6 有效地将整个语言升级到了严格模式。</p>
 <p>其它语法结构（比如箭头函数和生成器函数）本来也应该隐式地为严格模式，但是考虑到通常情况下这些结构都很小，在非严格模式下使用它们就会造成代码中两种模式的碎片化切换。类，尤其是模块一般是足够大的，这样一来就可以忽略两种模式的碎片化切换问题了。</p>
 <h2 id="无法修复的东西"><a href="#无法修复的东西" class="headerlink" title="无法修复的东西"></a>无法修复的东西</h2><p><code>一个 JavaScript</code>的缺陷就是无法修复已有的怪异行为，尤其是下面这两个。</p>
@@ -267,3 +368,51 @@
 
 </body>
 </html>
+=======
+<h2 id="-">隐式的严格模式</h2>
+<p>在 ECMAScript 6 中，模块体和类体默认就是严格模式的–没必要使用 <code>use strict</code> 标记。考虑到将来所有的代码都会位于模块中， ECMAScript 6 有效地将整个语言升级到了严格模式。</p>
+<p>其它语法结构（比如箭头函数和生成器函数）本来也应该隐式地为严格模式，但是考虑到通常情况下这些结构都很小，在非严格模式下使用它们就会造成代码中两种模式的碎片化切换。类，尤其是模块一般是足够大的，这样一来就可以忽略两种模式的碎片化切换问题了。</p>
+<h2 id="-">无法修复的东西</h2>
+<p><code>一个 JavaScript</code>的缺陷就是无法修复已有的怪异行为，尤其是下面这两个。</p>
+<p>第一个， <code>typeof null</code> 应该返回字符串 <code>null</code> 而不是 <code>object</code> ，修正这个就会破坏已有的代码。而另一方面，给新类型的操作数定义新的操作结果是没问题的， ECMAScript 6 的 Symbol 就是一个例子：</p>
+<pre><code>&gt; typeof <span class="hljs-type">Symbol</span>.<span class="hljs-keyword">iterator</span>
+'symbol'
+</code></pre><p>第二个，全局对象（浏览器中的 <code>window</code> 对象）不应该在变量作用域链，现在修正这个也太晚了。但是至少，在模块中不会直接处于全局作用域下，并且 <code>let</code> 永远不会创建全局对象属性，甚至在全局作用域下使用也不会。</p>
+<h2 id="-">总结</h2>
+<p><code>一个 JavaScript</code>意思就是使 ECMAScript 6 完全地向后兼容，很高兴这获得了成功。尤其是模块隐式就是严格模式的（这样一来我们大部分的代码都会处于严格模式下）。</p>
+<p>在短期内，对于制定 ES6 规范和引擎实现来说，给严格模式和松散模式添加 ES6 的语法结构会耗费更多的精力。从长远来看，规范和引擎将会受益于语言不分叉（更少的膨胀等等）。开发人员会立即从一个 JavaScript 中获得好处，因为开始使用 ECMAScript 6 变得更加容易。</p>
+
+                    </div>
+                </div>
+            </div>
+
+            
+                <div class="card">
+                    <div class="card-block">
+                        <div class="ds-thread"
+                            data-thread-key="一个 JavaScript"
+                            data-title="一个 JavaScript"
+                            data-url="http://yibuyisheng.github.io/blogs/site/blogs/一个 JavaScript.html">
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"yibuyishengblogs"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                     || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+        
+        <script type="text/javascript" src="/blogs/site/js/blog.js"></script>
+    
+    </body>
+
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd

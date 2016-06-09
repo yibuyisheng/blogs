@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,10 +143,55 @@
 
             <div class="post-content" id="post-content" itemprop="postContent">
               <p>本文内容：</p>
+=======
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="uyan_auth" content="711800a0ee">
+        <link rel="stylesheet" type="text/css" href="/blogs/site/css/main.css">
+        <script src="/blogs/site/js/jquery.js"></script>
+        
+        <script type="text/javascript">
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+        <script>
+        var CONFIG = {
+            demoDir: '/blogs',
+            demoexpstr: 'Chrome'
+        };
+        </script>
+        
+        
+        <title>ES6 简单特性概览</title>
+    
+    </head>
+    <body>
+        <div class="navbar navbar-dark bg-inverse">
+            <div class="container">
+                <a href="/blogs/site/index.html" class="navbar-brand">首页</a>
+            </div>
+        </div>
+        
+        <div class="blog-page container">
+            <div class="card">
+                <div class="card-block">
+                    <div class="hljs">
+                        <!-- config.time: 2015-10-18 11:43 -->
+<!-- config.brief: 本文内容：讲解了如何使用交互式的方式体验 ES6 。列举了容易被人接受的 ES6 特性，附带这些特性在 ES5 中的实现方式。 -->
+<p>本文内容：</p>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <ul>
 <li>讲解了如何使用交互式的方式体验 ES6 。</li>
 <li>列举了容易被人接受的 ES6 特性，附带这些特性在 ES5 中的实现方式。</li>
 </ul>
+<<<<<<< HEAD
 <a id="more"></a>
 <h2 id="体验-ECMAScript-6"><a href="#体验-ECMAScript-6" class="headerlink" title="体验 ECMAScript 6"></a>体验 ECMAScript 6</h2><p>有三种简单的方式可以运行 ES6 代码：</p>
 <ul>
@@ -155,12 +201,25 @@
 </ul>
 <p>下面将会给出更多关于选项1和2的内容。</p>
 <h3 id="Babel-REPL"><a href="#Babel-REPL" class="headerlink" title="Babel REPL"></a>Babel REPL</h3><p>Babel REPL 有四个主要部分：</p>
+=======
+<h2 id="-ecmascript-6">体验 ECMAScript 6</h2>
+<p>有三种简单的方式可以运行 ES6 代码：</p>
+<ul>
+<li>1、 Web 浏览器：使用<a href="http://babeljs.io/repl/">在线的 Babel REPL </a>，这是一个交互式的工具，将 ES6 代码编译成 ES5 代码。采用这种方式的话就不用安装任何东西。</li>
+<li>2、命令行：使用 <code>babel-node</code> ，一个 Node.js 可执行程序的版本，认识 ES6 代码（在内部会编译成 ES5 代码）。可以通过 npm 安装。</li>
+<li>3、各种 JavaScript 引擎：查询<a href="https://kangax.github.io/compat-table/es6/"> kangax 的 ES6 兼容表格</a>，可以找到本地支持 ES6 的引擎。</li>
+</ul>
+<p>下面将会给出更多关于选项1和2的内容。</p>
+<h3 id="babel-repl">Babel REPL</h3>
+<p>Babel REPL 有四个主要部分：</p>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <ul>
 <li>左上角部分包含 ES6 源码。</li>
 <li>左下角部分显示 ES6 代码中发现的语法错误。</li>
 <li>右上角部分包含 ES6 代码编译成的 ES5 代码。</li>
 <li>右下角部分展示通过 <code>console.log()</code> 输出的内容。</li>
 </ul>
+<<<<<<< HEAD
 <p><img src="/images/11.jpg" alt=""></p>
 <h3 id="babel-node"><a href="#babel-node" class="headerlink" title="babel-node"></a>babel-node</h3><p><code>babel-node</code> 可执行程序可以通过 npm 安装：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global babel</span><br></pre></td></tr></table></figure>
@@ -172,21 +231,75 @@
 <p>Babel 官网有<a href="http://babeljs.io/docs/usage/cli/" target="_blank" rel="external">更多关于 Babel 命令行工具的信息</a>。</p>
 <p>本文接下来的部分描述了易于接受的 ES6 特性。</p>
 <h2 id="从-var-到-let-const"><a href="#从-var-到-let-const" class="headerlink" title="从 var 到 let/const"></a>从 var 到 let/const</h2><p>ES6 有两种新的声明变量的方式：</p>
+=======
+<p><img src="../../imgs/11.jpg" alt=""></p>
+<h3 id="babel-node">babel-node</h3>
+<p><code>babel-node</code> 可执行程序可以通过 npm 安装：</p>
+<pre><code><span class="hljs-built_in">npm</span> install --<span class="hljs-built_in">global</span> babel
+</code></pre><p>你可以像使用可执行程序 <code>node</code> 一样使用 <code>babel-node</code> 。类似于 <code>node</code> ，像这样启动一个交互式的 REPL ：</p>
+<pre><code>babel-<span class="hljs-keyword">node</span><span class="hljs-identifier"></span><span class="hljs-title"></span>
+</code></pre><p>一旦进入该 REPL ，你就可以执行 ES6 代码了：</p>
+<pre><code>&gt; let arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+&gt; arr.<span class="hljs-built_in">map</span>(x =&gt; x * x)
+[ <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span> ]
+</code></pre><p>注意 <a href="https://github.com/babel/babel/issues/1741">babel-node 目前还不支持多行输入</a>。</p>
+<p>Babel 官网有<a href="http://babeljs.io/docs/usage/cli/">更多关于 Babel 命令行工具的信息</a>。</p>
+<p>本文接下来的部分描述了易于接受的 ES6 特性。</p>
+<h2 id="-var-let-const">从 var 到 let/const</h2>
+<p>ES6 有两种新的声明变量的方式：</p>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <ul>
 <li><code>let</code> （大致）相当于 <code>var</code> 的一个块级范围版本。</li>
 <li><code>const</code> 类似于 <code>let</code> ，但是用于创建<em>常量</em>：值不能被改变的变量。</li>
 </ul>
 <p>一般情况下，你可以用 <code>let</code> 或者 <code>const</code> 替换每一个 <code>var</code> 。但是不能盲目地这么做，因为不同类型的变量作用范围可能会改变代码的运行流程。看下面的用 ES5 写的例子：</p>
+<<<<<<< HEAD
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">3</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">randomize</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (randomize) &#123;</span><br><span class="line">        <span class="keyword">var</span> x = <span class="built_in">Math</span>.random(); <span class="comment">// (A) scope: whole function</span></span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x; <span class="comment">// accesses the x from line A</span></span><br><span class="line">&#125;</span><br><span class="line">func(<span class="literal">false</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 <p><code>func()</code> 返回 <code>undefined</code> ，这可能会比较奇怪。如果重写一下这段代码，让其更清楚地展现出来实际上发生了什么，你就明白了：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">3</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">randomize</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x;</span><br><span class="line">    <span class="keyword">if</span> (randomize) &#123;</span><br><span class="line">        x = <span class="built_in">Math</span>.random();</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line">func(<span class="literal">false</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 <p>如果你在最初的版本中用 <code>let</code> 替换 <code>var</code> ，将会得到不一样的结果：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">3</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">randomize</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (randomize) &#123;</span><br><span class="line">        <span class="keyword">let</span> x = <span class="built_in">Math</span>.random();</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line">func(<span class="literal">false</span>); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+=======
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> x = <span class="hljs-number">3</span>;
+function <span class="hljs-func"><span class="hljs-keyword">func</span><span class="hljs-params">(randomize)</span></span> {
+    <span class="hljs-keyword">if</span> (randomize) {
+        <span class="hljs-keyword">var</span> x = <span class="hljs-type">Math</span>.random(); <span class="hljs-comment">// (A) scope: whole function</span>
+        <span class="hljs-keyword">return</span> x;
+    }
+    <span class="hljs-keyword">return</span> x; <span class="hljs-comment">// accesses the x from line A</span>
+}
+<span class="hljs-func"><span class="hljs-keyword">func</span><span class="hljs-params">(<span class="hljs-literal">false</span>)</span></span>; <span class="hljs-comment">// undefined</span>
+</code></pre>
+<p><code>func()</code> 返回 <code>undefined</code> ，这可能会比较奇怪。如果重写一下这段代码，让其更清楚地展现出来实际上发生了什么，你就明白了：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> x = <span class="hljs-number">3</span>;
+function <span class="hljs-func"><span class="hljs-keyword">func</span><span class="hljs-params">(randomize)</span></span> {
+    <span class="hljs-keyword">var</span> x;
+    <span class="hljs-keyword">if</span> (randomize) {
+        x = <span class="hljs-type">Math</span>.random();
+        <span class="hljs-keyword">return</span> x;
+    }
+    <span class="hljs-keyword">return</span> x;
+}
+<span class="hljs-func"><span class="hljs-keyword">func</span><span class="hljs-params">(<span class="hljs-literal">false</span>)</span></span>; <span class="hljs-comment">// undefined</span>
+</code></pre>
+<p>如果你在最初的版本中用 <code>let</code> 替换 <code>var</code> ，将会得到不一样的结果：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> x = <span class="hljs-number">3</span>;
+function <span class="hljs-func"><span class="hljs-keyword">func</span><span class="hljs-params">(randomize)</span></span> {
+    <span class="hljs-keyword">if</span> (randomize) {
+        <span class="hljs-keyword">let</span> x = <span class="hljs-type">Math</span>.random();
+        <span class="hljs-keyword">return</span> x;
+    }
+    <span class="hljs-keyword">return</span> x;
+}
+<span class="hljs-func"><span class="hljs-keyword">func</span><span class="hljs-params">(<span class="hljs-literal">false</span>)</span></span>; <span class="hljs-comment">// 3</span>
+</code></pre>
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>因此，盲目地用 <code>let</code> 或者 <code>const</code> 替换 <code>var</code> 很危险。我的建议是：</p>
 <ul>
 <li>仅在新的代码中使用 <code>let</code>/<code>const</code> 。</li>
 <li>不动老的代码，或者小心地重构老的代码。</li>
 </ul>
+<<<<<<< HEAD
 <h2 id="从-IIFE-到块级作用域"><a href="#从-IIFE-到块级作用域" class="headerlink" title="从 IIFE 到块级作用域"></a>从 IIFE 到块级作用域</h2><p>在 ES5 中，你必须使用 IIFE 来使变量保持本地化：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">// open IIFE</span></span><br><span class="line">    <span class="keyword">var</span> tmp = ···;</span><br><span class="line">    ···</span><br><span class="line">&#125;());  <span class="comment">// close IIFE</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(tmp); <span class="comment">// ReferenceError</span></span><br></pre></td></tr></table></figure>
 <p>在 ECMAScript 6 中，你可以简单地使用一个块和一个 <code>let</code> 声明：</p>
@@ -374,3 +487,497 @@
 
 </body>
 </html>
+=======
+<h2 id="-iife-">从 IIFE 到块级作用域</h2>
+<p>在 ES5 中，你必须使用 IIFE 来使变量保持本地化：</p>
+<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{  <span class="hljs-comment">// open IIFE</span>
+    <span class="hljs-keyword">var</span> tmp = ···;
+    ···
+}());  <span class="hljs-comment">// close IIFE</span>
+
+<span class="hljs-built_in">console</span>.log(tmp); <span class="hljs-comment">// ReferenceError</span>
+</code></pre>
+<p>在 ECMAScript 6 中，你可以简单地使用一个块和一个 <code>let</code> 声明：</p>
+<pre><code class="lang-js">{  <span class="hljs-comment">// open block</span>
+    <span class="hljs-keyword">let</span> tmp = ···;
+    ···
+}  <span class="hljs-comment">// close block</span>
+
+<span class="hljs-built_in">console</span>.log(tmp); <span class="hljs-comment">// ReferenceError</span>
+</code></pre>
+<h2 id="-">从拼接字符串到模板字面量</h2>
+<p>在 ES6 中， JavaScript 终于拥有了字面量式的字符串插值和多行字符串功能。</p>
+<h3 id="-">字符串插值</h3>
+<p>在 ES5 中，通过拼接字符串片段和变量值的方式来把变量值插入到字符串中：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printCoord</span>(<span class="hljs-params">x, y</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'('</span>+x+<span class="hljs-string">', '</span>+y+<span class="hljs-string">')'</span>);
+}
+</code></pre>
+<p>在 ES6 中，你可以通过模板字面量的方式实现字符串插值：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printCoord</span>(<span class="hljs-params">x, y</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`(<span class="hljs-subst">${x}</span>, <span class="hljs-subst">${y}</span>)`</span>);
+}
+</code></pre>
+<h3 id="-">多行字符串</h3>
+<p>模板字面量也可以用于表示多行字符串。</p>
+<p>例如，下面是在 ES5 中表示多行文本的样子：</p>
+<pre><code class="lang-js">var HTML5_SKELETON =
+    '<span class="hljs-doctype">&lt;!doctype html&gt;</span>\n' +
+    '<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>\n' +
+    '<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>\n' +
+    '    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"UTF-8"</span>&gt;</span>\n' +
+    '    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>\n' +
+    '<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>\n' +
+    '<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>\n' +
+    '<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>\n' +
+    '<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>\n';
+</code></pre>
+<p>如果你通过反斜线转义换行符，代码看起来就漂亮一点了（但是仍然需要显示地添加新行）：</p>
+<pre><code class="lang-js">var HTML5_SKELETON = '\
+    <span class="hljs-doctype">&lt;!doctype html&gt;</span>\n\
+    <span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>\n\
+    <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>\n\
+        <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"UTF-8"</span>&gt;</span>\n\
+        <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>\n\
+    <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>\n\
+    <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>\n\
+    <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>\n\
+    <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>';
+</code></pre>
+<p>ES6 模板字面量可以跨越多行：</p>
+<pre><code class="lang-js">const HTML5_SKELETON = `
+    <span class="hljs-doctype">&lt;!doctype html&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"UTF-8"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>`;
+</code></pre>
+<p>（这些例子包含的空格数是不一样的，但是在此处并不重要。）</p>
+<h2 id="-">从函数表达式到箭头函数</h2>
+<p>在当前的 ES5 代码中，在函数表达式中必须小心使用 <code>this</code> 。在下面的例子中，我创建了辅助变量 <code>_this</code> （行 A ），以便在行 B 能够访问到 UiComponent 的 <code>this</code> 。</p>
+<pre><code class="lang-js">function UiComponent {
+    var <span class="hljs-built_in">_this</span> = this; <span class="hljs-comment">// (A)</span>
+    var button = document.getElementById(<span class="hljs-string">'myButton'</span>);
+    button.addEventListener(<span class="hljs-string">'click'</span>, function () {
+        console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'CLICK'</span>);
+        <span class="hljs-built_in">_this</span>.handleClick(); <span class="hljs-comment">// (B)</span>
+    });
+}
+UiComponent.prototype.handleClick = function () {
+    ···
+};
+</code></pre>
+<p>在 ES6 中，你可以使用箭头函数，它不会改变 <code>this</code> 指向（行 A ，<em>词法范围的 this</em> ）：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> UiComponent {
+    <span class="hljs-constructor"><span class="hljs-keyword">constructor</span>() </span>{
+        <span class="hljs-keyword">let</span> button = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myButton'</span>);
+        button.addEventListener(<span class="hljs-string">'click'</span>, () =&gt; {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'CLICK'</span>);
+            <span class="hljs-keyword">this</span>.handleClick(); <span class="hljs-comment">// (A)</span>
+        });
+    }
+    handleClick() {
+        ···
+    }
+}
+</code></pre>
+<p>箭头函数对于短小的仅返回表达式值的回调函数来说尤其方便。</p>
+<p>在 ES5 中，这样的回调函数相当啰嗦：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-keyword">var</span> squares = arr.map(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(x)</span> </span>{ <span class="hljs-keyword">return</span> x * x });
+</code></pre>
+<p>在 ES6 中，箭头函数简洁很多：</p>
+<pre><code class="lang-js">let arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+let squares = arr.<span class="hljs-built_in">map</span>(x =&gt; x * x);
+</code></pre>
+<p>在定义参数的时候，如果参数是一个标识符，甚至可以省略括号。所以： <code>(x) =&gt; x * x</code> 和 <code>x =&gt; x * x</code> 都是合法的。</p>
+<h2 id="-">处理多个返回值</h2>
+<p>一些函数或者方法通过数组或对象返回多个值。在 ES5 中，如果想要访问这些值，总是需要创建一些中间变量。在 ES6 中，可以借助于解构来避免中间变量。</p>
+<h3 id="-">借助数组返回多个值</h3>
+<p><code>exec()</code> 通过类数组对象返回捕获到的匹配组。在 ES5 中，需要一个中间变量（下面例子中的 <code>matchObj</code> ），即便是你仅对匹配组感兴趣：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> matchObj =
+    /^(\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>)-(\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>)-(\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>)$/
+    .exec('2999-12-31');
+<span class="hljs-keyword">var</span> year = matchObj[1];
+<span class="hljs-keyword">var</span> month = matchObj[2];
+<span class="hljs-keyword">var</span> day = matchObj[3];
+</code></pre>
+<p>在 ES6 中，解构使代码更简单：</p>
+<pre><code class="lang-js">let [, year, month, day] =
+    /^(\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>)-(\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>)-(\<span class="hljs-keyword">d</span>\<span class="hljs-keyword">d</span>)$/
+    .exec('2999-12-31');
+</code></pre>
+<p>左侧数组模式开始处为空，可以跳过右侧索引为0的数组元素。</p>
+<h3 id="-">借助对象返回多个值</h3>
+<p>方法 <code>Object.getOwnPropertyDescriptor()</code> 返回一个<em>属性描述符</em>，一个包含多个属性值的对象。</p>
+<p>在 ES5 中，即便你仅对一个对象的属性感兴趣，仍然需要一个中间变量（下例中的 <code>propDesc</code> ）：</p>
+<pre><code class="lang-js"><span class="hljs-variable"><span class="hljs-keyword">var</span> obj</span> = { foo: <span class="hljs-number">123</span> };
+
+<span class="hljs-variable"><span class="hljs-keyword">var</span> propDesc</span> = Object.getOwnPropertyDescriptor(obj, 'foo');
+<span class="hljs-variable"><span class="hljs-keyword">var</span> writable</span> = propDesc.writable;
+<span class="hljs-variable"><span class="hljs-keyword">var</span> configurable</span> = propDesc.configurable;
+
+console.log(writable, configurable); <span class="hljs-comment">// true true</span>
+</code></pre>
+<p>在 ES6 中，可以使用解构：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> obj = { foo: <span class="hljs-number">123</span> };
+
+<span class="hljs-keyword">let</span> {writable, configurable} =
+    Object.getOwnPropertyDescriptor(obj, <span class="hljs-string">'foo'</span>);
+
+console.log(writable, configurable); // <span class="hljs-literal">true</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p><code>{writable, configurable}</code> 是下面内容的缩写：</p>
+<pre><code class="lang-js"><span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">writable</span>:<span class="hljs-value"> writable, configurable: configurable </span></span></span>}
+</code></pre>
+<h2 id="-for-foreach-for-of">从 for 到 forEach() ，再到 for-of</h2>
+<p>在 ES5 之前，可以选择使用数组方法 <code>forEach()</code> ：</p>
+<pre><code class="lang-js">arr.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">elem</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(elem);
+});
+</code></pre>
+<p><code>for</code> 循环的优点在于可以中断， <code>forEach()</code> 的优点在于简洁。</p>
+<p>在 ES6 中， <code>for-of</code> 循环结合了两种优点：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> elem <span class="hljs-keyword">of</span> arr) {
+    <span class="hljs-built_in">console</span>.log(elem);
+}
+</code></pre>
+<p>如果想访问每个元素的索引和值， <code>for-of</code> 也可以做到，通过新的数组方法 <code>entries()</code> 和解构：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [index, elem] <span class="hljs-keyword">of</span> arr.entries()) {
+    <span class="hljs-built_in">console</span>.log(index+<span class="hljs-string">'. '</span>+elem);
+}
+</code></pre>
+<h2 id="-">处理参数默认值</h2>
+<p>在 ES5 中，为参数指定默认值的代码像这样：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x, y)</span> </span>{
+    x = x || <span class="hljs-number">0</span>;
+    y = y || <span class="hljs-number">0</span>;
+    ···
+}
+</code></pre>
+<p>ES6 有更漂亮的语法：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x=0, y=0)</span> </span>{
+    ···
+}
+</code></pre>
+<p>一个额外的好处就是，在 ES6 中，参数默认值只会被 <code>undefined</code> 触发，而在之前的 ES5 代码中，任何假值都会出发默认值。</p>
+<h2 id="-">处理命名参数</h2>
+<p>在 JavaScript 中使用命名参数的一种通常做法是通过对象字面量的方式（所谓的<em>可选对象模式</em>）：</p>
+<pre><code class="lang-js"><span class="hljs-tag">selectEntries</span>({ <span class="hljs-attribute">start</span>: <span class="hljs-number">0</span>, <span class="hljs-attribute">end</span>: -<span class="hljs-number">1</span> });
+</code></pre>
+<p>这种方式的两个优点是：代码可读性更好，并且可以更容易地省略任何参数。</p>
+<p>在 ES5 中，你可以这样实现 <code>selectEntries()</code> ：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">selectEntries</span><span class="hljs-params">(options)</span> </span>{
+    <span class="hljs-keyword">var</span> start = options.start || <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">var</span> end = options.end || -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">var</span> step = options.step || <span class="hljs-number">1</span>;
+    ···
+}
+</code></pre>
+<p>在 ES6 中，你可以在参数定义中使用解构，代码看起来就更简单了：</p>
+<pre><code class="lang-js"><span class="hljs-function">function <span class="hljs-title">selectEntries</span><span class="hljs-params">({ start=<span class="hljs-number">0</span>, end=-<span class="hljs-number">1</span>, step=<span class="hljs-number">1</span> })</span> </span>{
+    ···
+}
+</code></pre>
+<h3 id="-">可选参数</h3>
+<p>在 ES5 中，要让参数 <code>options</code> 变得可选，会添加行 A 所示的代码：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">selectEntries</span><span class="hljs-params">(options)</span> <span class="hljs-comment">{
+    options = options || {}</span>;</span> <span class="hljs-comment">// (A)</span>
+    <span class="hljs-keyword">var</span> start = options.start || <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">var</span> <span class="hljs-keyword">end</span> = options.<span class="hljs-keyword">end</span> || -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">var</span> <span class="hljs-keyword">step</span> = options.<span class="hljs-keyword">step</span> || <span class="hljs-number">1</span>;
+    ···
+}
+</code></pre>
+<p>在 ES6 中，可以用 <code>{}</code> 指定参数的默认值：</p>
+<pre><code class="lang-js"><span class="hljs-function">function <span class="hljs-title">selectEntries</span><span class="hljs-params">({ start=<span class="hljs-number">0</span>, end=-<span class="hljs-number">1</span>, step=<span class="hljs-number">1</span> } = {})</span> </span>{
+    ···
+}
+</code></pre>
+<h2 id="-arguments-">从 arguments 到剩余参数</h2>
+<p>在 ES5 中，如果想要函数（或者方法）接收任意数量的参数，就必须使用特殊变量 <code>arguments</code> ：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logAllArguments</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">arguments</span>.length; i++) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>[i]);
+    }
+}
+</code></pre>
+<p>在 ES6 中，可以通过 <code>...</code> 操作符声明一个剩余参数（下例中的 args ）：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logAllArguments</span><span class="hljs-params">(<span class="hljs-rest_arg">...args</span>)</span> </span>{
+    <span class="hljs-keyword">for</span> (let arg of args) {
+        console.log(arg);
+    }
+}
+</code></pre>
+<p>如果仅对尾部的参数感兴趣，剩余参数看起来就更漂亮了：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">format</span><span class="hljs-params">(pattern, <span class="hljs-rest_arg">...args</span>)</span> </span>{
+    ···
+}
+</code></pre>
+<p>在 ES5 中处理这种场景很笨拙：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">format</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> pattern = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">var</span> args = <span class="hljs-built_in">arguments</span>.slice(<span class="hljs-number">1</span>);
+    ···
+}
+</code></pre>
+<p>剩余参数让代码可读性更好：你可以从参数定义上面看出来一个函数是否有不定数量的参数。</p>
+<h2 id="-apply-">从 apply() 到扩展操作符（ ... ）</h2>
+<p>在 ES5 中，用 <code>apply()</code> 将数组转换成参数。 ES6 有扩展操作符可以达到这个目的。</p>
+<h3 id="4-11-1-math-max-">4.11.1 Math.max()</h3>
+<p>ES5 - apply() ：</p>
+<pre><code>&gt; Math.max.apply(null, [-<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">11</span>, <span class="hljs-number">3</span>])
+<span class="hljs-number">11</span>
+</code></pre><p>ES6 - 扩展操作符：</p>
+<pre><code>&gt; Math.max(...[-<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">11</span>, <span class="hljs-number">3</span>])
+<span class="hljs-number">11</span>
+</code></pre><h3 id="array-prototype-push-">Array.prototype.push()</h3>
+<p>ES5 - apply() ：</p>
+<pre><code class="lang-js"><span class="hljs-atom">var</span> <span class="hljs-atom">arr1</span> = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>];
+<span class="hljs-atom">var</span> <span class="hljs-atom">arr2</span> = [<span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>];
+
+<span class="hljs-atom">arr1</span>.<span class="hljs-atom">push</span>.<span class="hljs-atom">apply</span>(<span class="hljs-atom">arr1</span>, <span class="hljs-atom">arr2</span>);
+    // <span class="hljs-atom">arr1</span> <span class="hljs-atom">is</span> <span class="hljs-atom">now</span> [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>]
+</code></pre>
+<p>ES6 - 扩展操作符：</p>
+<p>let arr1 = [&#39;a&#39;, &#39;b&#39;];
+let arr2 = [&#39;c&#39;, &#39;d&#39;];</p>
+<p>arr1.push(...arr2);
+    // arr1 is now [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</p>
+<h2 id="-concat-">从 concat() 到扩展操作符（ ... ）</h2>
+<p>扩展操作符也能将操作数的内容转换成数组元素，也就是说它实现数组方法 <code>concat()</code> 的功能。</p>
+<p>ES5 - concat() ：</p>
+<pre><code class="lang-js"><span class="hljs-atom">var</span> <span class="hljs-atom">arr1</span> = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>];
+<span class="hljs-atom">var</span> <span class="hljs-atom">arr2</span> = [<span class="hljs-string">'c'</span>];
+<span class="hljs-atom">var</span> <span class="hljs-atom">arr3</span> = [<span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>];
+
+<span class="hljs-atom">console</span>.<span class="hljs-atom">log</span>(<span class="hljs-atom">arr1</span>.<span class="hljs-atom">concat</span>(<span class="hljs-atom">arr2</span>, <span class="hljs-atom">arr3</span>));
+    // [ <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span> ]
+</code></pre>
+<p>ES6 - 扩展操作符：</p>
+<pre><code class="lang-js"><span class="hljs-atom">let</span> <span class="hljs-atom">arr1</span> = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>];
+<span class="hljs-atom">let</span> <span class="hljs-atom">arr2</span> = [<span class="hljs-string">'c'</span>];
+<span class="hljs-atom">let</span> <span class="hljs-atom">arr3</span> = [<span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>];
+
+<span class="hljs-atom">console</span>.<span class="hljs-atom">log</span>([...<span class="hljs-atom">arr1</span>, ...<span class="hljs-atom">arr2</span>, ...<span class="hljs-atom">arr3</span>]);
+    // [ <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span> ]
+</code></pre>
+<h2 id="-">从构造函数到类</h2>
+<p>相对于构造函数来说，ES6 类是一种更加方便的语法。</p>
+<h3 id="-">基类</h3>
+<p>在 ES5 中，直接实现构造函数：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span><span class="hljs-params">(name)</span> </span>{
+    <span class="hljs-keyword">this</span>.name = name;
+}
+Person.prototype.describe = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'Person called '</span>+<span class="hljs-keyword">this</span>.name;
+};
+</code></pre>
+<p>在 ES6 中，类为构造函数提供了略微方便的语法：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> Person {
+    <span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(name) </span>{
+        <span class="hljs-keyword">this</span>.name = name;
+    }
+    describe() {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Person called '</span>+<span class="hljs-keyword">this</span>.name;
+    }
+}
+</code></pre>
+<h3 id="-">继承类</h3>
+<p>在 ES5 中实现子类很复杂，尤其是要指向父类构造函数和父类属性。下面是一种比较正规的创建 <code>Person</code> 的子构造器 <code>Employee</code> 的方式：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Employee</span>(<span class="hljs-params">name, title</span>) </span>{
+    Person.call(<span class="hljs-keyword">this</span>, name); <span class="hljs-comment">// super(name)</span>
+    <span class="hljs-keyword">this</span>.title = title;
+}
+Employee.prototype = <span class="hljs-built_in">Object</span>.create(Person.prototype);
+Employee.prototype.constructor = Employee;
+Employee.prototype.describe = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> Person.prototype.describe.call(<span class="hljs-keyword">this</span>) <span class="hljs-comment">// super.describe()</span>
+           + <span class="hljs-string">' ('</span> + <span class="hljs-keyword">this</span>.title + <span class="hljs-string">')'</span>;
+};
+</code></pre>
+<p>ES6 内置支持子类继承，使用 extends 子句：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> Employee extends Person {
+    <span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(name, title) </span>{
+        <span class="hljs-keyword">super</span>(name);
+        <span class="hljs-keyword">this</span>.title = title;
+    }
+    describe() {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.describe() + <span class="hljs-string">' ('</span> + <span class="hljs-keyword">this</span>.title + <span class="hljs-string">')'</span>;
+    }
+}
+</code></pre>
+<h2 id="-error-">从自定义错误构造函数到 Error 子类</h2>
+<p>在 ES5 中，不可能内置构造器的继承（除了 Error ）。下面的代码展示了一种继承的方式，并赋予了构造函数 MyError 一些重要的特性，比如堆栈跟踪：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyError</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Use Error as a function</span>
+    <span class="hljs-keyword">var</span> superInstance = <span class="hljs-built_in">Error</span>.apply(<span class="hljs-literal">null</span>, <span class="hljs-built_in">arguments</span>);
+    copyOwnPropertiesFrom(<span class="hljs-keyword">this</span>, superInstance);
+}
+MyError.prototype = <span class="hljs-built_in">Object</span>.create(<span class="hljs-built_in">Error</span>.prototype);
+MyError.prototype.constructor = MyError;
+</code></pre>
+<p>在 ES6 中，所有内置的构造函数都可以被继承，这就是为什么下面的代码实现了在 ES5 中只能模拟的功能：</p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyError</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">Error</span> {</span>
+}
+</code></pre>
+<h2 id="-">从对象字面量中的函数表达式到方法定义</h2>
+<p>在 JavaScript 中，方法就是值为函数的属性。</p>
+<p>在 ES5 对象字面量中，方法以类似于其他属性的方式创建。属性值通过函数表达式提供。</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> obj = {
+    foo: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        ···
+    },
+    bar: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">this</span>.foo();
+    }, <span class="hljs-comment">// trailing comma is legal in ES5</span>
+}
+</code></pre>
+<p>ES6 有<em>方法定义</em>，一种创建方法的特殊语法：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> obj = {
+    foo<span class="hljs-literal">()</span> {
+        ···
+    },
+    bar<span class="hljs-literal">()</span> {
+        this.foo<span class="hljs-literal">()</span>;
+    },
+}
+</code></pre>
+<h2 id="-map">从对象到 Map</h2>
+<p>把语言结构 <em>object</em> 用作字符串到任意值的映射（一种数据结构）是 JavaScript 中一直以来的一种替代解决方案。实现这种影射最安全的方式就是创建一个 prototype 为 null 的对象，然后你还得确保没有键名会是 <code>__proto__</code> ，因为这个键名在很多 JavaScript 引擎中都会触发特殊的功能。</p>
+<p>下面的 ES5 代码包含了函数 <code>countWords</code> ，该函数将对象 <code>dict</code> 用作一个 map ：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> dict = <span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countWords</span>(<span class="hljs-params">word</span>) </span>{
+    <span class="hljs-keyword">var</span> escapedWord = escapeKey(word);
+    <span class="hljs-keyword">if</span> (escapedWord <span class="hljs-keyword">in</span> dict) {
+        dict[escapedWord]++;
+    } <span class="hljs-keyword">else</span> {
+        dict[escapedWord] = <span class="hljs-number">1</span>;
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeKey</span>(<span class="hljs-params">key</span>) </span>{
+    <span class="hljs-keyword">if</span> (key.indexOf(<span class="hljs-string">'__proto__'</span>) === <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> key+<span class="hljs-string">'%'</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> key;
+    }
+}
+</code></pre>
+<p>在 ES6 中，可以使用内置的数据结构 Map ，并且不需要转义键名。不过有一个缺点，对 map 中的值进行自增操作变得更不方便了。</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> <span class="hljs-built_in">map</span> = <span class="hljs-keyword">new</span> Map();
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countWords</span><span class="hljs-params">(word)</span> {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-built_in">count</span> = <span class="hljs-built_in">map</span>.<span class="hljs-built_in">get</span>(word) || <span class="hljs-number">0</span>;
+    <span class="hljs-built_in">map</span>.<span class="hljs-keyword">set</span>(word, <span class="hljs-built_in">count</span> + <span class="hljs-number">1</span>);
+}
+</code></pre>
+<p>map 的另一个优点是可以用任何值作为键，而不仅仅是字符串。</p>
+<h2 id="-commonjs-es6-">从 CommonJS 模块到 ES6 模块</h2>
+<p>直到 ES5 ，基于 AMD 语法或者 CommonJS 语法的模块系统才几乎替代了手写的解决方案（比如<a href="http://christianheilmann.com/2007/08/22/again-with-the-module-pattern-reveal-something-to-the-world/">暴露的模块方式</a>）。</p>
+<p>ES6 内置支持模块。但是，目前还没有 JavaScript 引擎原生支持。但是像 browserfy 、 webpack 或者 jspm 这些工具让你能够使用 ES6 语法来创建模块，从而使你写的代码不会过时。</p>
+<h3 id="-">导出多个值</h3>
+<p>在 CommonJS 里，像下面这样导出多个实体：</p>
+<pre><code class="lang-js"><span class="hljs-comment">//------ lib.js ------</span>
+var <span class="hljs-built_in">sqrt</span> = Math.<span class="hljs-built_in">sqrt</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span><span class="hljs-params">(x)</span> {</span>
+    return x <span class="hljs-built_in">*</span> x;
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">diag</span><span class="hljs-params">(x, y)</span> {</span>
+    return <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">square</span>(x) + <span class="hljs-built_in">square</span>(y));
+}
+<span class="hljs-function"><span class="hljs-keyword">module</span>.<span class="hljs-title">exports</span> =</span> {
+    <span class="hljs-built_in">sqrt</span>: <span class="hljs-built_in">sqrt</span>,
+    <span class="hljs-built_in">square</span>: <span class="hljs-built_in">square</span>,
+    diag: diag,
+};
+
+<span class="hljs-comment">//------ main1.js ------</span>
+var <span class="hljs-built_in">square</span> = require('lib').<span class="hljs-built_in">square</span>;
+var diag = require('lib').diag;
+
+console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">square</span>(<span class="hljs-number">11</span>)); <span class="hljs-comment">// 121</span>
+console.<span class="hljs-built_in">log</span>(diag(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span>
+</code></pre>
+<p>相应地，你可以引入整个模块为一个对象，然后通过这个对象访问 <code>square</code> 和 <code>diag</code> ：</p>
+<pre><code class="lang-js"><span class="hljs-comment">//------ main2.js ------</span>
+<span class="hljs-keyword">var</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lib'</span>);
+<span class="hljs-built_in">console</span>.log(lib.square(<span class="hljs-number">11</span>)); <span class="hljs-comment">// 121</span>
+<span class="hljs-built_in">console</span>.log(lib.diag(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span>
+</code></pre>
+<p>在 ES6 中，多个导出值被称为<em>命名导出</em>，像这样处理：</p>
+<pre><code class="lang-js"><span class="hljs-comment">//------ lib.js ------</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> sqrt = <span class="hljs-built_in">Math</span>.sqrt;
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> x * x;
+}
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">diag</span>(<span class="hljs-params">x, y</span>) </span>{
+    <span class="hljs-keyword">return</span> sqrt(square(x) + square(y));
+}
+
+<span class="hljs-comment">//------ main1.js ------</span>
+<span class="hljs-keyword">import</span> { square, diag } <span class="hljs-keyword">from</span> <span class="hljs-string">'lib'</span>;
+<span class="hljs-built_in">console</span>.log(square(<span class="hljs-number">11</span>)); <span class="hljs-comment">// 121</span>
+<span class="hljs-built_in">console</span>.log(diag(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span>
+</code></pre>
+<p>引入模块为对象的语法就像下面这样（行 A ）：</p>
+<pre><code class="lang-js"><span class="hljs-comment">//------ main2.js ------</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> lib <span class="hljs-keyword">from</span> <span class="hljs-string">'lib'</span>; <span class="hljs-comment">// (A)</span>
+<span class="hljs-built_in">console</span>.log(lib.square(<span class="hljs-number">11</span>)); <span class="hljs-comment">// 121</span>
+<span class="hljs-built_in">console</span>.log(lib.diag(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span>
+</code></pre>
+<h3 id="-">导出一个值</h3>
+<p>Node.js 使用了 CommonJS 的模块方案，允许通过 <code>module.exports</code> 在模块中导出一个值：</p>
+<pre><code class="lang-js"><span class="hljs-comment">//------ myFunc.js ------</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ ··· };
+
+<span class="hljs-comment">//------ main1.js ------</span>
+<span class="hljs-keyword">var</span> myFunc = <span class="hljs-built_in">require</span>(<span class="hljs-string">'myFunc'</span>);
+myFunc();
+</code></pre>
+<p>在 ES6 中， <code>export default</code> 完成同样的功能：</p>
+<pre><code class="lang-js"><span class="hljs-comment">//------ myFunc.js ------</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ ··· } <span class="hljs-comment">// no semicolon!</span>
+
+<span class="hljs-comment">//------ main1.js ------</span>
+<span class="hljs-keyword">import</span> myFunc <span class="hljs-keyword">from</span> <span class="hljs-string">'myFunc'</span>;
+myFunc();
+</code></pre>
+
+                    </div>
+                </div>
+            </div>
+
+            
+                <div class="card">
+                    <div class="card-block">
+                        <div class="ds-thread"
+                            data-thread-key="ES6 简单特性概览"
+                            data-title="ES6 简单特性概览"
+                            data-url="http://yibuyisheng.github.io/blogs/site/blogs/ES6 简单特性概览.html">
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"yibuyishengblogs"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                     || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+        
+        <script type="text/javascript" src="/blogs/site/js/blog.js"></script>
+    
+    </body>
+
+>>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd

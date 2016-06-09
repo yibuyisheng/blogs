@@ -1,0 +1,49 @@
+<style>
+.example1 {
+    width: 400px;
+    height: 300px;
+    margin: 50px auto;
+    border: 5px solid hsla(60, 50%, 80%, .8);
+    background-image: radial-gradient(hsla(120, 70%, 60%, .9), hsla(360, 60%, 60%, .9));
+}
+.example2 {
+    width: 400px;
+    height: 300px;
+    margin: 50px auto;
+    border: 5px solid hsla(60, 50%, 80%, .8);
+    background-image: radial-gradient(ellipse, hsla(120, 70%, 60%, .9), hsla(360, 60%, 60%, .9));
+}
+.example3 {
+    width: 400px;
+    height: 300px;
+    margin: 50px auto;
+    border: 5px solid hsla(60, 50%, 80%, .8);
+    /*圆心位置在“200px 150px”处，半径为50px和150px*/
+    background-image: radial-gradient(50px 150px at 200px 150px, hsla(120, 70%, 60%, .9), hsla(360, 60%, 60%, .9));
+}
+.example4 {
+    width: 400px;
+    height: 300px;
+    margin: 50px auto;
+    border: 5px solid hsla(60, 50%, 80%, .8);
+    background-image: radial-gradient(80% 20% at 30% 60%, hsla(120, 70%, 60%, .9), hsla(360, 60%, 60%, .9));
+}
+.example5 {
+    width: 400px;
+    height: 300px;
+    margin: 50px auto;
+    border: 5px solid hsla(60, 50%, 80%, .8);
+    background-image: radial-gradient(
+        80% 20% at 30% 60%,
+        hsla(120, 70%, 60%, .9) 10%,
+        hsla(360, 60%, 60%, .9) 50%,
+        hsla(230, 40%, 90%, .8) 100%
+    );
+}
+</style>
+
+<div class="example1"></div>
+<div class="example2"></div>
+<div class="example3"></div>
+<div class="example4"></div>
+<div class="example5"></div>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>生成器（ generator ） | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="">
+  <meta name="description" content="什么是 generator ？可以暂停（ pause ）和唤醒（ resume ）的函数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成器（ generator ）">
+<meta property="og:url" content="http://yoursite.com/blogs/生成器（ generator ）.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="什么是 generator ？可以暂停（ pause ）和唤醒（ resume ）的函数。">
+<meta property="og:image" content="http://yoursite.com/./imgs/9.jpg">
+<meta property="og:updated_time" content="2016-06-08T09:52:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生成器（ generator ）">
+<meta name="twitter:description" content="什么是 generator ？可以暂停（ pause ）和唤醒（ resume ）的函数。">
+<meta name="twitter:image" content="http://yoursite.com/./imgs/9.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;h3 id=&quot;什么是-generator-？&quot;&gt;&lt;a href=&quot;#什么是-generator-？&quot; class=&quot;headerlink&quot; title=&quot;什么是 generator ？&quot;&gt;&lt;/a&gt;什么是 generator ？&lt;/h3&gt;&lt;p&gt;可以暂停（ pause ）和唤醒（ resume ）的函数。&lt;br&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">生成器（ generator ）</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">生成器（ generator ）</h1>
+    <h5 class="subtitle">2015-07-13</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-生成器（ generator ）" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col"></div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是-generator-？" title="什么是 generator ？"><span class="post-toc-text">什么是 generator ？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现一个迭代器" title="实现一个迭代器"><span class="post-toc-text">实现一个迭代器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建-generator-的方式" title="创建 generator 的方式"><span class="post-toc-text">创建 generator 的方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#generator-嵌套：-yield" title="generator 嵌套： yield*"><span class="post-toc-text">generator 嵌套： yield*</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#next-传值" title="next 传值"><span class="post-toc-text">next 传值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#return-外部终止-generator" title="return() 外部终止 generator"><span class="post-toc-text">return() 外部终止 generator</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#throw-抛出异常" title="throw() 抛出异常"><span class="post-toc-text">throw() 抛出异常</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#很有有趣也有用的例子" title="很有有趣也有用的例子"><span class="post-toc-text">很有有趣也有用的例子</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#generator-类图" title="generator 类图"><span class="post-toc-text">generator 类图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一个简单的类似于-tj-co-库的东西" title="一个简单的类似于 tj co 库的东西"><span class="post-toc-text">一个简单的类似于 tj co 库的东西</span></a></li></ol>
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <h3 id="什么是-generator-？"><a href="#什么是-generator-？" class="headerlink" title="什么是 generator ？"></a>什么是 generator ？</h3><p>可以暂停（ pause ）和唤醒（ resume ）的函数。<br><a id="more"></a></p>
+<h3 id="实现一个迭代器"><a href="#实现一个迭代器" class="headerlink" title="实现一个迭代器"></a>实现一个迭代器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> a <span class="keyword">of</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) &#123;</span><br><span class="line">        <span class="keyword">yield</span> a + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面的 for 循环输出：</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> b <span class="keyword">of</span> gen()) &#123;</span><br><span class="line">    print(<span class="built_in">JSON</span>.stringify(b));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> it = gen();</span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.next())); <span class="comment">// 输出： &#123;value: 2, done: false&#125;</span></span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.next())); <span class="comment">// 输出： &#123;value: 3, done: false&#125;</span></span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.next())); <span class="comment">// 输出： &#123;value: 4, done: false&#125;</span></span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.next())); <span class="comment">// 输出： &#123;value: 5, done: true&#125;</span></span><br><span class="line"></span><br><span class="line">print(<span class="built_in">JSON</span>.stringify([...gen()])); <span class="comment">// 输出： [2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建-generator-的方式"><a href="#创建-generator-的方式" class="headerlink" title="创建 generator 的方式"></a>创建 generator 的方式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">genFunc</span>(<span class="params"></span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="keyword">let</span> genObj = genFunc();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种</span></span><br><span class="line"><span class="keyword">const</span> genFunc = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123; ··· &#125;;</span><br><span class="line"><span class="keyword">let</span> genObj = genFunc();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第三种</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    * generatorMethod() &#123;</span><br><span class="line">        ···</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> genObj = obj.generatorMethod();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第四种</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    * generatorMethod() &#123;</span><br><span class="line">        ···</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> myInst = <span class="keyword">new</span> MyClass();</span><br><span class="line"><span class="keyword">let</span> genObj = myInst.generatorMethod();</span><br></pre></td></tr></table></figure>
+<h3 id="generator-嵌套：-yield"><a href="#generator-嵌套：-yield" class="headerlink" title="generator 嵌套： yield*"></a>generator 嵌套： yield*</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'result of gen1'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// `yield* gen1()` 类似于</span></span><br><span class="line">    <span class="comment">// for (let x of gen1()) &#123;</span></span><br><span class="line">    <span class="comment">//      yield x;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    print(<span class="built_in">JSON</span>.stringify(<span class="keyword">yield</span>* gen1()));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">// 'result of gen1'</span></span><br><span class="line"><span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line">print(<span class="built_in">JSON</span>.stringify([...gen2()]));</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span>* [<span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line">print(<span class="built_in">JSON</span>.stringify([...gen3()])); <span class="comment">// 输出： [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<h3 id="next-传值"><a href="#next-传值" class="headerlink" title="next 传值"></a>next 传值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    print(<span class="built_in">JSON</span>.stringify(<span class="keyword">yield</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> it = gen1();</span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">// &#123;value: undefined, done: false&#125;</span></span><br><span class="line"><span class="comment">// outer value</span></span><br><span class="line"><span class="comment">// &#123;value: undefined, done: true&#125;</span></span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.next()));</span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.next(<span class="string">'outer value'</span>)));</span><br></pre></td></tr></table></figure>
+<h3 id="return-外部终止-generator"><a href="#return-外部终止-generator" class="headerlink" title="return() 外部终止 generator"></a><code>return()</code> 外部终止 generator</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    print(<span class="string">'a'</span>);</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    print(<span class="string">'b'</span>);</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">    print(<span class="string">'c'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">// a</span></span><br><span class="line"><span class="comment">// &#123;value: 1, done: false&#125;</span></span><br><span class="line"><span class="comment">// &#123;value: 'result', done: true&#125;</span></span><br><span class="line"><span class="keyword">let</span> it = gen1();</span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.next()));</span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.return(<span class="string">'result'</span>)));</span><br></pre></td></tr></table></figure>
+<h3 id="throw-抛出异常"><a href="#throw-抛出异常" class="headerlink" title="throw() 抛出异常"></a><code>throw()</code> 抛出异常</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        print(<span class="string">'Started'</span>);</span><br><span class="line">        <span class="keyword">yield</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        print(<span class="string">'Caught: '</span> + error.message);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'return result'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">// Started</span></span><br><span class="line"><span class="comment">// &#123;value: undefined, done: false&#125;</span></span><br><span class="line"><span class="comment">// Caught: error</span></span><br><span class="line"><span class="comment">// &#123;value: 'return result', done: true&#125;</span></span><br><span class="line"><span class="keyword">let</span> it = gen();</span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.next()));</span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(it.throw(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'error'</span>))));</span><br></pre></td></tr></table></figure>
+<h3 id="很有有趣也有用的例子"><a href="#很有有趣也有用的例子" class="headerlink" title="很有有趣也有用的例子"></a>很有有趣也有用的例子</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for 循环延迟执行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fn1</span>(<span class="params">iterable</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">yield</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fn2</span>(<span class="params">iterable</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">        <span class="keyword">yield</span> x + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fn3</span>(<span class="params">iterable</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">        <span class="keyword">yield</span> x / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> newArr = [...fn3(fn2(fn1([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])))];</span><br><span class="line">print(<span class="built_in">JSON</span>.stringify(newArr)); <span class="comment">// [1, 1.5, 2]</span></span><br></pre></td></tr></table></figure>
+<h3 id="generator-类图"><a href="#generator-类图" class="headerlink" title="generator 类图"></a>generator 类图</h3><p>规范里面有一张<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-generatorfunction-objects" target="_blank" rel="external">很大的图</a>，有点复杂。所以，看一张小图：</p>
+<p><img src="./imgs/9.jpg" alt=""></p>
+<p>说明：</p>
+<ul>
+<li>空心箭头表示两个对象的继承关系。换句话说，从 x 指向 y 的箭头意味着 <code>Object.getPrototypeOf(x) === y</code> 。</li>
+<li>圆括号表示当前被包起来的对象是存在的，但是不能通过全局变量来访问。</li>
+<li>带有 <code>instanceof</code> 字眼的箭头如果从 x 指向 y ，就表明 <code>x instanceof y</code> 。<ul>
+<li><code>o instanceof C</code> 实际上就相当于 <code>C.prototype.isPrototypeOf(o)</code></li>
+</ul>
+</li>
+<li>带有 <code>prototype</code> 字眼的箭头如果从 x 指向 y ，就表明 <code>x.prototype === y</code> 。</li>
+</ul>
+<p>此图看完可能没有直观的感受，看两个例子先。</p>
+<p>第一个， generator 函数表现得很像一个构造函数，因为通过 <code>new</code> 调用和直接调用，两者的效果是一样的，都返回 generator 对象，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; function* g() &#123;&#125;</span><br><span class="line">&gt; g.prototype.hello = function () &#123; return &apos;hi!&apos;&#125;;</span><br><span class="line">&gt; let obj = g();</span><br><span class="line">&gt; obj instanceof g</span><br><span class="line">true</span><br><span class="line">&gt; obj.hello()</span><br><span class="line">&apos;hi!&apos;</span><br></pre></td></tr></table></figure>
+<p>第二个，如果想给所有的 generator 对象添加一个方法，就可以放在 <code>(Generator).prototype</code> 上面，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; let Generator_prototype = Object.getPrototypeOf(function* () &#123;&#125;).prototype;</span><br><span class="line">&gt; Generator_prototype.hello = function () &#123; return &apos;hi!&apos;&#125;;</span><br><span class="line">&gt; let generatorObject = (function* () &#123;&#125;)();</span><br><span class="line">&gt; generatorObject.hello()</span><br><span class="line">&apos;hi!&apos;</span><br></pre></td></tr></table></figure>
+<p>generator 内部的 <code>this</code> 是有一些猫腻的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span>; <span class="comment">// just in case</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Retrieve the yielded value via destructuring</span></span><br><span class="line"><span class="keyword">let</span> [functionThis] = gen1();</span><br><span class="line"><span class="built_in">console</span>.log(functionThis); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123; method: gen1 &#125;;</span><br><span class="line"><span class="keyword">let</span> [methodThis] = obj.method();</span><br><span class="line"><span class="built_in">console</span>.log(methodThis === obj); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// ReferenceError</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> gen2();</span><br></pre></td></tr></table></figure>
+<h3 id="一个简单的类似于-tj-co-库的东西"><a href="#一个简单的类似于-tj-co-库的东西" class="headerlink" title="一个简单的类似于 tj co 库的东西"></a>一个简单的类似于 tj co 库的东西</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此段代码使用 node --harmony 执行</span></span><br><span class="line">executeGeneratorFn(<span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">yield</span> request.bind(<span class="literal">null</span>, <span class="string">'http://www.baidu.com'</span>, &#123;userId: <span class="number">1</span>&#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">executeGeneratorFn(<span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> userList = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> param <span class="keyword">of</span> [&#123;userId: <span class="number">1</span>&#125;, &#123;userId: <span class="number">2</span>&#125;]) &#123;</span><br><span class="line">        userList.push(<span class="keyword">yield</span> request.bind(<span class="literal">null</span>, <span class="string">'http://www.baidu.com'</span>, param));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(userList);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">url, params, callback</span>) </span>&#123;</span><br><span class="line">    setTimeout(() =&gt; callback(<span class="string">'request result: '</span> + <span class="built_in">Math</span>.random()), <span class="number">3000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">executeGeneratorFn</span>(<span class="params">genFn, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> iterator = genFn();</span><br><span class="line">    next();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            execute(iterator.next(<span class="built_in">arguments</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            callback <span class="keyword">instanceof</span> <span class="built_in">Function</span> &amp;&amp; callback(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params">nextValue</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!nextValue.done) &#123;</span><br><span class="line">            nextValue.value(next);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            callback <span class="keyword">instanceof</span> <span class="built_in">Function</span> &amp;&amp; callback(<span class="literal">null</span>, nextValue.value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="生成器（ generator ）" data-title="生成器（ generator ）" data-url="http://yoursite.com/blogs/生成器（ generator ）.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

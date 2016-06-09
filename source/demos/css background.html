@@ -1,0 +1,59 @@
+---
+layout: false
+---
+<style>
+    .css-background-demo1 {
+        width: 300px;
+        height: 200px;
+        margin: 10px 0;
+
+        background-image:
+            repeating-linear-gradient(45deg,
+                rgba(255,0,0,.3) 0,
+                rgba(255,0,0,.3) 10px,
+                rgba(0,255,0,.3) 10px,
+                rgba(0,255,0,.3) 20px,
+                rgba(0,0,255,.3) 20px,
+                rgba(0,0,255,.3) 30px,
+                rgba(100,100,0,.3) 30px,
+                rgba(100,100,0,.3) 40px
+            ),
+            repeating-linear-gradient(145deg,
+                rgba(255,0,0,.3) 0,
+                rgba(255,0,0,.3) 10px,
+                rgba(0,255,0,.3) 10px,
+                rgba(0,255,0,.3) 20px,
+                rgba(0,0,255,.3) 20px,
+                rgba(0,0,255,.3) 30px,
+                rgba(100,100,0,.3) 30px,
+                rgba(100,100,0,.3) 40px
+            );
+    }
+</style>
+<div class="css-background-demo1"></div>
+<style>
+    .css-background-demo2 {
+        width: 300px;
+        height: 200px;
+
+        background-image:
+            radial-gradient(
+                transparent 50%,
+                rgba(0,255,0,.5) 50%,
+                rgba(0,255,0,.5) 60%,
+                transparent 60%),
+            radial-gradient(
+                transparent 50%,
+                rgba(255,0,0,.5) 50%,
+                rgba(255,0,0,.5) 60%,
+                transparent 60%),
+            radial-gradient(
+                transparent 80%,
+                rgba(0,0,255,.5) 80%,
+                rgba(0,0,255,.5) 90%,
+                transparent 90%);
+        background-size: 40px 40px;
+        background-position: 0 0, 20px 20px, 20px 40px;
+    }
+</style>
+<div class="css-background-demo2"></div>

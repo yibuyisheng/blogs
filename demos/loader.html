@@ -1,0 +1,36 @@
+<style type="text/css">
+    .loader {
+        width: 100px;
+        height: 100px;
+
+        background-image:
+            radial-gradient(
+                rgba(0,255,0,1) 60%,
+                transparent 60%
+            ),
+            radial-gradient(
+                rgba(0,255,0,1) 60%,
+                transparent 60%
+            );
+        background-size: 10px, 50px;
+        background-position: 0 0, 50px 0;
+        background-repeat: no-repeat, no-repeat;
+        animation: change 2s linear infinite;
+    }
+
+    @keyframes change {
+        0% {
+            background-size: 10px, 50px;
+            background-position: 0 0, 50px 0;
+        }
+        50% {
+            background-size: 50px, 10px;
+            background-position: 50px 0, 0 0;
+        }
+        100% {
+            background-size: 10px, 50px;
+            background-position: 0 0, 50px 0;
+        }
+    }
+</style>
+<div class="loader"></div>

@@ -1,0 +1,21 @@
+---
+layout: false
+---
+<style type="text/css">
+    @keyframes ants {
+        to {
+            background-position: 100%;
+        }
+    }
+    .marching-ants-borders {
+        width: 10em;
+        height: 10em;
+        margin: 2em 0;
+
+        border: 1px solid transparent;
+        background: linear-gradient(white, white) padding-box,
+            repeating-linear-gradient(-45deg, #000 0, #000 25%, #fff 0, #fff 50%) 0 / .6em .6em;
+        animation: ants 12s linear infinite;
+    }
+</style>
+<div class="marching-ants-borders"></div>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS border-radius | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="">
+  <meta name="description" content="border-radius 的取值：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS border-radius">
+<meta property="og:url" content="http://yoursite.com/blogs/CSS border-radius.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="border-radius 的取值：">
+<meta property="og:updated_time" content="2016-06-09T03:41:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS border-radius">
+<meta name="twitter:description" content="border-radius 的取值：">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;&lt;code&gt;border-radius&lt;/code&gt; 的取值：&lt;br&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CSS border-radius</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">CSS border-radius</h1>
+    <h5 class="subtitle">2015-08-27</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-CSS border-radius" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col"></div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <p><code>border-radius</code> 的取值：<br><a id="more"></a></p>
+<blockquote>
+<p>[ &lt;length&gt; | &lt;percentage&gt; ]{1,4} [ / [ &lt;length&gt; | &lt;percentage&gt; ]{1,4} ]?</p>
+</blockquote>
+<iframe src="/demos/border-radius.html" width="100%" height="116" frameborder="0" allowfullscreen></iframe>
+<p>上述示例的 CSS 代码为：</p>
+<p>border-radius 是可以通过<code>/</code>的形式来对某一个角设置一个椭圆弧的。</p>
+<p>比如示例中的 <code>20px/5px</code> 的含义是：对于左上角的圆弧，圆心到上边框的距离是5px，到左边框的距离是20px；对于右上角的圆弧，圆心到上边框的距离是5px，到右边框的距离是20px；对于右下角的圆弧，圆心到下边框的距离是5px，到右边框的距离是20px；对于左下角的圆弧，圆心到下边框的距离是5px，到左边框的距离是20px。</p>
+<p>如果 border-radius 的半径小于或等于元素的边框厚度时，边框内角就会变成直角效果。</p>
+<p>对 img 元素运用 border-radius ， webkit 内核不能使图片边角出现圆角的效果，可以使用背景图片的方式来修正这个问题。</p>
+<p>当表格样式属性 border-collapse 是 collapse 时，对表格使用 border-radius 圆角效果，表格将不会展现出圆角效果，只有 border-collapse 为 separate 的时候，圆角才能正常展示。</p>
+<p>border-radius 可以做的效果：圆形、半圆、扇形、椭圆。</p>
+<iframe src="/demos/half%20ellipse.html" width="100%" height="116" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="CSS border-radius" data-title="CSS border-radius" data-url="http://yoursite.com/blogs/CSS border-radius.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

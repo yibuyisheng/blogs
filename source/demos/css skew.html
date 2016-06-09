@@ -1,0 +1,59 @@
+---
+layout: false
+---
+<style type="text/css">
+.demo3 {
+    width: 400px;
+    height: 300px;
+    position: relative;
+}
+.demo3 .box1, .demo3 .box2, .demo3 .box3, .demo3 .box4 {
+    top: 100px;
+    left: 50px;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+.demo3 .box1 {
+    border: 1px #000 dotted;
+}
+.demo3 .box2 {
+    border: 1px solid #000;
+    transform: skewX(45deg);
+    -webkit-transform: skewX(45deg);
+}
+
+.demo3 .box3, .demo3 .box4 {
+    left: 240px;
+}
+.demo3 .box3 {
+    border: 1px dotted #000;
+}
+.demo3 .box4 {
+    border: 1px solid #000;
+    transform: skewY(45deg);
+    -webkit-transform: skewY(45deg);
+}
+
+.demo3 h5 {
+    position: absolute;
+    margin: 0;
+    top: 20px;
+}
+.demo3 h5:first-child {
+    left: 24px;
+}
+.demo3 h5:nth-child(4) {
+    left: 246px;
+}
+</style>
+
+<div class="demo3">
+    <h5>skewX(45deg)</h5>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <h5>skewY(45deg)</h5>
+    <div class="box3"></div>
+    <div class="box4"></div>
+</div>

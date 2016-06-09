@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,55 +130,6 @@
 <h3 id="UIView-js"><a href="#UIView-js" class="headerlink" title="UIView.js"></a>UIView.js</h3><p>与 ESUI 结合的 <code>View</code> 基类。该类有一个主入口方法 enterDocument()，该函数在容器渲染完毕后触发，用于控制元素可见性及绑定事件等 DOM 操作。</p>
 <p>是 ESUI 中 View 类的子类。</p>
 <p>该类对应的实例上会有一个视图上下文对象（ view.viewContext ），此上下文对象会传递给每个子控件，也就是说每个子控件都会有一个 viewContext 属性。此上下文对象的详细信息参看<a href="https://github.com/yibuyisheng/blogs/issues/4" target="_blank" rel="external">百度 EFE 前端框架学习笔记（esui）</a>的 <code>ViewContext.js</code> 部分。</p>
-=======
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-        <meta name="uyan_auth" content="711800a0ee">
-        <link rel="stylesheet" type="text/css" href="/blogs/site/css/main.css">
-        <script src="/blogs/site/js/jquery.js"></script>
-        
-        <script type="text/javascript">
-            var _hmt = _hmt || [];
-            (function() {
-              var hm = document.createElement("script");
-              hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
-              var s = document.getElementsByTagName("script")[0];
-              s.parentNode.insertBefore(hm, s);
-            })();
-        </script>
-        <script>
-        var CONFIG = {
-            demoDir: '/blogs',
-            demoexpstr: 'Chrome'
-        };
-        </script>
-        
-        
-        <title>百度 EFE 前端框架学习笔记（ef）</title>
-    
-    </head>
-    <body>
-        <div class="navbar navbar-dark bg-inverse">
-            <div class="container">
-                <a href="/blogs/site/index.html" class="navbar-brand">首页</a>
-            </div>
-        </div>
-        
-        <div class="blog-page container">
-            <div class="card">
-                <div class="card-block">
-                    <div class="hljs">
-                        <!-- config.time: 2015-06-01 -->
-<!-- config.brief: 官方 EF 学习资料：与 ESUI 结合的 `View` 基类。该类有一个主入口方法 enterDocument()，该函数在容器渲染完毕后触发，用于控制元素可见性及绑定事件等 DOM 操作。 -->
-<h1 id="-efe-ef-">百度（EFE）前端框架学习笔记（ef）</h1>
-<p>官方 EF 学习资料：<a href="https://github.com/ecomfe/ef/blob/master/doc/ActionPanel.md">ActionPanel</a>、<a href="https://github.com/ecomfe/ef/blob/master/doc/UIModel.md">UIModel</a>、<a href="https://github.com/ecomfe/ef/blob/master/doc/UIView.md">UIView</a>。</p>
-<h3 id="uiview-js">UIView.js</h3>
-<p>与 ESUI 结合的 <code>View</code> 基类。该类有一个主入口方法 enterDocument()，该函数在容器渲染完毕后触发，用于控制元素可见性及绑定事件等 DOM 操作。</p>
-<p>是 ESUI 中 View 类的子类。</p>
-<p>该类对应的实例上会有一个视图上下文对象（ view.viewContext ），此上下文对象会传递给每个子控件，也就是说每个子控件都会有一个 viewContext 属性。此上下文对象的详细信息参看<a href="https://github.com/yibuyisheng/blogs/issues/4">百度 EFE 前端框架学习笔记（esui）</a>的 <code>ViewContext.js</code> 部分。</p>
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>enterDocument() 方法会调用 ESUI 的 main.init() 方法，初始化当前 UIView 实例所管辖的 container 部分，生成各种各样的控件等等。</p>
 <p>此类生成的实例上有一个很重要的事件属性 uiView.uiEvents，该属性有2种方式：</p>
 <ul>
@@ -188,7 +138,6 @@
 </ul>
 <p>在此处声明的事件，运行时的 <code>this</code> 对象均是 <code>View</code> 实例，而非控件的实例。同时，在运行期，<code>UIView</code> 会克隆该属性，将其中所有的处理函数都进行一次 <code>bind</code>，将 <code>this</code> 指向自身，因此运行时的 <code>uiEvents</code> 与类声明时的不会相同。</p>
 <p>此类上的 bindEvents() 方法就会根据 uiEvents 指定的事件配置来给子控件绑定事件。</p>
-<<<<<<< HEAD
 <h3 id="UIModel-js"><a href="#UIModel-js" class="headerlink" title="UIModel.js"></a>UIModel.js</h3><p>处理 ESUI 场景的 <code>Model</code> 实现。 UIModel 继承自 er 的 Model。</p>
 <p>UIModel 添加了 formatter 属性，用于对日期进行格式化。同时增加了一些操作数据的方法：set() 、 fill() 、 getPart()。</p>
 <h3 id="ActionPanel-js"><a href="#ActionPanel-js" class="headerlink" title="ActionPanel.js"></a>ActionPanel.js</h3><p>用于加载子Action的面板控件。继承自 esui 的 Panel 类，不过没有 setContent() 方法。</p>
@@ -256,56 +205,3 @@
 
 </body>
 </html>
-=======
-<h3 id="uimodel-js">UIModel.js</h3>
-<p>处理 ESUI 场景的 <code>Model</code> 实现。 UIModel 继承自 er 的 Model。</p>
-<p>UIModel 添加了 formatter 属性，用于对日期进行格式化。同时增加了一些操作数据的方法：set() 、 fill() 、 getPart()。</p>
-<h3 id="actionpanel-js">ActionPanel.js</h3>
-<p>用于加载子Action的面板控件。继承自 esui 的 Panel 类，不过没有 setContent() 方法。</p>
-<h3 id="-">小技巧</h3>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getControl</span>(<span class="hljs-params">node</span>) </span>{
-    <span class="hljs-keyword">var</span> controls = <span class="hljs-built_in">require</span>(<span class="hljs-string">'er/controller'</span>).currentAction.view.viewContext.getControls();
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> k <span class="hljs-keyword">in</span> controls) {
-        <span class="hljs-keyword">var</span> control = controls[k];
-        <span class="hljs-keyword">if</span> (control.main === node) {
-            <span class="hljs-keyword">return</span> control;
-        }
-    }
-}
-</code></pre>
-<p>该函数可以根据节点找到这个节点对应的控件对象，对debug有一定帮助。</p>
-
-                    </div>
-                </div>
-            </div>
-
-            
-                <div class="card">
-                    <div class="card-block">
-                        <div class="ds-thread"
-                            data-thread-key="百度 EFE 前端框架学习笔记（ef）"
-                            data-title="百度 EFE 前端框架学习笔记（ef）"
-                            data-url="http://yibuyisheng.github.io/blogs/site/blogs/百度 EFE 前端框架学习笔记（ef）.html">
-                        </div>
-                    </div>
-                </div>
-            
-        </div>
-        
-            <script type="text/javascript">
-                var duoshuoQuery = {short_name:"yibuyishengblogs"};
-                (function() {
-                    var ds = document.createElement('script');
-                    ds.type = 'text/javascript';ds.async = true;
-                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                    ds.charset = 'UTF-8';
-                    (document.getElementsByTagName('head')[0]
-                     || document.getElementsByTagName('body')[0]).appendChild(ds);
-                })();
-            </script>
-        
-        <script type="text/javascript" src="/blogs/site/js/blog.js"></script>
-    
-    </body>
-
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,105 +139,12 @@
 <p>后端提供了一个数据接口 <code>/account/my/address/</code> 。咱是有追求的程序员，自然接口要采用 RESTful 的思想，于是服务器端非成功的处理，都会返回 http code 非200的状态码，坑由此而生。<br><a id="more"></a></p>
 <p>在前端请求这个地方，由于做的是移动端应用，果断采用了手写 xhr 请求，大致接口请求代码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encodeParams</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> paramsStr = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> params) &#123;</span><br><span class="line">        paramsStr.push(k + <span class="string">'='</span> + params[k]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> paramsStr.join(<span class="string">'&amp;'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params">url, params</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">        xhr.open(<span class="string">'POST'</span>, url);</span><br><span class="line">        xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; resolve(xhr.response); &#125;;</span><br><span class="line">        xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; reject(xhr.response); &#125;;</span><br><span class="line">        xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/x-www-form-urlencoded'</span>);</span><br><span class="line">        xhr.send(encodeParams(params));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">post(<span class="string">'/account/my/address/'</span>, &#123;<span class="comment">/*参数*/</span>&#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// some code</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-=======
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-        <meta name="uyan_auth" content="711800a0ee">
-        <link rel="stylesheet" type="text/css" href="/blogs/site/css/main.css">
-        <script src="/blogs/site/js/jquery.js"></script>
-        
-        <script type="text/javascript">
-            var _hmt = _hmt || [];
-            (function() {
-              var hm = document.createElement("script");
-              hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
-              var s = document.getElementsByTagName("script")[0];
-              s.parentNode.insertBefore(hm, s);
-            })();
-        </script>
-        <script>
-        var CONFIG = {
-            demoDir: '/blogs',
-            demoexpstr: 'Chrome'
-        };
-        </script>
-        
-        
-        <title>记一次坑爹的对接经历</title>
-    
-    </head>
-    <body>
-        <div class="navbar navbar-dark bg-inverse">
-            <div class="container">
-                <a href="/blogs/site/index.html" class="navbar-brand">首页</a>
-            </div>
-        </div>
-        
-        <div class="blog-page container">
-            <div class="card">
-                <div class="card-block">
-                    <div class="hljs">
-                        <!-- config.time: 2015-05-07 -->
-<!-- config.brief: 事情是这样的：后端提供了一个数据接口 /account/my/address/ 。咱是有追求的程序员，自然接口要采用 RESTful 的思想，于是服务器端非成功的处理，都会返回 http code 非200的状态码，坑由此而生。 -->
-<h1 id="-">记一次坑爹的对接经历</h1>
-<p>事情是这样的：</p>
-<p>后端提供了一个数据接口 <code>/account/my/address/</code> 。咱是有追求的程序员，自然接口要采用 RESTful 的思想，于是服务器端非成功的处理，都会返回 http code 非200的状态码，坑由此而生。</p>
-<p>在前端请求这个地方，由于做的是移动端应用，果断采用了手写 xhr 请求，大致接口请求代码如下：</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">encodeParams</span>(<span class="hljs-params">params</span>) </span>{
-    <span class="hljs-keyword">var</span> paramsStr = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> k <span class="hljs-keyword">in</span> params) {
-        paramsStr.push(k + <span class="hljs-string">'='</span> + params[k]);
-    }
-    <span class="hljs-keyword">return</span> paramsStr.join(<span class="hljs-string">'&amp;'</span>);
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">url, params</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
-        <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
-        xhr.open(<span class="hljs-string">'POST'</span>, url);
-        xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ resolve(xhr.response); };
-        xhr.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ reject(xhr.response); };
-        xhr.setRequestHeader(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'application/x-www-form-urlencoded'</span>);
-        xhr.send(encodeParams(params));
-    });
-}
-
-post(<span class="hljs-string">'/account/my/address/'</span>, {<span class="hljs-comment">/*参数*/</span>})
-    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
-        <span class="hljs-comment">// some code</span>
-    });
-</code></pre>
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>代码写好，拿到 chrome 中一测，出现一个似乎像是请求没发出去的错误：</p>
 <p><img src="https://github.com/yibuyisheng/blogs/blob/master/imgs/1.jpg?raw=true" alt=""></p>
 <p>对于当时不知道 chrome://net-internals/ 这个强大工具的我来说，这种错误简直就是一个莫名其妙的东西，很难搞。</p>
 <p>于是仔细看一眼 request header ，发现没有 <code>Content-Length</code> ！这是怎么回事？为什么浏览器没计算出来 <code>Content-Length</code> ？很不可思议！</p>
 <p>于是，尝试改变一下请求 body 的编码方式，将上述 post 函数改成这样：</p>
-<<<<<<< HEAD
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFormData</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fd = <span class="keyword">new</span> FormData();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> params) &#123;</span><br><span class="line">        fd.append(k, params[k]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fd;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params">url, params</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">        xhr.open(<span class="string">'POST'</span>, url);</span><br><span class="line">        xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; resolve(xhr.response); &#125;;</span><br><span class="line">        xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; reject(xhr.response); &#125;;</span><br><span class="line">        xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'multipart/form-data'</span>);</span><br><span class="line">        xhr.send(createFormData(params));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-=======
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createFormData</span>(<span class="hljs-params">params</span>) </span>{
-    <span class="hljs-keyword">var</span> fd = <span class="hljs-keyword">new</span> FormData();
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> k <span class="hljs-keyword">in</span> params) {
-        fd.append(k, params[k]);
-    }
-    <span class="hljs-keyword">return</span> fd;
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">url, params</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
-        <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
-        xhr.open(<span class="hljs-string">'POST'</span>, url);
-        xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ resolve(xhr.response); };
-        xhr.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ reject(xhr.response); };
-        xhr.setRequestHeader(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'multipart/form-data'</span>);
-        xhr.send(createFormData(params));
-    });
-}
-</code></pre>
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>再测，出现这样的错：</p>
 <p><img src="https://github.com/yibuyisheng/blogs/blob/master/imgs/2.jpg?raw=true" alt=""></p>
 <p>仍然没有 <code>Content-Length</code> ，错误依旧，简直令人发指！</p>
@@ -249,29 +155,19 @@ post(<span class="hljs-string">'/account/my/address/'</span>, {<span class="hljs
 <p>嗯，看来请求还是被正常发送出去了的。再往下看，发现了这个：</p>
 <p><img src="https://github.com/yibuyisheng/blogs/blob/master/imgs/4.jpg?raw=true" alt=""></p>
 <p><code>ERR_UNEXPECTED_PROXY_AUTH</code> 映入眼帘，代理需要认证？啥玩意儿？然后再看到一个 <code>Server: nginx/1.4.6 (Ubuntu)</code> ，仔细想想，为毛 nginx 会说代理认证错误！抓狂，去找后端人员，后端人员果断说不可能是 nginx 有问题！</p>
-<<<<<<< HEAD
 <p>于是，再次崩溃， google 吧！于是尝试各种关键字搜索： <code>ERR_UNEXPECTED_PROXY_AUTH</code> 、 <code>net_error = -323</code> …</p>
-=======
-<p>于是，再次崩溃， google 吧！于是尝试各种关键字搜索： <code>ERR_UNEXPECTED_PROXY_AUTH</code> 、 <code>net_error = -323</code> ...</p>
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>搜索的时候，出现了一条关于 http code 407 的记录，点进去一看，惊呆了， 407 的含义如下：</p>
 <blockquote>
 <p>Proxy Authentication Required</p>
 </blockquote>
 <p>需要代理授权！再看看上面的那张图，后端返回的 http code 果然是407，于是找到后端人员，问他可能会返回407吗？答案是 yes ！（我“怒发冲冠”，于是后端同学，卒）</p>
-<<<<<<< HEAD
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这次问题解决总结下来有这么几个点，以后要注意：</p>
-=======
-<h4 id="-">总结</h4>
-<p>这次问题解决总结下来有这么几个点，以后要注意：</p>
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <ul>
 <li>1、在 RESTful 开发中，一定要对状态码足够敏感；</li>
 <li>2、好好使用 chrome://net-internals/ ，确实挺强大；</li>
 <li>3、chrome 出现上述类似错误的时候（407、请求未成功发送出去等等），很可能不显示完整的请求头，不显示响应信息（因为按照语义，此时根本无响应信息可显示）。</li>
 </ul>
 
-<<<<<<< HEAD
             </div>
 
             
@@ -333,38 +229,3 @@ post(<span class="hljs-string">'/account/my/address/'</span>, {<span class="hljs
 
 </body>
 </html>
-=======
-                    </div>
-                </div>
-            </div>
-
-            
-                <div class="card">
-                    <div class="card-block">
-                        <div class="ds-thread"
-                            data-thread-key="记一次坑爹的对接经历"
-                            data-title="记一次坑爹的对接经历"
-                            data-url="http://yibuyisheng.github.io/blogs/site/blogs/记一次坑爹的对接经历.html">
-                        </div>
-                    </div>
-                </div>
-            
-        </div>
-        
-            <script type="text/javascript">
-                var duoshuoQuery = {short_name:"yibuyishengblogs"};
-                (function() {
-                    var ds = document.createElement('script');
-                    ds.type = 'text/javascript';ds.async = true;
-                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                    ds.charset = 'UTF-8';
-                    (document.getElementsByTagName('head')[0]
-                     || document.getElementsByTagName('body')[0]).appendChild(ds);
-                })();
-            </script>
-        
-        <script type="text/javascript" src="/blogs/site/js/blog.js"></script>
-    
-    </body>
-
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd

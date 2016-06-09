@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,51 +128,6 @@
             <div class="post-content" id="post-content" itemprop="postContent">
               <p>在 web 前端开发中，元素外部点击事件算是非常常用的一种事件了。比如弹出一个对话框，点击对话框外部的时候需要把这个对话框关掉。</p>
 <a id="more"></a>
-=======
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-        <meta name="uyan_auth" content="711800a0ee">
-        <link rel="stylesheet" type="text/css" href="/blogs/site/css/main.css">
-        <script src="/blogs/site/js/jquery.js"></script>
-        
-        <script type="text/javascript">
-            var _hmt = _hmt || [];
-            (function() {
-              var hm = document.createElement("script");
-              hm.src = "//hm.baidu.com/hm.js?975a5aad9775f4e01af87fb7c67b8f63";
-              var s = document.getElementsByTagName("script")[0];
-              s.parentNode.insertBefore(hm, s);
-            })();
-        </script>
-        <script>
-        var CONFIG = {
-            demoDir: '/blogs',
-            demoexpstr: 'Chrome'
-        };
-        </script>
-        
-        
-        <title>web 前端外部点击事件的实现</title>
-    
-    </head>
-    <body>
-        <div class="navbar navbar-dark bg-inverse">
-            <div class="container">
-                <a href="/blogs/site/index.html" class="navbar-brand">首页</a>
-            </div>
-        </div>
-        
-        <div class="blog-page container">
-            <div class="card">
-                <div class="card-block">
-                    <div class="hljs">
-                        <!-- config.time: 2014-10-22 14:52 -->
-<!-- config.brief: 在 web 前端开发中，元素外部点击事件算是非常常用的一种事件了。比如弹出一个对话框，点击对话框外部的时候需要把这个对话框关掉。 -->
-<h1 id="web-">web 前端外部点击事件的实现</h1>
-<p>在 web 前端开发中，元素外部点击事件算是非常常用的一种事件了。比如弹出一个对话框，点击对话框外部的时候需要把这个对话框关掉。</p>
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>实现这个事件有一个核心的东西，就是判断两个节点是否存在父子关系，整个事件流程如下：</p>
 <ul>
 <li>1、事先设定好的一组元素，如果在这组元素外部点击的话，就会触发外部点击事件，这组元素暂记为 nodes ；</li>
@@ -181,38 +135,11 @@
 <li>3、当用户点击 nodeClick 的时候，需要判断 nodes 中是否存在 nodeClick 的祖先节点，如果不存在的话，则触发外部点击事件。</li>
 </ul>
 <p>按照这个分析，关键点就落在了判断节点父子关系上面了。</p>
-<<<<<<< HEAD
 <p>其实早在 IE5 的时候，元素节点上面就有一个方法 <code>contains()</code> ，用于判断父子关系，具体文档可参见： <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.contains" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/API/Node.contains</a> 。从文档中，我们可以看见 mobile 部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">contains</span>(<span class="params">parentNode, childNode</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> fn = Node.prototype.contains || <span class="function"><span class="keyword">function</span>(<span class="params">childNode</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (childNode) &#123;</span><br><span class="line">      <span class="keyword">if</span> (childNode === parentNode) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      childNode = childNode.parentNode;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> fn.call(parentNode, childNode);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isIn</span>(<span class="params">parentNodes, node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, il = parentNodes.length; i &lt; il; i += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (contains(parentNodes[i], node)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>实现了这个之后，接下来的事情就是维护回调函数队列了，实现机制可能会有多种，此处给出其中一种。</p>
 <p>给出一个Array，用于记录所有回调函数，其中每一个数组元素的结构如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  nodes: [node1, node2, ...],      <span class="comment">// 对应上一大步中的nodes变量，即事先设定好的那一组元素</span></span><br><span class="line">  callback: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;          <span class="comment">// 触发本次out click事件的回调函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-=======
-<p>其实早在 IE5 的时候，元素节点上面就有一个方法 <code>contains()</code> ，用于判断父子关系，具体文档可参见： <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.contains">https://developer.mozilla.org/en-US/docs/Web/API/Node.contains</a> 。从文档中，我们可以看见 mobile 部分测试不太充分，所以此处最好保留一个自己实现的版本，代码如下：</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">contains</span><span class="hljs-params">(parentNode, childNode)</span> </span>{
-  <span class="hljs-keyword">var</span> fn = Node.prototype.contains || <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(childNode)</span> </span>{
-    <span class="hljs-keyword">while</span> (childNode) {
-      <span class="hljs-keyword">if</span> (childNode === parentNode) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-      childNode = childNode.parentNode;
-    }
-  };
-  <span class="hljs-keyword">return</span> fn.call(parentNode, childNode);
-}
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isIn</span><span class="hljs-params">(parentNodes, node)</span> </span>{
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, il = parentNodes.length; i &lt; il; i += <span class="hljs-number">1</span>) {
-    <span class="hljs-keyword">if</span> (contains(parentNodes[i], node)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-  }
-  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-}
-</code></pre>
-<p>实现了这个之后，接下来的事情就是维护回调函数队列了，实现机制可能会有多种，此处给出其中一种。</p>
-<p>给出一个Array，用于记录所有回调函数，其中每一个数组元素的结构如下：</p>
-<pre><code class="lang-js">{
-  nodes: [node1, node2, ...],      <span class="hljs-comment">// 对应上一大步中的nodes变量，即事先设定好的那一组元素</span>
-  <span class="hljs-keyword">callback</span>: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{}          <span class="hljs-comment">// 触发本次out click事件的回调函数</span>
-}
-</code></pre>
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd
 <p>暂记这个 Array 变量的名字是 outerCallbacks 。</p>
 <p>接下来，就剩下对外提供 API 了，此处向外部提供两个 API ：</p>
 <ul>
@@ -220,7 +147,6 @@
 <li>2、 <code>off()</code> 函数，用于取消回调函数。</li>
 </ul>
 <p>on函数的实现非常简单，此处直接上代码：</p>
-<<<<<<< HEAD
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span>(<span class="params">elem, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!isFunction(callback)) <span class="keyword">return</span>;            <span class="comment">// isFunction = function(obj) &#123;return Object.prototype.toString.call(obj) === '[object Function]';&#125;</span></span><br><span class="line"></span><br><span class="line">  outerCallbacks.push(&#123;</span><br><span class="line">    nodes: (isArray(elem) ? elem : [elem]),     <span class="comment">// isArray = function(obj) &#123;return Object.prototype.toString.call(obj) === '[object Array]'&#125;</span></span><br><span class="line">    callback: callback</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>实现 <code>off()</code> 函数的时候，有一个难点和一个注意点：</p>
 <p>难点：参数处理，条件判断；</p>
@@ -288,52 +214,3 @@
 
 </body>
 </html>
-=======
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outer</span><span class="hljs-params">(elem, callback)</span></span> {
-  <span class="hljs-keyword">if</span> (!isFunction(callback)) <span class="hljs-keyword">return</span>;            // isFunction = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(obj)</span></span> {<span class="hljs-keyword">return</span> Object.prototype.toString.call(obj) === <span class="hljs-string">'[object Function]'</span>;}
-
-  outerCallbacks.push({
-    nodes: (isArray(elem) ? elem : [elem]),     // isArray = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(obj)</span></span> {<span class="hljs-keyword">return</span> Object.prototype.toString.call(obj) === <span class="hljs-string">'[object Array]'</span>}
-    callback: callback
-  });
-}
-</code></pre>
-<p>实现 <code>off()</code> 函数的时候，有一个难点和一个注意点：</p>
-<p>难点：参数处理，条件判断；</p>
-<p>注意点：在外部点击事件回调函数里面调用了 <code>off()</code> 函数怎么办？</p>
-<p>可以参看我的实现： <a href="https://github.com/yibuyisheng/web-ui/blob/master/static/js/event/outer.js">https://github.com/yibuyisheng/web-ui/blob/master/static/js/event/outer.js</a> 。</p>
-
-                    </div>
-                </div>
-            </div>
-
-            
-                <div class="card">
-                    <div class="card-block">
-                        <div class="ds-thread"
-                            data-thread-key="web 前端外部点击事件的实现"
-                            data-title="web 前端外部点击事件的实现"
-                            data-url="http://yibuyisheng.github.io/blogs/site/blogs/web 前端外部点击事件的实现.html">
-                        </div>
-                    </div>
-                </div>
-            
-        </div>
-        
-            <script type="text/javascript">
-                var duoshuoQuery = {short_name:"yibuyishengblogs"};
-                (function() {
-                    var ds = document.createElement('script');
-                    ds.type = 'text/javascript';ds.async = true;
-                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                    ds.charset = 'UTF-8';
-                    (document.getElementsByTagName('head')[0]
-                     || document.getElementsByTagName('body')[0]).appendChild(ds);
-                })();
-            </script>
-        
-        <script type="text/javascript" src="/blogs/site/js/blog.js"></script>
-    
-    </body>
-
->>>>>>> 87b5a235a4635fdad5ec9527018b3a58bd2807dd

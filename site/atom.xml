@@ -594,10 +594,10 @@
     <link href="http://yoursite.com//blogs/CSS%20%E7%A9%BA%E5%BF%83%E5%AD%97.html"/>
     <id>http://yoursite.com//blogs/CSS 空心字.html</id>
     <published>2015-09-01T16:00:00.000Z</published>
-    <updated>2016-06-09T05:50:15.000Z</updated>
+    <updated>2016-06-09T05:53:00.000Z</updated>
     
     <content type="html">&lt;p&gt;空心字。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;闪烁的空心字&quot;&gt;&lt;a href=&quot;#闪烁的空心字&quot; class=&quot;headerlink&quot; title=&quot;闪烁的空心字&quot;&gt;&lt;/a&gt;闪烁的空心字&lt;/h3&gt;&lt;iframe src=&quot;..../demos/空心字1.html&quot; width=&quot;100%&quot; height=&quot;96&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h3 id=&quot;闪烁的空心字&quot;&gt;&lt;a href=&quot;#闪烁的空心字&quot; class=&quot;headerlink&quot; title=&quot;闪烁的空心字&quot;&gt;&lt;/a&gt;闪烁的空心字&lt;/h3&gt;&lt;iframe src=&quot;../demos/空心字1.html&quot; width=&quot;100%&quot; height=&quot;96&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;h3 id=&quot;带背景渐变的空心字&quot;&gt;&lt;a href=&quot;#带背景渐变的空心字&quot; class=&quot;headerlink&quot; title=&quot;带背景渐变的空心字&quot;&gt;&lt;/a&gt;带背景渐变的空心字&lt;/h3&gt;&lt;iframe src=&quot;../demos/空心字2.html&quot; width=&quot;100%&quot; height=&quot;91&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;text-shadow 是绘制在 background 之上的，如果想要文字同时能应用 text-shadow 和 background-image ，那么就必须使用一定的技巧了，不然就会造成 text-shadow 的颜色遮住 background 的颜色。&lt;/p&gt;
 </content>

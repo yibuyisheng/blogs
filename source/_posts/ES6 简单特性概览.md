@@ -29,7 +29,7 @@ Babel REPL 有四个主要部分：
 * 右上角部分包含 ES6 代码编译成的 ES5 代码。
 * 右下角部分展示通过 `console.log()` 输出的内容。
 
-![](/images/11.jpg)
+![](../images/11.jpg)
 
 ### babel-node
 

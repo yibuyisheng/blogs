@@ -8,7 +8,7 @@ date: 2015-08-27
 
 > [ &lt;length&gt; | &lt;percentage&gt; ]{1,4} [ / [ &lt;length&gt; | &lt;percentage&gt; ]{1,4} ]?
 
-{% iframe /demos/border-radius.html 100% 116 %}
+{% iframe ../demos/border-radius.html 100% 116 %}
 
 上述示例的 CSS 代码为：
 
@@ -24,4 +24,4 @@ border-radius 是可以通过`/`的形式来对某一个角设置一个椭圆弧
 
 border-radius 可以做的效果：圆形、半圆、扇形、椭圆。
 
-{% iframe /demos/half%20ellipse.html 100% 116 %}
+{% iframe ../demos/half%20ellipse.html 100% 116 %}

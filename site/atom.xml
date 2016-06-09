@@ -285,7 +285,7 @@
     <link href="http://yoursite.com//blogs/ES6%20%E7%AE%80%E5%8D%95%E7%89%B9%E6%80%A7%E6%A6%82%E8%A7%88.html"/>
     <id>http://yoursite.com//blogs/ES6 简单特性概览.html</id>
     <published>2015-10-18T03:43:00.000Z</published>
-    <updated>2016-06-08T11:21:08.000Z</updated>
+    <updated>2016-06-09T05:51:13.000Z</updated>
     
     <content type="html">&lt;p&gt;本文内容：&lt;/p&gt;
 &lt;ul&gt;
@@ -307,7 +307,7 @@
 &lt;li&gt;右上角部分包含 ES6 代码编译成的 ES5 代码。&lt;/li&gt;
 &lt;li&gt;右下角部分展示通过 &lt;code&gt;console.log()&lt;/code&gt; 输出的内容。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;/images/11.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../images/11.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;babel-node&quot;&gt;&lt;a href=&quot;#babel-node&quot; class=&quot;headerlink&quot; title=&quot;babel-node&quot;&gt;&lt;/a&gt;babel-node&lt;/h3&gt;&lt;p&gt;&lt;code&gt;babel-node&lt;/code&gt; 可执行程序可以通过 npm 安装：&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install --global babel&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;你可以像使用可执行程序 &lt;code&gt;node&lt;/code&gt; 一样使用 &lt;code&gt;babel-node&lt;/code&gt; 。类似于 &lt;code&gt;node&lt;/code&gt; ，像这样启动一个交互式的 REPL ：&lt;/p&gt;
@@ -594,11 +594,11 @@
     <link href="http://yoursite.com//blogs/CSS%20%E7%A9%BA%E5%BF%83%E5%AD%97.html"/>
     <id>http://yoursite.com//blogs/CSS 空心字.html</id>
     <published>2015-09-01T16:00:00.000Z</published>
-    <updated>2016-06-09T03:37:08.000Z</updated>
+    <updated>2016-06-09T05:50:15.000Z</updated>
     
     <content type="html">&lt;p&gt;空心字。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;闪烁的空心字&quot;&gt;&lt;a href=&quot;#闪烁的空心字&quot; class=&quot;headerlink&quot; title=&quot;闪烁的空心字&quot;&gt;&lt;/a&gt;闪烁的空心字&lt;/h3&gt;&lt;iframe src=&quot;/demos/空心字1.html&quot; width=&quot;100%&quot; height=&quot;96&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;h3 id=&quot;带背景渐变的空心字&quot;&gt;&lt;a href=&quot;#带背景渐变的空心字&quot; class=&quot;headerlink&quot; title=&quot;带背景渐变的空心字&quot;&gt;&lt;/a&gt;带背景渐变的空心字&lt;/h3&gt;&lt;iframe src=&quot;/demos/空心字2.html&quot; width=&quot;100%&quot; height=&quot;91&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h3 id=&quot;闪烁的空心字&quot;&gt;&lt;a href=&quot;#闪烁的空心字&quot; class=&quot;headerlink&quot; title=&quot;闪烁的空心字&quot;&gt;&lt;/a&gt;闪烁的空心字&lt;/h3&gt;&lt;iframe src=&quot;..../demos/空心字1.html&quot; width=&quot;100%&quot; height=&quot;96&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h3 id=&quot;带背景渐变的空心字&quot;&gt;&lt;a href=&quot;#带背景渐变的空心字&quot; class=&quot;headerlink&quot; title=&quot;带背景渐变的空心字&quot;&gt;&lt;/a&gt;带背景渐变的空心字&lt;/h3&gt;&lt;iframe src=&quot;../demos/空心字2.html&quot; width=&quot;100%&quot; height=&quot;91&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;text-shadow 是绘制在 background 之上的，如果想要文字同时能应用 text-shadow 和 background-image ，那么就必须使用一定的技巧了，不然就会造成 text-shadow 的颜色遮住 background 的颜色。&lt;/p&gt;
 </content>
     
@@ -616,23 +616,23 @@
     <link href="http://yoursite.com//blogs/CSS%20%E5%8F%98%E5%BD%A2.html"/>
     <id>http://yoursite.com//blogs/CSS 变形.html</id>
     <published>2015-08-31T16:00:00.000Z</published>
-    <updated>2016-06-09T03:31:10.000Z</updated>
+    <updated>2016-06-09T05:51:26.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;2D&quot;&gt;&lt;a href=&quot;#2D&quot; class=&quot;headerlink&quot; title=&quot;2D&quot;&gt;&lt;/a&gt;2D&lt;/h2&gt;&lt;p&gt;2D 常用的变形函数： tranlate() 、 scale() 、 rotate() 、 skew() 、 matrix() 。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;skew-函数&quot;&gt;&lt;a href=&quot;#skew-函数&quot; class=&quot;headerlink&quot; title=&quot;skew() 函数&quot;&gt;&lt;/a&gt;skew() 函数&lt;/h3&gt;&lt;p&gt;示例：&lt;/p&gt;
-&lt;iframe src=&quot;/demos/css%20skew.html&quot; width=&quot;100%&quot; height=&quot;320&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;../demos/css%20skew.html&quot; width=&quot;100%&quot; height=&quot;320&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;下图描述了&lt;code&gt;skew(30deg, 10deg)&lt;/code&gt;的工作原理：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/10.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../images/10.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;注：&lt;/strong&gt;上图来自 &lt;a href=&quot;http://dtop.powereasy.net/Item/3715.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dtop.powereasy.net/Item/3715.aspx&lt;/a&gt; 。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;transform-origin&quot;&gt;&lt;a href=&quot;#transform-origin&quot; class=&quot;headerlink&quot; title=&quot;transform-origin&quot;&gt;&lt;/a&gt;transform-origin&lt;/h3&gt;&lt;p&gt;transform-origin 用来指定元素变形的中心点位置，默认就是元素的中心点。&lt;/p&gt;
 &lt;p&gt;但是，对于位移 translate() 函数来说，无论 transform-origin 如何改变，都是以元素中心点为基准进行位移，例如：&lt;/p&gt;
-&lt;iframe src=&quot;/demos/transform-origin.html&quot; width=&quot;100%&quot; height=&quot;440&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;../demos/transform-origin.html&quot; width=&quot;100%&quot; height=&quot;440&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;&lt;code&gt;示例1&lt;/code&gt;和&lt;code&gt;示例2&lt;/code&gt;中的虚线框是元素的原始位置，实线框是位移之后的位置。&lt;code&gt;示例1&lt;/code&gt;的 transform-origin 是&lt;code&gt;50% 50%&lt;/code&gt;，而&lt;code&gt;示例2&lt;/code&gt;是&lt;code&gt;100% 100%&lt;/code&gt;，但是从最终偏移效果来看，两者的结果是一样的，所以 tranform-origin 对 translate() 函数并没有影响。&lt;/p&gt;
 &lt;h2 id=&quot;3D&quot;&gt;&lt;a href=&quot;#3D&quot; class=&quot;headerlink&quot; title=&quot;3D&quot;&gt;&lt;/a&gt;3D&lt;/h2&gt;&lt;p&gt;3D 常用变形函数： translate3d() 、 translate() 、 scale3d() 、 scaleZ() 、 rotate3d() 、 rotateX() 、 rotateY() 、 rotateZ() 、 perspective() 、 matrix3d() 。&lt;/p&gt;
 &lt;h3 id=&quot;transform-style&quot;&gt;&lt;a href=&quot;#transform-style&quot; class=&quot;headerlink&quot; title=&quot;transform-style&quot;&gt;&lt;/a&gt;transform-style&lt;/h3&gt;&lt;p&gt;transform-style 的取值为 &lt;code&gt;flat&lt;/code&gt; 或者 &lt;code&gt;preserve-3d&lt;/code&gt; 。下面的例子展示了两者的差别：&lt;/p&gt;
-&lt;iframe src=&quot;/demos/transform-style.html&quot; width=&quot;100%&quot; height=&quot;416&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;../demos/transform-style.html&quot; width=&quot;100%&quot; height=&quot;416&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;从示例中可以看出， &lt;code&gt;preserve-3d&lt;/code&gt; 会让子元素在父元素变形的基础上继续变形，而 &lt;code&gt;flat&lt;/code&gt; 则会消除父元素变形对子元素变形带来的影响。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;理解：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;对于第一种 &lt;code&gt;div.container1&lt;/code&gt; 元素的 transform-style 为 &lt;code&gt;flat&lt;/code&gt; 的情形，表明其所有子元素在 2D 空间中呈现，于是相对于 2D 平面（就可以理解为显示器的那个平面）做变形；对于第二种 &lt;code&gt;div.container1&lt;/code&gt; 元素的 transform-style 为 &lt;code&gt;preserve-3d&lt;/code&gt; 的情形，表明其所有子元素在 3D 空间中呈现，于是相对于当前 &lt;code&gt;div.container1&lt;/code&gt; 为基准的平面做变形。&lt;/p&gt;
@@ -652,13 +652,13 @@
     <link href="http://yoursite.com//blogs/CSS%20border-radius.html"/>
     <id>http://yoursite.com//blogs/CSS border-radius.html</id>
     <published>2015-08-26T16:00:00.000Z</published>
-    <updated>2016-06-09T03:41:07.000Z</updated>
+    <updated>2016-06-09T05:50:15.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;code&gt;border-radius&lt;/code&gt; 的取值：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;[ &amp;lt;length&amp;gt; | &amp;lt;percentage&amp;gt; ]{1,4} [ / [ &amp;lt;length&amp;gt; | &amp;lt;percentage&amp;gt; ]{1,4} ]?&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;iframe src=&quot;/demos/border-radius.html&quot; width=&quot;100%&quot; height=&quot;116&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;../demos/border-radius.html&quot; width=&quot;100%&quot; height=&quot;116&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;上述示例的 CSS 代码为：&lt;/p&gt;
 &lt;p&gt;border-radius 是可以通过&lt;code&gt;/&lt;/code&gt;的形式来对某一个角设置一个椭圆弧的。&lt;/p&gt;
 &lt;p&gt;比如示例中的 &lt;code&gt;20px/5px&lt;/code&gt; 的含义是：对于左上角的圆弧，圆心到上边框的距离是5px，到左边框的距离是20px；对于右上角的圆弧，圆心到上边框的距离是5px，到右边框的距离是20px；对于右下角的圆弧，圆心到下边框的距离是5px，到右边框的距离是20px；对于左下角的圆弧，圆心到下边框的距离是5px，到左边框的距离是20px。&lt;/p&gt;
@@ -666,7 +666,7 @@
 &lt;p&gt;对 img 元素运用 border-radius ， webkit 内核不能使图片边角出现圆角的效果，可以使用背景图片的方式来修正这个问题。&lt;/p&gt;
 &lt;p&gt;当表格样式属性 border-collapse 是 collapse 时，对表格使用 border-radius 圆角效果，表格将不会展现出圆角效果，只有 border-collapse 为 separate 的时候，圆角才能正常展示。&lt;/p&gt;
 &lt;p&gt;border-radius 可以做的效果：圆形、半圆、扇形、椭圆。&lt;/p&gt;
-&lt;iframe src=&quot;/demos/half%20ellipse.html&quot; width=&quot;100%&quot; height=&quot;116&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</content>
+&lt;iframe src=&quot;../demos/half%20ellipse.html&quot; width=&quot;100%&quot; height=&quot;116&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</content>
     
     <summary type="html">
     
@@ -682,24 +682,24 @@
     <link href="http://yoursite.com//blogs/CSS%20border-image.html"/>
     <id>http://yoursite.com//blogs/CSS border-image.html</id>
     <published>2015-08-26T16:00:00.000Z</published>
-    <updated>2016-06-09T03:45:24.000Z</updated>
+    <updated>2016-06-09T05:51:13.000Z</updated>
     
-    <content type="html">&lt;iframe src=&quot;/demos/border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+    <content type="html">&lt;iframe src=&quot;../demos/border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;上面示例的 css 代码为：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-class&quot;&gt;.demo1&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;: inline-block;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;400px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;200px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;border-width&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;70px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;border-image&lt;/span&gt;: &lt;span class=&quot;built_in&quot;&gt;url&lt;/span&gt;(/images/8.jpg) &lt;span class=&quot;number&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;70&lt;/span&gt; round stretch;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-class&quot;&gt;.demo1&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;: inline-block;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;400px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;200px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;border-width&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;70px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;border-image&lt;/span&gt;: &lt;span class=&quot;built_in&quot;&gt;url&lt;/span&gt;(../images/8.jpg) &lt;span class=&quot;number&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;70&lt;/span&gt; round stretch;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;CSS 中的 border-image 可以给边框设置图片背景，其参数主要分为三部分：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;1、图片来源。即示例中的 &lt;code&gt;url(/images/8.jpg)&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;1、图片来源。即示例中的 &lt;code&gt;url(../images/8.jpg)&lt;/code&gt; ；&lt;/li&gt;
 &lt;li&gt;2、图片裁剪尺寸。即示例中的 &lt;code&gt;60 70&lt;/code&gt;。裁剪尺寸遵循 &lt;code&gt;top-right-bottom-left&lt;/code&gt; 规则，其数值可以是百分数，也可以是像素值。如果是像素值，则不能带单位，直接写数值就好了，示例中&lt;code&gt;60 70&lt;/code&gt;的含义为：对图片实施裁剪，图片上部和下部分别裁掉60px，左部和右部分别裁掉70px，于是图片就形成9块，四个边角块是无法运用round（平铺）等效果的，中间那一块是没用的。如果为百分数，则是根据图片的尺寸来计算出相应的像素值的；&lt;/li&gt;
 &lt;li&gt;3、图片可运用效果区域的展示效果。取值为 [round|repeat|stretch] 。正如2中所述，图片会被裁剪成9块，而这个展示效果只能运用于上、右、下、左的中间那一块。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;code&gt;-webkit-border-image&lt;/code&gt; 是有 bug 的，它会用裁剪后的9块图片的中间那一张覆盖掉背景。如下所示：&lt;/p&gt;
-&lt;iframe src=&quot;/demos/-webkit-border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;../demos/-webkit-border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 </content>
     
     <summary type="html">
     
-      &lt;iframe src=&quot;/demos/border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+      &lt;iframe src=&quot;../demos/border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;上面示例的 css 代码为：&lt;br&gt;
     
     </summary>
@@ -712,7 +712,7 @@
     <link href="http://yoursite.com//blogs/%E4%BD%BF%E7%94%A8%20CSS%20background%20%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E6%A3%8B%E7%9B%98.html"/>
     <id>http://yoursite.com//blogs/使用 CSS background 构造一个棋盘.html</id>
     <published>2015-08-24T16:00:00.000Z</published>
-    <updated>2016-06-09T03:54:23.000Z</updated>
+    <updated>2016-06-09T05:50:15.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSS background 的规范文档&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yibuyisheng/blogs/master/imgs/6.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -728,9 +728,9 @@
 &lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.demo2&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;300px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;150px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;background-color&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;#eee&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;background-image&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;linear-gradient&lt;/span&gt;(45deg, red 25%, transparent 0),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;linear-gradient&lt;/span&gt;(45deg, transparent 75%, blue 0),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;linear-gradient&lt;/span&gt;(45deg, green 25%, transparent 0),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;linear-gradient&lt;/span&gt;(45deg, transparent 75%, orange 0);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;background-size&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;30px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;30px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;background-position&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;15px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;15px&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;15px&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;15px&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yibuyisheng/blogs/master/imgs/7.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;结语&quot;&gt;&lt;a href=&quot;#结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h3&gt;&lt;p&gt;css 的 background 属性现在很强大了，利用背景“图片”的层叠，可以做出很多绚丽的背景效果。&lt;/p&gt;
-&lt;h3 id=&quot;更多-CSS-background-的效果：&quot;&gt;&lt;a href=&quot;#更多-CSS-background-的效果：&quot; class=&quot;headerlink&quot; title=&quot;更多 CSS background 的效果：&quot;&gt;&lt;/a&gt;更多 CSS background 的效果：&lt;/h3&gt;&lt;iframe src=&quot;/demos/envelope.html&quot; width=&quot;100%&quot; height=&quot;250&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;iframe src=&quot;/demos/css%20background.html&quot; width=&quot;100%&quot; height=&quot;430&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;iframe src=&quot;/demos/marching%20ants%20borders.html&quot; width=&quot;100%&quot; height=&quot;240&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h3 id=&quot;更多-CSS-background-的效果：&quot;&gt;&lt;a href=&quot;#更多-CSS-background-的效果：&quot; class=&quot;headerlink&quot; title=&quot;更多 CSS background 的效果：&quot;&gt;&lt;/a&gt;更多 CSS background 的效果：&lt;/h3&gt;&lt;iframe src=&quot;../demos/envelope.html&quot; width=&quot;100%&quot; height=&quot;250&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;../demos/css%20background.html&quot; width=&quot;100%&quot; height=&quot;430&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;../demos/marching%20ants%20borders.html&quot; width=&quot;100%&quot; height=&quot;240&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 </content>
     
     <summary type="html">

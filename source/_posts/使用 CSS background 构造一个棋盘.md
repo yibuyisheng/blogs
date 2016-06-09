@@ -64,8 +64,8 @@ css 的 background 属性现在很强大了，利用背景“图片”的层叠�
 
 ### 更多 CSS background 的效果：
 
-{% iframe /demos/envelope.html 100% 250 %}
+{% iframe ../demos/envelope.html 100% 250 %}
 
-{% iframe /demos/css%20background.html 100% 430 %}
+{% iframe ../demos/css%20background.html 100% 430 %}
 
-{% iframe /demos/marching%20ants%20borders.html 100% 240 %}
+{% iframe ../demos/marching%20ants%20borders.html 100% 240 %}

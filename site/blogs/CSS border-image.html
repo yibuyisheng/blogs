@@ -13,14 +13,14 @@
 <meta property="og:url" content="http://yoursite.com/blogs/CSS border-image.html">
 <meta property="og:site_name" content="博客">
 <meta property="og:description" content="上面示例的 css 代码为：">
-<meta property="og:updated_time" content="2016-06-09T03:45:24.000Z">
+<meta property="og:updated_time" content="2016-06-09T05:51:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS border-image">
 <meta name="twitter:description" content="上面示例的 css 代码为：">
   
     <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;iframe src=&quot;/demos/border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+  <meta name="summary" content="&lt;iframe src=&quot;../demos/border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;上面示例的 css 代码为：&lt;br&gt;">
   <link rel="shortcut icon" href="/blogs/site/favicon.ico">
   <link rel="stylesheet" href="/blogs/site/css/style.css">
@@ -127,17 +127,17 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-              <iframe src="/demos/border-image.html" width="100%" height="336" frameborder="0" allowfullscreen></iframe>
+              <iframe src="../demos/border-image.html" width="100%" height="336" frameborder="0" allowfullscreen></iframe>
 <p>上面示例的 css 代码为：<br><a id="more"></a></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.demo1</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">border-width</span>: <span class="number">60px</span> <span class="number">70px</span>;</span><br><span class="line">    <span class="attribute">border-image</span>: <span class="built_in">url</span>(/images/8.jpg) <span class="number">60</span> <span class="number">70</span> round stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.demo1</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">border-width</span>: <span class="number">60px</span> <span class="number">70px</span>;</span><br><span class="line">    <span class="attribute">border-image</span>: <span class="built_in">url</span>(../images/8.jpg) <span class="number">60</span> <span class="number">70</span> round stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>CSS 中的 border-image 可以给边框设置图片背景，其参数主要分为三部分：</p>
 <ul>
-<li>1、图片来源。即示例中的 <code>url(/images/8.jpg)</code> ；</li>
+<li>1、图片来源。即示例中的 <code>url(../images/8.jpg)</code> ；</li>
 <li>2、图片裁剪尺寸。即示例中的 <code>60 70</code>。裁剪尺寸遵循 <code>top-right-bottom-left</code> 规则，其数值可以是百分数，也可以是像素值。如果是像素值，则不能带单位，直接写数值就好了，示例中<code>60 70</code>的含义为：对图片实施裁剪，图片上部和下部分别裁掉60px，左部和右部分别裁掉70px，于是图片就形成9块，四个边角块是无法运用round（平铺）等效果的，中间那一块是没用的。如果为百分数，则是根据图片的尺寸来计算出相应的像素值的；</li>
 <li>3、图片可运用效果区域的展示效果。取值为 [round|repeat|stretch] 。正如2中所述，图片会被裁剪成9块，而这个展示效果只能运用于上、右、下、左的中间那一块。</li>
 </ul>
 <p><code>-webkit-border-image</code> 是有 bug 的，它会用裁剪后的9块图片的中间那一张覆盖掉背景。如下所示：</p>
-<iframe src="/demos/-webkit-border-image.html" width="100%" height="336" frameborder="0" allowfullscreen></iframe>
+<iframe src="../demos/-webkit-border-image.html" width="100%" height="336" frameborder="0" allowfullscreen></iframe>
 
             </div>
 

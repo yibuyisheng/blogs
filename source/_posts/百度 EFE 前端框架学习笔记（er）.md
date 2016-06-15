@@ -1,6 +1,8 @@
 ---
 title: 百度 EFE 前端框架学习笔记（er）
 date: 2015-05-29
+tags:
+- JavaScript
 ---
 
 首先上一张图：
@@ -202,7 +204,3 @@ controller 对象有一个 eventBus 属性，该属性是 mini-event.EventBus �
 对于当前 url 加载到的 action 模块对象，如果是一个函数，则认为是一个 Action 构造函数，直接实例化；如果是一个包含 createRuntimeAction() 的对象，则认为这个 createRuntimeAction() 函数就是一个 Action 工厂函数，调用该工厂函数就可以创建出 action 对象；否则认为这个模块对象就是 action 实例。
 
 找到了当前 url 对应的主 action 之后，就要开始进入这个 action 了。在进入之前，需要销毁之前的主 action（调用 action.leave() 方法）。销毁之后，调用 action.enter()，进入当前 action。
-
-
-
-

@@ -1,6 +1,8 @@
 ---
 title: CSS border-radius
 date: 2015-08-27
+tags:
+- CSS
 ---
 
 `border-radius` 的取值：

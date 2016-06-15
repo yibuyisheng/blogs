@@ -1,6 +1,8 @@
 ---
 title: 使用 CSS background 构造一个棋盘
 date: 2015-08-25
+tags:
+- CSS
 ---
 
 [CSS background 的规范文档](http://www.w3.org/TR/css3-background)。

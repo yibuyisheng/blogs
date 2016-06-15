@@ -1,6 +1,9 @@
 ---
 title: 一个 JavaScript
 date: 2015-10-05
+tags:
+- JavaScript
+- ECMAScript 6
 ---
 
 ES6 使用了“一个 JavaScript ”的方式来避免版本化的问题。

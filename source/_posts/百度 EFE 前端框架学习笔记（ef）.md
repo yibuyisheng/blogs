@@ -1,6 +1,8 @@
 ---
 title: 百度（EFE）前端框架学习笔记（ef）
 date: 2015-06-01
+tags:
+- JavaScript
 ---
 
 官方 EF 学习资料：[ActionPanel](https://github.com/ecomfe/ef/blob/master/doc/ActionPanel.md)、[UIModel](https://github.com/ecomfe/ef/blob/master/doc/UIModel.md)、[UIView](https://github.com/ecomfe/ef/blob/master/doc/UIView.md)。

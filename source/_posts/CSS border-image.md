@@ -1,6 +1,8 @@
 ---
 title: CSS border-image
 date: 2015-08-27
+tags:
+- CSS
 ---
 
 {% iframe ../demos/border-image.html 100% 336 %}
@@ -28,4 +30,3 @@ CSS 中的 border-image 可以给边框设置图片背景，其参数主要分�
 `-webkit-border-image` 是有 bug 的，它会用裁剪后的9块图片的中间那一张覆盖掉背景。如下所示：
 
 {% iframe ../demos/-webkit-border-image.html 100% 336 %}
-

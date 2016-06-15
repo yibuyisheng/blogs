@@ -1,6 +1,9 @@
 ---
 title: 生成器（ generator ）
 date: 2015-07-13
+tags:
+- JavaScript
+- ECMAScript 6
 ---
 
 ### 什么是 generator ？

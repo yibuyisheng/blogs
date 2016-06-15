@@ -1,6 +1,8 @@
 ---
 title: CSS 语法速查
 date: 2015-09-03 19:06
+tags:
+- CSS
 ---
 
 <!-- more -->
@@ -27,7 +29,7 @@ date: 2015-09-03 19:06
 ```
 <radial-gradient> = radial-gradient(
   [ [ <shape> || <size> ] [ at <position> ]? , |
-    at <position>, 
+    at <position>,
   ]?
   <color-stop> [ , <color-stop> ]+
 )

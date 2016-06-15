@@ -1,6 +1,9 @@
 ---
 title: 使用 marked 解析 markdown
 date: 2016-05-20T13:49:00.000Z
+tags:
+- markdown
+- ETPL
 ---
 
 [marked](https://github.com/chjj/marked) 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。

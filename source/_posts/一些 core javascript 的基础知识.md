@@ -1,6 +1,8 @@
 ---
 title: 一些 core javascript 的基础知识
 date: 2014-10-22 22:13
+tags:
+- JavaScript
 ---
 
 ### 一、 setTimeout

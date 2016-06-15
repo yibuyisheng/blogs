@@ -1,6 +1,8 @@
 ---
 title: CSS 空心字
 date: 2015-09-02
+tags:
+- CSS
 ---
 
 空心字。

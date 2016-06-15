@@ -1,6 +1,9 @@
 ---
 title: ES6 简单特性概览
 date: 2015-10-18 11:43
+tags:
+- JavaScript
+- ECMAScript 6
 ---
 
 本文内容：
@@ -775,4 +778,3 @@ export default function () { ··· } // no semicolon!
 import myFunc from 'myFunc';
 myFunc();
 ```
-

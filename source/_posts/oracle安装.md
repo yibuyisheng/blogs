@@ -3,7 +3,7 @@ title: oracle 安装
 date: 2016-05-23 12:13
 excerpt: 本文记录了 oracle 的安装探索过程。
 tags:
-- oracle
+- Oracle
 - 数据库
 ---
 

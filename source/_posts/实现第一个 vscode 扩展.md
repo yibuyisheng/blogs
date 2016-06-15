@@ -1,6 +1,8 @@
 ---
 title: 实现第一个 vscode 扩展
 date: 2016-01-10 18:20
+tags:
+- vscode
 ---
 
 

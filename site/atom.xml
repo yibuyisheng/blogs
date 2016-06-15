@@ -72,7 +72,7 @@
     <link href="http://yoursite.com//blogs/oracle%E5%AE%89%E8%A3%85.html"/>
     <id>http://yoursite.com//blogs/oracle安装.html</id>
     <published>2016-05-23T04:13:00.000Z</published>
-    <updated>2016-06-08T10:35:04.000Z</updated>
+    <updated>2016-06-15T10:45:36.000Z</updated>
     
     <content type="html">&lt;p&gt;这个周末学习了一些后端的技能，折腾了好久 Oracle 数据库，总算安装上了。&lt;/p&gt;
 &lt;p&gt;本文记录的东西非常粗浅，仅限于探索如何使用的层面上，因此文中描述的各种观点可能有所错误，欢迎读者批评纠正。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -115,9 +115,9 @@
     </summary>
     
     
-      <category term="oracle" scheme="http://yoursite.com/tags/oracle/"/>
-    
       <category term="数据库" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="Oracle" scheme="http://yoursite.com/tags/Oracle/"/>
     
   </entry>
   
@@ -126,7 +126,7 @@
     <link href="http://yoursite.com//blogs/%E4%BD%BF%E7%94%A8marked%E8%A7%A3%E6%9E%90markdown.html"/>
     <id>http://yoursite.com//blogs/使用marked解析markdown.html</id>
     <published>2016-05-20T05:49:00.000Z</published>
-    <updated>2016-06-15T08:11:37.000Z</updated>
+    <updated>2016-06-15T10:44:30.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/chjj/marked&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;marked&lt;/a&gt; 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。&lt;/p&gt;
 &lt;p&gt;最简单直接的一种使用方式：&lt;/p&gt;
@@ -196,6 +196,10 @@
     </summary>
     
     
+      <category term="markdown" scheme="http://yoursite.com/tags/markdown/"/>
+    
+      <category term="ETPL" scheme="http://yoursite.com/tags/ETPL/"/>
+    
   </entry>
   
   <entry>
@@ -203,7 +207,7 @@
     <link href="http://yoursite.com//blogs/%E5%AE%9E%E7%8E%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%20vscode%20%E6%89%A9%E5%B1%95.html"/>
     <id>http://yoursite.com//blogs/实现第一个 vscode 扩展.html</id>
     <published>2016-01-10T10:20:00.000Z</published>
-    <updated>2016-06-08T09:52:08.000Z</updated>
+    <updated>2016-06-15T10:47:07.000Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;提前声明：&lt;br&gt;&lt;br&gt;此处使用的 vscode 版本是0.10.6&lt;/p&gt;
@@ -282,6 +286,8 @@
     </summary>
     
     
+      <category term="vscode" scheme="http://yoursite.com/tags/vscode/"/>
+    
   </entry>
   
   <entry>
@@ -337,7 +343,7 @@
     <link href="http://yoursite.com//blogs/ES6%20%E7%AE%80%E5%8D%95%E7%89%B9%E6%80%A7%E6%A6%82%E8%A7%88.html"/>
     <id>http://yoursite.com//blogs/ES6 简单特性概览.html</id>
     <published>2015-10-18T03:43:00.000Z</published>
-    <updated>2016-06-09T05:51:13.000Z</updated>
+    <updated>2016-06-15T10:45:22.000Z</updated>
     
     <content type="html">&lt;p&gt;本文内容：&lt;/p&gt;
 &lt;ul&gt;
@@ -523,6 +529,10 @@
     </summary>
     
     
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="ECMAScript 6" scheme="http://yoursite.com/tags/ECMAScript-6/"/>
+    
   </entry>
   
   <entry>
@@ -530,7 +540,7 @@
     <link href="http://yoursite.com//blogs/%E4%B8%80%E4%B8%AA%20JavaScript.html"/>
     <id>http://yoursite.com//blogs/一个 JavaScript.html</id>
     <published>2015-10-04T16:00:00.000Z</published>
-    <updated>2016-06-08T09:50:40.000Z</updated>
+    <updated>2016-06-15T10:46:43.000Z</updated>
     
     <content type="html">&lt;p&gt;ES6 使用了“一个 JavaScript ”的方式来避免版本化的问题。&lt;/p&gt;
 &lt;p&gt;那么，什么是“版本化”？什么又是“一个 JavaScript”呢？&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -617,6 +627,10 @@
     </summary>
     
     
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="ECMAScript 6" scheme="http://yoursite.com/tags/ECMAScript-6/"/>
+    
   </entry>
   
   <entry>
@@ -624,12 +638,13 @@
     <link href="http://yoursite.com//blogs/CSS%20%E8%AF%AD%E6%B3%95%E9%80%9F%E6%9F%A5.html"/>
     <id>http://yoursite.com//blogs/CSS 语法速查.html</id>
     <published>2015-09-03T11:06:00.000Z</published>
-    <updated>2016-06-08T09:54:01.000Z</updated>
+    <updated>2016-06-15T10:45:09.000Z</updated>
     
     <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h3 id=&quot;background&quot;&gt;&lt;a href=&quot;#background&quot; class=&quot;headerlink&quot; title=&quot;background&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;background&lt;/a&gt;&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[ &amp;lt;bg-layer&amp;gt; , ]* &amp;lt;final-bg-layer&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;bg-layer&amp;gt; = &amp;lt;bg-image&amp;gt; || &amp;lt;position&amp;gt; [ / &amp;lt;bg-size&amp;gt; ]? || &amp;lt;repeat-style&amp;gt; || &amp;lt;attachment&amp;gt; || &amp;lt;box&amp;gt; || &amp;lt;box&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;final-bg-layer&amp;gt; = &amp;lt;bg-image&amp;gt; || &amp;lt;position&amp;gt; [ / &amp;lt;bg-size&amp;gt; ]? || &amp;lt;repeat-style&amp;gt; || &amp;lt;attachment&amp;gt; || &amp;lt;box&amp;gt; || &amp;lt;box&amp;gt; || &amp;lt;&amp;apos;background-color&amp;apos;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;lt;bg-image&amp;gt; = &amp;lt;image&amp;gt; | none&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background/#ltimagegt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&amp;lt;image&amp;gt;&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background/#ltpositiongt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&amp;lt;position&amp;gt;&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background/#ltbg-sizegt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&amp;lt;bg-size&amp;gt;&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background/#ltrepeat-stylegt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&amp;lt;repeat-style&amp;gt;&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background/#ltattachmentgt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&amp;lt;attachment&amp;gt;&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background/#ltboxgt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&amp;lt;box&amp;gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;radial-gradient&quot;&gt;&lt;a href=&quot;#radial-gradient&quot; class=&quot;headerlink&quot; title=&quot;radial-gradient()&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.w3.org/TR/2012/CR-css3-images-20120417/#radial-gradients&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;radial-gradient()&lt;/a&gt;&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;radial-gradient&amp;gt; = radial-gradient(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  [ [ &amp;lt;shape&amp;gt; || &amp;lt;size&amp;gt; ] [ at &amp;lt;position&amp;gt; ]? , |&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    at &amp;lt;position&amp;gt;, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  ]?&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;color-stop&amp;gt; [ , &amp;lt;color-stop&amp;gt; ]+&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;shape&amp;gt; = circle || ellipse&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+&lt;h3 id=&quot;radial-gradient&quot;&gt;&lt;a href=&quot;#radial-gradient&quot; class=&quot;headerlink&quot; title=&quot;radial-gradient()&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.w3.org/TR/2012/CR-css3-images-20120417/#radial-gradients&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;radial-gradient()&lt;/a&gt;&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;radial-gradient&amp;gt; = radial-gradient(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  [ [ &amp;lt;shape&amp;gt; || &amp;lt;size&amp;gt; ] [ at &amp;lt;position&amp;gt; ]? , |&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    at &amp;lt;position&amp;gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  ]?&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;color-stop&amp;gt; [ , &amp;lt;color-stop&amp;gt; ]+&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;shape&amp;gt; = circle || ellipse&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
     
     <summary type="html">
     
@@ -639,6 +654,8 @@
     </summary>
     
     
+      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
+    
   </entry>
   
   <entry>
@@ -646,7 +663,7 @@
     <link href="http://yoursite.com//blogs/CSS%20%E7%A9%BA%E5%BF%83%E5%AD%97.html"/>
     <id>http://yoursite.com//blogs/CSS 空心字.html</id>
     <published>2015-09-01T16:00:00.000Z</published>
-    <updated>2016-06-09T05:53:00.000Z</updated>
+    <updated>2016-06-15T10:45:03.000Z</updated>
     
     <content type="html">&lt;p&gt;空心字。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;闪烁的空心字&quot;&gt;&lt;a href=&quot;#闪烁的空心字&quot; class=&quot;headerlink&quot; title=&quot;闪烁的空心字&quot;&gt;&lt;/a&gt;闪烁的空心字&lt;/h3&gt;&lt;iframe src=&quot;../demos/空心字1.html&quot; width=&quot;100%&quot; height=&quot;96&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
@@ -661,6 +678,8 @@
     </summary>
     
     
+      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
+    
   </entry>
   
   <entry>
@@ -668,7 +687,7 @@
     <link href="http://yoursite.com//blogs/CSS%20%E5%8F%98%E5%BD%A2.html"/>
     <id>http://yoursite.com//blogs/CSS 变形.html</id>
     <published>2015-08-31T16:00:00.000Z</published>
-    <updated>2016-06-09T05:51:26.000Z</updated>
+    <updated>2016-06-15T10:44:56.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;2D&quot;&gt;&lt;a href=&quot;#2D&quot; class=&quot;headerlink&quot; title=&quot;2D&quot;&gt;&lt;/a&gt;2D&lt;/h2&gt;&lt;p&gt;2D 常用的变形函数： tranlate() 、 scale() 、 rotate() 、 skew() 、 matrix() 。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;skew-函数&quot;&gt;&lt;a href=&quot;#skew-函数&quot; class=&quot;headerlink&quot; title=&quot;skew() 函数&quot;&gt;&lt;/a&gt;skew() 函数&lt;/h3&gt;&lt;p&gt;示例：&lt;/p&gt;
@@ -697,6 +716,8 @@
     </summary>
     
     
+      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
+    
   </entry>
   
   <entry>
@@ -704,7 +725,7 @@
     <link href="http://yoursite.com//blogs/CSS%20border-image.html"/>
     <id>http://yoursite.com//blogs/CSS border-image.html</id>
     <published>2015-08-26T16:00:00.000Z</published>
-    <updated>2016-06-09T05:51:13.000Z</updated>
+    <updated>2016-06-15T10:44:42.000Z</updated>
     
     <content type="html">&lt;iframe src=&quot;../demos/border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;上面示例的 css 代码为：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -727,6 +748,8 @@
     </summary>
     
     
+      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
+    
   </entry>
   
   <entry>
@@ -734,7 +757,7 @@
     <link href="http://yoursite.com//blogs/CSS%20border-radius.html"/>
     <id>http://yoursite.com//blogs/CSS border-radius.html</id>
     <published>2015-08-26T16:00:00.000Z</published>
-    <updated>2016-06-09T05:50:15.000Z</updated>
+    <updated>2016-06-15T10:44:50.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;code&gt;border-radius&lt;/code&gt; 的取值：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -748,7 +771,8 @@
 &lt;p&gt;对 img 元素运用 border-radius ， webkit 内核不能使图片边角出现圆角的效果，可以使用背景图片的方式来修正这个问题。&lt;/p&gt;
 &lt;p&gt;当表格样式属性 border-collapse 是 collapse 时，对表格使用 border-radius 圆角效果，表格将不会展现出圆角效果，只有 border-collapse 为 separate 的时候，圆角才能正常展示。&lt;/p&gt;
 &lt;p&gt;border-radius 可以做的效果：圆形、半圆、扇形、椭圆。&lt;/p&gt;
-&lt;iframe src=&quot;../demos/half%20ellipse.html&quot; width=&quot;100%&quot; height=&quot;116&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</content>
+&lt;iframe src=&quot;../demos/half%20ellipse.html&quot; width=&quot;100%&quot; height=&quot;116&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+</content>
     
     <summary type="html">
     
@@ -757,6 +781,8 @@
     </summary>
     
     
+      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
+    
   </entry>
   
   <entry>
@@ -764,7 +790,7 @@
     <link href="http://yoursite.com//blogs/%E4%BD%BF%E7%94%A8%20CSS%20background%20%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E6%A3%8B%E7%9B%98.html"/>
     <id>http://yoursite.com//blogs/使用 CSS background 构造一个棋盘.html</id>
     <published>2015-08-24T16:00:00.000Z</published>
-    <updated>2016-06-09T05:50:15.000Z</updated>
+    <updated>2016-06-15T10:46:57.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSS background 的规范文档&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yibuyisheng/blogs/master/imgs/6.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -793,6 +819,8 @@
     </summary>
     
     
+      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
+    
   </entry>
   
   <entry>
@@ -800,7 +828,7 @@
     <link href="http://yoursite.com//blogs/%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88%20generator%20%EF%BC%89.html"/>
     <id>http://yoursite.com//blogs/生成器（ generator ）.html</id>
     <published>2015-07-12T16:00:00.000Z</published>
-    <updated>2016-06-08T09:52:32.000Z</updated>
+    <updated>2016-06-15T10:47:30.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;什么是-generator-？&quot;&gt;&lt;a href=&quot;#什么是-generator-？&quot; class=&quot;headerlink&quot; title=&quot;什么是 generator ？&quot;&gt;&lt;/a&gt;什么是 generator ？&lt;/h3&gt;&lt;p&gt;可以暂停（ pause ）和唤醒（ resume ）的函数。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;实现一个迭代器&quot;&gt;&lt;a href=&quot;#实现一个迭代器&quot; class=&quot;headerlink&quot; title=&quot;实现一个迭代器&quot;&gt;&lt;/a&gt;实现一个迭代器&lt;/h3&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;* &lt;span class=&quot;title&quot;&gt;gen&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; a &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; [&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;]) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;yield&lt;/span&gt; a + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 下面的 for 循环输出：&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 4&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; b &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; gen()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    print(&lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.stringify(b));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; it = gen();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.stringify(it.next())); &lt;span class=&quot;comment&quot;&gt;// 输出： &amp;#123;value: 2, done: false&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.stringify(it.next())); &lt;span class=&quot;comment&quot;&gt;// 输出： &amp;#123;value: 3, done: false&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.stringify(it.next())); &lt;span class=&quot;comment&quot;&gt;// 输出： &amp;#123;value: 4, done: false&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.stringify(it.next())); &lt;span class=&quot;comment&quot;&gt;// 输出： &amp;#123;value: 5, done: true&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.stringify([...gen()])); &lt;span class=&quot;comment&quot;&gt;// 输出： [2, 3, 4]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -839,6 +867,10 @@
     </summary>
     
     
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="ECMAScript 6" scheme="http://yoursite.com/tags/ECMAScript-6/"/>
+    
   </entry>
   
   <entry>
@@ -846,7 +878,7 @@
     <link href="http://yoursite.com//blogs/%E7%99%BE%E5%BA%A6%20EFE%20%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88ef%EF%BC%89.html"/>
     <id>http://yoursite.com//blogs/百度 EFE 前端框架学习笔记（ef）.html</id>
     <published>2015-05-31T16:00:00.000Z</published>
-    <updated>2016-06-08T09:52:44.000Z</updated>
+    <updated>2016-06-15T10:47:50.000Z</updated>
     
     <content type="html">&lt;p&gt;官方 EF 学习资料：&lt;a href=&quot;https://github.com/ecomfe/ef/blob/master/doc/ActionPanel.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ActionPanel&lt;/a&gt;、&lt;a href=&quot;https://github.com/ecomfe/ef/blob/master/doc/UIModel.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;UIModel&lt;/a&gt;、&lt;a href=&quot;https://github.com/ecomfe/ef/blob/master/doc/UIView.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;UIView&lt;/a&gt;。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;UIView-js&quot;&gt;&lt;a href=&quot;#UIView-js&quot; class=&quot;headerlink&quot; title=&quot;UIView.js&quot;&gt;&lt;/a&gt;UIView.js&lt;/h3&gt;&lt;p&gt;与 ESUI 结合的 &lt;code&gt;View&lt;/code&gt; 基类。该类有一个主入口方法 enterDocument()，该函数在容器渲染完毕后触发，用于控制元素可见性及绑定事件等 DOM 操作。&lt;/p&gt;
@@ -874,6 +906,8 @@
     </summary>
     
     
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
   </entry>
   
   <entry>
@@ -881,7 +915,7 @@
     <link href="http://yoursite.com//blogs/%E7%99%BE%E5%BA%A6%20EFE%20%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88esui%EF%BC%89.html"/>
     <id>http://yoursite.com//blogs/百度 EFE 前端框架学习笔记（esui）.html</id>
     <published>2015-05-31T16:00:00.000Z</published>
-    <updated>2016-06-09T03:57:30.000Z</updated>
+    <updated>2016-06-15T10:48:04.000Z</updated>
     
     <content type="html">&lt;p&gt;基础点：&lt;/p&gt;
 &lt;h3 id=&quot;Control-js&quot;&gt;&lt;a href=&quot;#Control-js&quot; class=&quot;headerlink&quot; title=&quot;Control.js&quot;&gt;&lt;/a&gt;Control.js&lt;/h3&gt;&lt;p&gt;控件基类模块，该类不可以直接使用，经过继承之后，形成更加具体的按钮之类的控件才使用，可以认为就是一个控件抽象基类。&lt;/p&gt;
@@ -1100,6 +1134,8 @@
     </summary>
     
     
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
   </entry>
   
   <entry>
@@ -1107,7 +1143,7 @@
     <link href="http://yoursite.com//blogs/%E7%99%BE%E5%BA%A6%20EFE%20%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88er%EF%BC%89.html"/>
     <id>http://yoursite.com//blogs/百度 EFE 前端框架学习笔记（er）.html</id>
     <published>2015-05-28T16:00:00.000Z</published>
-    <updated>2016-06-08T09:52:50.000Z</updated>
+    <updated>2016-06-15T10:47:57.000Z</updated>
     
     <content type="html">&lt;p&gt;首先上一张图：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ecomfe/er/master/doc/asset/er-overview.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1248,6 +1284,8 @@
     </summary>
     
     
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
   </entry>
   
   <entry>
@@ -1255,7 +1293,7 @@
     <link href="http://yoursite.com//blogs/Reflux%20%E4%BD%BF%E7%94%A8%E8%BF%9B%E5%8C%96%E6%97%A5%E8%AE%B0.html"/>
     <id>http://yoursite.com//blogs/Reflux 使用进化日记.html</id>
     <published>2015-05-21T16:00:00.000Z</published>
-    <updated>2016-06-08T09:54:27.000Z</updated>
+    <updated>2016-06-15T10:46:27.000Z</updated>
     
     <content type="html">&lt;p&gt;Reflux 算是比较新的东西，由于自己水平有限，刚接触，不能很好地去使用 Reflux 来处理数据，下面是我使用 Reflux 逐步进化的过程（当然最终状态不一定就是标准的 Reflux 使用方式）：&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1298,6 +1336,12 @@
     </summary>
     
     
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="Reflux" scheme="http://yoursite.com/tags/Reflux/"/>
+    
+      <category term="React" scheme="http://yoursite.com/tags/React/"/>
+    
   </entry>
   
   <entry>
@@ -1305,7 +1349,7 @@
     <link href="http://yoursite.com//blogs/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9D%91%E7%88%B9%E7%9A%84%E5%AF%B9%E6%8E%A5%E7%BB%8F%E5%8E%86.html"/>
     <id>http://yoursite.com//blogs/记一次坑爹的对接经历.html</id>
     <published>2015-05-06T16:00:00.000Z</published>
-    <updated>2016-06-08T09:53:32.000Z</updated>
+    <updated>2016-06-15T10:48:12.000Z</updated>
     
     <content type="html">&lt;p&gt;事情是这样的：&lt;/p&gt;
 &lt;p&gt;后端提供了一个数据接口 &lt;code&gt;/account/my/address/&lt;/code&gt; 。咱是有追求的程序员，自然接口要采用 RESTful 的思想，于是服务器端非成功的处理，都会返回 http code 非200的状态码，坑由此而生。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1349,6 +1393,8 @@
     </summary>
     
     
+      <category term="HTTP" scheme="http://yoursite.com/tags/HTTP/"/>
+    
   </entry>
   
   <entry>
@@ -1356,7 +1402,7 @@
     <link href="http://yoursite.com//blogs/%E4%B8%80%E4%BA%9B%20core%20javascript%20%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html"/>
     <id>http://yoursite.com//blogs/一些 core javascript 的基础知识.html</id>
     <published>2014-10-22T14:13:00.000Z</published>
-    <updated>2016-06-08T09:51:05.000Z</updated>
+    <updated>2016-06-15T10:46:51.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;一、-setTimeout&quot;&gt;&lt;a href=&quot;#一、-setTimeout&quot; class=&quot;headerlink&quot; title=&quot;一、 setTimeout&quot;&gt;&lt;/a&gt;一、 setTimeout&lt;/h3&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;setTimtout(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   alert(&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;);                           &lt;span class=&quot;comment&quot;&gt;// 后弹出&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;alert(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);                              &lt;span class=&quot;comment&quot;&gt;// 先弹出&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;对于如上代码，包含原理如下：&lt;/p&gt;
@@ -1422,6 +1468,8 @@
     
     </summary>
     
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
   </entry>
   

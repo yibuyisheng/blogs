@@ -1,20 +1,21 @@
 ---
 title: 使用 marked 解析 markdown
-date: 2016-05-20 13:49:00
+date: 2016-05-20T13:49:00.000Z
 ---
 
 [marked](https://github.com/chjj/marked) 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。
 
 最简单直接的一种使用方式：
 
-```js
+```javascript
 var marked = require('marked');
 console.log(marked('I am using __markdown__.'));
 // Outputs: <p>I am using <strong>markdown</strong>.</p>
 ```
+
 <!-- more -->
 
-marked 库主要提供了一个 marked 函数，该函数声明为：
+ marked 库主要提供了一个 marked 函数，该函数声明为：
 
 ```
 type OptionsType = {
@@ -61,13 +62,13 @@ marked 还有一个重要的配置：highlight，可以对代码块进行解析�
 
 其实本文的重点是记录在使用过程中遇到的一些坑，下面进入重点。
 
-## markdown 缩进问题
+# markdown 缩进问题
 
 在 markdown 的语法中，标题下面（换行之后）标记是不能缩进的，而列表项下面的标记是可以缩进的。
 
 现在前端开发，经常会使用一些模板引擎，比如 [ETPL](https://github.com/ecomfe/etpl) ，这些模板，一般都会提供过滤器的功能。以 ETPL 为例，可以在 js 代码中这样添加一个过滤器：
 
-```js
+```javascript
 var etpl = require('etpl');
 var marked = require('marked');
 etpl.addFilter('markdown', function (source, useExtra) {
@@ -93,7 +94,7 @@ etpl.addFilter('markdown', function (source, useExtra) {
 
 如果打印一下 markdown 过滤器处理函数中的 source 参数：
 
-```js
+```javascript
 var etpl = require('etpl');
 var marked = require('marked');
 etpl.addFilter('markdown', function (source, useExtra) {
@@ -116,13 +117,13 @@ etpl.addFilter('markdown', function (source, useExtra) {
 
 这明显跟 markdown 语法有冲突，必须要进行如下处理：
 
-* 1、第一行和最后一行没啥实际内容，可以去掉；
-* 2、检测第一行前面的缩进空格数（这里假定缩进用的是空格），记录下来，假设为 `n` ；
-* 3、将每一行前面的 `n` 个空格去掉。
+- 1、第一行和最后一行没啥实际内容，可以去掉；
+- 2、检测第一行前面的缩进空格数（这里假定缩进用的是空格），记录下来，假设为 `n` ；
+- 3、将每一行前面的 `n` 个空格去掉。
 
 具体的代码实现如下：
 
-```js
+```javascript
 var etpl = require('etpl');
 var marked = require('marked');
 etpl.addFilter('markdown', function (source, useExtra) {
@@ -133,7 +134,7 @@ etpl.addFilter('markdown', function (source, useExtra) {
 });
 ```
 
-## HTML 标签
+# HTML 标签
 
 有的时候，可能想给 markdown 标记的某一块加上背景色，比如：
 

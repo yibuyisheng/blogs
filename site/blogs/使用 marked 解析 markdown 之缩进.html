@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 marked 解析 markdown 之缩进 | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="">
+  <meta name="description" content="简介在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 marked 解析 markdown 之缩进">
+<meta property="og:url" content="http://yoursite.com/blogs/使用 marked 解析 markdown 之缩进.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="简介在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。">
+<meta property="og:image" content="http://yoursite.com/blogs/site/images/14.png">
+<meta property="og:image" content="http://yoursite.com/blogs/site/images/15.png">
+<meta property="og:image" content="http://yoursite.com/blogs/site/images/16.png">
+<meta property="og:image" content="http://yoursite.com/blogs/site/images/17.png">
+<meta property="og:image" content="http://yoursite.com/blogs/site/images/14.png">
+<meta property="og:updated_time" content="2016-06-15T10:32:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 marked 解析 markdown 之缩进">
+<meta name="twitter:description" content="简介在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。">
+<meta name="twitter:image" content="http://yoursite.com/blogs/site/images/14.png">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在前面一篇文章&lt;a href=&quot;/blogs/site//blogs/使用marked解析markdown.html&quot; title=&quot;使用 marked 解析 markdown&quot;&gt;使用 marked 解析 markdown&lt;/a&gt;中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。&lt;/p&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用 marked 解析 markdown 之缩进</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">使用 marked 解析 markdown 之缩进</h1>
+    <h5 class="subtitle">2016-06-15</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-使用 marked 解析 markdown 之缩进" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col"></div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#简介" title="简介"><span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#遇见问题" title="遇见问题"><span class="post-toc-text">遇见问题</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#初步分析" title="初步分析"><span class="post-toc-text">初步分析</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#尝试解决方案1" title="尝试解决方案1"><span class="post-toc-text">尝试解决方案1</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#尝试解决方案2" title="尝试解决方案2"><span class="post-toc-text">尝试解决方案2</span></a></li></ol>
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在前面一篇文章<a href="/blogs/site//blogs/使用marked解析markdown.html" title="使用 marked 解析 markdown">使用 marked 解析 markdown</a>中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。</p>
+<a id="more"></a>
+<h1 id="遇见问题"><a href="#遇见问题" class="headerlink" title="遇见问题"></a>遇见问题</h1><p>这次，我想在 table 的 td 里面写 markdown ，期望效果看起来像是这样的：</p>
+<img src="/blogs/site/images/14.png">
+<p>而 markdown 代码，我是这样写的：</p>
+<img src="/blogs/site/images/15.png">
+<p>然后出来的效果是这样：</p>
+<img src="/blogs/site/images/16.png">
+<p>注意黑色的那段代码块，缩进过猛了！</p>
+<p>什么情况？为啥会缩进过度呢？</p>
+<h1 id="初步分析"><a href="#初步分析" class="headerlink" title="初步分析"></a>初步分析</h1><p>仔细一看 markdown 代码，发现里面出现了过滤器嵌套，也就是说，里面那块 markdown 代码会被处理两次！</p>
+<h1 id="尝试解决方案1"><a href="#尝试解决方案1" class="headerlink" title="尝试解决方案1"></a>尝试解决方案1</h1><p>既然处理了两次，那么就得想办法只处理一次，于是将 markdown 代码改成这样：</p>
+<img src="/blogs/site/images/17.png">
+<p>看起来每个 markdown 块都只被处理了一次，应该可以了吧！</p>
+<p>于是，我得到了这个效果：</p>
+<img src="/blogs/site/images/14.png">
+<p>这个看起来好像没啥问题了。</p>
+<p>但是，结合 filter 代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> etpl = <span class="built_in">require</span>(<span class="string">'etpl'</span>);</span><br><span class="line"><span class="keyword">var</span> marked = <span class="built_in">require</span>(<span class="string">'marked'</span>);</span><br><span class="line">etpl.addFilter(<span class="string">'markdown'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">source, useExtra</span>) </span>&#123;</span><br><span class="line">    source = source.replace(<span class="regexp">/(^\n+|\n+$)/g</span>, <span class="string">''</span>);</span><br><span class="line">    <span class="keyword">var</span> uselessSpaceCount = source.match(<span class="regexp">/^\s*/</span>)[<span class="number">0</span>].length;</span><br><span class="line">    source = source.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'^ &#123;'</span> + uselessSpaceCount + <span class="string">'&#125;'</span>, <span class="string">'gm'</span>), <span class="string">''</span>);</span><br><span class="line">    <span class="keyword">return</span> marked(source);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>发现：第三个 &lt;!– filter: markdown() –&gt; 会导致自己的 markdown 块缩进出问题。</p>
+<h1 id="尝试解决方案2"><a href="#尝试解决方案2" class="headerlink" title="尝试解决方案2"></a>尝试解决方案2</h1><p>再来仔细玩味一下内嵌 filter 的处理流程吧，希望能找到解决方案。</p>
+<p>经过各种 debug ，发现整个处理流程是这样的：</p>
+<ul>
+<li>1、先处理最里面的 markdown 块（这是是 etpl 的处理流程），然后生成对应的 HTML 代码，替换掉之前的 markdown 代码；</li>
+<li>2、再处理外层的 markdown 块，这个块包含了第一步中生成的 HTML 代码块。于是在替换每行空格的时候，同样会替换掉第一步中生成的 code 标签中每一行前面相应的空格。</li>
+</ul>
+<p>好了，现在为啥缩进会出问题的原因已经具体定位了，咋办呢？</p>
+<p>在第2步调用 marked 解析之前，完全可以把第一步中生成的 HTML 代码拿出来，这样第2步处理的时候就不会去掉 code 块中的有用空格了。这样一来，过滤器关键部分的代码就变成了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> renderer = <span class="keyword">new</span> marked.Renderer();</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'etpl'</span>).addFilter(<span class="string">'markdown'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">source, useExtra</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 把内嵌的 markdown 拿出来，防止多次转换</span></span><br><span class="line">    <span class="keyword">var</span> nestMarkdowns = [];</span><br><span class="line">    source = source.replace(<span class="regexp">/&lt;div class="markdown"&gt;(.|\n)*&lt;\/div&gt;/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">match</span>) </span>&#123;</span><br><span class="line">        nestMarkdowns.push(match);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'$&#123;nestMarkdown&#125;'</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    source = source.replace(<span class="regexp">/^\n+/</span>, <span class="string">''</span>);</span><br><span class="line">    <span class="keyword">var</span> uselessSpaceCount = source.match(<span class="regexp">/^\s*/</span>)[<span class="number">0</span>].length;</span><br><span class="line">    source = source.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'^ &#123;'</span> + uselessSpaceCount + <span class="string">'&#125;'</span>, <span class="string">'gm'</span>), <span class="string">''</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'&lt;div class="markdown"&gt;'</span></span><br><span class="line">        + marked(source, &#123;renderer: renderer&#125;)</span><br><span class="line">            .replace(<span class="regexp">/\$&#123;nestMarkdown&#125;/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> nestMarkdowns.shift();</span><br><span class="line">            &#125;)</span><br><span class="line">        + <span class="string">'&lt;/div&gt;'</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>刷一下页面，再看，符合预期，完全正常！</p>
+
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="使用 marked 解析 markdown 之缩进" data-title="使用 marked 解析 markdown 之缩进" data-url="http://yoursite.com/blogs/使用 marked 解析 markdown 之缩进.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

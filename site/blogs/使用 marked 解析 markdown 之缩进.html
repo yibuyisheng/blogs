@@ -6,27 +6,27 @@
   <title>使用 marked 解析 markdown 之缩进 | 博客 | 偶尔玩玩 Java 的前端工程师</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="">
-  <meta name="description" content="简介在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。">
+  <meta name="keywords" content="markdown,ETPL">
+  <meta name="description" content="在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 ETPL 的 markdown 过滤器嵌套带来的问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 marked 解析 markdown 之缩进">
 <meta property="og:url" content="http://yoursite.com/blogs/使用 marked 解析 markdown 之缩进.html">
 <meta property="og:site_name" content="博客">
-<meta property="og:description" content="简介在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。">
+<meta property="og:description" content="在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 ETPL 的 markdown 过滤器嵌套带来的问题。">
 <meta property="og:image" content="http://yoursite.com/blogs/site/images/14.png">
 <meta property="og:image" content="http://yoursite.com/blogs/site/images/15.png">
 <meta property="og:image" content="http://yoursite.com/blogs/site/images/16.png">
 <meta property="og:image" content="http://yoursite.com/blogs/site/images/17.png">
 <meta property="og:image" content="http://yoursite.com/blogs/site/images/14.png">
-<meta property="og:updated_time" content="2016-06-15T10:32:49.000Z">
+<meta property="og:updated_time" content="2016-06-15T10:36:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 marked 解析 markdown 之缩进">
-<meta name="twitter:description" content="简介在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。">
+<meta name="twitter:description" content="在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 ETPL 的 markdown 过滤器嵌套带来的问题。">
 <meta name="twitter:image" content="http://yoursite.com/blogs/site/images/14.png">
   
     <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在前面一篇文章&lt;a href=&quot;/blogs/site//blogs/使用marked解析markdown.html&quot; title=&quot;使用 marked 解析 markdown&quot;&gt;使用 marked 解析 markdown&lt;/a&gt;中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。&lt;/p&gt;">
+  <meta name="summary" content="&lt;p&gt;在前面一篇文章&lt;a href=&quot;/blogs/site//blogs/使用marked解析markdown.html&quot; title=&quot;使用 marked 解析 markdown&quot;&gt;使用 marked 解析 markdown&lt;/a&gt;中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 ETPL 的 markdown 过滤器嵌套带来的问题。&lt;/p&gt;">
   <link rel="shortcut icon" href="/blogs/site/favicon.ico">
   <link rel="stylesheet" href="/blogs/site/css/style.css">
 </head>
@@ -114,7 +114,9 @@
   <article id="post-使用 marked 解析 markdown 之缩进" class="article article-type-post" itemprop="blogPost">
     
       <div class="post-meat flex-row">
-        <div class="flex-col"></div>
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/ETPL/">ETPL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/markdown/">markdown</a></li></ul>
+</div>
       </div>
       <div class="post-body">
 
@@ -124,7 +126,7 @@
 
           
           <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#简介" title="简介"><span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#遇见问题" title="遇见问题"><span class="post-toc-text">遇见问题</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#初步分析" title="初步分析"><span class="post-toc-text">初步分析</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#尝试解决方案1" title="尝试解决方案1"><span class="post-toc-text">尝试解决方案1</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#尝试解决方案2" title="尝试解决方案2"><span class="post-toc-text">尝试解决方案2</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#遇见问题" title="遇见问题"><span class="post-toc-text">遇见问题</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#初步分析" title="初步分析"><span class="post-toc-text">初步分析</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#尝试解决方案1" title="尝试解决方案1"><span class="post-toc-text">尝试解决方案1</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#尝试解决方案2" title="尝试解决方案2"><span class="post-toc-text">尝试解决方案2</span></a></li></ol>
           </nav>
           
         </aside>
@@ -132,7 +134,7 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在前面一篇文章<a href="/blogs/site//blogs/使用marked解析markdown.html" title="使用 marked 解析 markdown">使用 marked 解析 markdown</a>中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。</p>
+              <p>在前面一篇文章<a href="/blogs/site//blogs/使用marked解析markdown.html" title="使用 marked 解析 markdown">使用 marked 解析 markdown</a>中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 ETPL 的 markdown 过滤器嵌套带来的问题。</p>
 <a id="more"></a>
 <h1 id="遇见问题"><a href="#遇见问题" class="headerlink" title="遇见问题"></a>遇见问题</h1><p>这次，我想在 table 的 td 里面写 markdown ，期望效果看起来像是这样的：</p>
 <img src="/blogs/site/images/14.png">
@@ -155,7 +157,7 @@
 <h1 id="尝试解决方案2"><a href="#尝试解决方案2" class="headerlink" title="尝试解决方案2"></a>尝试解决方案2</h1><p>再来仔细玩味一下内嵌 filter 的处理流程吧，希望能找到解决方案。</p>
 <p>经过各种 debug ，发现整个处理流程是这样的：</p>
 <ul>
-<li>1、先处理最里面的 markdown 块（这是是 etpl 的处理流程），然后生成对应的 HTML 代码，替换掉之前的 markdown 代码；</li>
+<li>1、先处理最里面的 markdown 块（这是是 ETPL 的处理流程），然后生成对应的 HTML 代码，替换掉之前的 markdown 代码；</li>
 <li>2、再处理外层的 markdown 块，这个块包含了第一步中生成的 HTML 代码块。于是在替换每行空格的时候，同样会替换掉第一步中生成的 code 标签中每一行前面相应的空格。</li>
 </ul>
 <p>好了，现在为啥缩进会出问题的原因已经具体定位了，咋办呢？</p>

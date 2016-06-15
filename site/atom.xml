@@ -5,7 +5,7 @@
   <link href="/blogs/site/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-15T10:32:49.000Z</updated>
+  <updated>2016-06-15T10:36:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com//blogs/%E4%BD%BF%E7%94%A8%20marked%20%E8%A7%A3%E6%9E%90%20markdown%20%E4%B9%8B%E7%BC%A9%E8%BF%9B.html"/>
     <id>http://yoursite.com//blogs/使用 marked 解析 markdown 之缩进.html</id>
     <published>2016-06-15T08:12:00.000Z</published>
-    <updated>2016-06-15T10:32:49.000Z</updated>
+    <updated>2016-06-15T10:36:48.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在前面一篇文章&lt;a href=&quot;/blogs/site//blogs/使用marked解析markdown.html&quot; title=&quot;使用 marked 解析 markdown&quot;&gt;使用 marked 解析 markdown&lt;/a&gt;中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。&lt;/p&gt;
+    <content type="html">&lt;p&gt;在前面一篇文章&lt;a href=&quot;/blogs/site//blogs/使用marked解析markdown.html&quot; title=&quot;使用 marked 解析 markdown&quot;&gt;使用 marked 解析 markdown&lt;/a&gt;中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 ETPL 的 markdown 过滤器嵌套带来的问题。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;遇见问题&quot;&gt;&lt;a href=&quot;#遇见问题&quot; class=&quot;headerlink&quot; title=&quot;遇见问题&quot;&gt;&lt;/a&gt;遇见问题&lt;/h1&gt;&lt;p&gt;这次，我想在 table 的 td 里面写 markdown ，期望效果看起来像是这样的：&lt;/p&gt;
 &lt;img src=&quot;/blogs/site/images/14.png&quot;&gt;
@@ -45,7 +45,7 @@
 &lt;h1 id=&quot;尝试解决方案2&quot;&gt;&lt;a href=&quot;#尝试解决方案2&quot; class=&quot;headerlink&quot; title=&quot;尝试解决方案2&quot;&gt;&lt;/a&gt;尝试解决方案2&lt;/h1&gt;&lt;p&gt;再来仔细玩味一下内嵌 filter 的处理流程吧，希望能找到解决方案。&lt;/p&gt;
 &lt;p&gt;经过各种 debug ，发现整个处理流程是这样的：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;1、先处理最里面的 markdown 块（这是是 etpl 的处理流程），然后生成对应的 HTML 代码，替换掉之前的 markdown 代码；&lt;/li&gt;
+&lt;li&gt;1、先处理最里面的 markdown 块（这是是 ETPL 的处理流程），然后生成对应的 HTML 代码，替换掉之前的 markdown 代码；&lt;/li&gt;
 &lt;li&gt;2、再处理外层的 markdown 块，这个块包含了第一步中生成的 HTML 代码块。于是在替换每行空格的时候，同样会替换掉第一步中生成的 code 标签中每一行前面相应的空格。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;好了，现在为啥缩进会出问题的原因已经具体定位了，咋办呢？&lt;/p&gt;
@@ -56,10 +56,14 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在前面一篇文章&lt;a href=&quot;/blogs/site//blogs/使用marked解析markdown.html&quot; title=&quot;使用 marked 解析 markdown&quot;&gt;使用 marked 解析 markdown&lt;/a&gt;中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。&lt;/p&gt;
+      &lt;p&gt;在前面一篇文章&lt;a href=&quot;/blogs/site//blogs/使用marked解析markdown.html&quot; title=&quot;使用 marked 解析 markdown&quot;&gt;使用 marked 解析 markdown&lt;/a&gt;中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 ETPL 的 markdown 过滤器嵌套带来的问题。&lt;/p&gt;
     
     </summary>
     
+    
+      <category term="markdown" scheme="http://yoursite.com/tags/markdown/"/>
+    
+      <category term="ETPL" scheme="http://yoursite.com/tags/ETPL/"/>
     
   </entry>
   

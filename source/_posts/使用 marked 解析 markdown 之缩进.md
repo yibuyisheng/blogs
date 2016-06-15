@@ -1,11 +1,12 @@
 ---
 title: 使用 marked 解析 markdown 之缩进
 date: 2016-06-15T16:12:00.000Z
+tags:
+- markdown
+- ETPL
 ---
 
-# 简介
-
-在前面一篇文章{% post_link 使用marked解析markdown %}中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 etpl 的 markdown 过滤器嵌套带来的问题。
+在前面一篇文章{% post_link 使用marked解析markdown %}中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 ETPL 的 markdown 过滤器嵌套带来的问题。
 
 <!-- more -->
 
@@ -66,7 +67,7 @@ etpl.addFilter('markdown', function (source, useExtra) {
 
 经过各种 debug ，发现整个处理流程是这样的：
 
-- 1、先处理最里面的 markdown 块（这是是 etpl 的处理流程），然后生成对应的 HTML 代码，替换掉之前的 markdown 代码；
+- 1、先处理最里面的 markdown 块（这是是 ETPL 的处理流程），然后生成对应的 HTML 代码，替换掉之前的 markdown 代码；
 - 2、再处理外层的 markdown 块，这个块包含了第一步中生成的 HTML 代码块。于是在替换每行空格的时候，同样会替换掉第一步中生成的 code 标签中每一行前面相应的空格。
 
 好了，现在为啥缩进会出问题的原因已经具体定位了，咋办呢？

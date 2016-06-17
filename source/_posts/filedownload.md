@@ -80,14 +80,14 @@ Content-Type 指明了具体的文件类型，然后 Content-Disposition 多了�
 
 ```java
 response.addHeader("Content-Type", "application/octet-stream");
-response.addHeader("attachment; filename=\"" + new String(fileName.getBytes("GBK"), "ISO-8859-1") + "\".xlsx");
+response.addHeader("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("GBK"), "ISO-8859-1") + "\".xlsx");
 ```
 
 看起来，只需要用 `filename*=` 附上编码就行了，于是后端代码改成：
 
 ```java
 response.addHeader("Content-Type", "application/octet-stream");
-response.addHeader("attachment; filename=\"" + new String(fileName.getBytes("GBK"), "ISO-8859-1") + "\".xlsx;filename*=GBK''" + new String(fileName.getBytes("GBK"), "ISO-8859-1"));
+response.addHeader("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("GBK"), "ISO-8859-1") + "\".xlsx;filename*=GBK''" + new String(fileName.getBytes("GBK"), "ISO-8859-1"));
 ```
 
 好了，我再点击下载，没问题！
@@ -107,7 +107,7 @@ response.addHeader("attachment; filename=\"" + new String(fileName.getBytes("GBK
 
 ```java
 response.addHeader("Content-Type", "application/octet-stream");
-response.addHeader("attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\".xlsx;filename*=UTF-8''" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1"));
+response.addHeader("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\".xlsx;filename*=UTF-8''" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1"));
 ```
 
 经测试，一切正常！

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>WEB 中的文件下载 | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="HTTP">
+  <meta name="description" content="在 WEB 开发中，我们会期望用户在点击某个链接的时候，下载一个文件（不管这个文件能不能被浏览器解析，都要下载）。以前接触过一种方式，就是在响应 header 中设置 force-download ：
+12Content-Type: application/force-downloadContent-Disposition: attachment; filename=&amp;quot;test.zip&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WEB 中的文件下载">
+<meta property="og:url" content="http://yoursite.com/blogs/filedownload.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="在 WEB 开发中，我们会期望用户在点击某个链接的时候，下载一个文件（不管这个文件能不能被浏览器解析，都要下载）。以前接触过一种方式，就是在响应 header 中设置 force-download ：
+12Content-Type: application/force-downloadContent-Disposition: attachment; filename=&amp;quot;test.zip&amp;">
+<meta property="og:updated_time" content="2016-06-17T14:37:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WEB 中的文件下载">
+<meta name="twitter:description" content="在 WEB 开发中，我们会期望用户在点击某个链接的时候，下载一个文件（不管这个文件能不能被浏览器解析，都要下载）。以前接触过一种方式，就是在响应 header 中设置 force-download ：
+12Content-Type: application/force-downloadContent-Disposition: attachment; filename=&amp;quot;test.zip&amp;">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;在 WEB 开发中，我们会期望用户在点击某个链接的时候，下载一个文件（不管这个文件能不能被浏览器解析，都要下载）。以前接触过一种方式，就是在响应 header 中设置 &lt;code&gt;force-download&lt;/code&gt; ：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Content-Type: application/force-download&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Content-Disposition: attachment; filename=&amp;quot;test.zip&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然而，这是一种 hack 方式，并不推荐使用：&lt;br&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">WEB 中的文件下载</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">WEB 中的文件下载</h1>
+    <h5 class="subtitle">2016-06-17</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-filedownload" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/HTTP/">HTTP</a></li></ul>
+</div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题发现" title="问题发现"><span class="post-toc-text">问题发现</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第一步探索" title="第一步探索"><span class="post-toc-text">第一步探索</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第二步探索" title="第二步探索"><span class="post-toc-text">第二步探索</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第三步探索" title="第三步探索"><span class="post-toc-text">第三步探索</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第四步探索" title="第四步探索"><span class="post-toc-text">第四步探索</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结" title="总结"><span class="post-toc-text">总结</span></a></li></ol>
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <p>在 WEB 开发中，我们会期望用户在点击某个链接的时候，下载一个文件（不管这个文件能不能被浏览器解析，都要下载）。以前接触过一种方式，就是在响应 header 中设置 <code>force-download</code> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/force-download</span><br><span class="line">Content-Disposition: attachment; filename=&quot;test.zip&quot;</span><br></pre></td></tr></table></figure>
+<p>然而，这是一种 hack 方式，并不推荐使用：<br><a id="more"></a></p>
+<blockquote><p>Content-Type: application/force-download means “I, the web server, am going to lie to you (the browser) about what this file is so that you will not treat it as a PDF/Word Document/MP3/whatever and prompt the user to save the mysterious file to disk instead”. It is a dirty hack that breaks horribly when the client doesn’t do “save to disk”.</p>
+<footer><strong>Quentin</strong><cite><a href="http://stackoverflow.com/a/10616753/3468416" target="_blank" rel="external">Utility of HTTP header “Content-Type: application/force-download” for mobile?</a></cite></footer></blockquote>
+<p>有位小伙伴就遇到了不奏效的情况：</p>
+<blockquote><p>ATTENTION:<br>If you use any of the lines below your download will probably NOT WORK on Android 2.1.<br><br></p>
+<p>Content-Type: application/force-download<br>Content-Disposition: attachment; filename=MyFileName.ZIP<br>Content-Disposition: attachment; filename=”MyFileName.zip”<br>Content-Disposition: attachment; filename=”MyFileName.ZIP”;</p>
+<footer><strong>Jörg Wagner</strong><cite><a href="http://www.digiblog.de/2011/04/android-and-the-download-file-headers/" target="_blank" rel="external">Android and the HTTP download file headers</a></cite></footer></blockquote>
+<p>那么，究竟怎么办呢？接下来描述我的同事和我遇到的问题。</p>
+<h1 id="问题发现"><a href="#问题发现" class="headerlink" title="问题发现"></a>问题发现</h1><p>最近接手了一个新项目，今天刚好有空熟悉一下之前的功能。于是打开线上地址，输入测试账号，进入一个列表页面，这个列表页面提供了下载数据为 Excel 文件的功能，点了一下<code>下载</code>链接，猛然发现，下载的文件名字怎么是 <code>download</code> ？为啥呢？</p>
+<p>我用的浏览器是 Chrome 51 ，系统是 OS EI Capitan 10.11.5 。</p>
+<p>我一同事 Chrome 47，可以完全正常下载！</p>
+<p>先看看为啥我的浏览器不行吧！</p>
+<h1 id="第一步探索"><a href="#第一步探索" class="headerlink" title="第一步探索"></a>第一步探索</h1><p>打开 Chrome 开发者工具，查看 HTTP 请求，发现响应头部有如下两项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/octet-stream;charset=GBK</span><br><span class="line">Content-Disposition: attachment; filename=&quot;%D6%D0%CE%C4.xlsx</span><br></pre></td></tr></table></figure>
+<p>噢，filename 那里多了一个双引号，去掉吧！</p>
+<h1 id="第二步探索"><a href="#第二步探索" class="headerlink" title="第二步探索"></a>第二步探索</h1><p>然而，引号去掉之后，问题依旧！什么情况？难道是 filename 需要引号包起来？</p>
+<p>好吧，包起来试试！</p>
+<h1 id="第三步探索"><a href="#第三步探索" class="headerlink" title="第三步探索"></a>第三步探索</h1><p>包起来后问题依旧，什么鬼？</p>
+<p>灵机一动，去看看别人怎么做的吧！于是找到别人网站一个下载 Excel 的页面，点击下载，发现响应 header 里面是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8</span><br><span class="line">Content-Disposition: inline;filename=&quot;%D6%D0%CE%C4.xlsx&quot;;filename*=utf-8&apos;&apos;%D6%D0%CE%C4.xlsx</span><br></pre></td></tr></table></figure>
+<p>Content-Type 指明了具体的文件类型，然后 Content-Disposition 多了一个 <code>filename*=</code> ，这是什么东西？ <code>utf-8</code> 是什么编码？</p>
+<p>经过一堆胡乱搜索，猜测 utf-8 就是文件名的编码。为啥文件名要编码呢？呃，HTTP header 里面还未见过中文……</p>
+<p>好了，我们后端的代码大致做法是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">response.addHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/octet-stream"</span>);</span><br><span class="line">response.addHeader(<span class="string">"attachment; filename=\""</span> + <span class="keyword">new</span> String(fileName.getBytes(<span class="string">"GBK"</span>), <span class="string">"ISO-8859-1"</span>) + <span class="string">"\".xlsx"</span>);</span><br></pre></td></tr></table></figure>
+<p>看起来，只需要用 <code>filename*=</code> 附上编码就行了，于是后端代码改成：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">response.addHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/octet-stream"</span>);</span><br><span class="line">response.addHeader(<span class="string">"attachment; filename=\""</span> + <span class="keyword">new</span> String(fileName.getBytes(<span class="string">"GBK"</span>), <span class="string">"ISO-8859-1"</span>) + <span class="string">"\".xlsx;filename*=GBK''"</span> + <span class="keyword">new</span> String(fileName.getBytes(<span class="string">"GBK"</span>), <span class="string">"ISO-8859-1"</span>));</span><br></pre></td></tr></table></figure>
+<p>好了，我再点击下载，没问题！</p>
+<h1 id="第四步探索"><a href="#第四步探索" class="headerlink" title="第四步探索"></a>第四步探索</h1><p>看起来好像是 OK 了，但是，用 IE 试一下，又不正常了，文件名字不对了！</p>
+<p>为什么呢？别人网站在 IE 下都能正常下载的！现在主要有两处区别：</p>
+<ul>
+<li>我们的 Content-Type 没有写具体；</li>
+<li>我们使用了 GBK 编码。</li>
+</ul>
+<p>一思索，感觉编码的嫌疑较大，为啥呢？因为对于文件下载，浏览器根本不用管文件内容是个啥，只需要按照二进制流写入本地磁盘就好了，并且，此处也只是文件名错了，下载下来的文件内容还是没问题的。</p>
+<p>那就改编码吧，改成 UTF-8 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">response.addHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/octet-stream"</span>);</span><br><span class="line">response.addHeader(<span class="string">"attachment; filename=\""</span> + <span class="keyword">new</span> String(fileName.getBytes(<span class="string">"UTF-8"</span>), <span class="string">"ISO-8859-1"</span>) + <span class="string">"\".xlsx;filename*=UTF-8''"</span> + <span class="keyword">new</span> String(fileName.getBytes(<span class="string">"UTF-8"</span>), <span class="string">"ISO-8859-1"</span>));</span><br></pre></td></tr></table></figure>
+<p>经测试，一切正常！</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在文件下载功能中，一般都会借助于这两个 header 来达到效果，那么两个 header 的具体作用是什么呢？</p>
+<ul>
+<li>Content-Type：告诉浏览器当前的响应体是个什么类型的数据。当其为 application/octet-stream 的时候，就说明 body 里面是一堆不知道是啥的二进制数据。</li>
+<li>Content-Disposition：用于向浏览器提供一些关于如何处理响应内容的额外的信息，同时也可以附带一些其它数据，比如在保存响应体到本地的时候应该使用什么样的文件名。</li>
+</ul>
+<p>细想一下， Content-Type 好像对于文件下载没什么作用？事实上的确如此。可是再想一下，如果浏览器不理会 Content-Disposition ，不下载文件怎么办？如果此时提供了 Content-Type ,至少浏览器还有机会根据具体的 Content-Type 对响应体进行处理。</p>
+<p>可是为什么浏览器会不理会 Content-Disposition 呢？因为这个 Content-Disposition 头部并不是 HTTP 标准中的内容，只是被浏览器广泛实现的一个 header 而已。</p>
+<p>话题转一转， Content-Disposition 的语法见<a href="https://tools.ietf.org/html/rfc6266#section-4.1" target="_blank" rel="external">此处</a>，其中相对重要的点此处罗列一下：</p>
+<ul>
+<li>常用的 disponsition-type 有 <code>inline</code> 和 <code>attachment</code> ：<ul>
+<li>inline：建议浏览器使用默认的行为处理响应体。</li>
+<li>attachment：建议浏览器将响应体保存到本地，而不是正常处理响应体。</li>
+</ul>
+</li>
+<li>Content-Disposition 中可以传入 filename 参数，有两种形式：<ul>
+<li>filename=yourfilename.suffix：直接指明文件名和后缀。</li>
+<li>filename*=utf-8’’yourfilename.suffix：指定了文件名编码。其中，编码后面那对单引号中还可以填入内容，此处不赘述，可参考<a href="https://tools.ietf.org/html/rfc6266" target="_blank" rel="external">规范</a>。</li>
+<li>有些浏览器不认识 <code>filename*=utf-8&#39;&#39;yourfilename.suffix</code> （估计因为这东西比较复杂），所以最好带上 <code>filename=yourfilename.suffix</code> 。</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="filedownload" data-title="WEB 中的文件下载" data-url="http://yoursite.com/blogs/filedownload.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

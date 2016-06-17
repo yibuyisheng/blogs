@@ -107,6 +107,48 @@
   <ul class="post-list">
   
     <li class="post-list-item">
+  <article id="post-一些 core javascript 的基础知识" class="article article-type-post" itemprop="blogPost">
+    
+      
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/blogs/site/blogs/一些 core javascript 的基础知识.html">一些 core javascript 的基础知识</a>
+    </h3>
+  
+
+
+
+      <div class="post-meat flex-row">
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/JavaScript/">JavaScript</a></li></ul>
+</div>
+        <time datetime="2014-10-22T14:13:00.000Z" itemprop="datePublished" class="post-tiem">
+  2014-10-22
+</time>
+      </div>
+      <div class="post-content" id="post-content" itemprop="postContent" >
+        
+          <h3 id="一、-setTimeout"><a href="#一、-setTimeout" class="headerlink" title="一、 setTimeout"></a>一、 setTimeout</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setTimtout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   alert(<span class="number">2</span>);                           <span class="comment">// 后弹出</span></span><br><span class="line">&#125;,<span class="number">0</span>);</span><br><span class="line">alert(<span class="number">1</span>);                              <span class="comment">// 先弹出</span></span><br></pre></td></tr></table></figure>
+<p>对于如上代码，包含原理如下：</p>
+<ul>
+<li>1、首先 jsvm 只会执行一个线程；</li>
+<li>2、当这个线程遇到 <code>setTimout()</code> 的时候，就会将这个 function 放到某个队列里面；</li>
+<li>3、当前这个线程空闲的时候，就会执行任务队列轮询的代码，将满足条件的函数拿出来执行。
+        
+      </div>
+      <div class="post-footer clearfix">
+        <a href="/blogs/site/blogs/一些 core javascript 的基础知识.html" class="post-more waves-effect waves-button waves-light">更多</a>
+      </div>
+    
+
+  </article>
+
+
+</li>
+  
+    <li class="post-list-item">
   <article id="post-web 前端外部点击事件的实现" class="article article-type-post" itemprop="blogPost">
     
       

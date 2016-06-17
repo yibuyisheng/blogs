@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/blogs/site/images/16.png">
 <meta property="og:image" content="http://yoursite.com/blogs/site/images/17.png">
 <meta property="og:image" content="http://yoursite.com/blogs/site/images/14.png">
-<meta property="og:updated_time" content="2016-06-15T10:36:48.000Z">
+<meta property="og:updated_time" content="2016-06-17T12:56:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 marked 解析 markdown 之缩进">
 <meta name="twitter:description" content="在前面一篇文章使用 marked 解析 markdown中，大致介绍了一下 marked 使用过程中的一些问题，今天又再次遇到 ETPL 的 markdown 过滤器嵌套带来的问题。">
@@ -142,8 +142,8 @@
 <img src="/blogs/site/images/15.png">
 <p>然后出来的效果是这样：</p>
 <img src="/blogs/site/images/16.png">
-<p>注意黑色的那段代码块，缩进过猛了！</p>
-<p>什么情况？为啥会缩进过度呢？</p>
+<p>注意黑色的那段代码块，没缩进了！</p>
+<p>什么情况？为啥会没缩进呢？</p>
 <h1 id="初步分析"><a href="#初步分析" class="headerlink" title="初步分析"></a>初步分析</h1><p>仔细一看 markdown 代码，发现里面出现了过滤器嵌套，也就是说，里面那块 markdown 代码会被处理两次！</p>
 <h1 id="尝试解决方案1"><a href="#尝试解决方案1" class="headerlink" title="尝试解决方案1"></a>尝试解决方案1</h1><p>既然处理了两次，那么就得想办法只处理一次，于是将 markdown 代码改成这样：</p>
 <img src="/blogs/site/images/17.png">

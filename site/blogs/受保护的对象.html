@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>受保护的对象 | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaScript">
+  <meta name="description" content="虽然 JavaScript 没有多线程变量共享的问题，但是在一些场景中，我们还是希望能对某些对象进行适当的保护（锁定），防止发生一些不可预期的错误。
+本文主要从如下两个实际场景展开：
+
+任务执行器；
+事件基类。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="受保护的对象">
+<meta property="og:url" content="http://yoursite.com/blogs/受保护的对象.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="虽然 JavaScript 没有多线程变量共享的问题，但是在一些场景中，我们还是希望能对某些对象进行适当的保护（锁定），防止发生一些不可预期的错误。
+本文主要从如下两个实际场景展开：
+
+任务执行器；
+事件基类。">
+<meta property="og:updated_time" content="2016-06-19T10:08:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="受保护的对象">
+<meta name="twitter:description" content="虽然 JavaScript 没有多线程变量共享的问题，但是在一些场景中，我们还是希望能对某些对象进行适当的保护（锁定），防止发生一些不可预期的错误。
+本文主要从如下两个实际场景展开：
+
+任务执行器；
+事件基类。">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;虽然 JavaScript 没有多线程变量共享的问题，但是在一些场景中，我们还是希望能对某些对象进行适当的保护（锁定），防止发生一些不可预期的错误。&lt;/p&gt;
+&lt;p&gt;本文主要从如下两个实际场景展开：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;任务执行器；&lt;/li&gt;
+&lt;li&gt;事件基类。&lt;/li&gt;
+&lt;/ul&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">受保护的对象</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">受保护的对象</h1>
+    <h5 class="subtitle">2016-06-19</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-受保护的对象" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/JavaScript/">JavaScript</a></li></ul>
+</div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#任务执行器" title="任务执行器"><span class="post-toc-text">任务执行器</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#事件基类" title="事件基类"><span class="post-toc-text">事件基类</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结" title="总结"><span class="post-toc-text">总结</span></a></li></ol>
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <p>虽然 JavaScript 没有多线程变量共享的问题，但是在一些场景中，我们还是希望能对某些对象进行适当的保护（锁定），防止发生一些不可预期的错误。</p>
+<p>本文主要从如下两个实际场景展开：</p>
+<ul>
+<li>任务执行器；</li>
+<li>事件基类。</li>
+</ul>
+<a id="more"></a>
+<h1 id="任务执行器"><a href="#任务执行器" class="headerlink" title="任务执行器"></a>任务执行器</h1><p>现在，我们需要一个 DOM 操作的任务执行器，这个任务执行器满足的主要功能有：</p>
+<ul>
+<li>能够添加任务；</li>
+<li>能够批量执行任务；</li>
+<li>能够随时启动和停止任务的执行。</li>
+</ul>
+<p>为啥需要这么个东西呢？假设其中有下面三步 DOM 操作：</p>
+<ul>
+<li>设置节点 a 的文本： <code>a.innerText = &#39;text1&#39;</code> ；</li>
+<li>设置节点 a 的文本： <code>a.innerText = &#39;text2&#39;</code> ；</li>
+<li>设置节点 a 的文本： <code>a.innerText = &#39;text3&#39;</code> 。</li>
+</ul>
+<p>如果老老实实设置三次，感觉太不划算了！实际上只需要设置最后一次就好了，这样就可以减少两次无谓的 DOM 操作了。</p>
+<p>初步看起来，我们的任务执行器代码大致会像这个样子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> TASKS = <span class="built_in">Symbol</span>(<span class="string">'tasks'</span>);</span><br><span class="line"><span class="keyword">const</span> COUNTER = <span class="built_in">Symbol</span>(<span class="string">'counter'</span>);</span><br><span class="line"><span class="keyword">const</span> EXECUTE = <span class="built_in">Symbol</span>(<span class="string">'execute'</span>);</span><br><span class="line"><span class="keyword">const</span> IS_RUNNING = <span class="built_in">Symbol</span>(<span class="string">'isRunning'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">DomUpdater</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>[TASKS] = &#123;&#125;;</span><br><span class="line">        <span class="keyword">this</span>[COUNTER] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 获取任务ID，每一种类型操作对应一个任务ID，</span><br><span class="line">     * 比如对某个节点的innerText就可以算是一种类型的操作，具有唯一的任务ID</span><br><span class="line">     *</span><br><span class="line">     * @public</span><br><span class="line">     * @return &#123;string&#125; 任务ID</span><br><span class="line">     */</span></span><br><span class="line">    getTaskId() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span> + ++<span class="keyword">this</span>[COUNTER];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 添加任务函数</span><br><span class="line">     *</span><br><span class="line">     * @public</span><br><span class="line">     * @param &#123;Function&#125; taskFn   任务函数</span><br><span class="line">     * @param &#123;Function&#125; notifyFn 任务执行完成之后的回调函数</span><br><span class="line">     */</span></span><br><span class="line">    add(taskId, taskFn, notifyFn) &#123;</span><br><span class="line">        <span class="keyword">const</span> task = <span class="keyword">this</span>[TASKS][taskId] || &#123;&#125;;</span><br><span class="line"></span><br><span class="line">        task.taskFn = taskFn;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 为啥notifyFns会是一个数组，而taskFn不是数组呢？</span></span><br><span class="line">        <span class="comment">// 因为我们期望后续同类型的（taskId相同）的任务能够覆盖掉之前的任务，</span></span><br><span class="line">        <span class="comment">// 而之前任务的回调函数需要保留，这样就可以保证一定会通知外界某个任务已经执行完成了。</span></span><br><span class="line">        task.notifyFns = task.notifyFns || [];</span><br><span class="line">        task.notifyFns.push(notifyFn);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>[TASKS][taskId] = task;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>[EXECUTE]();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 启动任务执行</span><br><span class="line">     *</span><br><span class="line">     * @public</span><br><span class="line">     */</span></span><br><span class="line">    start() &#123;</span><br><span class="line">        <span class="keyword">this</span>[IS_RUNNING] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">this</span>[EXECUTE]();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    stop() &#123;</span><br><span class="line">        <span class="keyword">this</span>[IS_RUNNING] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 执行任务</span><br><span class="line">     *</span><br><span class="line">     * @private</span><br><span class="line">     */</span></span><br><span class="line">    [EXECUTE]() &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>[IS_RUNNING]) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">window</span>.requestAnimationFrame(() =&gt; &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> taskId <span class="keyword">in</span> <span class="keyword">this</span>[TASKS]) &#123;</span><br><span class="line">                <span class="keyword">const</span> task = <span class="keyword">this</span>[TASKS][taskId];</span><br><span class="line">                <span class="keyword">if</span> (!task) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">let</span> result;</span><br><span class="line">                <span class="keyword">let</span> error;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    result = task.taskFn();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">                    error = err;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, il = task.notifyFns.length; i &lt; il; ++i) &#123;</span><br><span class="line">                    task.notifyFns[i](error, result);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">this</span>[TASKS][taskId] = <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    destroy() &#123;</span><br><span class="line">        <span class="keyword">this</span>[TASKS] = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好了，看起来似乎可以了，那就到实际环境遛遛吧！</p>
+<p>不遛不知道，一遛吓一跳，跳出来一些莫名其妙的问题：</p>
+<ul>
+<li>代码的第90行报<code>this[TASKS]</code>不存在；</li>
+<li>总是会有任务的回调函数没有被调用。</li>
+</ul>
+<p>仔细分析一下代码，可以发现：</p>
+<ul>
+<li>对于第一个问题，在执行传入 <code>requestAnimationFrame</code> 的回调函数的时候，某个 taskFn 或者 notifyFn 可能会调用 <code>destroy()</code> 方法，从而将 <code>this[TASKS]</code> 设为了 false ，然后再执行到90行，就报错了。</li>
+<li>对于第二个问题，假设有两个同类型的任务，在 ‘EXECUTE’ 中调用第一个任务的 <code>notifyFn</code> 的时候，添加进第二个任务（调用了 add() 方法），然后执行到90行，将该类型任务置为 null ，这样一来，第二个任务的回调函数就没有机会执行了。</li>
+</ul>
+<p>所以，问题的根源就在任务执行过程中调用了不可控的外部函数，从而导致 <code>this[TASKS]</code> 发生变化。</p>
+<p>对于第一个类型的问题，可以简单地使用 IS_RUNNING 状态绕开。对于第二种类型的问题，就最好找一种更优雅通用的解决方案了。</p>
+<p>我们注意到，传入 <code>requestAnimationFrame</code> 的回调函数体（行范围：[72-90]）是一个敏感地带，执行这块代码的时候，应该将 <code>this[TASKS]</code> 锁定，防止不可控的外部函数（ taskFn 和 notifyFn ）对其进行干扰。</p>
+<p>其实简单说起来，这类问题就是 <code>for in</code> 循环中，被遍历的对象应该是<code>可读的</code>的一个变体，所以，可以抽离出来一个比较通用的类，具体实现代码请移步到<a href="https://github.com/elegant-view/vtpl/blob/master/src/ProtectObject.js" target="_blank" rel="external">这里</a>。</p>
+<p>现在，我们的<code>DOM 操作任务执行器</code>看起来就像<a href="https://github.com/elegant-view/vtpl/blob/master/src/DomUpdater.js" target="_blank" rel="external">这样了</a>。</p>
+<p>目前看来，这个 <code>DomUpdater</code> 还有些小地方需要优化：</p>
+<ul>
+<li>TASKS 任务遍历顺序不应该依赖于对象上键的遍历顺序。</li>
+<li>TASKS 对象的键并没有销毁，所以每次任务执行的时候，遍历次数都会只增不减。</li>
+</ul>
+<h1 id="事件基类"><a href="#事件基类" class="headerlink" title="事件基类"></a>事件基类</h1><p>在搭建前端框架的时候，一般都会期望各个功能模块能够解耦合。通常情况下，会使用事件来达到这个效果。</p>
+<p>第一次写这个类的话，很有可能就写成了这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * @file 事件</span><br><span class="line"> * @author yibuyisheng(yibuyisheng@163.com)</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;isFunction&#125; <span class="keyword">from</span> <span class="string">'./util'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> EVENTS = <span class="built_in">Symbol</span>(<span class="string">'events'</span>);</span><br><span class="line"><span class="keyword">const</span> STATE = <span class="built_in">Symbol</span>(<span class="string">'state'</span>);</span><br><span class="line"><span class="keyword">const</span> STATE_READY = <span class="built_in">Symbol</span>(<span class="string">'stateReady'</span>);</span><br><span class="line"><span class="keyword">const</span> STATE_DESTROIED = <span class="built_in">Symbol</span>(<span class="string">'stateDestroied'</span>);</span><br><span class="line"><span class="keyword">const</span> CHECK_READY = <span class="built_in">Symbol</span>(<span class="string">'checkReady'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>[EVENTS] = &#123;&#125;;</span><br><span class="line">        <span class="keyword">this</span>[STATE] = STATE_READY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 在调用on、trigger、safeTrigger、asyncTrigger、off的时候，要检查一下当前event对象的状态。</span><br><span class="line">     *</span><br><span class="line">     * @private</span><br><span class="line">     */</span></span><br><span class="line">    [CHECK_READY]() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>[STATE] !== STATE_READY) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'wrong event state: the event object is not ready.'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 绑定事件</span><br><span class="line">     *</span><br><span class="line">     * @public</span><br><span class="line">     * @param  &#123;string&#125;   eventName 事件名字</span><br><span class="line">     * @param  &#123;Function&#125; fn        回调函数</span><br><span class="line">     * @param  &#123;Object=&#125;   context   上下文对象</span><br><span class="line">     */</span></span><br><span class="line">    on(eventName, fn, context) &#123;</span><br><span class="line">        <span class="keyword">this</span>[CHECK_READY]();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!isFunction(fn)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> events = <span class="keyword">this</span>[EVENTS];</span><br><span class="line">        events[eventName] = events[eventName] || [];</span><br><span class="line">        events[eventName].push(&#123;fn, context&#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 同步触发事件</span><br><span class="line">     *</span><br><span class="line">     * @public</span><br><span class="line">     * @param  &#123;string&#125;    eventName 事件名字</span><br><span class="line">     * @param  &#123;...[*]&#125; args      要传给事件回调函数的参数列表</span><br><span class="line">     */</span></span><br><span class="line">    trigger(eventName, ...args) &#123;</span><br><span class="line">        <span class="keyword">this</span>[CHECK_READY]();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> fnObjs = <span class="keyword">this</span>[EVENTS][eventName];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> fnObj <span class="keyword">of</span> fnObjs) &#123;</span><br><span class="line">            fnObj.context::fnObj.fn(...args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 移除事件回调</span><br><span class="line">     *</span><br><span class="line">     * @public</span><br><span class="line">     * @param  &#123;...[*]&#125; args eventName，fn，context</span><br><span class="line">     * @param  &#123;string=&#125; args.0 参数名字</span><br><span class="line">     * @param  &#123;function=&#125; args.1 回调函数</span><br><span class="line">     * @param  &#123;Object=&#125; args.2 上下文对象</span><br><span class="line">     */</span></span><br><span class="line">    off(...args) &#123;</span><br><span class="line">        <span class="keyword">this</span>[CHECK_READY]();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> [eventName, fn, context] = args;</span><br><span class="line">        <span class="keyword">if</span> (args.length === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>[EVENTS] = &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> iterator = checkFn =&gt; &#123;</span><br><span class="line">            <span class="keyword">let</span> fnObjs = <span class="keyword">this</span>[EVENTS][eventName];</span><br><span class="line">            <span class="keyword">let</span> newFnObjs = [];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> fnObj <span class="keyword">of</span> fnObjs) &#123;</span><br><span class="line">                <span class="keyword">if</span> (checkFn(fnObj)) &#123;</span><br><span class="line">                    newFnObjs.push(fnObj);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">this</span>[EVENTS][eventName] = newFnObjs;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (args.length === <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>[EVENTS][eventName] = <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (args.length === <span class="number">2</span>) &#123;</span><br><span class="line">            iterator(fnObj =&gt; fn !== fnObj.fn);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (args.length === <span class="number">3</span>) &#123;</span><br><span class="line">            iterator(fnObj =&gt; fn !== fnObj.fn || context !== fnObj.context);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    destroy() &#123;</span><br><span class="line">        <span class="keyword">this</span>[EVENTS] = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>[STATE] = STATE_DESTROIED;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>trigger()</code> 循环事件处理器的时候，事件回调函数很可能会通过 <code>on()</code> 间接修改 <code>this[EVENTS]</code> ，因此，我们需要使用 <a href="https://github.com/elegant-view/vtpl/blob/master/src/ProtectObject.js" target="_blank" rel="external">ProtectObject</a> 来对 <code>this[EVENTS]</code> 进行锁定。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本质上，这类问题就是传入的函数中做了不希望做的事情，所以如何禁止或者兼容这些<code>不希望做的事情</code>是关键点。</p>
+<p>本文为作者在实践中总结出来的方案，能力有限，期待读者提出更好的方案。</p>
+
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="受保护的对象" data-title="受保护的对象" data-url="http://yoursite.com/blogs/受保护的对象.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

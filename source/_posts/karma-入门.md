@@ -1,9 +1,6 @@
 ---
 title: karma 入门
 date: 2016-07-01 10:35:44
-tags:
-- JavaScript
-- test
 ---
 
 本文介绍了 karma 的入门知识点。

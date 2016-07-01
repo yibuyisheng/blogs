@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 marked 解析 markdown | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="markdown,ETPL">
+  <meta name="description" content="marked 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。
+最简单直接的一种使用方式：
+123var marked = require(&apos;marked&apos;);console.log(marked(&apos;I am using __markdown__.&apos;));// Outputs: &amp;lt;p&amp;gt;I am using &amp;lt;strong&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 marked 解析 markdown">
+<meta property="og:url" content="http://yibuyisheng.github.io/blogs/site/blogs/使用marked解析markdown.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="marked 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。
+最简单直接的一种使用方式：
+123var marked = require(&apos;marked&apos;);console.log(marked(&apos;I am using __markdown__.&apos;));// Outputs: &amp;lt;p&amp;gt;I am using &amp;lt;strong&amp;gt">
+<meta property="og:updated_time" content="2016-06-15T10:44:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 marked 解析 markdown">
+<meta name="twitter:description" content="marked 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。
+最简单直接的一种使用方式：
+123var marked = require(&apos;marked&apos;);console.log(marked(&apos;I am using __markdown__.&apos;));// Outputs: &amp;lt;p&amp;gt;I am using &amp;lt;strong&amp;gt">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;&lt;a href=&quot;https://github.com/chjj/marked&quot;&gt;marked&lt;/a&gt; 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。&lt;/p&gt;
+&lt;p&gt;最简单直接的一种使用方式：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; marked = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;marked&#39;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(marked(&lt;span class=&quot;string&quot;&gt;&#39;I am using __markdown__.&#39;&lt;/span&gt;));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// Outputs: &amp;lt;p&amp;gt;I am using &amp;lt;strong&amp;gt;markdown&amp;lt;/strong&amp;gt;.&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用 marked 解析 markdown</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">使用 marked 解析 markdown</h1>
+    <h5 class="subtitle">2016-05-20</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-使用marked解析markdown" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/ETPL/">ETPL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/markdown/">markdown</a></li></ul>
+</div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#markdown-缩进问题"><span class="post-toc-text">markdown 缩进问题</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#HTML-标签"><span class="post-toc-text">HTML 标签</span></a></li></ol>
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <p><a href="https://github.com/chjj/marked" target="_blank" rel="external">marked</a> 是一个解析 markdown 的 JavaScript 库，可以运行在 Node 环境或者浏览器环境。</p>
+<p>最简单直接的一种使用方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marked = <span class="built_in">require</span>(<span class="string">'marked'</span>);</div><div class="line"><span class="built_in">console</span>.log(marked(<span class="string">'I am using __markdown__.'</span>));</div><div class="line"><span class="comment">// Outputs: &lt;p&gt;I am using &lt;strong&gt;markdown&lt;/strong&gt;.&lt;/p&gt;</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p> marked 库主要提供了一个 marked 函数，该函数声明为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">type OptionsType = &#123;</div><div class="line">    highlight: (function(code: string, lang: string, callback: function(err: Error, code: string)))=,</div><div class="line">    renderer: marked.Renderer=,</div><div class="line">    gfm: boolean=,</div><div class="line">    tables: boolean=,</div><div class="line">    breaks: boolean=,</div><div class="line">    pedantic: boolean=,</div><div class="line">    sanitize: boolean=,</div><div class="line">    smartLists: boolean=</div><div class="line">&#125;;</div><div class="line">marked(markdownString: string, options: OptionsType=, callback: Function=): string;</div></pre></td></tr></table></figure>
+<p>其中，marked 可以通过 renderer 配置提供了自定义解析途径。</p>
+<p>renderer 配置对应的是一个 marked.Renderer 类，此类主要包含了如下的钩子方法：</p>
+<ul>
+<li>code(string code, string language)</li>
+<li>blockquote(string quote)</li>
+<li>html(string html)</li>
+<li>heading(string text, number level)</li>
+<li>hr()</li>
+<li>list(string body, boolean ordered)</li>
+<li>listitem(string text)</li>
+<li>paragraph(string text)</li>
+<li>table(string header, string body)</li>
+<li>tablerow(string content)</li>
+<li>tablecell(string content, object flags)</li>
+<li>strong(string text)</li>
+<li>em(string text)</li>
+<li>codespan(string code)</li>
+<li>br()</li>
+<li>del(string text)</li>
+<li>link(string href, string title, string text)</li>
+<li>image(string href, string title, string text)</li>
+</ul>
+<p>所有的这些方法，都可以在 renderer 实例上面覆盖掉。marked 在解析到 markdown 标记的时候，都会去调用相应的钩子方法，而钩子方法的返回结果，就会是该标记最终的解析结果。这样一来，就生成了自定义的解析结果。</p>
+<p>marked 还有一个重要的配置：highlight，可以对代码块进行解析，配合相应的 css ，达到语法高亮效果。</p>
+<p>以上就是 marked 最基本最核心的用法了。</p>
+<p>其实本文的重点是记录在使用过程中遇到的一些坑，下面进入重点。</p>
+<h1 id="markdown-缩进问题"><a href="#markdown-缩进问题" class="headerlink" title="markdown 缩进问题"></a>markdown 缩进问题</h1><p>在 markdown 的语法中，标题下面（换行之后）标记是不能缩进的，而列表项下面的标记是可以缩进的。</p>
+<p>现在前端开发，经常会使用一些模板引擎，比如 <a href="https://github.com/ecomfe/etpl" target="_blank" rel="external">ETPL</a> ，这些模板，一般都会提供过滤器的功能。以 ETPL 为例，可以在 js 代码中这样添加一个过滤器：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> etpl = <span class="built_in">require</span>(<span class="string">'etpl'</span>);</div><div class="line"><span class="keyword">var</span> marked = <span class="built_in">require</span>(<span class="string">'marked'</span>);</div><div class="line">etpl.addFilter(<span class="string">'markdown'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">source, useExtra</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> marked(source);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>此时在对应的模板中，就可以使用该过滤器了：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- filter: markdown() --&gt;</span></div><div class="line">    ### 标题</div><div class="line"></div><div class="line">    内容</div><div class="line">    <span class="comment">&lt;!-- /filter --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>此时，解析出来的样子会让人瞠目结舌：过滤器里面的 markdown 标记根本不会被解析掉，整个 markdown 标记块会被当成代码块。</p>
+<p>为什么会这样呢？</p>
+<p>如果打印一下 markdown 过滤器处理函数中的 source 参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> etpl = <span class="built_in">require</span>(<span class="string">'etpl'</span>);</div><div class="line"><span class="keyword">var</span> marked = <span class="built_in">require</span>(<span class="string">'marked'</span>);</div><div class="line">etpl.addFilter(<span class="string">'markdown'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">source, useExtra</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(source);</div><div class="line">    <span class="keyword">return</span> marked(source);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>可以发现，打印出来的内容会是这个样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;</div><div class="line">    ### 标题</div><div class="line"></div><div class="line">    内容</div><div class="line">    &quot;</div></pre></td></tr></table></figure>
+<p>第一行没啥内容，第二行并没有顶行，而是有缩进的，然后最后一行没实际内容，只有一个缩进。</p>
+<p>这明显跟 markdown 语法有冲突，必须要进行如下处理：</p>
+<ul>
+<li>1、第一行和最后一行没啥实际内容，可以去掉；</li>
+<li>2、检测第一行前面的缩进空格数（这里假定缩进用的是空格），记录下来，假设为 <code>n</code> ；</li>
+<li>3、将每一行前面的 <code>n</code> 个空格去掉。</li>
+</ul>
+<p>具体的代码实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> etpl = <span class="built_in">require</span>(<span class="string">'etpl'</span>);</div><div class="line"><span class="keyword">var</span> marked = <span class="built_in">require</span>(<span class="string">'marked'</span>);</div><div class="line">etpl.addFilter(<span class="string">'markdown'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">source, useExtra</span>) </span>&#123;</div><div class="line">    source = source.replace(<span class="regexp">/(^\n+|\n+$)/g</span>, <span class="string">''</span>);</div><div class="line">    <span class="keyword">var</span> uselessSpaceCount = source.match(<span class="regexp">/^\s*/</span>)[<span class="number">0</span>].length;</div><div class="line">    source = source.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'^ &#123;'</span> + uselessSpaceCount + <span class="string">'&#125;'</span>, <span class="string">'gm'</span>), <span class="string">''</span>);</div><div class="line">    <span class="keyword">return</span> marked(source);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="HTML-标签"><a href="#HTML-标签" class="headerlink" title="HTML 标签"></a>HTML 标签</h1><p>有的时候，可能想给 markdown 标记的某一块加上背景色，比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- filter: markdown() --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"background-red"</span>&gt;</span></div><div class="line">### 标题</div><div class="line"></div><div class="line">内容</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- /filter --&gt;</span></div></pre></td></tr></table></figure>
+<p>这样写又会崩溃了， div 内部的 markdown 标记并不会被解析！</p>
+<p>解决方法就是把 div 放过滤器外边吧：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"background-red"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- filter: markdown() --&gt;</span></div><div class="line">### 标题</div><div class="line"></div><div class="line">内容</div><div class="line"><span class="comment">&lt;!-- /filter --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="使用marked解析markdown" data-title="使用 marked 解析 markdown" data-url="http://yibuyisheng.github.io/blogs/site/blogs/使用marked解析markdown.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

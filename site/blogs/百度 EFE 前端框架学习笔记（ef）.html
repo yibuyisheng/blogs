@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>百度（EFE）前端框架学习笔记（ef） | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaScript">
+  <meta name="description" content="官方 EF 学习资料：ActionPanel、UIModel、UIView。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百度（EFE）前端框架学习笔记（ef）">
+<meta property="og:url" content="http://yibuyisheng.github.io/blogs/site/blogs/百度 EFE 前端框架学习笔记（ef）.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="官方 EF 学习资料：ActionPanel、UIModel、UIView。">
+<meta property="og:updated_time" content="2016-06-15T10:47:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="百度（EFE）前端框架学习笔记（ef）">
+<meta name="twitter:description" content="官方 EF 学习资料：ActionPanel、UIModel、UIView。">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;官方 EF 学习资料：&lt;a href=&quot;https://github.com/ecomfe/ef/blob/master/doc/ActionPanel.md&quot;&gt;ActionPanel&lt;/a&gt;、&lt;a href=&quot;https://github.com/ecomfe/ef/blob/master/doc/UIModel.md&quot;&gt;UIModel&lt;/a&gt;、&lt;a href=&quot;https://github.com/ecomfe/ef/blob/master/doc/UIView.md&quot;&gt;UIView&lt;/a&gt;。&lt;br&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">百度（EFE）前端框架学习笔记（ef）</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">百度（EFE）前端框架学习笔记（ef）</h1>
+    <h5 class="subtitle">2015-06-01</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-百度 EFE 前端框架学习笔记（ef）" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/JavaScript/">JavaScript</a></li></ul>
+</div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UIView-js"><span class="post-toc-text">UIView.js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UIModel-js"><span class="post-toc-text">UIModel.js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ActionPanel-js"><span class="post-toc-text">ActionPanel.js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小技巧"><span class="post-toc-text">小技巧</span></a></li></ol>
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <p>官方 EF 学习资料：<a href="https://github.com/ecomfe/ef/blob/master/doc/ActionPanel.md" target="_blank" rel="external">ActionPanel</a>、<a href="https://github.com/ecomfe/ef/blob/master/doc/UIModel.md" target="_blank" rel="external">UIModel</a>、<a href="https://github.com/ecomfe/ef/blob/master/doc/UIView.md" target="_blank" rel="external">UIView</a>。<br><a id="more"></a></p>
+<h3 id="UIView-js"><a href="#UIView-js" class="headerlink" title="UIView.js"></a>UIView.js</h3><p>与 ESUI 结合的 <code>View</code> 基类。该类有一个主入口方法 enterDocument()，该函数在容器渲染完毕后触发，用于控制元素可见性及绑定事件等 DOM 操作。</p>
+<p>是 ESUI 中 View 类的子类。</p>
+<p>该类对应的实例上会有一个视图上下文对象（ view.viewContext ），此上下文对象会传递给每个子控件，也就是说每个子控件都会有一个 viewContext 属性。此上下文对象的详细信息参看<a href="https://github.com/yibuyisheng/blogs/issues/4" target="_blank" rel="external">百度 EFE 前端框架学习笔记（esui）</a>的 <code>ViewContext.js</code> 部分。</p>
+<p>enterDocument() 方法会调用 ESUI 的 main.init() 方法，初始化当前 UIView 实例所管辖的 container 部分，生成各种各样的控件等等。</p>
+<p>此类生成的实例上有一个很重要的事件属性 uiView.uiEvents，该属性有2种方式：</p>
+<ul>
+<li>以 <code>id:eventName</code> 为键，以处理函数为值，比如 <code>{&#39;someId:click&#39;: function() {/* do something */}}</code>。</li>
+<li>以 <code>id</code> 为键，值为一个对象，对象中以 <code>eventName</code> 为键，处理函数为值，比如 <code>{someId: {eventName: function() {/* do something */}}}</code>。</li>
+</ul>
+<p>在此处声明的事件，运行时的 <code>this</code> 对象均是 <code>View</code> 实例，而非控件的实例。同时，在运行期，<code>UIView</code> 会克隆该属性，将其中所有的处理函数都进行一次 <code>bind</code>，将 <code>this</code> 指向自身，因此运行时的 <code>uiEvents</code> 与类声明时的不会相同。</p>
+<p>此类上的 bindEvents() 方法就会根据 uiEvents 指定的事件配置来给子控件绑定事件。</p>
+<h3 id="UIModel-js"><a href="#UIModel-js" class="headerlink" title="UIModel.js"></a>UIModel.js</h3><p>处理 ESUI 场景的 <code>Model</code> 实现。 UIModel 继承自 er 的 Model。</p>
+<p>UIModel 添加了 formatter 属性，用于对日期进行格式化。同时增加了一些操作数据的方法：set() 、 fill() 、 getPart()。</p>
+<h3 id="ActionPanel-js"><a href="#ActionPanel-js" class="headerlink" title="ActionPanel.js"></a>ActionPanel.js</h3><p>用于加载子Action的面板控件。继承自 esui 的 Panel 类，不过没有 setContent() 方法。</p>
+<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getControl</span>(<span class="params">node</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> controls = <span class="built_in">require</span>(<span class="string">'er/controller'</span>).currentAction.view.viewContext.getControls();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> controls) &#123;</div><div class="line">        <span class="keyword">var</span> control = controls[k];</div><div class="line">        <span class="keyword">if</span> (control.main === node) &#123;</div><div class="line">            <span class="keyword">return</span> control;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该函数可以根据节点找到这个节点对应的控件对象，对debug有一定帮助。</p>
+
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="百度 EFE 前端框架学习笔记（ef）" data-title="百度（EFE）前端框架学习笔记（ef）" data-url="http://yibuyisheng.github.io/blogs/site/blogs/百度 EFE 前端框架学习笔记（ef）.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

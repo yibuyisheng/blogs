@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>实现第一个 vscode 扩展 | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="vscode">
+  <meta name="description" content="提前声明：此处使用的 vscode 版本是0.10.6
+
+vscode 是微软最近弄出来的代码编辑器，基于 Electron ，对于前端程序员来说，颇亲切。
+个人觉得，到目前这个版本为止， vscode 还不是很成熟，总体体验上离 sublime 还有一定差距。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现第一个 vscode 扩展">
+<meta property="og:url" content="http://yibuyisheng.github.io/blogs/site/blogs/实现第一个 vscode 扩展.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="提前声明：此处使用的 vscode 版本是0.10.6
+
+vscode 是微软最近弄出来的代码编辑器，基于 Electron ，对于前端程序员来说，颇亲切。
+个人觉得，到目前这个版本为止， vscode 还不是很成熟，总体体验上离 sublime 还有一定差距。">
+<meta property="og:image" content="https://github.com/yibuyisheng/blogs/blob/master/imgs/13.png?raw=true">
+<meta property="og:updated_time" content="2016-06-15T10:47:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实现第一个 vscode 扩展">
+<meta name="twitter:description" content="提前声明：此处使用的 vscode 版本是0.10.6
+
+vscode 是微软最近弄出来的代码编辑器，基于 Electron ，对于前端程序员来说，颇亲切。
+个人觉得，到目前这个版本为止， vscode 还不是很成熟，总体体验上离 sublime 还有一定差距。">
+<meta name="twitter:image" content="https://github.com/yibuyisheng/blogs/blob/master/imgs/13.png?raw=true">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;blockquote&gt;
+&lt;p&gt;提前声明：&lt;br&gt;&lt;br&gt;此处使用的 vscode 版本是0.10.6&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;vscode 是微软最近弄出来的代码编辑器，基于 Electron ，对于前端程序员来说，颇亲切。&lt;/p&gt;
+&lt;p&gt;个人觉得，到目前这个版本为止， vscode 还不是很成熟，总体体验上离 sublime 还有一定差距。&lt;br&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">实现第一个 vscode 扩展</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">实现第一个 vscode 扩展</h1>
+    <h5 class="subtitle">2016-01-10</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-实现第一个 vscode 扩展" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/vscode/">vscode</a></li></ul>
+</div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#插件功能"><span class="post-toc-text">插件功能</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装必要的东西"><span class="post-toc-text">安装必要的东西</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成扩展项目"><span class="post-toc-text">生成扩展项目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改-package-json-文件"><span class="post-toc-text">修改 package.json 文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改-extension-js-文件"><span class="post-toc-text">修改 extension.js 文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#开发过程"><span class="post-toc-text">开发过程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#整合所有代码之后的样子"><span class="post-toc-text">整合所有代码之后的样子</span></a></li></ol></li></ol>
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <blockquote>
+<p>提前声明：<br><br>此处使用的 vscode 版本是0.10.6</p>
+</blockquote>
+<p>vscode 是微软最近弄出来的代码编辑器，基于 Electron ，对于前端程序员来说，颇亲切。</p>
+<p>个人觉得，到目前这个版本为止， vscode 还不是很成熟，总体体验上离 sublime 还有一定差距。<br><a id="more"></a></p>
+<p>但是我个人很看重 vscode 的这些点：</p>
+<ul>
+<li>1、虽然使用 Electron ，但是代码各方面处理还是挺快的，特别是打开比较大的 js 文件，基本不会挂掉，性能堪比 sublime ；</li>
+<li>2、里面全是 js 系列的东西（虽然加了一层 ts ），对于前端来说，很是亲切，如果成熟到一定程度的话，将会有大把的前端程序员参与插件的开发。相比于 sublime 使用 python ， vscode 真是太爽了，深度定制的时候少了语言的门槛。</li>
+</ul>
+<p>目前个人感觉的小缺点有：</p>
+<ul>
+<li>1、无法代码折叠；</li>
+<li>2、扩展 API 还不完善，有些比较酷的功能依据现有 API 还无法实现。</li>
+</ul>
+<p>废话不对说，走一个插件先。</p>
+<h3 id="插件功能"><a href="#插件功能" class="headerlink" title="插件功能"></a>插件功能</h3><p>对 JavaScript 代码进行检查，基于的检查规则是 <code>fecs</code> 。</p>
+<h3 id="安装必要的东西"><a href="#安装必要的东西" class="headerlink" title="安装必要的东西"></a>安装必要的东西</h3><blockquote>
+<p>npm install -g yo generator-code</p>
+</blockquote>
+<h3 id="生成扩展项目"><a href="#生成扩展项目" class="headerlink" title="生成扩展项目"></a>生成扩展项目</h3><p>执行下面的代码：</p>
+<blockquote>
+<p>yo code</p>
+</blockquote>
+<p>然后会出现这样的选择界面：</p>
+<p><img src="https://github.com/yibuyisheng/blogs/blob/master/imgs/13.png?raw=true" alt=""></p>
+<p>选择：</p>
+<blockquote>
+<p>New Extension (JavaScript)</p>
+</blockquote>
+<p>这样就会生成使用 JavaScript 进行插件开发的项目结构。</p>
+<p>后续还会设置扩展的名字（此处设为 test ）、扩展的唯一标识、扩展的描述、扩展的发布者名字、是否初始化为 Git 仓库。根据提示做相应设置就好了。设置完之后就会自动运行 <code>npm install</code> ，安装好 vscode 模块。</p>
+<p>一切结束之后，你会发现在当前目录下生成了一个叫 <code>test</code> 的目录，进入这个目录，下面就有了一堆文件。</p>
+<h3 id="修改-package-json-文件"><a href="#修改-package-json-文件" class="headerlink" title="修改 package.json 文件"></a>修改 package.json 文件</h3><p>更改 <code>activationEvents</code> 配置项，设为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">    <span class="string">"onLanguage:javascript"</span></div><div class="line">]</div></pre></td></tr></table></figure>
+<p>意思就是在打开 JavaScript 文件的时候会激活这个扩展。</p>
+<p>删掉 <code>contributes</code> 配置项，此处用不上这个配置。</p>
+<h3 id="修改-extension-js-文件"><a href="#修改-extension-js-文件" class="headerlink" title="修改 extension.js 文件"></a>修改 extension.js 文件</h3><p>这个文件是 package.json 里面 <code>main</code> 配置指向的文件，扩展激活的时候会调用这个文件提供的 activate 方法。</p>
+<p>对于该扩展，其执行流程为：</p>
+<ul>
+<li>1、在用户打开 js 文件的时候激活扩展，注册好文件保存的回调方法；</li>
+<li>2、在用户保存文件的时候，执行 fecs 检查；</li>
+<li>3、将第二步中检查出的错误和警告等信息显示到编辑器中。</li>
+</ul>
+<h4 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h4><p>在开发扩展的时候，要使用到 <code>vscode</code> 和 <code>fecs</code> 两个模块：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vscode = <span class="built_in">require</span>(<span class="string">'vscode'</span>);</div><div class="line"><span class="keyword">var</span> fecs = <span class="built_in">require</span>(<span class="string">'fecs'</span>);</div></pre></td></tr></table></figure>
+<p>然后注册文件保存的回调函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> disposable = vscode.workspace.onDidSaveTextDocument(<span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="comment">// do something while saving</span></div><div class="line">&#125;);</div><div class="line">context.subscriptions.push(diagnosticCollection);</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong><br><br>此处 <code>onDidSaveTextDocument</code> 返回了一个 disposable 对象，这个对象有一个 <code>dispose</code> 方法，在扩展销毁的时候，会调用这个方法。因此，这个对象要事先放到 <code>context.subscriptions</code> ，<code>context</code> 是 <code>activate</code> 方法调用的时候传入的上下文对象。</p>
+</blockquote>
+<p>在这个回调函数里面就可以执行 fecs 检查了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">fecs.check(</div><div class="line">    &#123;</div><div class="line">        type: <span class="string">'js'</span>,</div><div class="line">        name: <span class="string">'FECS JS'</span>,</div><div class="line">        _: [event.uri.path],</div><div class="line">        stream: <span class="literal">false</span></div><div class="line">    &#125;,</div><div class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">hasNoError, errors</span>) </span>&#123;</div><div class="line">        <span class="comment">// the result of check</span></div><div class="line">    &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p><code>hasNoError</code> 和 <code>errors</code> 表明了检查结果。此处可以忽略 <code>hasNoError</code> ，直接将 errors 转换成 vscode 能够展示的错误。</p>
+<p>vscode 提供了 <code>DiagnosticCollection</code> ，用于向界面上展示错误信息。那么如何操作呢？</p>
+<p>首先要拿到一个 <code>DiagnosticCollection</code> 对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> diagnosticCollection = vscode.languages.createDiagnosticCollection(<span class="string">'fecs'</span>);</div></pre></td></tr></table></figure>
+<p>然后往这个对象里面塞错误信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">diagnosticCollection.set(someErrorObject);</div></pre></td></tr></table></figure>
+<h4 id="整合所有代码之后的样子"><a href="#整合所有代码之后的样子" class="headerlink" title="整合所有代码之后的样子"></a>整合所有代码之后的样子</h4><p>整个 <code>extension.js</code> 的代码整合起来如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> vscode = <span class="built_in">require</span>(<span class="string">'vscode'</span>);</div><div class="line"><span class="keyword">var</span> fecs = <span class="built_in">require</span>(<span class="string">'fecs'</span>);</div><div class="line"></div><div class="line">fecs.leadName = <span class="string">'fecs'</span>;</div><div class="line"></div><div class="line">exports.activate = <span class="function"><span class="keyword">function</span> <span class="title">activate</span>(<span class="params">context</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> diagnosticCollection = vscode.languages.createDiagnosticCollection(<span class="string">'fecs'</span>);</div><div class="line">    context.subscriptions.push(diagnosticCollection);</div><div class="line"></div><div class="line">    vscode.workspace.onDidSaveTextDocument(<span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">        diagnosticCollection.clear();</div><div class="line">        fecs.check(</div><div class="line">            &#123;</div><div class="line">                type: <span class="string">'js'</span>,</div><div class="line">                name: <span class="string">'FECS JS'</span>,</div><div class="line">                _: [event.uri.path],</div><div class="line">                stream: <span class="literal">false</span></div><div class="line">            &#125;,</div><div class="line">            <span class="function"><span class="keyword">function</span> (<span class="params">hasNoError, errors</span>) </span>&#123;</div><div class="line">                diagnosticCollection.set(convertErrors(errors));</div><div class="line">            &#125;</div><div class="line">        );</div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">convertErrors</span>(<span class="params">fecsErrors</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> fecsErrors.map(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> [</div><div class="line">            vscode.Uri.file(error.path),</div><div class="line">            error.errors.map(<span class="function"><span class="keyword">function</span> (<span class="params">fileError</span>) </span>&#123;</div><div class="line">                <span class="comment">// fecs的行号和列号与vscode有差异。。。。</span></div><div class="line">                <span class="keyword">var</span> line = fileError.line - <span class="number">1</span>;</div><div class="line">                <span class="keyword">var</span> column = fileError.column - <span class="number">1</span>;</div><div class="line"></div><div class="line">                <span class="keyword">return</span> <span class="keyword">new</span> vscode.Diagnostic(</div><div class="line">                    <span class="keyword">new</span> vscode.Range(line, column, line, column + <span class="number">1</span>),</div><div class="line">                    <span class="string">`[FECS]: <span class="subst">$&#123;fileError.message&#125;</span>  (<span class="subst">$&#123;fileError.rule&#125;</span>)`</span>,</div><div class="line">                    &#123;</div><div class="line">                        <span class="number">1</span>: vscode.DiagnosticSeverity.Warning,</div><div class="line">                        <span class="number">2</span>: vscode.DiagnosticSeverity.Error</div><div class="line">                    &#125;[fileError.severity]</div><div class="line">                );</div><div class="line">            &#125;)</div><div class="line">        ];</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注：</strong> <a href="http://fecs.baidu.com/" target="_blank" rel="external">fecs 是什么？</a></p>
+</blockquote>
+
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="实现第一个 vscode 扩展" data-title="实现第一个 vscode 扩展" data-url="http://yibuyisheng.github.io/blogs/site/blogs/实现第一个 vscode 扩展.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<style>
+.demo4 {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    perspective: 200px;
+    -webkit-perspective: 200px;
+}
+.demo4 .container1,
+.demo4 .container1-origin {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+.demo4 .container1-origin, .demo4 .container1 {
+    left: 40px;
+    top: 40px;
+}
+.demo4 .container1-origin {
+    border: 1px dotted #000;
+}
+.demo4 .container1 {
+    border: 1px solid #000;
+    transform: rotateY(40deg);
+    -webkit-transform: rotateY(40deg);
+    transform-style: flat;
+    -webkit-transform-style: flat;
+}
+.demo4 .container1 .box {
+    border: 1px solid #f00;
+    width: 50px;
+    height: 50px;
+    transform: rotateY(40deg);
+    -webkit-transform: rotateY(40deg);
+}
+</style>
+
+<div class="demo4">
+    <div class="container1-origin">
+        <div class="box"></div>
+    </div>
+    <div class="container1">
+        <div class="box"></div>
+    </div>
+</div>
+
+<style>
+.demo5 {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    perspective: 200px;
+    -webkit-perspective: 200px;
+}
+.demo5 .container1,
+.demo5 .container1-origin {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+.demo5 .container1-origin, .demo5 .container1 {
+    left: 40px;
+    top: 40px;
+}
+.demo5 .container1-origin {
+    border: 1px dotted #000;
+}
+.demo5 .container1 {
+    border: 1px solid #000;
+    transform: rotateY(40deg);
+    -webkit-transform: rotateY(40deg);
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+.demo5 .container1 .box {
+    border: 1px solid #f00;
+    width: 50px;
+    height: 50px;
+    transform: rotateY(40deg);
+    -webkit-transform: rotateY(40deg);
+}
+</style>
+
+<div class="demo5">
+    <div class="container1-origin">
+        <div class="box"></div>
+    </div>
+    <div class="container1">
+        <div class="box"></div>
+    </div>
+</div>

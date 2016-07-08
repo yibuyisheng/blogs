@@ -3154,6 +3154,9 @@ a[title="站长统计"] {
 .post-main .post-content {
   min-height: 100px;
 }
+.post-main .post-content .line {
+  height: 20px;
+}
 .post-nav {
   border-top: 3px solid #dadada;
   padding: 16px 0 0;

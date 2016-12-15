@@ -5,7 +5,7 @@
   <link href="/blogs/site/atom.xml" rel="self"/>
   
   <link href="http://yibuyisheng.github.io/blogs/site/"/>
-  <updated>2016-12-15T15:28:42.000Z</updated>
+  <updated>2016-12-15T15:34:16.000Z</updated>
   <id>http://yibuyisheng.github.io/blogs/site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E5%A6%82%E4%BD%95%E5%B1%95%E7%A4%BA%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6.html"/>
     <id>http://yibuyisheng.github.io/blogs/site//blogs/如何展示表单控件.html</id>
     <published>2016-12-15T14:34:00.000Z</published>
-    <updated>2016-12-15T15:28:42.000Z</updated>
+    <updated>2016-12-15T15:34:16.000Z</updated>
     
     <content type="html"><![CDATA[<p>在 Web 开发中，经常需要展示左右结构的表单。<a id="more"></a>如下所示：</p>
 <p><img src="../images/2016-12-15/form.png" alt=""></p>
@@ -41,6 +41,8 @@
     
     </summary>
     
+    
+      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/tags/CSS/"/>
     
   </entry>
   

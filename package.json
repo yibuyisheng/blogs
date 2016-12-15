@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "hexo server",
-    "build": "hexo generate --deploy"
+    "build": "hexo generate -f"
   },
   "devDependencies": {
     "hexo-cli": "^1.0.2"

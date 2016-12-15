@@ -125,18 +125,7 @@
       </div>
       <div class="post-content" id="post-content" itemprop="postContent" >
         
-          <p>在 Web 开发中，经常需要展示如下所示的表单：</p>
-<p><img src="../images/2016-12-15/form.png" alt=""></p>
-<p>面对这张图，最先想到的实现方式就是借助浮动：</p>
-<iframe src="../demos/2016-12-15/form1.html" width="100%" height="250" frameborder="0" allowfullscreen></iframe>
-<p>基本的结构就这样，看起来挺好的。</p>
-<p>但是有一个忧伤的地方，左侧<code>form-key</code>部分的宽度太烦人，不同的表单<code>form-key</code>部分存在宽度差异，很难统一。如果把<code>form-key</code>部分统一设置成一个比较大的值，那么在<code>form-key</code>比较短的表单里面会非常难看。这样一来，只能选择不同的表单设置不同的<code>form-key</code>的宽度值，很烦人。</p>
-<p><strong>如何让左侧的宽度自适应呢？</strong></p>
-<p>从一位前端牛人学习到如下利用<code>table</code>布局的写法：</p>
-<iframe src="../demos/2016-12-15/form2.html" width="100%" height="250" frameborder="0" allowfullscreen></iframe>
-<p>此处<code>form-operations</code>部分有点小问题，<code>form-operations</code>是一个<code>table-row</code>，所以直接子元素应该是<code>table-cell</code>，改一改就好了。</p>
-<p>同时也因为这个手误，发现在 IE9 中，鼠标 hover 到<code>table-row</code>上面去之后，会触发下面第一个<code>button</code>的 hover 效果。</p>
-
+          <p>在 Web 开发中，经常需要展示左右结构的表单。
         
       </div>
       <div class="post-footer clearfix">

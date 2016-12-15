@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>如何展示表单控件 | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="">
+  <meta name="description" content="在 Web 开发中，经常需要展示如下所示的表单：
+
+面对这张图，最先想到的实现方式就是借助浮动：
+
+基本的结构就这样，看起来挺好的。
+但是有一个忧伤的地方，左侧form-key部分的宽度太烦人，不同的表单form-key部分存在宽度差异，很难统一。如果把form-key部分统一设置成一个比较大的值，那么在form-key比较短的表单里面会非常难看。这样一来，只能选择不同的表单设置不同的form-k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何展示表单控件">
+<meta property="og:url" content="http://yibuyisheng.github.io/blogs/site/blogs/如何展示表单控件.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="在 Web 开发中，经常需要展示如下所示的表单：
+
+面对这张图，最先想到的实现方式就是借助浮动：
+
+基本的结构就这样，看起来挺好的。
+但是有一个忧伤的地方，左侧form-key部分的宽度太烦人，不同的表单form-key部分存在宽度差异，很难统一。如果把form-key部分统一设置成一个比较大的值，那么在form-key比较短的表单里面会非常难看。这样一来，只能选择不同的表单设置不同的form-k">
+<meta property="og:image" content="http://yibuyisheng.github.io/blogs/site/../images/2016-12-15/form.png">
+<meta property="og:updated_time" content="2016-12-15T15:24:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何展示表单控件">
+<meta name="twitter:description" content="在 Web 开发中，经常需要展示如下所示的表单：
+
+面对这张图，最先想到的实现方式就是借助浮动：
+
+基本的结构就这样，看起来挺好的。
+但是有一个忧伤的地方，左侧form-key部分的宽度太烦人，不同的表单form-key部分存在宽度差异，很难统一。如果把form-key部分统一设置成一个比较大的值，那么在form-key比较短的表单里面会非常难看。这样一来，只能选择不同的表单设置不同的form-k">
+<meta name="twitter:image" content="http://yibuyisheng.github.io/blogs/site/../images/2016-12-15/form.png">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="null">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">如何展示表单控件</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">如何展示表单控件</h1>
+    <h5 class="subtitle">2016-12-15</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-如何展示表单控件" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col"></div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <p>在 Web 开发中，经常需要展示如下所示的表单：</p>
+<p><img src="../images/2016-12-15/form.png" alt=""></p>
+<p>面对这张图，最先想到的实现方式就是借助浮动：</p>
+<iframe src="../demos/2016-12-15/form1.html" width="100%" height="250" frameborder="0" allowfullscreen></iframe>
+<p>基本的结构就这样，看起来挺好的。</p>
+<p>但是有一个忧伤的地方，左侧<code>form-key</code>部分的宽度太烦人，不同的表单<code>form-key</code>部分存在宽度差异，很难统一。如果把<code>form-key</code>部分统一设置成一个比较大的值，那么在<code>form-key</code>比较短的表单里面会非常难看。这样一来，只能选择不同的表单设置不同的<code>form-key</code>的宽度值，很烦人。</p>
+<p><strong>如何让左侧的宽度自适应呢？</strong></p>
+<p>从一位前端牛人学习到如下利用<code>table</code>布局的写法：</p>
+<iframe src="../demos/2016-12-15/form2.html" width="100%" height="250" frameborder="0" allowfullscreen></iframe>
+<p>此处<code>form-operations</code>部分有点小问题，<code>form-operations</code>是一个<code>table-row</code>，所以直接子元素应该是<code>table-cell</code>，改一改就好了。</p>
+<p>同时也因为这个手误，发现在 IE9 中，鼠标 hover 到<code>table-row</code>上面去之后，会触发下面第一个<code>button</code>的 hover 效果。</p>
+
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="如何展示表单控件" data-title="如何展示表单控件" data-url="http://yibuyisheng.github.io/blogs/site/blogs/如何展示表单控件.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

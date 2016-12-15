@@ -104,6 +104,52 @@
   <ul class="post-list">
   
     <li class="post-list-item">
+  <article id="post-如何展示表单控件" class="article article-type-post" itemprop="blogPost">
+    
+      
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/blogs/site/blogs/如何展示表单控件.html">如何展示表单控件</a>
+    </h3>
+  
+
+
+
+      <div class="post-meat flex-row">
+        <div class="flex-col"></div>
+        <time datetime="2016-12-15T14:34:00.000Z" itemprop="datePublished" class="post-tiem">
+  2016-12-15
+</time>
+      </div>
+      <div class="post-content" id="post-content" itemprop="postContent" >
+        
+          <p>在 Web 开发中，经常需要展示如下所示的表单：</p>
+<p><img src="../images/2016-12-15/form.png" alt=""></p>
+<p>面对这张图，最先想到的实现方式就是借助浮动：</p>
+<iframe src="../demos/2016-12-15/form1.html" width="100%" height="250" frameborder="0" allowfullscreen></iframe>
+<p>基本的结构就这样，看起来挺好的。</p>
+<p>但是有一个忧伤的地方，左侧<code>form-key</code>部分的宽度太烦人，不同的表单<code>form-key</code>部分存在宽度差异，很难统一。如果把<code>form-key</code>部分统一设置成一个比较大的值，那么在<code>form-key</code>比较短的表单里面会非常难看。这样一来，只能选择不同的表单设置不同的<code>form-key</code>的宽度值，很烦人。</p>
+<p><strong>如何让左侧的宽度自适应呢？</strong></p>
+<p>从一位前端牛人学习到如下利用<code>table</code>布局的写法：</p>
+<iframe src="../demos/2016-12-15/form2.html" width="100%" height="250" frameborder="0" allowfullscreen></iframe>
+<p>此处<code>form-operations</code>部分有点小问题，<code>form-operations</code>是一个<code>table-row</code>，所以直接子元素应该是<code>table-cell</code>，改一改就好了。</p>
+<p>同时也因为这个手误，发现在 IE9 中，鼠标 hover 到<code>table-row</code>上面去之后，会触发下面第一个<code>button</code>的 hover 效果。</p>
+
+        
+      </div>
+      <div class="post-footer clearfix">
+        <a href="/blogs/site/blogs/如何展示表单控件.html" class="post-more waves-effect waves-button waves-light">更多</a>
+      </div>
+    
+
+  </article>
+
+
+</li>
+  
+    <li class="post-list-item">
   <article id="post-HTTP请求重发" class="article article-type-post" itemprop="blogPost">
     
       
@@ -439,47 +485,6 @@
       </div>
       <div class="post-footer clearfix">
         <a href="/blogs/site/blogs/爬虫与编码.html" class="post-more waves-effect waves-button waves-light">更多</a>
-      </div>
-    
-
-  </article>
-
-
-</li>
-  
-    <li class="post-list-item">
-  <article id="post-ES6 简单特性概览" class="article article-type-post" itemprop="blogPost">
-    
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/blogs/site/blogs/ES6 简单特性概览.html">ES6 简单特性概览</a>
-    </h3>
-  
-
-
-
-      <div class="post-meat flex-row">
-        <div class="flex-col">
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/ECMAScript-6/">ECMAScript 6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/JavaScript/">JavaScript</a></li></ul>
-</div>
-        <time datetime="2015-10-18T03:43:00.000Z" itemprop="datePublished" class="post-tiem">
-  2015-10-18
-</time>
-      </div>
-      <div class="post-content" id="post-content" itemprop="postContent" >
-        
-          <p>本文内容：</p>
-<ul>
-<li>讲解了如何使用交互式的方式体验 ES6 。</li>
-<li>列举了容易被人接受的 ES6 特性，附带这些特性在 ES5 中的实现方式。</li>
-</ul>
-        
-      </div>
-      <div class="post-footer clearfix">
-        <a href="/blogs/site/blogs/ES6 简单特性概览.html" class="post-more waves-effect waves-button waves-light">更多</a>
       </div>
     
 

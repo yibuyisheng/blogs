@@ -1,0 +1,57 @@
+---
+layout: false
+---
+<style>
+.form2 .form {
+    display: table;
+}
+.form2 .form-row,
+.form2 .form-operations {
+    display: table-row;
+}
+.form2 .form-key,
+.form2 .form-value {
+    display: table-cell;
+    padding: 4px 0;
+}
+.form2 .form-key {
+    text-align: right;
+    padding-right: 10px;
+}
+.form2 .form-value input {
+    box-sizing: border-box;
+    height: 30px;
+}
+.form2 .form-operations::before {
+    content: '';
+    display: table-cell;
+}
+</style>
+
+<div class="form2">
+    <div class="form">
+        <div class="form-row">
+            <div class="form-key">用户名</div>
+            <div class="form-value"><input type="text"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-key">手机号</div>
+            <div class="form-value"><input type="text"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-key">验证码</div>
+            <div class="form-value"><input type="text"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-key">密码</div>
+            <div class="form-value"><input type="password"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-key"></div>
+            <div class="form-value">阅读并接受《百度用户协议》</div>
+        </div>
+        <div class="form-operations">
+            <button type="button">注册</button>
+        </div>
+    </div>
+</div>

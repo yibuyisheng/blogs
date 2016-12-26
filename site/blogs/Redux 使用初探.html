@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Redux 使用初探 | 博客 | 偶尔玩玩 Java 的前端工程师</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaScript,Redux">
+  <meta name="description" content="Redux 提供的主要功能：全局数据管理，包括数据的更新、存储、数据变化通知。 Redux 的 store 中存放了当前应用的状态，可以根据这个状态完整恢复出当前应用的界面，因此在使用 Redux 的项目中，可以实现一个比较炫酷的功能：依据状态的前进、后退。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux 使用初探">
+<meta property="og:url" content="http://yibuyisheng.github.io/blogs/site/blogs/Redux 使用初探.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="Redux 提供的主要功能：全局数据管理，包括数据的更新、存储、数据变化通知。 Redux 的 store 中存放了当前应用的状态，可以根据这个状态完整恢复出当前应用的界面，因此在使用 Redux 的项目中，可以实现一个比较炫酷的功能：依据状态的前进、后退。">
+<meta property="og:image" content="http://yibuyisheng.github.io/blogs/site/../images/2016-12-26/directory.png">
+<meta property="og:updated_time" content="2016-12-26T11:07:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redux 使用初探">
+<meta name="twitter:description" content="Redux 提供的主要功能：全局数据管理，包括数据的更新、存储、数据变化通知。 Redux 的 store 中存放了当前应用的状态，可以根据这个状态完整恢复出当前应用的界面，因此在使用 Redux 的项目中，可以实现一个比较炫酷的功能：依据状态的前进、后退。">
+<meta name="twitter:image" content="http://yibuyisheng.github.io/blogs/site/../images/2016-12-26/directory.png">
+  
+    <link rel="alternative" href="/atom.xml" title="博客" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;Redux 提供的主要功能：全局数据管理，包括数据的更新、存储、数据变化通知。 Redux 的 store 中存放了当前应用的状态，可以根据这个状态完整恢复出当前应用的界面，因此在使用 Redux 的项目中，可以实现一个比较炫酷的功能：依据状态的前进、后退。&lt;br&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
+  <link rel="stylesheet" href="/blogs/site/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:undefined" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Redux 使用初探</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Redux 使用初探</h1>
+    <h5 class="subtitle">2016-12-26</h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+  <article id="post-Redux 使用初探" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/Redux/">Redux</a></li></ul>
+</div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#划分代码目录"><span class="post-toc-text">划分代码目录</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解决递归调用"><span class="post-toc-text">解决递归调用</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#组织-state-数据结构"><span class="post-toc-text">组织 state 数据结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#扩展事件监听方式"><span class="post-toc-text">扩展事件监听方式</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#避免写重复代码"><span class="post-toc-text">避免写重复代码</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#最后"><span class="post-toc-text">最后</span></a></li></ol>
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <p>Redux 提供的主要功能：全局数据管理，包括数据的更新、存储、数据变化通知。 Redux 的 store 中存放了当前应用的状态，可以根据这个状态完整恢复出当前应用的界面，因此在使用 Redux 的项目中，可以实现一个比较炫酷的功能：依据状态的前进、后退。<br><a id="more"></a></p>
+<p>Redux 中主要有三大块：</p>
+<ul>
+<li>Action：指代引起 Redux 中数据变化的操作；</li>
+<li>Reducer：响应 Action 操作，修改 Redux 中的数据；</li>
+<li>Store：包含一个 state 对象，用于存放整个应用的数据，并整合将 Action 和 Reducer 整合起来，修改 Store 中的数据。</li>
+</ul>
+<p>目前，网上已经有很多中文资料介绍具体概念细节以及相关 API 了，比如：</p>
+<ul>
+<li><a href="http://cn.redux.js.org/" target="_blank" rel="external">Redux 中文文档</a></li>
+<li><a href="http://www.alloyteam.com/2015/09/react-redux/" target="_blank" rel="external">React 数据流管理架构之 Redux 介绍</a></li>
+</ul>
+<p>这里主要想记录一下作为一个初学 Redux 的菜鸟，使用过程中的心得体会。</p>
+<p>单单就 Redux 本身来看，并不能直接用于生产，太灵活了，有很多“套路”需要强制定下来：</p>
+<ul>
+<li>怎么设计 state 对象的数据结构？怎么分好模块？怎么规定各个模块的命名风格？</li>
+<li>Redux 只提供了注册 state 变化回调函数的 API ，如果只想监听其中某一个数据的变化该怎么办？</li>
+<li>如果在 state change 的回调函数中再次 dispatch Action ，就可能造成无限递归，怎么设计才能很好地避免这种无限递归？</li>
+<li>如何设计组织项目代码才更好维护？</li>
+<li>如何避免写大量重复的 Action 、 Reducer 代码？</li>
+</ul>
+<h1 id="划分代码目录"><a href="#划分代码目录" class="headerlink" title="划分代码目录"></a>划分代码目录</h1><p>目录的划分方式有多种，可以按照项目的功能模块，也可以按照 Redux 的职责模块。我选择了后者，采用的目录结构如下：</p>
+<p><img src="../images/2016-12-26/directory.png" alt=""></p>
+<p>外部可以直接引入的 JS 模块只能是 <code>data/main</code> 和 <code>data/actionTypes</code> 。</p>
+<h1 id="解决递归调用"><a href="#解决递归调用" class="headerlink" title="解决递归调用"></a>解决递归调用</h1><p>为什么会有递归调用呢？参考如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'SOME_THING_LOAD_COMPLETE'</span>:</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">            <span class="attr">loadComplete</span>: <span class="literal">true</span></div><div class="line">        &#125;);</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">return</span> state;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> store = createStore(reducer);</div><div class="line"></div><div class="line">store.subscribe(<span class="function"><span class="params">()</span> =&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">// do something here.</span></div><div class="line"></div><div class="line">    store.dispatch(&#123;<span class="attr">type</span>: <span class="string">'SOME_THING_LOAD_COMPLETE'</span>&#125;);</div><div class="line">);</div><div class="line"></div><div class="line">store.dispatch(&#123;<span class="attr">type</span>: <span class="string">'SOME_THING_LOAD_COMPLETE'</span>&#125;);</div></pre></td></tr></table></figure>
+<p>上面这个简单的例子很清晰地说明了无限递归的问题，在实际开发中，由于业务逻辑的复杂纠缠，这个递归过程可能非常间接、隐蔽，造成 debug 困难。那么如何有效避免呢？</p>
+<p>一个比较常用的方法就是检查对应数据是否真的发生了变化，比如上面的代码可以改为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'SOME_THING_LOAD_COMPLETE'</span>:</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">            <span class="attr">loadComplete</span>: <span class="literal">true</span></div><div class="line">        &#125;);</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">return</span> state;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> store = createStore(reducer);</div><div class="line"></div><div class="line"><span class="keyword">let</span> previousLoadComplete;</div><div class="line">store.subscribe(<span class="function"><span class="params">()</span> =&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">// do something here.</span></div><div class="line"></div><div class="line">    <span class="keyword">let</span> currentLoadComplete = store.getState().loadComplete;</div><div class="line">    <span class="keyword">if</span> (currentLoadComplete !== previousLoadComplete) &#123;</div><div class="line">        store.dispatch(&#123;<span class="attr">type</span>: <span class="string">'SOME_THING_LOAD_COMPLETE'</span>&#125;);</div><div class="line">        previousLoadComplete = currentLoadComplete;</div><div class="line">    &#125;</div><div class="line">);</div><div class="line"></div><div class="line">store.dispatch(&#123;<span class="attr">type</span>: <span class="string">'SOME_THING_LOAD_COMPLETE'</span>&#125;);</div></pre></td></tr></table></figure>
+<p>由于 state 每次更新都会在相应位置产生一个新对象，所以只需要用全等来判断就行了。</p>
+<h1 id="组织-state-数据结构"><a href="#组织-state-数据结构" class="headerlink" title="组织 state 数据结构"></a>组织 state 数据结构</h1><p>如何划分 state 对象的结构呢？可能每个人根据自己的经验，都有自己的一套划分方式。此处我采用了与业务功能模块对齐的原则。</p>
+<p>比如，我的项目里面有这样一些页面：用户列表页面、用户详情页面、资源页面、资源详情页面，那么 state 对象的结构为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">state = &#123;</div><div class="line">    <span class="string">'user.list'</span>: &#123; ... &#125;,</div><div class="line">    <span class="string">'user.detail'</span>: &#123; ... &#125;,</div><div class="line">    <span class="string">'resource.list'</span>: &#123; ... &#125;,</div><div class="line">    <span class="string">'resource.detail'</span>: &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结构扁平化了。</p>
+<p>个人建议，不要使用“多层”的 state 结构，比如把上面的例子设计成：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// BAD</span></div><div class="line">state = &#123;</div><div class="line">    <span class="attr">user</span>: &#123;</div><div class="line">        <span class="attr">list</span>: &#123; ... &#125;,</div><div class="line">        <span class="attr">detail</span>: &#123; ... &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">resource</span>: &#123;</div><div class="line">        <span class="attr">list</span>: &#123; ... &#125;,</div><div class="line">        <span class="attr">detail</span>: &#123; ... &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>过深的结构会带来不必要的复杂度。</p>
+<h1 id="扩展事件监听方式"><a href="#扩展事件监听方式" class="headerlink" title="扩展事件监听方式"></a>扩展事件监听方式</h1><p>Redux 只提供了 <code>subscribe</code> 方法来监听 state 的变化，在实际开发中，某一个组件可能只对某部分 state 变化感兴趣。所以，应当适当地做一下扩展：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">StateWatcher</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 存放监听回调函数等</div><div class="line">     *</div><div class="line">     * @private</div><div class="line">     * @type &#123;Array.&lt;Object&gt;&#125;</div><div class="line">     */</div><div class="line">    watcherList = [];</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 构造函数</div><div class="line">     *</div><div class="line">     * @constructor</div><div class="line">     * @param &#123;store&#125; Store  Redux store实例</div><div class="line">     */</div><div class="line">    <span class="keyword">constructor</span>(store) &#123;</div><div class="line">        <span class="keyword">this</span>.store = store;</div><div class="line">        <span class="comment">// 存放之前 state</span></div><div class="line">        <span class="keyword">this</span>.previousStoreState = extend(&#123;&#125;, <span class="keyword">this</span>.store.getState());</div><div class="line">        <span class="keyword">this</span>.subscribe();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 订阅 store 中 state 变化事件，会去检查 watcherList 中是否存在相应数据变化的回调函数</div><div class="line">     *</div><div class="line">     * @private</div><div class="line">     */</div><div class="line">    subscribe() &#123;</div><div class="line">        <span class="keyword">let</span> me = <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">this</span>.unsubscribe = <span class="keyword">this</span>.store.subscribe(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">let</span> currentStoreState = me.store.getState();</div><div class="line">            <span class="keyword">let</span> changedPropertyNameList = [];</div><div class="line">            <span class="keyword">let</span> delayFns = [];</div><div class="line"></div><div class="line">            <span class="comment">// 遍历 watcherList ，查找注册的回调函数</span></div><div class="line">            each(me.watcherList, watcher =&gt; &#123;</div><div class="line">                <span class="keyword">let</span> propertyName = watcher.propertyName;</div><div class="line">                <span class="keyword">let</span> previous = me.previousStoreState[propertyName];</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (currentStoreState[propertyName] !== previous) &#123;</div><div class="line">                    changedPropertyNameList.push(propertyName);</div><div class="line">                    <span class="comment">// 这里 context 对应的是某个组件，如果组件销毁了，就没有必要调用相应回调函数了。</span></div><div class="line">                    <span class="keyword">if</span> (!watcher.context.isInStage(componentState.DESTROIED)) &#123;</div><div class="line">                        <span class="comment">// 回调函数得延迟执行，因为回调函数是不可控的，在回调函数中可能又 dispatch 另外的 action ，</span></div><div class="line">                        <span class="comment">// 那就相当于此次 action 还没处理完，新的又来了，容易造成莫名其妙的错误。</span></div><div class="line">                        <span class="comment">// 所以要秉承处理完当前 action 的前提下，才能处理下个 action 的原则。</span></div><div class="line">                        delayFns.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">                            watcher.watcherFn.call(</div><div class="line">                                watcher.context,</div><div class="line">                                propertyName,</div><div class="line">                                currentStoreState[propertyName],</div><div class="line">                                previous</div><div class="line">                            );</div><div class="line">                        &#125;);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            <span class="comment">// 统一更新属性</span></div><div class="line">            each(changedPropertyNameList, propertyName =&gt; &#123;</div><div class="line">                me.previousStoreState[propertyName] = currentStoreState[propertyName];</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            <span class="comment">// action 处理完之后，统一调用延迟函数。</span></div><div class="line">            each(delayFns, fn =&gt; fn());</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 添加属性变化的回调函数</div><div class="line">     *</div><div class="line">     * @public</div><div class="line">     * @param &#123;string&#125; propertyName 属性名</div><div class="line">     * @param &#123;Function&#125; watcherFn 回调函数</div><div class="line">     * @param &#123;Component&#125; context 组件</div><div class="line">     */</div><div class="line">    addWatcher(&#123;propertyName, watcherFn, context&#125;) &#123;</div><div class="line">        <span class="keyword">this</span>.watcherList.push(&#123;propertyName, watcherFn, context&#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 移除属性变化的回调函数</div><div class="line">     *</div><div class="line">     * @public</div><div class="line">     * @param &#123;string&#125; propertyName 属性名</div><div class="line">     * @param &#123;Function&#125; watcherFn 回调函数</div><div class="line">     * @param &#123;Component&#125; context 组件</div><div class="line">     */</div><div class="line">    removeWatcher(&#123;propertyName, watcherFn, context&#125;) &#123;</div><div class="line">        <span class="keyword">this</span>.watcherList = filter(<span class="keyword">this</span>.watcherList, watcher =&gt; &#123;</div><div class="line">            <span class="keyword">return</span> watcher.propertyName !== propertyName</div><div class="line">                || watcher.watcherFn !== watcherFn</div><div class="line">                || watcher.context !== context;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 销毁</div><div class="line">     *</div><div class="line">     * @public</div><div class="line">     */</div><div class="line">    destroy() &#123;</div><div class="line">        <span class="keyword">this</span>.unsubscribe();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="避免写重复代码"><a href="#避免写重复代码" class="headerlink" title="避免写重复代码"></a>避免写重复代码</h1><p>目前想到的，就只是抽离复用代码，形成 helper 方法之类的。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>本文所述方案仅供参考，算是我初次使用 Redux 所想到的一些“套路”，不对之处静候读者指出，共同探讨。</p>
+
+            </div>
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Redux 使用初探" data-title="Redux 使用初探" data-url="http://yibuyisheng.github.io/blogs/site/blogs/Redux 使用初探.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    
+
+  </article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+</body>
+</html>

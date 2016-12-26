@@ -5,7 +5,7 @@
   <link href="/blogs/site/atom.xml" rel="self"/>
   
   <link href="http://yibuyisheng.github.io/blogs/site/"/>
-  <updated>2016-12-15T15:34:16.000Z</updated>
+  <updated>2016-12-26T11:07:18.000Z</updated>
   <id>http://yibuyisheng.github.io/blogs/site/</id>
   
   <author>
@@ -14,6 +14,69 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redux 使用初探</title>
+    <link href="http://yibuyisheng.github.io/blogs/site//blogs/Redux%20%E4%BD%BF%E7%94%A8%E5%88%9D%E6%8E%A2.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site//blogs/Redux 使用初探.html</id>
+    <published>2016-12-25T16:00:00.000Z</published>
+    <updated>2016-12-26T11:07:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Redux 提供的主要功能：全局数据管理，包括数据的更新、存储、数据变化通知。 Redux 的 store 中存放了当前应用的状态，可以根据这个状态完整恢复出当前应用的界面，因此在使用 Redux 的项目中，可以实现一个比较炫酷的功能：依据状态的前进、后退。<br><a id="more"></a></p>
+<p>Redux 中主要有三大块：</p>
+<ul>
+<li>Action：指代引起 Redux 中数据变化的操作；</li>
+<li>Reducer：响应 Action 操作，修改 Redux 中的数据；</li>
+<li>Store：包含一个 state 对象，用于存放整个应用的数据，并整合将 Action 和 Reducer 整合起来，修改 Store 中的数据。</li>
+</ul>
+<p>目前，网上已经有很多中文资料介绍具体概念细节以及相关 API 了，比如：</p>
+<ul>
+<li><a href="http://cn.redux.js.org/" target="_blank" rel="external">Redux 中文文档</a></li>
+<li><a href="http://www.alloyteam.com/2015/09/react-redux/" target="_blank" rel="external">React 数据流管理架构之 Redux 介绍</a></li>
+</ul>
+<p>这里主要想记录一下作为一个初学 Redux 的菜鸟，使用过程中的心得体会。</p>
+<p>单单就 Redux 本身来看，并不能直接用于生产，太灵活了，有很多“套路”需要强制定下来：</p>
+<ul>
+<li>怎么设计 state 对象的数据结构？怎么分好模块？怎么规定各个模块的命名风格？</li>
+<li>Redux 只提供了注册 state 变化回调函数的 API ，如果只想监听其中某一个数据的变化该怎么办？</li>
+<li>如果在 state change 的回调函数中再次 dispatch Action ，就可能造成无限递归，怎么设计才能很好地避免这种无限递归？</li>
+<li>如何设计组织项目代码才更好维护？</li>
+<li>如何避免写大量重复的 Action 、 Reducer 代码？</li>
+</ul>
+<h1 id="划分代码目录"><a href="#划分代码目录" class="headerlink" title="划分代码目录"></a>划分代码目录</h1><p>目录的划分方式有多种，可以按照项目的功能模块，也可以按照 Redux 的职责模块。我选择了后者，采用的目录结构如下：</p>
+<p><img src="../images/2016-12-26/directory.png" alt=""></p>
+<p>外部可以直接引入的 JS 模块只能是 <code>data/main</code> 和 <code>data/actionTypes</code> 。</p>
+<h1 id="解决递归调用"><a href="#解决递归调用" class="headerlink" title="解决递归调用"></a>解决递归调用</h1><p>为什么会有递归调用呢？参考如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'SOME_THING_LOAD_COMPLETE'</span>:</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">            <span class="attr">loadComplete</span>: <span class="literal">true</span></div><div class="line">        &#125;);</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">return</span> state;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> store = createStore(reducer);</div><div class="line"></div><div class="line">store.subscribe(<span class="function"><span class="params">()</span> =&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">// do something here.</span></div><div class="line"></div><div class="line">    store.dispatch(&#123;<span class="attr">type</span>: <span class="string">'SOME_THING_LOAD_COMPLETE'</span>&#125;);</div><div class="line">);</div><div class="line"></div><div class="line">store.dispatch(&#123;<span class="attr">type</span>: <span class="string">'SOME_THING_LOAD_COMPLETE'</span>&#125;);</div></pre></td></tr></table></figure>
+<p>上面这个简单的例子很清晰地说明了无限递归的问题，在实际开发中，由于业务逻辑的复杂纠缠，这个递归过程可能非常间接、隐蔽，造成 debug 困难。那么如何有效避免呢？</p>
+<p>一个比较常用的方法就是检查对应数据是否真的发生了变化，比如上面的代码可以改为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'SOME_THING_LOAD_COMPLETE'</span>:</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">            <span class="attr">loadComplete</span>: <span class="literal">true</span></div><div class="line">        &#125;);</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">return</span> state;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> store = createStore(reducer);</div><div class="line"></div><div class="line"><span class="keyword">let</span> previousLoadComplete;</div><div class="line">store.subscribe(<span class="function"><span class="params">()</span> =&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">// do something here.</span></div><div class="line"></div><div class="line">    <span class="keyword">let</span> currentLoadComplete = store.getState().loadComplete;</div><div class="line">    <span class="keyword">if</span> (currentLoadComplete !== previousLoadComplete) &#123;</div><div class="line">        store.dispatch(&#123;<span class="attr">type</span>: <span class="string">'SOME_THING_LOAD_COMPLETE'</span>&#125;);</div><div class="line">        previousLoadComplete = currentLoadComplete;</div><div class="line">    &#125;</div><div class="line">);</div><div class="line"></div><div class="line">store.dispatch(&#123;<span class="attr">type</span>: <span class="string">'SOME_THING_LOAD_COMPLETE'</span>&#125;);</div></pre></td></tr></table></figure>
+<p>由于 state 每次更新都会在相应位置产生一个新对象，所以只需要用全等来判断就行了。</p>
+<h1 id="组织-state-数据结构"><a href="#组织-state-数据结构" class="headerlink" title="组织 state 数据结构"></a>组织 state 数据结构</h1><p>如何划分 state 对象的结构呢？可能每个人根据自己的经验，都有自己的一套划分方式。此处我采用了与业务功能模块对齐的原则。</p>
+<p>比如，我的项目里面有这样一些页面：用户列表页面、用户详情页面、资源页面、资源详情页面，那么 state 对象的结构为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">state = &#123;</div><div class="line">    <span class="string">'user.list'</span>: &#123; ... &#125;,</div><div class="line">    <span class="string">'user.detail'</span>: &#123; ... &#125;,</div><div class="line">    <span class="string">'resource.list'</span>: &#123; ... &#125;,</div><div class="line">    <span class="string">'resource.detail'</span>: &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结构扁平化了。</p>
+<p>个人建议，不要使用“多层”的 state 结构，比如把上面的例子设计成：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// BAD</span></div><div class="line">state = &#123;</div><div class="line">    <span class="attr">user</span>: &#123;</div><div class="line">        <span class="attr">list</span>: &#123; ... &#125;,</div><div class="line">        <span class="attr">detail</span>: &#123; ... &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">resource</span>: &#123;</div><div class="line">        <span class="attr">list</span>: &#123; ... &#125;,</div><div class="line">        <span class="attr">detail</span>: &#123; ... &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>过深的结构会带来不必要的复杂度。</p>
+<h1 id="扩展事件监听方式"><a href="#扩展事件监听方式" class="headerlink" title="扩展事件监听方式"></a>扩展事件监听方式</h1><p>Redux 只提供了 <code>subscribe</code> 方法来监听 state 的变化，在实际开发中，某一个组件可能只对某部分 state 变化感兴趣。所以，应当适当地做一下扩展：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">StateWatcher</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 存放监听回调函数等</div><div class="line">     *</div><div class="line">     * @private</div><div class="line">     * @type &#123;Array.&lt;Object&gt;&#125;</div><div class="line">     */</div><div class="line">    watcherList = [];</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 构造函数</div><div class="line">     *</div><div class="line">     * @constructor</div><div class="line">     * @param &#123;store&#125; Store  Redux store实例</div><div class="line">     */</div><div class="line">    <span class="keyword">constructor</span>(store) &#123;</div><div class="line">        <span class="keyword">this</span>.store = store;</div><div class="line">        <span class="comment">// 存放之前 state</span></div><div class="line">        <span class="keyword">this</span>.previousStoreState = extend(&#123;&#125;, <span class="keyword">this</span>.store.getState());</div><div class="line">        <span class="keyword">this</span>.subscribe();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 订阅 store 中 state 变化事件，会去检查 watcherList 中是否存在相应数据变化的回调函数</div><div class="line">     *</div><div class="line">     * @private</div><div class="line">     */</div><div class="line">    subscribe() &#123;</div><div class="line">        <span class="keyword">let</span> me = <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">this</span>.unsubscribe = <span class="keyword">this</span>.store.subscribe(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">let</span> currentStoreState = me.store.getState();</div><div class="line">            <span class="keyword">let</span> changedPropertyNameList = [];</div><div class="line">            <span class="keyword">let</span> delayFns = [];</div><div class="line"></div><div class="line">            <span class="comment">// 遍历 watcherList ，查找注册的回调函数</span></div><div class="line">            each(me.watcherList, watcher =&gt; &#123;</div><div class="line">                <span class="keyword">let</span> propertyName = watcher.propertyName;</div><div class="line">                <span class="keyword">let</span> previous = me.previousStoreState[propertyName];</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (currentStoreState[propertyName] !== previous) &#123;</div><div class="line">                    changedPropertyNameList.push(propertyName);</div><div class="line">                    <span class="comment">// 这里 context 对应的是某个组件，如果组件销毁了，就没有必要调用相应回调函数了。</span></div><div class="line">                    <span class="keyword">if</span> (!watcher.context.isInStage(componentState.DESTROIED)) &#123;</div><div class="line">                        <span class="comment">// 回调函数得延迟执行，因为回调函数是不可控的，在回调函数中可能又 dispatch 另外的 action ，</span></div><div class="line">                        <span class="comment">// 那就相当于此次 action 还没处理完，新的又来了，容易造成莫名其妙的错误。</span></div><div class="line">                        <span class="comment">// 所以要秉承处理完当前 action 的前提下，才能处理下个 action 的原则。</span></div><div class="line">                        delayFns.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">                            watcher.watcherFn.call(</div><div class="line">                                watcher.context,</div><div class="line">                                propertyName,</div><div class="line">                                currentStoreState[propertyName],</div><div class="line">                                previous</div><div class="line">                            );</div><div class="line">                        &#125;);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            <span class="comment">// 统一更新属性</span></div><div class="line">            each(changedPropertyNameList, propertyName =&gt; &#123;</div><div class="line">                me.previousStoreState[propertyName] = currentStoreState[propertyName];</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            <span class="comment">// action 处理完之后，统一调用延迟函数。</span></div><div class="line">            each(delayFns, fn =&gt; fn());</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 添加属性变化的回调函数</div><div class="line">     *</div><div class="line">     * @public</div><div class="line">     * @param &#123;string&#125; propertyName 属性名</div><div class="line">     * @param &#123;Function&#125; watcherFn 回调函数</div><div class="line">     * @param &#123;Component&#125; context 组件</div><div class="line">     */</div><div class="line">    addWatcher(&#123;propertyName, watcherFn, context&#125;) &#123;</div><div class="line">        <span class="keyword">this</span>.watcherList.push(&#123;propertyName, watcherFn, context&#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 移除属性变化的回调函数</div><div class="line">     *</div><div class="line">     * @public</div><div class="line">     * @param &#123;string&#125; propertyName 属性名</div><div class="line">     * @param &#123;Function&#125; watcherFn 回调函数</div><div class="line">     * @param &#123;Component&#125; context 组件</div><div class="line">     */</div><div class="line">    removeWatcher(&#123;propertyName, watcherFn, context&#125;) &#123;</div><div class="line">        <span class="keyword">this</span>.watcherList = filter(<span class="keyword">this</span>.watcherList, watcher =&gt; &#123;</div><div class="line">            <span class="keyword">return</span> watcher.propertyName !== propertyName</div><div class="line">                || watcher.watcherFn !== watcherFn</div><div class="line">                || watcher.context !== context;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 销毁</div><div class="line">     *</div><div class="line">     * @public</div><div class="line">     */</div><div class="line">    destroy() &#123;</div><div class="line">        <span class="keyword">this</span>.unsubscribe();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="避免写重复代码"><a href="#避免写重复代码" class="headerlink" title="避免写重复代码"></a>避免写重复代码</h1><p>目前想到的，就只是抽离复用代码，形成 helper 方法之类的。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>本文所述方案仅供参考，算是我初次使用 Redux 所想到的一些“套路”，不对之处静候读者指出，共同探讨。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Redux 提供的主要功能：全局数据管理，包括数据的更新、存储、数据变化通知。 Redux 的 store 中存放了当前应用的状态，可以根据这个状态完整恢复出当前应用的界面，因此在使用 Redux 的项目中，可以实现一个比较炫酷的功能：依据状态的前进、后退。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/tags/JavaScript/"/>
+    
+      <category term="Redux" scheme="http://yibuyisheng.github.io/blogs/site/tags/Redux/"/>
+    
+  </entry>
   
   <entry>
     <title>如何展示表单控件</title>
@@ -1146,234 +1209,6 @@
       <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/tags/JavaScript/"/>
     
       <category term="ECMAScript 6" scheme="http://yibuyisheng.github.io/blogs/site/tags/ECMAScript-6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>百度 EFE 前端框架学习笔记（esui）</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E7%99%BE%E5%BA%A6%20EFE%20%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88esui%EF%BC%89.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/百度 EFE 前端框架学习笔记（esui）.html</id>
-    <published>2015-05-31T16:00:00.000Z</published>
-    <updated>2016-06-15T10:48:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>基础点：</p>
-<h3 id="Control-js"><a href="#Control-js" class="headerlink" title="Control.js"></a>Control.js</h3><p>控件基类模块，该类不可以直接使用，经过继承之后，形成更加具体的按钮之类的控件才使用，可以认为就是一个控件抽象基类。</p>
-<p>包含如下一些自有属性：</p>
-<ul>
-<li>type ：控件的类型，比如 Button 、 Input 、 Form 、 Calendar 等等</li>
-<li>skin ：控件的皮肤，仅在初始化时设置有效，运行时不得变更</li>
-<li>styleType ：控件的样式类型，用于生成各class使用，如无此属性，则使用 Control#type 属性代替</li>
-<li>id ： 控件的 id</li>
-</ul>
-<a id="more"></a>
-<p>这些属性（ property ）均可在 html 代码中设置，比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-ui-type</span>=<span class="string">"Button"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>还有另外一部分自有属性，这些属性不能用于 html 代码设置：</p>
-<ul>
-<li>helper ：控件常用的一些方法组成的一个对象属性</li>
-<li>children ：子控件数组</li>
-<li>childrenIndex</li>
-<li>currentStates</li>
-<li>domEvents</li>
-<li>main ： 控件的主元素， HTMLElement 类型</li>
-</ul>
-<p>原型（ Control.prototype ）上面有一些对象属性：</p>
-<ul>
-<li>ignoreStates ： 指定在哪些状态下该元素不处理相关的DOM事件</li>
-</ul>
-<p>控件的生命周期中，有如下状态：</p>
-<ul>
-<li>NEW ： 在进入构造函数后，控件的状态就是 NEW 了</li>
-<li>INITED ： 控件完成 options 初始化（ initOptions() ）、视图环境初始化（ initViewContext() ）、扩展初始化（ initExtensions() ）之后状态就是 INITED 了</li>
-<li>RENDERED ： 控件第一次调用 render() 方法之后，就转变为 RENDERED 了</li>
-<li>DISPOSED ： 控件处于非 DISPOSED 状态下，调用 destroy() 方法，就变成了 DISPOSED 状态了</li>
-</ul>
-<p>Control 上有一个重要的方法 render() ，用于渲染控件，该方法会去调用 repaint() 方法。</p>
-<p>另外，Control 上还有一些 DOM 操作的方法，比如 appendTo() 、 insertBefore() 等。</p>
-<p>Control 上的 get() 和 set() 很有猫腻。举个例子，如果这样调用 get() 方法： <code>get(&#39;some-title&#39;)</code> ，首先会去检测当前实例上面有没有 <code>getSomeTitle()</code> 方法，如果有，则直接调用这个方法，返回这个方法的返回值；如果没有，则直接返回当前对象的 <code>some-title</code> 属性。 <code>set()</code> 方法也是类似的。</p>
-<p>setProperties() 方法可以用来批量设置属性，它会对一些特殊属性进行处理、控制，比如：</p>
-<ul>
-<li>只有在渲染以前（就是 <code>initOptions()</code> 调用的那次）才允许设置 id 属性</li>
-<li>如果要设置 viewContext ，则直接调用 setViewContext() 设置</li>
-<li>有些属性要转换成布尔值，比如 disabled 、 hidden</li>
-</ul>
-<p>setProperties() 也会对批量设置的值进行脏检测，如果发现有属性值发生了改变，则会调用 repaint() 方法。脏检测函数是 isPropertyChanged() ， 默认只会用恒等号去判断是否变化，但是可以在子类中覆盖这个方法，实现自己想要的脏检测功能。</p>
-<h3 id="Button-js"><a href="#Button-js" class="headerlink" title="Button.js"></a>Button.js</h3><p>按钮控件。主要有这么几种按钮：普通按钮、添加按钮、下载按钮、链接按钮、右上角关闭按钮。</p>
-<p>可以对按钮设置皮肤（ data-ui-skin ），内置的皮肤有： spring 、 spring-add 、 download 、 layerClose 、 link 。</p>
-<p>可以禁用掉按钮（ data-ui-disabled=”diabled” ）。</p>
-<p>按钮上 DOM 相关的事件只有 click 。由于按钮是间接继承自 EventTarget ，所以可以使用 on 、 un 等方法处理事件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 给按钮绑定事件处理函数</span></div><div class="line">someButton.on(<span class="string">'click'</span>, handler);</div><div class="line"></div><div class="line"><span class="comment">// 5s 后取消绑定事件绑定</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    someButton.un(<span class="string">'click'</span>, handler);</div><div class="line">&#125;, <span class="number">5000</span>);</div><div class="line"></div><div class="line"><span class="comment">// 只执行一次的回调函数</span></div><div class="line">someButton.once(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// only once</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>具体按钮 demo 可参看<a href="http://yibuyisheng.github.io/esui-demo/demo/Button.html">此处</a>。</p>
-<h3 id="Validator"><a href="#Validator" class="headerlink" title="Validator"></a>Validator</h3><p>数据验证模块，主要有三个基础类 Validity 、 ValidityState 、 Rule 。</p>
-<p>ValidityState 表示某个控件的某一条验证规则的状态（是否验证通过），有两个自有属性：</p>
-<ul>
-<li>state ： 验证状态， <code>true</code> 为值合法， <code>false</code> 为值非法</li>
-<li>message ： 验证信息，比如说错误提示语</li>
-</ul>
-<p>Rule 是验证规则基类，是对 InputControl 的值的验证逻辑的抽象。每一个验证规则都包含一个 <code>check(value, control)</code> 方法，该方法返回一个 ValidityState 对象以表示验证结果。验证规则必须通过 main.registerRule() 进行注册后才可生效。每一个验证规则包含 <code>prototype.type</code> 属性来确定规则的类型。验证规则并不会显式地附加到控件上，而是通过控件自身的属性决定哪些规则生效，当控件本身具有与规则的<code>type</code>属性相同的属性时，此规则即会生效，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> textbox = main.create(<span class="string">'TextBox'</span>, &#123; <span class="attr">maxLength</span>: <span class="number">30</span> &#125;);</div><div class="line">textbox.validate();</div></pre></td></tr></table></figure>
-<p>由于 <code>textbox</code> 上存在 <code>maxLength</code> 属性，因此 <code>MaxLengthRule</code> 会对其进行验证，此特性可以从 main.createRulesByControl() 方法中看出。</p>
-<p>Validity 主要用于存放一系列验证结果（ ValidityState ），如果验证失败，则会触发 InputControl 的 invalid 事件，该事件会带上一个 Validity 对象作为参数。</p>
-<h3 id="InputControl-js"><a href="#InputControl-js" class="headerlink" title="InputControl.js"></a>InputControl.js</h3><p>输入控件基类模块，用于表示需要在表单中包含的控件，主要提供 <code>getRawValue()</code> 和 <code>getValue()</code> 方法供获取值。该类是一个抽象类，不应该直接使用。</p>
-<p>需要注意的是，控件其实并不通过严格的继承关系来判断一个控件是否为输入控件，只要 <code>getCategory()</code> 返回为 <code>&quot;input&quot;</code> 、 <code>&quot;check&quot; 或</code>“extend”` 就认为是输入控件。</p>
-<p>相比普通控件的 <strong>禁用 / 启用</strong> ，输入控件共有3种状态：</p>
-<ul>
-<li>普通状态：可编辑，值随表单提交</li>
-<li><code>disabled</code> ：禁用状态，此状态下控件不能编辑，同时值不随表单提交</li>
-<li><code>readOnly</code> ：只读状态，此状态下控件不能编辑，但其值会随表单提交</li>
-</ul>
-<p>setValue() 和 getValue() 分别用于设置输入控件的值和获取输入控件的值。 getRawValue() 和 setRawValue() 用于处理控件原始值，原始值的格式由控件自身决定。这两对处理输入控件值的方法的主要区别是，setValue() 会先调用控件的 parseValue() （子类可重写此方法）方法转换传入的值，然后再调用 setRawValue() 设置到控件上面去， getValue() 也会调用控件的 stringifyValue() （子类可重写此方法）将 getRawValue() 得到的值转换后返回。</p>
-<p>getValidationResult() 方法用于获取此控件数据验证结果。</p>
-<h3 id="BoxGroup-js"><a href="#BoxGroup-js" class="headerlink" title="BoxGroup.js"></a>BoxGroup.js</h3><p>选择框组控件的各种使用可参见<a href="http://yibuyisheng.github.io/esui-demo/demo/BoxGroup.html">此处</a>。</p>
-<h3 id="CheckBox-js"><a href="#CheckBox-js" class="headerlink" title="CheckBox.js"></a>CheckBox.js</h3><p><code>CheckBox</code> 控件在初始化时可以提供 <code>datasource</code> 属性，该属性用于控件判断一开始是否选中，且这个属性只在初始化时有效，不会保存下来。<code>datasource</code>可以是以下类型：</p>
-<ul>
-<li>数组：此时只要<code>rawValue</code>在<code>datasource</code>中（使用<code>==</code>比较）则选上</li>
-<li>其它：只要<code>rawValue</code>与此相等（使用<code>==</code>比较）则选上</li>
-</ul>
-<p><a href="http://127.0.0.1:8848/demo/CheckBox.html" target="_blank" rel="external">示例</a>。</p>
-<h3 id="ControlCollection-js"><a href="#ControlCollection-js" class="headerlink" title="ControlCollection.js"></a>ControlCollection.js</h3><p>控件集合，类似 <code>jQuery</code> 对象的功能，提供便携的方法来访问和修改一个或多个控件。</p>
-<p><code>ControlCollection</code> 提供 Control 的所有<strong>公有</strong>方法，但<em>没有</em>任何<strong>保护或私有</strong>方法。</p>
-<p>对于方法， <code>ControlCollection</code> 采用 <strong>Write all, Read first</strong> 的策略，需要注意的是，类似 setProperties() 的方法虽然有返回值，但被归类于写操作，因此会对所有内部的控件生效，但只返回第一个控件执行的结果。</p>
-<p><code>ControlCollection</code> 仅继承 Control 的方法，并不包含任何子类独有方法，因此无法认为集合是一个 InputControl 而执行如下代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">collection.setValue(<span class="string">'foo'</span>);</div></pre></td></tr></table></figure>
-<p>此时可以使用通用的 set() 方法来代替：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">collection.set(<span class="string">'value'</span>, <span class="string">'foo'</span>);</div></pre></td></tr></table></figure>
-<p>根据 set() 方法的规则，如果控件存在 <code>setValue()</code> 方法，则会进行调用。</p>
-<h3 id="ViewContext-js"><a href="#ViewContext-js" class="headerlink" title="ViewContext.js"></a>ViewContext.js</h3><p>视图环境类，一个视图环境是一组控件的集合，不同视图环境中相同 id 的控件的 DOM id 不会重复。</p>
-<p>该类的实例包含的主要属性为：</p>
-<ul>
-<li>controls ：该视图环境下所有的控件</li>
-<li>groups ：视图环境控件分组集合</li>
-<li>id ：视图环境 id，只读</li>
-</ul>
-<p>当前页面所有的视图环境对象都会以<code>id-&gt;对象</code>的形式保存在私有的 pool 变量中。</p>
-<h3 id="painters-js"><a href="#painters-js" class="headerlink" title="painters.js"></a>painters.js</h3><p>渲染器模块，负责 dom 渲染。</p>
-<p>可以生成各种各样的渲染器（ painter ）。例如：</p>
-<ul>
-<li>painters.state()：生成一个将属性与控件状态关联的渲染器</li>
-<li>painters.attribute()：生成一个将控件属性与控件主元素元素的属性关联的渲染器</li>
-<li>painters.style()：生成一个将控件属性与控件主元素元素的样式关联的渲染器</li>
-<li>painters.html()：生成一个将控件属性与某个DOM元素的HTML内容关联的渲染器</li>
-<li>painters.text()：生成一个将控件属性与某个DOM元素的HTML内容关联的渲染器</li>
-<li>painters.delegate()：生成一个将控件属性的变化代理到指定成员的指定方法上</li>
-</ul>
-<p>借助于这些方法，可以为某一个控件生成一组渲染器，当该控件发生了变化（样式属性变化等），相应的渲染器就会被调用，从而保证了数据与界面的一致性，形成了单向数据流，同时也比较细腻度地更新指定界面部分，不会出现全局刷新的情况。</p>
-<h3 id="Extension-js"><a href="#Extension-js" class="headerlink" title="Extension.js"></a>Extension.js</h3><p>扩展基类，针对控件的扩展。</p>
-<p><code>Extension</code> 类为扩展基类，所有扩展类需要继承于 <code>Extension</code> 。扩展类需要通过 main.registerExtension 方法，注册扩展类型。注册扩展类型时将自动根据 <code>prototype.type</code> 进行类型关联。</p>
-<p>一个控件实例可以组合多个<code>Extension</code>实例，但一个控件实例对同种类型（即 <code>type</code> 相同）的 <code>Extension</code> ，只能拥有一份。</p>
-<p>从设计上而言， <code>Extension</code> 不同于普通脚本对控件的操作，相比 ESUI 从设计理念上不希望普通脚本操作控件的保护属性及内部DOM元素，扩展则对控件拥有<strong>完全开放</strong>的权限，这包含但不限于：</p>
-<ul>
-<li>注册事件、修改属性等其它逻辑程序可做的行为。</li>
-<li>覆盖控件实例上的相应函数，如 <code>render()</code> 或 <code>addChild()</code> 等。</li>
-<li>读取<code>核心属性</code>与<code>关键属性</code>，包括 <code>type</code> 、 <code>main</code> 等。</li>
-<li>可接触控件内部的 DOM 对象，即可以访问 <code>main</code> 及其子树，并对 DOM 做任何操作。</li>
-</ul>
-<p>在控件初始化时，会对扩展进行初始化，其基本流程为：</p>
-<p>1、 当控件 <code>init</code> 之后，会依次对所有关联 <code>Extension</code> ，调用 <code>attachTo()</code> 方法。一个类型的 <code>Extension</code> 仅能在控件实例上附加一次，如果一个控件已经附加了同类型的 <code>Extension</code> 实例，则跳过本次 <code>attachTo</code> 操作。<br>2、 当控件 <code>dispose</code> 之前，会依次对所有关联 <code>Extension</code> ，调用其 <code>dispose()</code> 方法。</p>
-<p>有多种方法可以将扩展绑定到具体的控件实例上：</p>
-<ul>
-<li><p>在控件创建时绑定</p>
-<p>  通过控件构造函数参数 <code>options.extensions</code> 可以为控件绑定扩展。</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> TextBox(&#123;</div><div class="line">    <span class="attr">extensions</span>: [</div><div class="line">        <span class="keyword">new</span> MyExtension(&#123; ... &#125;),</div><div class="line">        <span class="keyword">new</span> OtherExtension(&#123; ... &#125;)</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>在使用HTML生成时绑定</p>
-<p>  在HTML中，使用 <code>data-ui-extension-xxx</code> 属性注册一个扩展：</p>
-  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div id="main-panel" class="wrapper"</div><div class="line">    data-ui-type="Panel"</div><div class="line">    data-ui-extension-command-type="Command"</div><div class="line">    data-ui-extension-command-events="click,keypress,keyup"</div><div class="line">    data-ui-extension-command-use-capture="false"</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<p>  在HTML中，使用 <code>data-ui-extension-*-property</code> 属性添加扩展，其中<code>*</code>作为扩展的分组，可以是任何字符串，相同的<code>*</code>将作为对同一扩展的定义，必须包含 <code>data-ui-extension-*-type</code> 定义扩展的类型，而其它 <code>data-ui-extension-*-property=&quot;value&quot;</code> 属性则将作为 <code>options</code> 参数的属性传递给扩展的构造函数。</p>
-</li>
-<li><p>在实例创建后动态地绑定</p>
-<p>  在控件创建后，可以动态创建扩展并在适当的时候绑定至控件。</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> panel = <span class="keyword">new</span> Label(&#123; <span class="attr">text</span>: <span class="string">'abc'</span> &#125;);</div><div class="line"><span class="keyword">var</span> delegateDOMEvents = main.createExtension(</div><div class="line">    <span class="string">'Command'</span>,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">eventTypes</span>: [<span class="string">'click'</span>, <span class="string">'keypress'</span>, <span class="string">'keyup'</span>],</div><div class="line">        <span class="attr">useCapture</span>: <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">);</div><div class="line"><span class="comment">// 需主动调用attachTo方法</span></div><div class="line">delegateDomEvents.attachTo(panel);</div><div class="line">panel.appendTo(container);</div></pre></td></tr></table></figure>
-</li>
-<li><p>全局绑定</p>
-<p>  调用{@link main#attachExtension}函数可在全局注册一个扩展：</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">main.attachExtension(<span class="string">'Command'</span>, &#123; <span class="attr">events</span>: [<span class="string">'click'</span>] &#125;);</div></pre></td></tr></table></figure>
-<p>  全局注册的扩展，将会被附加到<strong>所有</strong>控件的实例上。使用 <code>options</code> 参数作为 <code>Extension</code> 创建时的选项，创建 <code>Extension</code> 实例时会对 <code>options</code> 做复制处理。</p>
-<p>  具体可以参考 extension.Command 作为示例，来学习扩展的编写。</p>
-</li>
-</ul>
-<h3 id="src-main-js-中的-main-init-方法"><a href="#src-main-js-中的-main-init-方法" class="headerlink" title="src/main.js 中的 main.init() 方法"></a>src/main.js 中的 main.init() 方法</h3><p>该方法是整个 esui 的入口方法，可以指定当前要使用 esui 的 dom 节点容器，类似于 angular.bootstrap() 或者 React.render()，都是以指定的 dom 元素为根，然后开始渲染这块地盘。具体参数传递可参看文档。</p>
-<p>该方法会返回一个这个块地盘初始化的控件对象集合，例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">data-ui</span>=<span class="string">"type:Button;id:defaultBtn;"</span>&gt;</span>默认按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-ui</span>=<span class="string">"type:Button;id:springBtn;skin:spring"</span>&gt;</span>创建<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">data-ui</span>=<span class="string">"type:Button;id:springAddBtn;skin:spring-add"</span>&gt;</span>添加<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">data-ui</span>=<span class="string">"type:Button;id:downloadBtn;skin:download"</span>&gt;</span>下载<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">data-ui</span>=<span class="string">"type:Button;id:actBtn;"</span>&gt;</span>改变文字<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>此 container 初始化后就会返回五个控件对象控件的集合。</p>
-<h3 id="类关系"><a href="#类关系" class="headerlink" title="类关系"></a>类关系</h3><ul>
-<li>ControlCollection<ul>
-<li>ControlGroup</li>
-</ul>
-</li>
-<li>Extension</li>
-<li>EventTarget<ul>
-<li>Control<ul>
-<li>Button</li>
-<li>CommandMenu</li>
-<li>Crumb</li>
-<li>InputControl<ul>
-<li>BoxGroup</li>
-<li>Calendar</li>
-<li>CheckBox</li>
-<li>RangeCalendar</li>
-<li>Region</li>
-<li>RichCalendar</li>
-<li>Schedule</li>
-<li>Select</li>
-<li>TextBox</li>
-<li>TextLine</li>
-</ul>
-</li>
-<li>Dialog</li>
-<li>Label</li>
-<li>Frame</li>
-<li>Pager</li>
-<li>Panel<ul>
-<li>Form</li>
-<li>Overlay</li>
-</ul>
-</li>
-<li>SearchBox</li>
-<li>Sidebar</li>
-<li>Tab</li>
-<li>Table</li>
-<li>Tip</li>
-<li>TipLayer</li>
-<li>Toast</li>
-<li>Tree</li>
-<li>Validity</li>
-<li>Wizard</li>
-</ul>
-</li>
-<li>Layer</li>
-<li>Link</li>
-<li>MonthView</li>
-</ul>
-</li>
-<li>SafeWrapper</li>
-<li>TreeStrategy</li>
-<li>ViewContext</li>
-</ul>
-<h3 id="一些总结"><a href="#一些总结" class="headerlink" title="一些总结"></a>一些总结</h3><p>绝大多数控件在源码中其实都有比较详尽的说明了，只要仔细看看注释，再结合相关代码，很快就会用了。不过，在看代码的时候，以下几处务必留意：</p>
-<ul>
-<li>1、 initOption() 函数，该函数会初始化一些参数，很多都可以通过 <code>data-ui-xxx</code> 来设置，也可以通过 set() 方法来设置；</li>
-<li>2、 repaint 属性，该属性中存放了重绘相关的配置，留意会造成重绘的属性，这些属性往往也可以用上条所述方式设置；</li>
-<li>3、留意控件会触发什么事件，直接在源代码中搜索 <code>fire(</code> ，即可快速知道该控件会触发什么事件。</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;基础点：&lt;/p&gt;
-&lt;h3 id=&quot;Control-js&quot;&gt;&lt;a href=&quot;#Control-js&quot; class=&quot;headerlink&quot; title=&quot;Control.js&quot;&gt;&lt;/a&gt;Control.js&lt;/h3&gt;&lt;p&gt;控件基类模块，该类不可以直接使用，经过继承之后，形成更加具体的按钮之类的控件才使用，可以认为就是一个控件抽象基类。&lt;/p&gt;
-&lt;p&gt;包含如下一些自有属性：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;type ：控件的类型，比如 Button 、 Input 、 Form 、 Calendar 等等&lt;/li&gt;
-&lt;li&gt;skin ：控件的皮肤，仅在初始化时设置有效，运行时不得变更&lt;/li&gt;
-&lt;li&gt;styleType ：控件的样式类型，用于生成各class使用，如无此属性，则使用 Control#type 属性代替&lt;/li&gt;
-&lt;li&gt;id ： 控件的 id&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/tags/JavaScript/"/>
     
   </entry>
   

@@ -20,8 +20,8 @@
     "hexo-server": "^0.1.3"
   },
   "scripts": {
-    "dev": "hexo server",
-    "build": "hexo generate -f"
+    "dev": "hexo server --config config.yml",
+    "build": "hexo generate -f --config config.yml"
   },
   "devDependencies": {
     "hexo-cli": "^1.0.2"

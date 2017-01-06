@@ -3,93 +3,132 @@
 <head>
   <meta charset="utf-8">
   
-  <title>当心，babel 处理 Symbol 的麻烦 | 博客</title>
+  <title>当心，babel 处理 Symbol 的麻烦 | yibuyisheng | 偶尔玩玩 Java 的前端工程师</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaScript,babel">
   <meta name="description" content="在使用 babel 转换 ES next 代码的时候，并不会将 Symbol 直接转换成 ES5 中对应的内容，需要引入额外的 polyfill 才能正常工作。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="当心，babel 处理 Symbol 的麻烦">
-<meta property="og:url" content="http://yibuyisheng.github.io/blogs/site/blogs/当心，babel 处理 Symbol 的麻烦.html">
-<meta property="og:site_name" content="博客">
+<meta property="og:url" content="http://yibuyisheng.github.io/blogs/site/index.html/blogs/当心，babel 处理 Symbol 的麻烦.html">
+<meta property="og:site_name" content="yibuyisheng">
 <meta property="og:description" content="在使用 babel 转换 ES next 代码的时候，并不会将 Symbol 直接转换成 ES5 中对应的内容，需要引入额外的 polyfill 才能正常工作。">
 <meta property="og:updated_time" content="2016-12-28T15:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="当心，babel 处理 Symbol 的麻烦">
 <meta name="twitter:description" content="在使用 babel 转换 ES next 代码的时候，并不会将 Symbol 直接转换成 ES5 中对应的内容，需要引入额外的 polyfill 才能正常工作。">
   
-    <link rel="alternate" href="/atom.xml" title="博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="yibuyisheng" type="application/atom+xml">
   
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
+  <meta name="summary" content="&lt;p&gt;在使用 babel 转换 ES next 代码的时候，并不会将 Symbol 直接转换成 ES5 中对应的内容，需要引入额外的 polyfill 才能正常工作。&lt;br&gt;">
+  <link rel="shortcut icon" href="/blogs/site/favicon.ico">
   <link rel="stylesheet" href="/blogs/site/css/style.css">
-  
-
 </head>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/blogs/site/" id="logo">博客</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/blogs/site/" id="subtitle">偶尔玩玩 Java 的前端工程师</a>
-        </h2>
-      
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="https://avatars3.githubusercontent.com/u/2581682?v=3&amp;s=460"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">yibuyisheng</h5>
+        <a href="mailto:yibuyisheng@163.com" title="yibuyisheng@163.com" class="mail">yibuyisheng@163.com</a>
+      </hgroup>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/blogs/site/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            归档
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            GitHub
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://www.zhihu.com/people/yibuyisheng" target="_blank" >
+            <i class="icon icon-lg icon-link"></i>
+            知乎
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/2674779523" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            微博
+          </a>
+        </li>
+    
+  </ul>
+
+  
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">当心，babel 处理 Symbol 的麻烦</div>
         
-          <a class="main-nav-link" href="/blogs/site/">Home</a>
         
-          <a class="main-nav-link" href="/blogs/site/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yibuyisheng.github.io/blogs/site"></form>
-      </div>
     </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">当心，babel 处理 Symbol 的麻烦</h1>
+    <h5 class="subtitle">2016-12-28</h5>
   </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-当心，babel 处理 Symbol 的麻烦" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blogs/site/blogs/当心，babel 处理 Symbol 的麻烦.html" class="article-date">
-  <time datetime="2016-12-28T14:29:00.000Z" itemprop="datePublished">2016-12-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      当心，babel 处理 Symbol 的麻烦
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+    <div class="container body-wrap">
       
-        <p>在使用 babel 转换 ES next 代码的时候，并不会将 Symbol 直接转换成 ES5 中对应的内容，需要引入额外的 polyfill 才能正常工作。<br><a id="more"></a></p>
+  <article id="post-当心，babel 处理 Symbol 的麻烦" class="article article-type-post" itemprop="blogPost">
+    
+      <div class="post-meat flex-row">
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/babel/">babel</a></li></ul>
+</div>
+      </div>
+      <div class="post-body">
+
+        <aside class="post-widget" id="post-widget">
+
+          
+
+          
+          <nav class="post-toc-wrap" id="post-toc">
+            
+          </nav>
+          
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+              <p>在使用 babel 转换 ES next 代码的时候，并不会将 Symbol 直接转换成 ES5 中对应的内容，需要引入额外的 polyfill 才能正常工作。<br><a id="more"></a></p>
 <p>有的团队为了避免引入这个额外的 polyfill ，会选择不使用 Symbol ，包括通过 babel 生成 Symbol 的特性（比如 <code>for of</code> 等）。</p>
 <p>这时候就会有个比较隐蔽的地方需要注意，就是尽量不要让 babel 生成这样的代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _typeof = <span class="keyword">typeof</span> <span class="built_in">Symbol</span> === <span class="string">"function"</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">Symbol</span>.iterator === <span class="string">"symbol"</span> ? <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">typeof</span> obj; &#125; : <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123; <span class="keyword">return</span> obj &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">Symbol</span> === <span class="string">"function"</span> &amp;&amp; obj.constructor === <span class="built_in">Symbol</span> &amp;&amp; obj !== <span class="built_in">Symbol</span>.prototype ? <span class="string">"symbol"</span> : <span class="keyword">typeof</span> obj; &#125;;</div></pre></td></tr></table></figure>
@@ -103,129 +142,64 @@
 <p>推而广之， <code>for</code> 块等局部非函数作用域都会有类似的问题。</p>
 <p>实际上，从代码编写规范角度来看，是不应该在这种局部作用域块里面定义函数的。函数应该是一段通用的代码，不应该缩在那一小块里面。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yibuyisheng.github.io/blogs/site/blogs/site//blogs/当心，babel 处理 Symbol 的麻烦.html" data-id="cix92f26h0000rvxxp1uypf06" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/site/tags/babel/">babel</a></li></ul>
+            </div>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/blogs/site/blogs/Redux 使用初探.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Redux 使用初探</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/ECMAScript-6/">ECMAScript 6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/ETPL/">ETPL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/Oracle/">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/Redux/">Redux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/Reflux/">Reflux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/babel/">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/vscode/">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/site/tags/数据库/">数据库</a></li></ul>
-    </div>
-  </div>
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="当心，babel 处理 Symbol 的麻烦" data-title="当心，babel 处理 Symbol 的麻烦" data-url="http://yibuyisheng.github.io/blogs/site/index.html/blogs/当心，babel 处理 Symbol 的麻烦.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yibuyishengblogs"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/blogs/site/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/blogs/site/tags/ECMAScript-6/" style="font-size: 15px;">ECMAScript 6</a> <a href="/blogs/site/tags/ETPL/" style="font-size: 12.5px;">ETPL</a> <a href="/blogs/site/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/blogs/site/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/blogs/site/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/blogs/site/tags/React/" style="font-size: 10px;">React</a> <a href="/blogs/site/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/blogs/site/tags/Reflux/" style="font-size: 10px;">Reflux</a> <a href="/blogs/site/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blogs/site/tags/markdown/" style="font-size: 12.5px;">markdown</a> <a href="/blogs/site/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/blogs/site/tags/数据库/" style="font-size: 10px;">数据库</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blogs/site/archives/2014/10/">October 2014</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/blogs/site/blogs/当心，babel 处理 Symbol 的麻烦.html">当心，babel 处理 Symbol 的麻烦</a>
-          </li>
-        
-          <li>
-            <a href="/blogs/site/blogs/Redux 使用初探.html">Redux 使用初探</a>
-          </li>
-        
-          <li>
-            <a href="/blogs/site/blogs/如何展示表单控件.html">如何展示表单控件</a>
-          </li>
-        
-          <li>
-            <a href="/blogs/site/blogs/HTTP请求重发.html">HTTP请求重发</a>
-          </li>
-        
-          <li>
-            <a href="/blogs/site/blogs/karma-入门.html">karma 入门</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
+
+        </div>
+
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 yibuyisheng<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/blogs/site/" class="mobile-nav-link">Home</a>
-  
-    <a href="/blogs/site/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  </article>
 
 
-  <link rel="stylesheet" href="/blogs/site/fancybox/jquery.fancybox.css">
-  <script src="/blogs/site/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/blogs/site/js/script.js"></script>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-  </div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/blogs/site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+
 </body>
 </html>

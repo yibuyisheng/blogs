@@ -1,24 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>博客</title>
+  <title>yibuyisheng</title>
   <subtitle>偶尔玩玩 Java 的前端工程师</subtitle>
   <link href="/blogs/site/atom.xml" rel="self"/>
   
-  <link href="http://yibuyisheng.github.io/blogs/site/"/>
-  <updated>2016-12-28T15:15:54.000Z</updated>
-  <id>http://yibuyisheng.github.io/blogs/site/</id>
+  <link href="http://yibuyisheng.github.io/blogs/site/index.html/"/>
+  <updated>2017-01-06T10:05:40.000Z</updated>
+  <id>http://yibuyisheng.github.io/blogs/site/index.html/</id>
   
   <author>
     <name>yibuyisheng</name>
-    
+    <email>yibuyisheng@163.com</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ES6 中的模式匹配和默认参数</title>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/ES6%20%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E5%92%8C%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/ES6 模式匹配和默认参数.html</id>
+    <published>2017-01-05T16:00:00.000Z</published>
+    <updated>2017-01-06T10:05:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>ES6 中，引入了其他很多语言都具备的<code>模式匹配</code>和<code>默认参数</code>语法糖，使得代码简洁了不少。但是使用的时候还是有些细节需要注意。<br><a id="more"></a></p>
+<h2 id="模式匹配原理"><a href="#模式匹配原理" class="headerlink" title="模式匹配原理"></a>模式匹配原理</h2><h3 id="模式匹配的种类"><a href="#模式匹配的种类" class="headerlink" title="模式匹配的种类"></a>模式匹配的种类</h3><p>具体来说，有三种类型的模式匹配：</p>
+<ul>
+<li><p>直接赋值</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>对象模式</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> &#123;name, <span class="attr">age</span>: age&#125; = &#123;<span class="attr">name</span>: <span class="string">'yibuyisheng'</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>数组模式</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> [a, b] = [<span class="number">1</span>, <span class="number">2</span>];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="模式匹配的过程"><a href="#模式匹配的过程" class="headerlink" title="模式匹配的过程"></a>模式匹配的过程</h3><ul>
+<li><p>直接赋值：x ← value（包括 <code>undefined</code> 和 <code>null</code>）</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">x = value</div></pre></td></tr></table></figure>
+</li>
+<li><p>对象模式</p>
+<p>  该种模式下，会检查匹配源是不是对象，如果不是对象，则会使用内部的 <a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-toobject" target="_blank" rel="external">ToObject()</a> 进行转换。</p>
+<ul>
+<li><p>{«properties»} ← undefined</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>();</div></pre></td></tr></table></figure>
+</li>
+<li><p>{«properties»} ← null</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>();</div></pre></td></tr></table></figure>
+</li>
+<li><p>{key: «pattern», «properties»} ← obj</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">«pattern» ← obj.key</div><div class="line">&#123;«properties»&#125; ← obj</div></pre></td></tr></table></figure>
+</li>
+<li><p>{key: «pattern» = default_value, «properties»} ← obj</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let tmp = obj.key;</div><div class="line">if (tmp !== undefined) &#123;</div><div class="line">  «pattern» ← tmp</div><div class="line">&#125; else &#123;</div><div class="line">  «pattern» ← default_value</div><div class="line">&#125;</div><div class="line">&#123;«properties»&#125; ← obj</div></pre></td></tr></table></figure>
+</li>
+<li><p>{} ← obj</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">// No properties left, nothing to do</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数组模式</p>
+<p>  该种模式下，右侧必须是可迭代的，如果不可迭代，就会抛出错误。</p>
+<ul>
+<li><p>[«elements»] ← non_iterable</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">assert(!isIterable(non_iterable))</div><div class="line">throw new TypeError();</div></pre></td></tr></table></figure>
+</li>
+<li><p>[«elements»] ← iterable</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">assert(isIterable(iterable))</div><div class="line">let iterator = iterable[Symbol.iterator]();</div><div class="line">«elements» ← iterator</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="模式匹配中需要注意的"><a href="#模式匹配中需要注意的" class="headerlink" title="模式匹配中需要注意的"></a>模式匹配中需要注意的</h2><h3 id="undefined-触发默认值"><a href="#undefined-触发默认值" class="headerlink" title="undefined 触发默认值"></a>undefined 触发默认值</h3><p>如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> [x = <span class="number">1</span>] = [<span class="literal">undefined</span>]; <span class="comment">// x = 1</span></div></pre></td></tr></table></figure>
+<p>右侧的 <code>underfined</code> 元素会触发左侧的默认值。</p>
+<h3 id="在需要的时候才会去计算默认值"><a href="#在需要的时候才会去计算默认值" class="headerlink" title="在需要的时候才会去计算默认值"></a>在需要的时候才会去计算默认值</h3><p>比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> &#123;<span class="attr">prop</span>: y = someFunc()&#125; = someValue;</div></pre></td></tr></table></figure>
+<p>只有在右侧 <code>someValue.prop</code> 为 <code>undefined</code> 的时候才会执行 <code>someFunc()</code> 函数。</p>
+<h3 id="模式匹配中可以引用模式中前面的变量"><a href="#模式匹配中可以引用模式中前面的变量" class="headerlink" title="模式匹配中可以引用模式中前面的变量"></a>模式匹配中可以引用模式中前面的变量</h3><p>比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> [x = <span class="number">3</span>, y = x] = [<span class="number">7</span>, <span class="number">2</span>]; <span class="comment">// x=7; y=2</span></div></pre></td></tr></table></figure>
+<p>这个地方要注意顺序，比如下面这个就是错误的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> [x = y, y = <span class="number">3</span>] = [<span class="number">7</span>, <span class="number">2</span>]; <span class="comment">// ReferenceError</span></div></pre></td></tr></table></figure>
+<h2 id="函数参数传递"><a href="#函数参数传递" class="headerlink" title="函数参数传递"></a>函数参数传递</h2><p>函数传参的过程，实际上就包含了模式匹配的过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function func(«FORMAL_PARAMETERS») &#123;</div><div class="line">    «CODE»</div><div class="line">&#125;</div><div class="line">func(«ACTUAL_PARAMETERS»);</div><div class="line"></div><div class="line">// 大致是：</div><div class="line"></div><div class="line">&#123;</div><div class="line">    let [«FORMAL_PARAMETERS»] = [«ACTUAL_PARAMETERS»];</div><div class="line">    &#123;</div><div class="line">        «CODE»</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="函数默认参数，慎用对象引用"><a href="#函数默认参数，慎用对象引用" class="headerlink" title="函数默认参数，慎用对象引用"></a>函数默认参数，慎用对象引用</h2><p>有如下示例代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> list = [];</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">a = list</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">&#125;</div><div class="line"></div><div class="line">fn(); <span class="comment">// console.log: []</span></div><div class="line">list.push(<span class="number">1</span>);</div><div class="line">fn(); <span class="comment">// console.log: [1]</span></div></pre></td></tr></table></figure>
+<p>默认参数使用了 list 引用，那么后续对 list 的修改，都会体现到默认参数上面去。在大型项目开发中，容易失控。如果一定要用某个变量生成默认值，建议深拷贝一份：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> list = [];</div><div class="line"><span class="keyword">const</span> listDefaultParam = deepClone(list); <span class="comment">// 其它地方不要再使用这个变量了，并且在函数内部也不要修改这个变量值</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">a = listDefaultParam</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="默认参数的作用域"><a href="#默认参数的作用域" class="headerlink" title="默认参数的作用域"></a>默认参数的作用域</h2><p>使用最新版的 Chrome 浏览器执行下面的代码，注意输出结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">(&#123;</div><div class="line">    method() &#123;</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">innerFn</span>(<span class="params">a = (</span>) =&gt; <span class="title">console</span>.<span class="title">log</span>(<span class="params">this</span>)) </span>&#123;</div><div class="line">            a();</div><div class="line">        &#125;</div><div class="line">        innerFn.call(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;).method();</div><div class="line"></div><div class="line">(&#123;</div><div class="line">    method() &#123;</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">innerFn</span>(<span class="params">a = (</span>) =&gt; <span class="title">console</span>.<span class="title">log</span>(<span class="params">this</span>)) </span>&#123;</div><div class="line">            a();</div><div class="line">        &#125;</div><div class="line">        innerFn();</div><div class="line">    &#125;</div><div class="line">&#125;).method();</div><div class="line"></div><div class="line">(&#123;</div><div class="line">    method() &#123;</div><div class="line">        <span class="keyword">let</span> arrowFn = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">innerFn</span>(<span class="params">a = arrowFn</span>) </span>&#123;</div><div class="line">            a();</div><div class="line">        &#125;</div><div class="line">        innerFn();</div><div class="line">    &#125;</div><div class="line">&#125;).method();</div><div class="line"></div><div class="line">(&#123;</div><div class="line">    method() &#123;</div><div class="line">        <span class="keyword">let</span> arrowFn = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">innerFn</span>(<span class="params">a = arrowFn</span>) </span>&#123;</div><div class="line">            a();</div><div class="line">        &#125;</div><div class="line">        innerFn.call(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;).method();</div><div class="line"></div><div class="line"><span class="comment">// output:</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Object(&#123;method: ()&#125;)</span></div><div class="line"><span class="comment">// Window &#123; ... &#125;</span></div><div class="line"><span class="comment">// Object(&#123;method: ()&#125;)</span></div><div class="line"><span class="comment">// Object(&#123;method: ()&#125;)</span></div></pre></td></tr></table></figure>
+<p>实际上，将上述代码用 babel 转换一下，可以发现默认参数的处理过程发生在函数开始部分。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ES6 中，引入了其他很多语言都具备的&lt;code&gt;模式匹配&lt;/code&gt;和&lt;code&gt;默认参数&lt;/code&gt;语法糖，使得代码简洁了不少。但是使用的时候还是有些细节需要注意。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/JavaScript/"/>
+    
+      <category term="ECMAScript 6" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/ECMAScript-6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>当心，babel 处理 Symbol 的麻烦</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E5%BD%93%E5%BF%83%EF%BC%8Cbabel%20%E5%A4%84%E7%90%86%20Symbol%20%E7%9A%84%E9%BA%BB%E7%83%A6.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/当心，babel 处理 Symbol 的麻烦.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/%E5%BD%93%E5%BF%83%EF%BC%8Cbabel%20%E5%A4%84%E7%90%86%20Symbol%20%E7%9A%84%E9%BA%BB%E7%83%A6.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/当心，babel 处理 Symbol 的麻烦.html</id>
     <published>2016-12-28T14:29:00.000Z</published>
     <updated>2016-12-28T15:15:54.000Z</updated>
     
@@ -44,16 +134,16 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/JavaScript/"/>
     
-      <category term="babel" scheme="http://yibuyisheng.github.io/blogs/site/tags/babel/"/>
+      <category term="babel" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/babel/"/>
     
   </entry>
   
   <entry>
     <title>Redux 使用初探</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/Redux%20%E4%BD%BF%E7%94%A8%E5%88%9D%E6%8E%A2.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/Redux 使用初探.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/Redux%20%E4%BD%BF%E7%94%A8%E5%88%9D%E6%8E%A2.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/Redux 使用初探.html</id>
     <published>2016-12-25T16:00:00.000Z</published>
     <updated>2016-12-26T11:07:18.000Z</updated>
     
@@ -107,16 +197,16 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/JavaScript/"/>
     
-      <category term="Redux" scheme="http://yibuyisheng.github.io/blogs/site/tags/Redux/"/>
+      <category term="Redux" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/Redux/"/>
     
   </entry>
   
   <entry>
     <title>如何展示表单控件</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E5%A6%82%E4%BD%95%E5%B1%95%E7%A4%BA%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/如何展示表单控件.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/%E5%A6%82%E4%BD%95%E5%B1%95%E7%A4%BA%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/如何展示表单控件.html</id>
     <published>2016-12-15T14:34:00.000Z</published>
     <updated>2016-12-15T15:34:16.000Z</updated>
     
@@ -140,14 +230,14 @@
     </summary>
     
     
-      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/tags/CSS/"/>
+      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>HTTP请求重发</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/HTTP%E8%AF%B7%E6%B1%82%E9%87%8D%E5%8F%91.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/HTTP请求重发.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/HTTP%E8%AF%B7%E6%B1%82%E9%87%8D%E5%8F%91.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/HTTP请求重发.html</id>
     <published>2016-07-05T16:00:00.000Z</published>
     <updated>2016-07-08T08:07:25.000Z</updated>
     
@@ -185,14 +275,14 @@
     </summary>
     
     
-      <category term="HTTP" scheme="http://yibuyisheng.github.io/blogs/site/tags/HTTP/"/>
+      <category term="HTTP" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>karma 入门</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/karma-%E5%85%A5%E9%97%A8.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/karma-入门.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/karma-%E5%85%A5%E9%97%A8.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/karma-入门.html</id>
     <published>2016-07-01T02:35:44.000Z</published>
     <updated>2016-07-01T03:56:25.000Z</updated>
     
@@ -235,8 +325,8 @@
   
   <entry>
     <title>受保护的对象</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E5%8F%97%E4%BF%9D%E6%8A%A4%E7%9A%84%E5%AF%B9%E8%B1%A1.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/受保护的对象.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/%E5%8F%97%E4%BF%9D%E6%8A%A4%E7%9A%84%E5%AF%B9%E8%B1%A1.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/受保护的对象.html</id>
     <published>2016-06-19T08:27:44.000Z</published>
     <updated>2016-07-01T03:56:57.000Z</updated>
     
@@ -303,14 +393,14 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/JavaScript/"/>
     
   </entry>
   
   <entry>
     <title>WEB 中的文件下载</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/filedownload.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/filedownload.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/filedownload.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/filedownload.html</id>
     <published>2016-06-17T00:59:00.000Z</published>
     <updated>2016-06-17T16:12:32.000Z</updated>
     
@@ -385,14 +475,14 @@
     </summary>
     
     
-      <category term="HTTP" scheme="http://yibuyisheng.github.io/blogs/site/tags/HTTP/"/>
+      <category term="HTTP" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>使用 marked 解析 markdown 之缩进</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E4%BD%BF%E7%94%A8%20marked%20%E8%A7%A3%E6%9E%90%20markdown%20%E4%B9%8B%E7%BC%A9%E8%BF%9B.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/使用 marked 解析 markdown 之缩进.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/%E4%BD%BF%E7%94%A8%20marked%20%E8%A7%A3%E6%9E%90%20markdown%20%E4%B9%8B%E7%BC%A9%E8%BF%9B.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/使用 marked 解析 markdown 之缩进.html</id>
     <published>2016-06-15T08:12:00.000Z</published>
     <updated>2016-06-17T12:56:10.000Z</updated>
     
@@ -435,16 +525,16 @@
     </summary>
     
     
-      <category term="markdown" scheme="http://yibuyisheng.github.io/blogs/site/tags/markdown/"/>
+      <category term="markdown" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/markdown/"/>
     
-      <category term="ETPL" scheme="http://yibuyisheng.github.io/blogs/site/tags/ETPL/"/>
+      <category term="ETPL" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/ETPL/"/>
     
   </entry>
   
   <entry>
     <title>oracle 安装</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/oracle%E5%AE%89%E8%A3%85.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/oracle安装.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/oracle%E5%AE%89%E8%A3%85.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/oracle安装.html</id>
     <published>2016-05-23T04:13:00.000Z</published>
     <updated>2016-06-15T10:45:36.000Z</updated>
     
@@ -489,16 +579,16 @@
     </summary>
     
     
-      <category term="Oracle" scheme="http://yibuyisheng.github.io/blogs/site/tags/Oracle/"/>
+      <category term="Oracle" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/Oracle/"/>
     
-      <category term="数据库" scheme="http://yibuyisheng.github.io/blogs/site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>使用 marked 解析 markdown</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E4%BD%BF%E7%94%A8marked%E8%A7%A3%E6%9E%90markdown.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/使用marked解析markdown.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/%E4%BD%BF%E7%94%A8marked%E8%A7%A3%E6%9E%90markdown.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/使用marked解析markdown.html</id>
     <published>2016-05-20T05:49:00.000Z</published>
     <updated>2016-06-15T10:44:30.000Z</updated>
     
@@ -570,16 +660,16 @@
     </summary>
     
     
-      <category term="markdown" scheme="http://yibuyisheng.github.io/blogs/site/tags/markdown/"/>
+      <category term="markdown" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/markdown/"/>
     
-      <category term="ETPL" scheme="http://yibuyisheng.github.io/blogs/site/tags/ETPL/"/>
+      <category term="ETPL" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/ETPL/"/>
     
   </entry>
   
   <entry>
     <title>实现第一个 vscode 扩展</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E5%AE%9E%E7%8E%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%20vscode%20%E6%89%A9%E5%B1%95.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/实现第一个 vscode 扩展.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/%E5%AE%9E%E7%8E%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%20vscode%20%E6%89%A9%E5%B1%95.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/实现第一个 vscode 扩展.html</id>
     <published>2016-01-10T10:20:00.000Z</published>
     <updated>2016-06-15T10:47:07.000Z</updated>
     
@@ -660,14 +750,14 @@
     </summary>
     
     
-      <category term="vscode" scheme="http://yibuyisheng.github.io/blogs/site/tags/vscode/"/>
+      <category term="vscode" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/vscode/"/>
     
   </entry>
   
   <entry>
     <title>爬虫与编码</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E7%88%AC%E8%99%AB%E4%B8%8E%E7%BC%96%E7%A0%81.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/爬虫与编码.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/%E7%88%AC%E8%99%AB%E4%B8%8E%E7%BC%96%E7%A0%81.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/爬虫与编码.html</id>
     <published>2016-01-09T05:23:00.000Z</published>
     <updated>2016-06-08T09:52:21.000Z</updated>
     
@@ -714,8 +804,8 @@
   
   <entry>
     <title>ES6 简单特性概览</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/ES6%20%E7%AE%80%E5%8D%95%E7%89%B9%E6%80%A7%E6%A6%82%E8%A7%88.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/ES6 简单特性概览.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/ES6%20%E7%AE%80%E5%8D%95%E7%89%B9%E6%80%A7%E6%A6%82%E8%A7%88.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/ES6 简单特性概览.html</id>
     <published>2015-10-18T03:43:00.000Z</published>
     <updated>2016-07-01T03:56:27.000Z</updated>
     
@@ -903,16 +993,16 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/JavaScript/"/>
     
-      <category term="ECMAScript 6" scheme="http://yibuyisheng.github.io/blogs/site/tags/ECMAScript-6/"/>
+      <category term="ECMAScript 6" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/ECMAScript-6/"/>
     
   </entry>
   
   <entry>
     <title>一个 JavaScript</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E4%B8%80%E4%B8%AA%20JavaScript.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/一个 JavaScript.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/%E4%B8%80%E4%B8%AA%20JavaScript.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/一个 JavaScript.html</id>
     <published>2015-10-04T16:00:00.000Z</published>
     <updated>2016-06-15T10:46:43.000Z</updated>
     
@@ -1001,16 +1091,16 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/JavaScript/"/>
     
-      <category term="ECMAScript 6" scheme="http://yibuyisheng.github.io/blogs/site/tags/ECMAScript-6/"/>
+      <category term="ECMAScript 6" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/ECMAScript-6/"/>
     
   </entry>
   
   <entry>
     <title>CSS 语法速查</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/CSS%20%E8%AF%AD%E6%B3%95%E9%80%9F%E6%9F%A5.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/CSS 语法速查.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS%20%E8%AF%AD%E6%B3%95%E9%80%9F%E6%9F%A5.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS 语法速查.html</id>
     <published>2015-09-03T11:06:00.000Z</published>
     <updated>2016-06-15T10:45:09.000Z</updated>
     
@@ -1028,14 +1118,14 @@
     </summary>
     
     
-      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/tags/CSS/"/>
+      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>CSS 空心字</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/CSS%20%E7%A9%BA%E5%BF%83%E5%AD%97.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/CSS 空心字.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS%20%E7%A9%BA%E5%BF%83%E5%AD%97.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS 空心字.html</id>
     <published>2015-09-01T16:00:00.000Z</published>
     <updated>2016-06-15T10:45:03.000Z</updated>
     
@@ -1052,14 +1142,14 @@
     </summary>
     
     
-      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/tags/CSS/"/>
+      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>CSS 变形</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/CSS%20%E5%8F%98%E5%BD%A2.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/CSS 变形.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS%20%E5%8F%98%E5%BD%A2.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS 变形.html</id>
     <published>2015-08-31T16:00:00.000Z</published>
     <updated>2016-06-15T10:44:56.000Z</updated>
     
@@ -1090,46 +1180,14 @@
     </summary>
     
     
-      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSS border-image</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/CSS%20border-image.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/CSS border-image.html</id>
-    <published>2015-08-26T16:00:00.000Z</published>
-    <updated>2016-06-15T10:44:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<iframe src="../demos/border-image.html" width="100%" height="336" frameborder="0" allowfullscreen></iframe>
-<p>上面示例的 css 代码为：<br><a id="more"></a></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.demo1</span> &#123;</div><div class="line">    <span class="attribute">display</span>: inline-block;</div><div class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line"></div><div class="line">    <span class="attribute">border-width</span>: <span class="number">60px</span> <span class="number">70px</span>;</div><div class="line">    <span class="attribute">border-image</span>: <span class="built_in">url</span>(../images/8.jpg) <span class="number">60</span> <span class="number">70</span> round stretch;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>CSS 中的 border-image 可以给边框设置图片背景，其参数主要分为三部分：</p>
-<ul>
-<li>1、图片来源。即示例中的 <code>url(../images/8.jpg)</code> ；</li>
-<li>2、图片裁剪尺寸。即示例中的 <code>60 70</code>。裁剪尺寸遵循 <code>top-right-bottom-left</code> 规则，其数值可以是百分数，也可以是像素值。如果是像素值，则不能带单位，直接写数值就好了，示例中<code>60 70</code>的含义为：对图片实施裁剪，图片上部和下部分别裁掉60px，左部和右部分别裁掉70px，于是图片就形成9块，四个边角块是无法运用round（平铺）等效果的，中间那一块是没用的。如果为百分数，则是根据图片的尺寸来计算出相应的像素值的；</li>
-<li>3、图片可运用效果区域的展示效果。取值为 [round|repeat|stretch] 。正如2中所述，图片会被裁剪成9块，而这个展示效果只能运用于上、右、下、左的中间那一块。</li>
-</ul>
-<p><code>-webkit-border-image</code> 是有 bug 的，它会用裁剪后的9块图片的中间那一张覆盖掉背景。如下所示：</p>
-<iframe src="../demos/-webkit-border-image.html" width="100%" height="336" frameborder="0" allowfullscreen></iframe>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;iframe src=&quot;../demos/border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;p&gt;上面示例的 css 代码为：&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/tags/CSS/"/>
+      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>CSS border-radius</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/CSS%20border-radius.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/CSS border-radius.html</id>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS%20border-radius.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS border-radius.html</id>
     <published>2015-08-26T16:00:00.000Z</published>
     <updated>2016-06-15T10:44:50.000Z</updated>
     
@@ -1155,45 +1213,39 @@
     </summary>
     
     
-      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/tags/CSS/"/>
+      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/CSS/"/>
     
   </entry>
   
   <entry>
-    <title>使用 CSS background 构造一个棋盘</title>
-    <link href="http://yibuyisheng.github.io/blogs/site//blogs/%E4%BD%BF%E7%94%A8%20CSS%20background%20%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E6%A3%8B%E7%9B%98.html"/>
-    <id>http://yibuyisheng.github.io/blogs/site//blogs/使用 CSS background 构造一个棋盘.html</id>
-    <published>2015-08-24T16:00:00.000Z</published>
-    <updated>2016-06-15T10:46:57.000Z</updated>
+    <title>CSS border-image</title>
+    <link href="http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS%20border-image.html"/>
+    <id>http://yibuyisheng.github.io/blogs/site/index.html/blogs/CSS border-image.html</id>
+    <published>2015-08-26T16:00:00.000Z</published>
+    <updated>2016-06-15T10:44:42.000Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="http://www.w3.org/TR/css3-background" target="_blank" rel="external">CSS background 的规范文档</a>。</p>
-<p><img src="https://raw.githubusercontent.com/yibuyisheng/blogs/master/imgs/6.png" alt=""><br><a id="more"></a></p>
-<p>使用的 CSS 代码如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span><span class="selector-class">.demo1</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">150px</span>;</div><div class="line"></div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#eee</span>;</div><div class="line">    <span class="attribute">background-image</span>:</div><div class="line">        <span class="built_in">linear-gradient</span>(45deg, #bbb 25%, transparent 0),</div><div class="line">        <span class="built_in">linear-gradient</span>(45deg, transparent 75%, #bbb 0),</div><div class="line">        <span class="built_in">linear-gradient</span>(45deg, #bbb 25%, transparent 0),</div><div class="line">        <span class="built_in">linear-gradient</span>(45deg, transparent 75%, #bbb 0);</div><div class="line">    <span class="attribute">background-size</span>: <span class="number">30px</span> <span class="number">30px</span>;</div><div class="line">    <span class="attribute">background-position</span>: <span class="number">0</span> <span class="number">0</span>, <span class="number">15px</span> <span class="number">15px</span>, <span class="number">15px</span> <span class="number">15px</span>, <span class="number">0</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>整个 div 的背景色是 #eee 。</p>
-<p>这个背景是由四幅代码“制造”的图片构成的，分别对应于四行 linear-gradient 。</p>
-<p>第一幅图片，颜色渐变，角度是 45deg ，于是从图片的左下角开始往右上角渐变。0-25%的颜色是 #bbb ，25%-100%的颜色是透明的（ transparent ），图片的大小是30px*30px的，图片从坐标(0,0)处开始绘制。</p>
-<p>第二幅图片，颜色渐变，角度是 45deg ，于是从图片的左下角开始往右上角渐变。0-75%的颜色是透明的（ transparent ），75%-100%的颜色是 #bbb ，图片的大小是30px*30px的，图片从坐标(15px,15px)处开始绘制。</p>
-<p>第三幅图片，颜色渐变，角度是 45deg ，于是从图片的左下角开始往右上角渐变。0-25%的颜色是 #bbb ，25%-100%的颜色是透明的（ transparent ），图片的大小是30px*30px的，图片从坐标(15px,15px)处开始绘制。</p>
-<p>第四幅图片，颜色渐变，角度是 45deg ，于是从图片的左下角开始往右上角渐变。0-75%的颜色是透明的（ transparent ），75%-100%的颜色是 #bbb ，图片的大小是30px*30px的，图片从坐标(0,0)处开始绘制。</p>
-<p>为了更清晰的看到每幅图片代码对应的区域，参考一下一段代码及其效果：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span><span class="selector-class">.demo2</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">150px</span>;</div><div class="line"></div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#eee</span>;</div><div class="line">    <span class="attribute">background-image</span>:</div><div class="line">        <span class="built_in">linear-gradient</span>(45deg, red 25%, transparent 0),</div><div class="line">        <span class="built_in">linear-gradient</span>(45deg, transparent 75%, blue 0),</div><div class="line">        <span class="built_in">linear-gradient</span>(45deg, green 25%, transparent 0),</div><div class="line">        <span class="built_in">linear-gradient</span>(45deg, transparent 75%, orange 0);</div><div class="line">    <span class="attribute">background-size</span>: <span class="number">30px</span> <span class="number">30px</span>;</div><div class="line">    <span class="attribute">background-position</span>: <span class="number">0</span> <span class="number">0</span>, <span class="number">15px</span> <span class="number">15px</span>, <span class="number">15px</span> <span class="number">15px</span>, <span class="number">0</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/yibuyisheng/blogs/master/imgs/7.png" alt=""></p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>css 的 background 属性现在很强大了，利用背景“图片”的层叠，可以做出很多绚丽的背景效果。</p>
-<h3 id="更多-CSS-background-的效果："><a href="#更多-CSS-background-的效果：" class="headerlink" title="更多 CSS background 的效果："></a>更多 CSS background 的效果：</h3><iframe src="../demos/envelope.html" width="100%" height="250" frameborder="0" allowfullscreen></iframe>
-<iframe src="../demos/css%20background.html" width="100%" height="430" frameborder="0" allowfullscreen></iframe>
-<iframe src="../demos/marching%20ants%20borders.html" width="100%" height="240" frameborder="0" allowfullscreen></iframe>
+    <content type="html"><![CDATA[<iframe src="../demos/border-image.html" width="100%" height="336" frameborder="0" allowfullscreen></iframe>
+<p>上面示例的 css 代码为：<br><a id="more"></a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.demo1</span> &#123;</div><div class="line">    <span class="attribute">display</span>: inline-block;</div><div class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line"></div><div class="line">    <span class="attribute">border-width</span>: <span class="number">60px</span> <span class="number">70px</span>;</div><div class="line">    <span class="attribute">border-image</span>: <span class="built_in">url</span>(../images/8.jpg) <span class="number">60</span> <span class="number">70</span> round stretch;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>CSS 中的 border-image 可以给边框设置图片背景，其参数主要分为三部分：</p>
+<ul>
+<li>1、图片来源。即示例中的 <code>url(../images/8.jpg)</code> ；</li>
+<li>2、图片裁剪尺寸。即示例中的 <code>60 70</code>。裁剪尺寸遵循 <code>top-right-bottom-left</code> 规则，其数值可以是百分数，也可以是像素值。如果是像素值，则不能带单位，直接写数值就好了，示例中<code>60 70</code>的含义为：对图片实施裁剪，图片上部和下部分别裁掉60px，左部和右部分别裁掉70px，于是图片就形成9块，四个边角块是无法运用round（平铺）等效果的，中间那一块是没用的。如果为百分数，则是根据图片的尺寸来计算出相应的像素值的；</li>
+<li>3、图片可运用效果区域的展示效果。取值为 [round|repeat|stretch] 。正如2中所述，图片会被裁剪成9块，而这个展示效果只能运用于上、右、下、左的中间那一块。</li>
+</ul>
+<p><code>-webkit-border-image</code> 是有 bug 的，它会用裁剪后的9块图片的中间那一张覆盖掉背景。如下所示：</p>
+<iframe src="../demos/-webkit-border-image.html" width="100%" height="336" frameborder="0" allowfullscreen></iframe>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;http://www.w3.org/TR/css3-background&quot;&gt;CSS background 的规范文档&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yibuyisheng/blogs/master/imgs/6.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+      &lt;iframe src=&quot;../demos/border-image.html&quot; width=&quot;100%&quot; height=&quot;336&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;上面示例的 css 代码为：&lt;br&gt;
     
     </summary>
     
     
-      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/tags/CSS/"/>
+      <category term="CSS" scheme="http://yibuyisheng.github.io/blogs/site/index.html/tags/CSS/"/>
     
   </entry>
   

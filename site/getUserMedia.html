@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://mozilla.github.io/webrtc-landing/gum_test.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>gUM Test Page</title>
+  
+  <link href="./gum_test_files/css" rel="stylesheet" type="text/css">
+  <style>
+    #main {
+      display: block;
+      margin: 0px auto;
+      text-align: center
+    }
+    #content {
+      display: inline-block;
+    }
+    #frames {
+      display: inline-block;
+      max-width: 180px;
+      vertical-align: top;
+    }
+    #startbuttons {
+      display: block;
+    }
+    #stopbuttons {
+      display: none;
+    }
+    #message {
+      font-size: 24px;
+      font-family: "Gentium Basic", serif;
+    }
+    h1 {
+      font-size: 40px;
+      font-family: "Gentium Basic", serif;
+    }
+    input {
+      font-size: 28px;
+      font-family: "Gentium Basic", serif;
+    }
+    p {
+      color: green;
+    }
+    p.error {
+      color: red;
+    }
+  </style></head>
+<body>
+  <div id="main">
+    <h2><b>getUserMedia Test Page</b></h2>
+    <p><a href="https://mozilla.github.io/webrtc-landing">Main webrtc demo page</a></p>
+    <div id="startbuttons">
+      <input value="Video" onclick="startVideo();" type="button">
+      <input value="Audio" onclick="startAudio();" type="button">
+      <input value="Audio &amp; Video" onclick="startAudioVideo();" type="button">
+      <input value="Screen" onclick="startScreen();" type="button">
+      <input value="Window" onclick="startWindow();" type="button">
+      <input value="Application" onclick="startApplication();" type="button">
+      <br><input type="text" id="fps_input" value="0">
+    <label for="fps_input">FPS desired (0 for default)</label>
+    </div>
+    <div id="images">
+       <div id="content"></div>
+       <div id="controls"></div>
+       <div id="frames"></div>
+       <div id="fps"></div>
+    </div>
+    <div id="message"></div>
+    <div style="display: none;" id="stopbuttons">
+      <input value="Stop" onclick="stopMedia();" type="button">
+      <input value="Pause/Play" onclick="pauseMedia();" type="button">
+      <input id="snapshot" value="Snapshot" onclick="startSnapshot();" type="button">
+    </div>
+  </div>
+
+  <script type="application/javascript">
+  var video_status = false;
+  var video = document.createElement("video");
+  video.setAttribute("width", 640);
+  video.setAttribute("height", 480);
+
+  var muted = document.createElement("input");
+  muted.type = "checkbox";
+  muted.checked = true;
+  muted.onclick = function() { video.muted = muted.checked; };
+
+  var mute = document.createElement("label");
+  mute.innerHTML = "Muted";
+  mute.insertBefore(muted, mute.firstChild);
+
+  var snapshots = [];
+
+  var audio_status = false;
+  var audio = document.createElement("audio");
+  audio.setAttribute("controls", true);
+
+  var start = document.getElementById("startbuttons");
+  var stop = document.getElementById("stopbuttons");
+
+  var message = document.getElementById("message");
+  var content = document.getElementById("content");
+  var frames = document.getElementById("frames");
+  var snapshot = document.getElementById("snapshot");
+  var fps = document.getElementById("fps");
+
+  var fps_input = document.getElementById("fps_input");
+
+  var saved_stream = null;
+  var capturing = false;
+  var running = false;
+
+  var fps_now = 0;
+  var fps_total = 0;
+  var last_fps_time;
+  var first_fps_time;
+  var last_fps_frames;
+  var first_fps_frames;
+  var fps_constraint;
+
+  function set_fps() {
+    if (fps_input.value == 0 &&
+        mediaConstraints.video != null) {
+      mediaConstraints.video.frameRate = null;
+    //dump("Removing frameRate\n");
+    } else if (fps_input.value > 0 &&
+    fps_input.value < 200 &&
+    mediaConstraints.video) {
+    if (!mediaConstraints.video.frameRate) {
+        mediaConstraints.video.frameRate = {ideal: fps_input.value};
+    } else {
+        // I assume if framerate is there ideal is
+        mediaConstraints.video.frameRate.ideal = fps_input.value;
+    }
+      //dump("Setting framerate to " + fps_input.value + "\n");
+    }
+  }
+
+  function startScreen() {
+    video_status = true;
+    mediaConstraints = {
+      video: {
+        mediaSource: "screen"
+      },
+    };
+    set_fps();
+    message.innerHTML = "<p>Note: enable media.getusermedia.screensharing.enabled in about:config</p>";
+    startMedia(mediaConstraints);
+  }
+
+  function startWindow() {
+    video_status = true;
+    mediaConstraints = {
+      video: {
+        mediaSource: "window"
+      }
+    };
+    set_fps();
+    message.innerHTML = "<p>Note: enable media.getusermedia.screensharing.enabled in about:config</p>";
+    startMedia(mediaConstraints);
+  }
+
+  function startApplication() {
+    video_status = true;
+    mediaConstraints = {
+      video: {
+        mediaSource: "application"
+      }
+    };
+    set_fps();
+    message.innerHTML = "<p>Note: enable media.getusermedia.screensharing.enabled in about:config</p>";
+    startMedia(mediaConstraints);
+  }
+
+  function startAudioVideo() {
+    video_status = true;
+    audio_status = true;
+    mediaConstraints = {video:true, audio:true};
+    set_fps();
+    startMedia(mediaConstraints);
+  }
+
+  function startAudio() {
+    audio_status = true;
+    mediaConstraints = {audio:true};
+    set_fps();
+    startMedia(mediaConstraints);
+  }
+
+  function startVideo() {
+    video_status = true;
+      mediaConstraints = {video:true};
+    set_fps();
+    startMedia(mediaConstraints);
+  }
+
+  function stopMedia() {
+    if (video_status) {
+      if (video.srcObject) {
+        video.srcObject.stop();
+      }
+      video.srcObject = null;
+      content.removeChild(video);
+      controls.removeChild(mute);
+      fps.innerHTML = "";
+      stopbuttons.removeChild(snapshot);
+      snapshot.value = "Snapshot";
+      frames.innerHTML = '';
+      capturing = false;
+      video_status = false;
+    } else if (audio_status) {
+      if (audio.srcObject) {
+        audio.srcObject.stop();
+      }
+      audio.srcObject = null;
+      content.removeChild(audio);
+      audio_status = false;
+    }
+    saved_stream = null;
+    stop.style.display = "none";
+    start.style.display = "block";
+    running = false;
+  }
+
+  function pauseMedia() {
+    if (saved_stream) {
+      if (video_status) {
+        video.srcObject = saved_stream;
+        video.play();
+      } else if (audio_status) {
+        audio.srcObject = saved_stream;
+        audio.play();
+      }
+      saved_stream = null;
+    } else {
+      if (video_status) {
+        video.pause();
+        saved_stream = video.srcObject;
+        video.srcObject = null;
+      } else if (audio_status) {
+        audio.pause();
+        saved_stream = audio.srcObject;
+        audio.srcObject = null;
+      }
+    }
+  }
+
+  function getusermedia_error(err, params) {
+    if (params.video && params.video.mediaSource) {
+      if (location.protocol != "https:") {
+        message.innerHTML = "<p class='error'>" + err + "</p>" +
+          "<p>Screen/window sharing now requires the site be loaded from an https: URL</p>" +
+          "<p>Reloading on https: in 10 seconds</p>";
+        setTimeout(function() {
+            window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+          }, 10000);
+      } else {
+        message.innerHTML = "<p class='error'>" + err + "</p>" +
+          "<p>In <a href=\"about:config\">about:config</a>, please enable media.getusermedia.screensharing.enabled<br> and add this" +
+          " site's domain name to media.getusermedia.screensharing.allowed_domains in about:config</p>";
+      }
+    } else {
+        message.innerHTML = "<p class='error'>" + err + "</p>";
+    }
+    stopMedia();
+  }
+
+  function startMedia(param) {
+    stop.style.display = "block";
+    start.style.display = "none";
+
+    navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia;
+
+    var p = navigator.getUserMedia(
+      param,
+      function (stream) {
+        message.innerHTML = "<p>Success!</p>";
+        if (video_status) {
+          content.appendChild(video);
+          if (audio_status) {
+            controls.appendChild(mute);
+            video.muted = muted.checked;
+          }
+          video.srcObject = stream;
+          video.play();
+          frames.innerHTML = '';
+          stopbuttons.appendChild(snapshot);
+          first_fps_time = last_fps_time = new Date();
+          first_fps_frames = last_fps_frames = video.mozPaintedFrames;
+          fps.innerHTML="FPS now:  0.0 , entire capture:  0.0";
+          setTimeout(get_fps, 2000);
+        } else if (audio_status) {
+          content.appendChild(audio);
+          audio.srcObject = stream;
+          audio.play();
+        }
+        running = true;
+      },
+      function (err) { getusermedia_error(err, param); }
+    );
+  }
+
+  function get_fps() {
+    if (running) {
+      var now = new Date();
+      var frames = video.mozPaintedFrames;
+      fps_now =   (frames - last_fps_frames)/((now - last_fps_time)/1000);
+      fps_total = (frames - first_fps_frames)/((now - first_fps_time)/1000);
+      fps.innerHTML="FPS now: " + fps_now.toFixed(1) + " , entire capture: " + fps_total.toFixed(1);
+      //dump("FPS: " + fps_now + ", entire capture: " + fps_total + "\n");
+      last_fps_time = now;
+      last_fps_frames = frames;
+      setTimeout(get_fps, 1000);
+    }
+  }
+
+  function startSnapshot() {
+    capturing = !capturing;
+    if (capturing) {
+      captureImage();
+      snapshot.value = "Stop Snapshot";
+    } else {
+      snapshot.value = "Snapshot";
+    }
+  }
+
+  function captureImage() {
+    if (video_status && capturing) {
+      //dump("Capturing len " + snapshots.length + "\n");
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+
+      canvas.width  = video.videoWidth/4;
+      canvas.height = video.videoHeight/4;
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      if (snapshots.unshift(canvas) > 4)
+        snapshots.length = 4;
+      frames.innerHTML = '';
+      for(var i=0; i < snapshots.length; i++) {
+        frames.appendChild(snapshots[i]);
+      }
+
+      setTimeout(captureImage, 2000);
+    }
+  }
+</script>
+
+
+
+</body></html>
